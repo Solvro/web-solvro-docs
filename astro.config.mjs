@@ -15,6 +15,11 @@ export default defineConfig({
       title: "Solvro",
       customCss: ["./src/tailwind.css"],
       tableOfContents: true,
+      logo: {
+        light: "./src/assets/logo_dark.png",
+        dark: "./src/assets/logo_white.png",
+        replacesTitle: true,
+      },
       lastUpdated: true,
       social: {
         facebook: "https://www.facebook.com/knsolvro",
