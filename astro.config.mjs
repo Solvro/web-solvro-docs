@@ -9,6 +9,7 @@ export default defineConfig({
     // @ts-expect-error ??????
     remarkPlugins: [remarkHeadingId],
   },
+  site: "https://docs.solvro.pl",
   integrations: [
     starlight({
       title: "Solvro",
