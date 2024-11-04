@@ -12,6 +12,7 @@ export default defineConfig({
   site: "https://docs.solvro.pl",
   integrations: [
     starlight({
+      defaultLocale: "pl",
       title: "Solvro",
       customCss: ["./src/tailwind.css"],
       tableOfContents: true,
