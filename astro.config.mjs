@@ -15,8 +15,14 @@ export default defineConfig({
       title: "Solvro",
       customCss: ["./src/tailwind.css"],
       tableOfContents: true,
+      lastUpdated: true,
       social: {
-        github: "https://github.com/solvro",
+        facebook: "https://www.facebook.com/knsolvro",
+        github: "https://github.com/solvro/web-solvro-docs",
+        linkedin: "https://www.linkedin.com/company/knsolvro",
+      },
+      editLink: {
+        baseUrl: "https://github.com/Solvro/web-solvro-docs/edit/main/",
       },
       sidebar: [
         {
