@@ -1,5 +1,5 @@
 ---
-title: ToPWR Handbook 
+title: Handbook 
 description: Czym jesteśmy, dokąd zmierzamy? No, ale może bez frazesów.
 ---
 

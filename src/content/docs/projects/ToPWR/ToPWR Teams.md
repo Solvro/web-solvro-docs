@@ -1,5 +1,5 @@
 ---
-title: ToPWR Teams 
+title: Teams 
 description: Spis i krótkie opisy zespołów ToPWR
 ---
 ## Zespoły
