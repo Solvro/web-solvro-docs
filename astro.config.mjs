@@ -35,6 +35,10 @@ export default defineConfig({
           label: "Guides",
           autogenerate: { directory: "guides" },
         },
+        {
+          label: "Projects",
+          autogenerate: { directory: "projects" },
+        },
       ],
     }),
     tailwind({
