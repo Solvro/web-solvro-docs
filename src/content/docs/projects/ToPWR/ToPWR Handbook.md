@@ -25,24 +25,24 @@ Spełniamy potrzebę dostępu do skonsolidowanych i łatwo dostępnych informacj
   - Pierwotne wydanie aplikacji w wersji 0.5.1.
     - Osiągnięcie: 100-200 pobrań.
     - Poprzedni zespół rozpadł się lub zakończył studia.
+    - Aplikacja wykonana w technologiach natywnych Android i iOS, oraz Strapi CMS.
 
 **2023**
   - **Grudzień**: Reaktywacja projektu.
     - Całkowicie nowy skład zespołu.
-    - Przepisanie aplikacji od nowa w technologii Flutter.
-    - Współpraca z Samorządem Głownym, Samorządem Wydziałowym, Kołami Naukowymi.
+    - Przepisanie aplikacji od nowa w technologii Flutter i Directus CMS.
+    - Współpraca z Samorządem Wydziałowym i Kołami Naukowymi.
 
 **2024**
   - **Październik**:
     - Wydanie wersji v1.0.0 na Google Play oraz App Store.
     - Wynik: 1,500 pobrań w ciągu 2 tygodni i 400 stałych tygodniowych użytkowników.
-    - Przekształcenie projektu w program z nowym projektem backendu.
+    - Przekształcenie projektu w program z nowym projektem backendu w technologii Adonis.
     - Wejście we współpracę z Centrum Relacji Międzynarodowych, Działem Dostępności i Wsparcia Osób z Niepełnosprawnościami, Biurem Karier.
   - **Listopad**:
     - Rozszerzenie zespołu o blisko 25 nowych członków.
     - Otworzenie projektu Graf Wiedzy.
     - Przeprowadzenie całkowitej restrukturyzacji organizacyjnej.
-    - Wejście we współpracę ze Stowarzyszeniem Absolwentów.
 
 ## Dalsza dokumentacja
 [ WIP ] Pojawią się tu odnośniki do pozostałych dokumentów, gdy zostaną już przeniesione z Google Docs do Markdown.
