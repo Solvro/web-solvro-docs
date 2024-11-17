@@ -25,25 +25,26 @@ Oto lista najważniejszych rzeczy, które warto w mniejszym lub większym stopni
 Proces instalacji został szczegółowo przedstawiony [tutaj](https://docs.adonisjs.com/guides/getting-started/installation).
 ### NodeJs
 Do zainstalowania Adonisa potrzebujemy NodeJs co najmniej w wersji 20.6
-```
-node -v # v22.0.0
+```shell
+node -v 
+# v22.0.0
 ```
 
 ### Tworzenie nowej aplikacji
 Po wpisaniu tej komendy otworzy się nam konfigurator, dzięki któremu możemy stworzyć nowy projekt.
-```
+```shell
 npm init adonisjs@latest
 ```
 
 ### Włączanie serwera developerskiego
 Korzystając z tej komendy możemy uruchomić serwer deweloperski, który reaguje na zmiany plików i sam się odświeża.
-```
+```shell
 npm run dev
 ```
 
 ### Konfiguracja środowiska
 Projekt Adonisa posiada domyślne pliki styli dla ESLint oraz Prettier. Ważne jest, żeby skonfigurować (lub zainstalować jeżeli ktoś nie ma) te 2 wtyczki). Polecam skonfigurować je, żeby działały automatycznie na zapisie (a conajmniej przy commitowaniu). Pozwala to na utrzymanie jednego stylu kodu na przestrzeni całego projektu. Jeżeli ktoś z jakiegoś powodu bardzo nie chce robić tego w sposób automatyczny można wywołać te narzędzia ręcznie:
-```
+```shell
 # Runs ESLint
 
 npm run lint
