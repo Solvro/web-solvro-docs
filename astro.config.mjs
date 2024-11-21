@@ -32,11 +32,11 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Guides",
+          label: "Handbooki",
           autogenerate: { directory: "guides" },
         },
         {
-          label: "Projects",
+          label: "Projekty",
           autogenerate: { directory: "projects" },
         },
       ],

@@ -178,6 +178,16 @@ Nie mieliśmy jeszcze za dużo projektów, które by wymagały autentykacji, ale
 
 [https://authjs.dev](https://authjs.dev/)
 
+Jeśli robicie to DIY, to pewnie będziecie musieli sobie odpowiedzieć na pytanie gdzie trzymać tokeny i tutaj są dwie opcje:
+
+- LocalStorage - protsza opcja, ale mniej bezpieczna i bardziej podatna na ataki XSS
+- Cookies HttpOnly - bardziej bezpieczna opcja, ale trudniejsza w implementacji, źle zaimplementowane może prowadzić do ataków CSRF
+
+Na potrzeby Solvro cokolwiek wybierzecie będzie dobrze, a jeśli kogoś temat bardziej interesuje to tutaj można sobie poczytać:
+
+- https://tkacz.pro/how-to-securely-store-jwt-tokens
+- https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf
+
 ### Landing page
 
 Jeśli jeszcze raz ktoś zmarnuje czas na robienie własnego landing page’a to go uduszę, tutaj macie dwie templatki i proszę z nich zrzynać:
@@ -194,6 +204,15 @@ Do analityki mamy postawione [Umami](https://umami.is/) na [https://analytics.so
 Strasznie nie lubię tego tematu, bo tu jest milion wyborów i milion + 1 złych, obecnie rekomenduje:
 
 [https://shadcn-minimal-tiptap.vercel.app/](https://shadcn-minimal-tiptap.vercel.app/)
+
+### Tabelki
+
+Do tworzenia bardziej zaawansowanych tabelek polecam [https://tanstack.com/table/latest](https://tanstack.com/table/latest). Jest dość skomplikowany i ma wysoki próg wejścia, ale pozwoli wam na wszystko co sobie wymyślicie.
+
+Jako przykład polecam DataTable z shadcn'a:
+[https://ui.shadcn.com/docs/components/data-table](https://ui.shadcn.com/docs/components/data-table)
+
+Jeśli tabelka ma więcej niż 1000 wierszy to jest moment, żeby przenieść logikę filtrowania, paginacji i sortowania na backend, frontend przy takich ilościach powoli może zacząć zamulać. Przy 10k+ ilości wierszy to jest must-have.
 
 ### Deployment
 
@@ -264,3 +283,11 @@ Ten przykład jeszcze nie jest taki zły, przy 1 useEffectcie dość łatwo się
   Zawsze
   Kiedy używać Client Components?
   Wtedy kiedy nie możecie RSC (czyli potrzebujecie hooków itp)
+
+  Dogłebniej opisane to jest tutaj: https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns
+
+- Jak działaja Client Components?
+
+  Wbrew intuicji początkujących one są też wykonywane po stronie serwera (https://github.com/reactwg/server-components/discussions/4) i serwer wysyła gotowy html wraz z javascriptem, który potem jest wykonywany po stronie klienta i następuje proces hydracji, czyli React "przejmuje" html, który dostał i sam zaczyna go obsługiwać.
+
+  Polecam bardzo opis z dokumentacji Nextjs, dobrze to opisali: https://nextjs.org/docs/app/building-your-application/rendering/client-components
