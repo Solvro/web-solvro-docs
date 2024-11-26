@@ -152,7 +152,7 @@ Tutaj mamy dwie ścieżki:
 
 2. Tanstack Query
 
-   Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta
+   Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
 
 Do pobierania danych też potrzeba klienta API i tutaj mam zachęcam do korzystania z natywnego `fetch` , a za używanie `axios`a bez powodu będę ucinał pensje, jest bardzo mało powodów do używania axiosa w 2024 roku.
 

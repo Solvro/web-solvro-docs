@@ -2,6 +2,32 @@
 
 Teoretycznie powinno się tu znaleźć wszystko co powinieneś/aś wiedzieć o programowaniu u nas, w praktyce jest bardzo work in progress 😭
 
+## FAQ
+
+- Jak dodać nową stronę?
+
+  1. Dodaj nowy plik .md folderze `content/docs/guides/` np. `mario.md`
+  2. W pliku `mario.md` musisz napisać tytuł i opis jako fronmatter, przykładowo:
+    
+
+## Jak odpalić?
+
+Wymagania:
+
+- Node.js 20.x
+
+1. Instalujemy dependencies
+
+```bash
+npm install
+```
+
+2. Odpalamy lokalny serwer
+
+```bash
+npm run dev
+```
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
