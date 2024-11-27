@@ -3,6 +3,7 @@ title: Handbook Web Developera
 description: Poradnik w świecie web developmentu, jak zacząć i żyć?
 ---
 import { FileTree } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## Środowisko
 
@@ -44,11 +45,16 @@ Używamy tej z [bulletproof-react](https://github.com/alan2207/bulletproof-react
   - app # tutaj są nasze wszystkie strony
     - layout.tsx
     - page.tsx
+    - blog
+      - [slug]
+        - page.tsx
+    - kontakt
+      - page.tsx
   - assets # zdjęcia, czcionki i inne rzeczy
     - fajne_foto.webp
   - components # komponenty używane w całej aplikacji
     - FirstComponent.tsx
-    - second-component.tsx
+    - SecondComponent.tsx
   - features/ # moduły podzielone na feature'y
   - hooks # hooki używane w całej aplikacji
     - useAuth.tsx
@@ -150,15 +156,15 @@ Tutaj mamy dwie ścieżki:
 
 1. React Server Components
 
-   React Server Components (RSC) to domyślne podejście w Next.js 13+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
+   React Server Components (RSC) to domyślne podejście w Next.js 14+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
 
     ```jsx
     // app/products/page.tsx
-    import { db } from '@/lib/db';
 
     export default async function ProductsPage() {
       // Pobieranie danych z bazy po stronie serwera
-      const products = await db.products.findMany();
+      const data = await fetch('https://api.example.com/data');
+      const products = await data.json();
 
       return (
         <div>
@@ -179,50 +185,86 @@ Tutaj mamy dwie ścieżki:
 
    Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
 
-    ```ts {2, 11}
-    // actions/products.ts
-    "use server"
+    <Tabs>
+      <TabItem label="Zewnętrzne API">
+        ```jsx {2, 10}
+        // app/products/page.tsx
+        "use client"
 
-    import { db } from '@/lib/db';
+        import { useQuery } from '@tanstack/react-query';
+        import { fetchProducts } from '@/actions/products.ts';
 
-    /** 
-     * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
-     * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
-     * Trzeba zawsze zabezpieczyć taką funkcję, jeśli robimy rzeczy tylko dla zalogowanych użytkowników, np zmiana nazwy.
-    */
-    export async function fetchProducts() {
-      return await db.products.findMany(); // Przykład z bazą danych
-    }
-    ```
+        export default function ProductsList() {
+          const { data: products, isLoading, error, refetch } = useQuery({
+            queryKey: ['products'],
+            queryFn: async () => {
+              const data = await fetch('https://api.example.com/data');
+              const products = await data.json();
+              return products
+            },
+          })
 
-    ```jsx {2, 10}
-    // app/products/page.tsx
-    "use client"
+          if (isLoading) return <p>Ładowanie danych...</p>;
+          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
 
-    import { useQuery } from '@tanstack/react-query';
-    import { fetchProducts } from '@/actions/products.ts';
+          return (
+            <ul>
+              {products.map((product) => (
+                <li key={product.id}>
+                  {product.name} - {product.price} PLN
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        ```
+      </TabItem>
+      <TabItem label="Server Actions (NextJS)">
+        ```ts {2, 11}
+        // actions/products.ts
+        "use server"
 
-    export default function ProductsList() {
-      const { data: products, isLoading, error, refetch } = useQuery({
-        queryKey: ['products'],
-        queryFn: fetchProducts,
-        refetchOnMount: false, // zalezy od twoich potrzeb
-      })
+        /** 
+        * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
+        * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
+        * Trzeba zawsze zabezpieczyć taką funkcję, jeśli robimy rzeczy tylko dla zalogowanych użytkowników, np zmiana nazwy.
+        */
+        export async function fetchProducts() {
+          return await db.products.findMany(); // Przykład z bazą danych
+        }
+        ```
 
-      if (isLoading) return <p>Ładowanie danych...</p>;
-      if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+        ```jsx {2, 10}
+        // app/products/page.tsx
+        "use client"
 
-      return (
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              {product.name} - {product.price} PLN
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    ```
+        import { useQuery } from '@tanstack/react-query';
+        import { fetchProducts } from '@/actions/products.ts';
+
+        export default function ProductsList() {
+          const { data: products, isLoading, error, refetch } = useQuery({
+            queryKey: ['products'],
+            queryFn: fetchProducts,
+          })
+
+          if (isLoading) return <p>Ładowanie danych...</p>;
+          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+
+          return (
+            <ul>
+              {products.map((product) => (
+                <li key={product.id}>
+                  {product.name} - {product.price} PLN
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        ```
+      </TabItem>
+    </Tabs>
+
+    
 
 
 Do pobierania danych też potrzeba klienta API i tutaj mam zachęcam do korzystania z natywnego `fetch` , a za używanie `axios`a bez powodu będę ucinał pensje, jest bardzo mało powodów do używania axiosa w 2024 roku.
