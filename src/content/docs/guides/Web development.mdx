@@ -2,8 +2,7 @@
 title: Handbook Web Developera
 description: Poradnik w świecie web developmentu, jak zacząć i żyć?
 ---
-import { FileTree } from '@astrojs/starlight/components';
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Steps, FileTree } from '@astrojs/starlight/components';
 
 ## Środowisko
 
@@ -158,11 +157,11 @@ Tutaj mamy dwie ścieżki:
 
    React Server Components (RSC) to domyślne podejście w Next.js 14+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
 
-    ```jsx
+    ```jsx {5-6}
     // app/products/page.tsx
 
     export default async function ProductsPage() {
-      // Pobieranie danych z bazy po stronie serwera
+      // Pobieranie danych z API po stronie serwera
       const data = await fetch('https://api.example.com/data');
       const products = await data.json();
 
@@ -187,7 +186,7 @@ Tutaj mamy dwie ścieżki:
 
     <Tabs>
       <TabItem label="Zewnętrzne API">
-        ```jsx {2, 10}
+        ```jsx {2, 10-12}
         // app/products/page.tsx
         "use client"
 
@@ -348,9 +347,35 @@ Do zabawy datami, strefami czasowymi, wyświetlania ładnych napisów `10 sekund
 
 ## Checklista przed wypuszczeniem aplikacji
 
-- [ ] Czy masz favicon?
-- [ ] Czy masz ustawiony title i description na każdej stronie?
-- [ ] Czy masz wpiętą analitykę i eventy?
+<Steps>
+
+1. **Czy masz favicon:**
+   
+   W **Next.JS** wystarczy podmienić default plik `favicon.ico` na swój.
+
+2. **Czy masz ustawiony title, description i inne metadata na każdej stronie?**
+
+    Szczegółowa dokumentacja Next.JS znajduje się [tutaj](https://nextjs.org/docs/app/building-your-application/optimizing/metadata). Szybki przykład:
+
+    ```jsx
+    // app/layout.tsx
+    export const metadata: Metadata = {
+      title: 'Twój tytuł',
+      description: 'I jakiś fajny opis',
+      keywords: [ 'Next.js', 'Tag 2', 'Tag 3' ],
+      openGraph: {...},
+    };
+    ```
+
+    :::caution
+    Ustawianie metadaty można wykonać tylko w komponencie serwerowym, tj. nie w plikach z `"use client"`
+    :::
+
+3. **Czy masz wpiętą analitykę i eventy?**
+
+    Korzystając z Umami lub innej analityki, dodając ją za pomocą specjalnych bibliotek dostarczanych od danej analityki lub poprzez tag `<Script />` z `next/script`.
+
+</Steps>
 
 ## Częste błędy
 
