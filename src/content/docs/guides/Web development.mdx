@@ -192,7 +192,6 @@ Tutaj mamy dwie ścieżki:
         "use client"
 
         import { useQuery } from '@tanstack/react-query';
-        import { fetchProducts } from '@/actions/products.ts';
 
         export default function ProductsList() {
           const { data: products, isLoading, error, refetch } = useQuery({
@@ -224,6 +223,7 @@ Tutaj mamy dwie ścieżki:
         // actions/products.ts
         "use server"
 
+        import { db } from '@/lib/db';
         /** 
         * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
         * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
