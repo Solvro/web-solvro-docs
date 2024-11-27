@@ -128,9 +128,70 @@ Najpopularniejsza obecnie biblioteka (która działa jak framework) do tworzenia
 
 ## Accessibility
 
-Alt na fotkach
+### Opisy obrazków
 
-Przyciski a linki
+Dobrą praktyką jest umieszczanie krótkiego opisu obrazka poza samym src obrazka. Służy to czytnikom ekranów, z który korzystają, np. niewidomi oraz pomaga w SEO w Google i innych wyszukiwarkach. Sprawa jest bardzo prosta:
+
+```jsx {8}
+// app/page.tsx
+import Image from 'next/image'
+
+export function MyComponent() {
+  return (
+    <Image
+      src="/next.svg"
+      alt="Next.js logo" // Krótki opis grafiki
+      width={180}
+      height={38}
+      priority
+    />
+  )
+}
+```
+
+### Przyciski jako linki
+
+Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
+
+Jak zrobić Link, który wygląda jak przycisk: 
+```jsx
+// app/page.tsx
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+ 
+export function ButtonAsChild() {
+  return (
+    <Button asChild>
+      <Link href="/login">Login</Link>
+    </Button>
+  )
+}
+```
+
+### Kontrola focusu
+
+Czasami w standardowym HTML po kliknieciu TAB lub SPACJI czy ENTER możemy zaobserwować brzydki, gruby ring dookoła przycisku/elementu. Jest to `outline`, który domyślnie jest włączony ale zgódźmy się, pięknie nie wygląda. Jest też w niektórych komponentach `shadcn` (chodź tu pasuje do przycisków czy inputów, chyba, że robimy wariant ghost przycisku i nie chcemy tego).
+Oto jak pięknie to wygląda w standardowym CSS:
+
+![Ring focus](https://legacy.reactjs.org/static/dec0e6bcc1f882baf76ebc860d4f04e5/4fcfe/keyboard-focus.png)
+
+Aby to naprawić możemy użyć properties `outline: 0` co na Tailwindowe znaczy mniej więcej tyle:
+```jsx
+// app/page.tsx
+import { Button } from "@/components/ui/button"
+ 
+export function ButtonAsChild() {
+  return (
+    <Button variant="ghost" className="focus:outline-none">
+      Ładny przycisk
+    </Button>
+  )
+}
+```
+
+:::tip
+Jeśli ktoś pragnie doedukować się bardziej szczegółowo w temacie "Accessibility" zachęcam do obczajenia [dokumentacji React'a](https://legacy.reactjs.org/docs/accessibility.html), ale to tylko dla zaprawionych w boju w ramach ciekawostki.
+:::
 
 ## Best practices
 
@@ -415,6 +476,46 @@ function handleMuscleClick(muscle: string) {
 Teraz jest bardzo jasne, że po kliknięciu na mięsień, zostaje też zupdate’owana tabelka.
 
 Ten przykład jeszcze nie jest taki zły, przy 1 useEffectcie dość łatwo się połapać co się dzieje, przy 11 robi się już kłopot i raz u mnie w pracy przez coś takiego padła produkcja 😭
+
+### Nieużywanie `useMemo`
+
+Ja wiem, że teraz będzie wchodził `React v19` ale zanim to, to minie jeszcze trochę czasu, plus aktualny compiler nie jest doskonały. Ale o co chodzi? Chodzi o to, że jeśli zrobisz coś takiego:
+
+```jsx
+import { useState } from "React"
+
+export function BadComponent() {
+  const [name, setName] = useState("")
+  const welcomeMessage = `Welcome, ${name} :)`
+
+  return (
+    <>
+      <h1>{welcomeMessage}</h1>
+      <input ... />
+    </>
+  )
+}
+```
+
+to przy każdym zmianie stanu, czy to zmianie w inputcie, kliknięciu, scrollu, strona się rerenderuje i przy okazji wszystkie const typu `welcomeMessage`. Przy tym przykładzie pół biedy, gorzej, jeśli masz jakieś działania matematyczne czy inne rzeczy x10 na jednej stronie. Potrafi to wywalić tak jak Bartusiowi z useEffect. Także aby się przed tym uchronić, możecie użyć hooka o nazwie `useMemo`, który w dużym uproszczeniu, cachuje wam consta i refreshuje się tylko i wyłącznie wtedy, kiedy musi (chodź to też dyskusyjne). Działa dość podobnie jak useEffect, tj posiada argument funkcję, oraz w drugim tablicę zmiennych, na które ma reagować. W naszym przypadku:
+
+```jsx
+import { useState, useMemo } from "React"
+
+export function BadComponent() {
+  const [name, setName] = useState("")
+  const welcomeMessage = useMemo(() => {
+    return `Welcome, ${name} :)`
+  }, [name])
+
+  return (
+    <>
+      <h1>{welcomeMessage}</h1>
+      <input ... />
+    </>
+  )
+}
+```
 
 ## FAQ
 
