@@ -2,6 +2,7 @@
 title: Handbook Web Developera
 description: Poradnik w świecie web developmentu, jak zacząć i żyć?
 ---
+import { Tabs, TabItem, Steps, FileTree } from '@astrojs/starlight/components';
 
 ## Środowisko
 
@@ -34,45 +35,51 @@ Polecane wtyczki:
 
 Używamy tej z [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md), ale lekko przerobionej pod nasze potrzeby. Na start aplikacji polecam pominąć folder `features` i wszystko robić toplevel i dopiero później podzielić na featury.
 
-```jsx
-src
-|
-+-- app               # nextjs to wymusza, tutaj są nasze wszystkie strony
-|
-+-- assets            # folder, który zawiera zdjęcia, czcionki i inne rzeczy, które nie są kodem
-|
-+-- components        # komponenty używane w całej aplikacji
-|
-+-- features          # moduły podzielone na feature'y
-|
-+-- hooks             # hooki używane w całej aplikacji
-|
-+-- test              # utilites do testów + mocki
-|
-+-- types             # typy używane w całej aplikacji
-|
-+-- utils             # funkcje używane w całej aplikacji - NIE UŻYWAJ JAK NIE MUSISZ
-```
+<FileTree>
+
+- next.config.ts
+- tailwind.config.ts
+- package.json
+- src
+  - app # tutaj są nasze wszystkie strony
+    - layout.tsx
+    - page.tsx
+    - blog
+      - [slug]
+        - page.tsx
+    - kontakt
+      - page.tsx
+  - assets # zdjęcia, czcionki i inne rzeczy
+    - fajne_foto.webp
+  - components # komponenty używane w całej aplikacji
+    - FirstComponent.tsx
+    - SecondComponent.tsx
+  - features/ # moduły podzielone na feature'y
+  - hooks # hooki używane w całej aplikacji
+    - useAuth.tsx
+    - usePlan.tsx
+  - test/ # utilites do testów + mocki
+  - types/ # typy używane w całej aplikacji
+  - utils # funkcje używane w całej aplikacji
+    - db.ts
+    - lib.ts
+
+</FileTree>
 
 Każdy feature ma taką strukturę:
 
-```jsx
-src/features/awesome-feature
-|
-+-- api         # exported API request declarations and api hooks related to a specific feature
-|
-+-- assets      # assets folder can contain all the static files for a specific feature
-|
-+-- components  # components scoped to a specific feature
-|
-+-- hooks       # hooks scoped to a specific feature
-|
-+-- atoms       # atomy używane w konkretnym featuerze
-|
-+-- types       # typescript types used within the feature
-|
-+-- utils       # utility functions for a specific feature
-```
+<FileTree>
+
+- src/features/awesome-feature
+  - api/ # exported API request declarations and api hooks related to a specific feature
+  - assets/ # static files
+  - components/ # components scoped to a specific feature
+  - hooks/ # hooks scoped to a specific feature
+  - atoms/ # atomy używane w konkretnym featuerze
+  - types/ # typescript types used within the feature
+  - utils/ # utility functions for a specific feature
+
+</FileTree>
 
 ## Assumptions
 
@@ -107,17 +114,17 @@ Najpopularniejsza obecnie biblioteka (która działa jak framework) do tworzenia
 
 ### Reszta:
 
-NextJS
+- NextJS
 
-React Hook Form
+- React Hook Form
 
-shadcn/ui
+- shadcn/ui
 
-Tanstack Query
+- Tanstack Query
 
-Jotai
+- Jotai
 
-TailwindCSS
+- TailwindCSS
 
 ## Accessibility
 
@@ -148,11 +155,116 @@ Tutaj mamy dwie ścieżki:
 
 1. React Server Components
 
-   Domyślna ścieżka, nie trzeba zarządzać stanami ładowania, wszystko jest od razu na miejscu, bardzo wygodne
+   React Server Components (RSC) to domyślne podejście w Next.js 14+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
+
+    ```jsx {5-6}
+    // app/products/page.tsx
+
+    export default async function ProductsPage() {
+      // Pobieranie danych z API po stronie serwera
+      const data = await fetch('https://api.example.com/data');
+      const products = await data.json();
+
+      return (
+        <div>
+          <h1>Produkty</h1>
+          <ul>
+            {products.map((product) => (
+              <li key={product.id}>
+                {product.name} - {product.price} PLN
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    ```
 
 2. Tanstack Query
 
    Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
+
+    <Tabs>
+      <TabItem label="Zewnętrzne API">
+        ```jsx {2, 10-12}
+        // app/products/page.tsx
+        "use client"
+
+        import { useQuery } from '@tanstack/react-query';
+
+        export default function ProductsList() {
+          const { data: products, isLoading, error, refetch } = useQuery({
+            queryKey: ['products'],
+            queryFn: async () => {
+              const data = await fetch('https://api.example.com/data');
+              const products = await data.json();
+              return products
+            },
+          })
+
+          if (isLoading) return <p>Ładowanie danych...</p>;
+          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+
+          return (
+            <ul>
+              {products.map((product) => (
+                <li key={product.id}>
+                  {product.name} - {product.price} PLN
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        ```
+      </TabItem>
+      <TabItem label="Server Actions (NextJS)">
+        ```ts {2, 11}
+        // actions/products.ts
+        "use server"
+
+        import { db } from '@/lib/db';
+        /** 
+        * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
+        * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
+        * Trzeba zawsze zabezpieczyć taką funkcję, jeśli robimy rzeczy tylko dla zalogowanych użytkowników, np zmiana nazwy.
+        */
+        export async function fetchProducts() {
+          return await db.products.findMany(); // Przykład z bazą danych
+        }
+        ```
+
+        ```jsx {2, 10}
+        // app/products/page.tsx
+        "use client"
+
+        import { useQuery } from '@tanstack/react-query';
+        import { fetchProducts } from '@/actions/products.ts';
+
+        export default function ProductsList() {
+          const { data: products, isLoading, error, refetch } = useQuery({
+            queryKey: ['products'],
+            queryFn: fetchProducts,
+          })
+
+          if (isLoading) return <p>Ładowanie danych...</p>;
+          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+
+          return (
+            <ul>
+              {products.map((product) => (
+                <li key={product.id}>
+                  {product.name} - {product.price} PLN
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        ```
+      </TabItem>
+    </Tabs>
+
+    
+
 
 Do pobierania danych też potrzeba klienta API i tutaj mam zachęcam do korzystania z natywnego `fetch` , a za używanie `axios`a bez powodu będę ucinał pensje, jest bardzo mało powodów do używania axiosa w 2024 roku.
 
@@ -174,9 +286,14 @@ Zapraszam do dokumentacji shadcn’a, tam większość jest dobrze opisana:
 
 ### Autentykacja
 
-Nie mieliśmy jeszcze za dużo projektów, które by wymagały autentykacji, ale tutaj raczej zalecam iść w klasykę i klepnąć to w
+Nie mieliśmy jeszcze za dużo projektów, które by wymagały autentykacji, ale tutaj raczej zalecam iść w klasykę i klepnąć to w [AuthJS](https://authjs.dev/). Jest to rozwijany od lat produkt, który można 
+w łatwy sposób zintegrować z projektem w NextJS. Zawiera duży funkcji, takich jak logowanie OAuth2 czy magicznymi linkami, sesje bazujące na bazie danych lub tokenach JWT czy automatyczną ochronę przed CSRF.
+Ma dobrze rozwiniętą społeczność i dokumentację oraz masę tutoriali na YouTubie.
 
-[https://authjs.dev](https://authjs.dev/)
+Dodatkowo w ramach ciekawostki podrzucam Wam projekt działający pod nazwą [BetterAuth](https://www.better-auth.com/). 
+Jest to stosunkowo nowy projekt, który w wersję stabilną wszedł w listopadzie 2024 roku, aczkolwiek jest dobrze przemyślany i aktywnie rozwijany.
+Zalety tego projektu to między innymi, jeszcze łatwiejsza instalacja niż AuthJS czy rozwiązanie pluginowe, np. jeśli potrzebujecie użyć Passkeys to dodajecie taki plugin do configu.
+Do tego bardzo prosta dokumentacja. Polecam się zabawić.
 
 Jeśli robicie to DIY, to pewnie będziecie musieli sobie odpowiedzieć na pytanie gdzie trzymać tokeny i tutaj są dwie opcje:
 
@@ -230,9 +347,35 @@ Do zabawy datami, strefami czasowymi, wyświetlania ładnych napisów `10 sekund
 
 ## Checklista przed wypuszczeniem aplikacji
 
-- [ ] Czy masz favicon?
-- [ ] Czy masz ustawiony title i description na każdej stronie?
-- [ ] Czy masz wpiętą analitykę i eventy?
+<Steps>
+
+1. **Czy masz favicon:**
+   
+   W **Next.JS** wystarczy podmienić default plik `favicon.ico` na swój.
+
+2. **Czy masz ustawiony title, description i inne metadata na każdej stronie?**
+
+    Szczegółowa dokumentacja Next.JS znajduje się [tutaj](https://nextjs.org/docs/app/building-your-application/optimizing/metadata). Szybki przykład:
+
+    ```jsx
+    // app/layout.tsx
+    export const metadata: Metadata = {
+      title: 'Twój tytuł',
+      description: 'I jakiś fajny opis',
+      keywords: [ 'Next.js', 'Tag 2', 'Tag 3' ],
+      openGraph: {...},
+    };
+    ```
+
+    :::caution
+    Ustawianie metadaty można wykonać tylko w komponencie serwerowym, tj. nie w plikach z `"use client"`
+    :::
+
+3. **Czy masz wpiętą analitykę i eventy?**
+
+    Korzystając z Umami lub innej analityki, dodając ją za pomocą specjalnych bibliotek dostarczanych od danej analityki lub poprzez tag `<Script />` z `next/script`.
+
+</Steps>
 
 ## Częste błędy
 
