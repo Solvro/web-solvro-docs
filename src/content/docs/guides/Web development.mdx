@@ -205,10 +205,7 @@ Tutaj mamy dwie ścieżki:
     export default function ProductsList() {
       const { data: products, isLoading, error, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: async () => {
-          const res = await fetchProducts()
-          return res.tags || []
-        },
+        queryFn: fetchProducts,
         refetchOnMount: false, // zalezy od twoich potrzeb
       })
 
