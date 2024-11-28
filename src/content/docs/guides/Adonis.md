@@ -18,7 +18,7 @@ description: Szybki start dla tych, którzy chcą poznać Adonisa i tworzyć św
 
 Oto lista najważniejszych rzeczy, które warto w mniejszym lub większym stopniu ogarniać biorąc się za naukę korzystania z Adonisa:
 
-- **Git i GitHub** - podstawowe narzędzia pracy każdego developera. Z zasadami korzystania stosowanymi w Solvro można zapoznać się w [Handbook GitHub](https://docs.google.com/document/d/1Sb5lYqYLnYuecS1Essn3YwietsbuLPCTsTuW0EMpG5o/edit)
+- **Git i GitHub** - podstawowe narzędzia pracy każdego developera. Z zasadami korzystania stosowanymi w Solvro można zapoznać się w [Handbook GitHub](./Github.md)
 - **IDE** - środowisko do pracy z kodem. Do najpopularniejszych opcji należy Visual Studio Code i Webstorm od Jetbrains.
 - **TypeScript** - jest to podstawowy język wykorzystywany przez Adonisa. Bez jego znajomości ciężko cokolwiek zrobić.
 - **NodeJS** - technologia pozwalająca na uruchamianie JS poza przeglądarką. Wykorzystywana do budowania backendu. Zrozumienie działania importów i menadżera pakietów NPM jest potrzebne do sprawnego poruszania się po frameworku.
@@ -44,7 +44,7 @@ Po wpisaniu tej komendy otworzy się nam konfigurator, dzięki któremu możemy 
 npm init adonisjs@latest
 ```
 
-### Włączanie serwera developerskiego
+## Włączanie serwera developerskiego
 
 Korzystając z tej komendy możemy uruchomić serwer deweloperski, który reaguje na zmiany plików i sam się odświeża.
 
@@ -52,7 +52,7 @@ Korzystając z tej komendy możemy uruchomić serwer deweloperski, który reaguj
 npm run dev
 ```
 
-### Konfiguracja środowiska
+## Konfiguracja środowiska
 
 Projekt Adonisa posiada domyślne pliki styli dla ESLint oraz Prettier. Ważne jest, żeby skonfigurować (lub zainstalować jeżeli ktoś nie ma) te 2 wtyczki). Polecam skonfigurować je, żeby działały automatycznie na zapisie (a conajmniej przy commitowaniu). Pozwala to na utrzymanie jednego stylu kodu na przestrzeni całego projektu. Jeżeli ktoś z jakiegoś powodu bardzo nie chce robić tego w sposób automatyczny można wywołać te narzędzia ręcznie:
 
@@ -70,15 +70,19 @@ npm run lint --fix
 npm run format
 ```
 
-### Rozszerzenia
+## Deployment
 
-#### VSC
+[Poradnik jak zdeployować apkę Adonisową](./Deployment.mdx)
+
+## Rozszerzenia
+
+### VSC
 
 Dokumentacja Adonisa proponuje następujące wtyczki
 
 - **[AdonisJS](https://marketplace.visualstudio.com/items?itemName=jripouteau.adonis-vscode-extension)** - pozwala na sprawdzanie routingu aplikacji, wywoływanie komend, migracji i czytanie dokumentacji bezpośrednio w edytorze.
 - **[Edge](https://marketplace.visualstudio.com/items?itemName=AdonisJS.vscode-edge)** - dodaje wsparcie podświetlania składni, autouzupełniania oraz fragmentów kodu.
 
-#### Webstorm
+### Webstorm
 
 Po zainstalowaniu Adonisa Webstorm powinien to wykryć i zaproponować nam instalację wtyczki [Adonis](https://plugins.jetbrains.com/plugin/22932-adonis).
