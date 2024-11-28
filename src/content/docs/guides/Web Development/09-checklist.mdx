@@ -1,0 +1,35 @@
+---
+title: Checklista przed wypuszczeniem aplikacji
+description: Poradnik w świecie web developmentu, jak zacząć i żyć?
+---
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+
+1. **Czy masz favicon:**
+   
+   W **Next.JS** wystarczy podmienić default plik `favicon.ico` na swój.
+
+2. **Czy masz ustawiony title, description i inne metadata na każdej stronie?**
+
+    Szczegółowa dokumentacja Next.JS znajduje się [tutaj](https://nextjs.org/docs/app/building-your-application/optimizing/metadata). Szybki przykład:
+
+    ```jsx
+    // app/layout.tsx
+    export const metadata: Metadata = {
+      title: 'Twój tytuł',
+      description: 'I jakiś fajny opis',
+      keywords: [ 'Next.js', 'Tag 2', 'Tag 3' ],
+      openGraph: {...},
+    };
+    ```
+
+    :::caution
+    Ustawianie metadaty można wykonać tylko w komponencie serwerowym, tj. nie w plikach z `"use client"`
+    :::
+
+3. **Czy masz wpiętą analitykę i eventy?**
+
+    Korzystając z Umami lub innej analityki, dodając ją za pomocą specjalnych bibliotek dostarczanych od danej analityki lub poprzez tag `<Script />` z `next/script`.
+
+</Steps>
