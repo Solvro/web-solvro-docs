@@ -1,0 +1,108 @@
+---
+title: Get started
+description: Poradnik w świecie web developmentu, jak zacząć i żyć?
+---
+import { Steps } from '@astrojs/starlight/components';
+
+Tu jakis opis handbooka bartus wymysl do swojego overview.
+
+## Założenia
+
+Wszystko w programowaniu ma swoje mocne i słaby strony i wszystko zależy od tego co chcemy osiągnąć, ten poradnik jest zoptymalizowany pod (w kolejności od najważniejszego):
+
+1. Szybkość developmentu - pisanie kodu powinno być jak najprostsze i jak najszybsze, jesteśmy kołem naukowym, każdy robi tutaj po godzinach i nie mamy budżetu na marnowanie czasu na zbędne rzeczy
+2. Nowoczesność - jak już robimy coś za darmo, to miejmy z tego frajde, nie wiem jak wy, ja bym nie chciał pisać w angularze 😭
+3. Uniwersalność - nie ma tutaj specjalistycznych rzeczy, starałem się, żeby jak najbardziej dało się przenosić wiedzę między apkami
+
+Pod co nie jest zrobiony ten guide:
+
+1. Długowieczność - większość bibliotek tutaj używanych potrafi bardzo szybko się zmieniać (patrz nextjs) i projekty, które nie będę dotykane przez rok będzie można już nazywać legacy, aka [stałocieplny software](https://blog.jim-nielsen.com/2024/cold-blooded-software/)
+2. Learning curve - technologie takie jak React, NextJS są stosunkowo trudne do nauczania się dla osoby, która nic nie wie, tutaj o wiele lepiej by się sprawdził czysty html i js
+
+## Środowisko
+
+### WSL
+
+Za używanie Windowsa do programowania jest wyrzucenie z koła, każdy obowiązkowo ma używać co najmniej WSL’a, a zalecany jest dual boot do Linuxa (rekomenduje ubuntu, bo proste)
+
+- Tutorial dla opornych
+  [https://www.youtube.com/watch?v=-atblwgc63E](https://www.youtube.com/watch?v=-atblwgc63E)
+
+### Edytor
+
+Używajcie VSCode, inne edytory na własną odpowiedzialność
+
+**OBOWIĄZKOWE** wtyczki:
+
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - musicie go skonfigurować do formatowania przy zapisie i jako domyślny formater
+  [https://www.youtube.com/watch?v=drtxWx1XojI](https://www.youtube.com/watch?v=drtxWx1XojI)
+- [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - będzie krzyczał na was jak coś źle zrobicie, tutaj wystarczy tylko kliknąć install
+
+Polecane wtyczki:
+
+- Tailwind CSS IntelliSense - podpowiedzi gdy piszecie klasy w tailwind, must have
+- Better Comments - ładne komentarze
+- Error Lens - od razu wam pokaże błędy, nie trzeba myszką najeżdżać
+- Github Copilot - no chyba wiecie
+- GitLens - ładny git blame w vscode
+
+## Technologie
+
+### Typescript
+
+Nie widzę powodów, żeby nie używać Typescripta:
+
+- Ma niski próg wejścia
+- OLBRZYMIA wartość dla programisty
+- Używany przez pół świata
+
+### shadcn/ui
+
+Komponenty, które z miejsca są ładne, customizowalne i na dodatek multum ludzi ich używa.
+
+### React
+
+Najpopularniejsza obecnie biblioteka (która działa jak framework) do tworzenia UI, klasyczek.
+
+### Reszta:
+
+- NextJS
+- React Hook Form
+- shadcn/ui
+- Tanstack Query
+- Jotai
+- TailwindCSS
+
+## Checklista przed wypuszczeniem aplikacji
+
+Upewnij się, że wszystkie poniższe kroki są przez Ciebie zaliczone.
+
+<Steps>
+
+1. **Czy masz favicon:**
+   
+   W **Next.JS** wystarczy podmienić default plik `favicon.ico` na swój.
+
+2. **Czy masz ustawiony title, description i inne metadata na każdej stronie?**
+
+    Szczegółowa dokumentacja Next.JS znajduje się [tutaj](https://nextjs.org/docs/app/building-your-application/optimizing/metadata). Szybki przykład:
+
+    ```jsx
+    // app/layout.tsx
+    export const metadata: Metadata = {
+      title: 'Twój tytuł',
+      description: 'I jakiś fajny opis',
+      keywords: [ 'Next.js', 'Tag 2', 'Tag 3' ],
+      openGraph: {...},
+    };
+    ```
+
+    :::caution
+    Ustawianie metadaty można wykonać tylko w komponencie serwerowym, tj. nie w plikach z `"use client"`
+    :::
+
+3. **Czy masz wpiętą analitykę i eventy?**
+
+    Korzystając z Umami lub innej analityki, dodając ją za pomocą specjalnych bibliotek dostarczanych od danej analityki lub poprzez tag `<Script />` z `next/script`.
+
+</Steps>
