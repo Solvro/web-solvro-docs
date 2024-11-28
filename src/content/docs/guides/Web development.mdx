@@ -141,9 +141,6 @@ export function MyComponent() {
     <Image
       src="/next.svg"
       alt="Next.js logo" // Krótki opis grafiki
-      width={180}
-      height={38}
-      priority
     />
   )
 }
@@ -163,27 +160,6 @@ export function ButtonAsChild() {
   return (
     <Button asChild>
       <Link href="/login">Login</Link>
-    </Button>
-  )
-}
-```
-
-### Kontrola focusu
-
-Czasami w standardowym HTML po kliknieciu TAB lub SPACJI czy ENTER możemy zaobserwować brzydki, gruby ring dookoła przycisku/elementu. Jest to `outline`, który domyślnie jest włączony ale zgódźmy się, pięknie nie wygląda. Jest też w niektórych komponentach `shadcn` (chodź tu pasuje do przycisków czy inputów, chyba, że robimy wariant ghost przycisku i nie chcemy tego).
-Oto jak pięknie to wygląda w standardowym CSS:
-
-![Ring focus](https://legacy.reactjs.org/static/dec0e6bcc1f882baf76ebc860d4f04e5/4fcfe/keyboard-focus.png)
-
-Aby to naprawić możemy użyć properties `outline: 0` co na Tailwindowe znaczy mniej więcej tyle:
-```jsx
-// app/page.tsx
-import { Button } from "@/components/ui/button"
- 
-export function ButtonAsChild() {
-  return (
-    <Button variant="ghost" className="focus:outline-none">
-      Ładny przycisk
     </Button>
   )
 }
@@ -422,7 +398,7 @@ Jeśli szukasz jakie literki wykorzystać do osiągnięcia zamierzonego efektu w
    npm i date-fns
    ```
 
-2. Import the component into your MDX file:
+2. Zaimportuj funkcję `format` z libki:
 
    ```jsx
    import { format } from 'date-fns';
@@ -750,45 +726,32 @@ Teraz jest bardzo jasne, że po kliknięciu na mięsień, zostaje też zupdate�
 
 Ten przykład jeszcze nie jest taki zły, przy 1 useEffectcie dość łatwo się połapać co się dzieje, przy 11 robi się już kłopot i raz u mnie w pracy przez coś takiego padła produkcja 😭
 
-### Nieużywanie `useMemo`
+### Nieużywanie lub nadużywanie `useMemo`
 
-Ja wiem, że teraz będzie wchodził `React v19` ale zanim to, to minie jeszcze trochę czasu, plus aktualny compiler nie jest doskonały. Ale o co chodzi? Chodzi o to, że jeśli zrobisz coś takiego:
+Hook `useMemo` pozwala na zapamiętanie wyniku funkcji obliczeniowej między renderami komponentu, co może pomóc w optymalizacji wydajności aplikacji. Jest używany głównie w przypadku "drogich" obliczeń (obliczenia, które swoją złożonością mają istotny wpływ na wydajność), które nie muszą być wykonywane na nowo przy każdym renderze.
 
+Składnia:
 ```jsx
-import { useState } from "React"
-
-export function BadComponent() {
-  const [name, setName] = useState("")
-  const welcomeMessage = `Welcome, ${name} :)`
-
-  return (
-    <>
-      <h1>{welcomeMessage}</h1>
-      <input ... />
-    </>
-  )
-}
+const memoizedValue = useMemo(() => computeValue(a, b), [a, b]);
 ```
+- **computeValue**: Funkcja zwracająca wynik obliczeń.
+- **[a, b]**: useMemo ponownie obliczy wartość tylko wtedy, gdy jedna z zależności w tej tablicy się zmieni.
 
-to przy każdym zmianie stanu, czy to zmianie w inputcie, kliknięciu, scrollu, strona się rerenderuje i przy okazji wszystkie const typu `welcomeMessage`. Przy tym przykładzie pół biedy, gorzej, jeśli masz jakieś działania matematyczne czy inne rzeczy x10 na jednej stronie. Potrafi to wywalić tak jak Bartusiowi z useEffect. Także aby się przed tym uchronić, możecie użyć hooka o nazwie `useMemo`, który w dużym uproszczeniu, cachuje wam consta i refreshuje się tylko i wyłącznie wtedy, kiedy musi (chodź to też dyskusyjne). Działa dość podobnie jak useEffect, tj posiada argument funkcję, oraz w drugim tablicę zmiennych, na które ma reagować. W naszym przypadku:
+#### Kiedy używać `useMemo`?
 
-```jsx
-import { useState, useMemo } from "React"
+- Przy "kosztownych" obliczeniach, takich jak złożone przekształcenia dużych ilości danych.
+- Kiedy wynik obliczeń jest wielokrotnie używany w danym renderze (np. w innych hookach).
+- Przy obliczeniach, które zależą od dynamicznie zmieniających się danych.
 
-export function BetterComponent() {
-  const [name, setName] = useState("")
-  const welcomeMessage = useMemo(() => {
-    return `Welcome, ${name} :)`
-  }, [name])
+#### Kiedy nie używać `useMemo`?
 
-  return (
-    <>
-      <h1>{welcomeMessage}</h1>
-      <input ... />
-    </>
-  )
-}
-```
+- Jeśli obliczenia są szybkie i nie mają zauważalnego wpływu na wydajność.
+- Gdy dodanie useMemo bardziej komplikuje kod niż przynosi korzyści.
+- Gdy zależności często się zmieniają, co może prowadzić do częstych ponownych obliczeń.
+
+:::tip
+Nie należy go używać na siłę. Najpierw upewnij się, że istnieje faktyczny problem z wydajnością, zanim go zastosujesz.
+:::
 
 ## FAQ
 
