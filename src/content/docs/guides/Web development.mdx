@@ -128,9 +128,71 @@ Najpopularniejsza obecnie biblioteka (która działa jak framework) do tworzenia
 
 ## Accessibility
 
-Alt na fotkach
+### Opisy obrazków
 
-Przyciski a linki
+Dobrą praktyką jest umieszczanie krótkiego opisu obrazka poza samym src obrazka. Służy to czytnikom ekranów, wspiera SEO oraz jest wyświetlany w przypadku, gdy zdjęcie nie może się załadować.
+
+#### Podstawowe zasady:
+
+- **Zwięzłość i celność** – Opis powinien być krótki i oddawać cel obrazu. Unikaj zbędnych szczegółów, chyba że są kluczowe do zrozumienia treści obrazu.
+- **Kontekst obrazu** – Skup się na tym, co obraz wnosi do strony. Na przykład, jeśli zdjęcie przedstawia osobę szczęśliwą, ważne może być opisanie jej emocji.
+- **Unikaj zwrotów „obrazek przedstawia”** – Czytniki ekranowe automatycznie rozpoznają obraz, więc wystarczy przejść od razu do treści opisu.
+- **Unikaj powtarzania tekstu z otoczenia obrazu** – Jeśli tekst obok obrazu już wyjaśnia jego znaczenie, opis alt może być bardziej ogólny lub pominięty.
+
+#### Kiedy stosować alt-a:
+
+- **Obrazy informacyjne**: Opisz, co jest kluczowe, np. „Wykres słupkowy przedstawiający roczny wzrost sprzedaży o 20%” zamiast „Wykres słupkowy”.
+- **Logo firmy**: Opis może być prosty, np. „Logo firmy Contoso”, ale jeśli logo jest linkiem, warto dodać „Logo Contoso – strona główna”.
+- **Infografiki**: Oddaj istotę przekazywanych danych, np. „Infografika prezentująca korzyści z recyklingu: zmniejszenie odpadów o 50%”.
+
+#### Kiedy nie stosować:
+
+- **Obrazy dekoracyjne**: Jeśli obraz nie wnosi żadnej wartości informacyjnej (ramki czy jakiś gwiazdki pływające po stronie), oznacz go jako dekoracyjny (np. alt="").
+- **Ikony z tekstem obok**: Jeśli ikona ma objaśniający tekst tuż obok, alt text nie jest konieczny.
+
+#### Tego nie rób:
+
+- Nie używaj nazw plików jako alt textu.
+- Nie stosuj losowych ciągów znaków lub ogólników, takich jak „Zdjęcie” czy „xxx”.
+- Nie kopiuj całego tekstu z obrazu i wszystkich najmniejszych szczegółów, jeśli nie jest to kluczowe do zrozumienia treści.
+
+Przykład:
+```jsx {8}
+// app/page.tsx
+import Image from 'next/image'
+
+export function MyComponent() {
+  return (
+    <Image
+      src="/next.svg"
+      alt="Next.js logo" // Krótki opis grafiki
+    />
+  )
+}
+```
+
+### Przyciski jako linki
+
+Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
+
+Jak zrobić Link, który wygląda jak przycisk: 
+```jsx
+// app/page.tsx
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+ 
+export function ButtonAsChild() {
+  return (
+    <Button asChild>
+      <Link href="/login">Login</Link>
+    </Button>
+  )
+}
+```
+
+:::tip
+Jeśli ktoś pragnie doedukować się bardziej szczegółowo w temacie "Accessibility" zachęcam do obczajenia [dokumentacji React'a](https://legacy.reactjs.org/docs/accessibility.html), ale to tylko dla zaprawionych w boju w ramach ciekawostki.
+:::
 
 ## Best practices
 
@@ -341,9 +403,282 @@ Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest 
 
 Jak zrobić Link, który wygląda jak przycisk: [https://ui.shadcn.com/docs/components/button#as-child](https://ui.shadcn.com/docs/components/button#as-child)
 
-### Daty
+## Daty
 
-Do zabawy datami, strefami czasowymi, wyświetlania ładnych napisów `10 sekund temu` zalecam używanie [date-fns](https://date-fns.org/), imo najlepsza libka do dat i shadcn też jej używa
+Uff, to jest ciężki temat. Każdy kiedyś zetknie się z datami (lub już się zetknął) i bez odpowiednich narzędzi potrafi to być czasem droga przez mękę. Te wszystkie strefy czasowe, wyświetlanie w różnych formatach, porównywanie itd. 
+
+Nasz naczelny Żelownik Bartuś podrzucił libkę o nazwie **date-fns**. Popieram go całym serduszkiem i dzięki niej mam nadzięję sprawię, że to daty będą bały się Was a nie na odwrót.
+
+:::tip
+Jeśli szukasz jakie literki wykorzystać do osiągnięcia zamierzonego efektu w formatowaniu, zapraszam do rozdziału niżej pt. "Dziwne literki do formatowania"
+:::
+
+### Basic usage
+
+<Steps>
+
+1. Dodaj libke
+
+   ```sh
+   npm i date-fns
+   ```
+
+2. Zaimportuj funkcję `format` z libki:
+
+   ```jsx
+   import { format } from 'date-fns';
+   ```
+
+3. Używaj jako `format(data, formater)`.
+
+</Steps>
+
+### Formatowanie daty
+
+Użycie funkcji `format` do sformatowania daty w czytelny sposób.
+
+```jsx
+import { format } from 'date-fns';
+
+export default function HomePage() {
+  const today = new Date(); // 27 listopada 2024
+  const formattedDate = format(today, 'dd/MM/yyyy'); // np. 27/11/2024
+
+  return (
+    <h1>Dzisiejsza data: {formattedDate}</h1>
+  );
+}
+```
+
+### Dodawanie dni do daty
+
+Użycie funkcji `addDays`, aby obliczyć przyszłe daty.
+
+```jsx
+import { addDays, format } from 'date-fns';
+
+export default function HomePage() {
+  const today = new Date(); // 27 listopada 2024
+  const futureDate = addDays(today, 7); // Data za 7 dni
+  const formattedFutureDate = format(futureDate, 'dd MMMM yyyy'); // np. 04 grudnia 2024
+
+  return (
+    <h1>Data za tydzień: {formattedFutureDate}</h1>
+  );
+}
+```
+
+### Porównywanie dat
+
+Sprawdzanie, czy jedna data jest przed lub po innej.
+
+```jsx
+import { isBefore, isAfter } from 'date-fns';
+
+export default function HomePage() {
+  const today = new Date(); // 27 listopada 2024
+  const eventDate = new Date(2024, 11, 31); // 31 grudnia 2024
+
+  const isEventInFuture = isAfter(eventDate, today);
+
+  return (
+    <div>
+      <h1>{isEventInFuture ? 'Wydarzenie jest w przyszłości!' : 'Wydarzenie już się odbyło.'}</h1>
+    </div>
+  );
+}
+```
+
+### Lokalizacja dat
+
+Formatowanie daty w języku np. Angielskim za pomocą opcji `locale`.
+
+```jsx
+import { format } from 'date-fns';
+import { en } from 'date-fns/locale';
+
+export default function HomePage() {
+  const today = new Date(); // 27 listopada 2024
+  const formattedDate = format(today, 'EEEE, d MMMM yyyy', { locale: en }); // np. środa, 27 listopada 2024
+
+  return (
+    <h1>Dzisiejsza data: {formattedDate}</h1>
+  );
+}
+```
+
+### Obliczanie różnicy między datami
+
+Użycie `differenceInDays` do obliczenia liczby dni między dwiema datami.
+
+```jsx
+import { differenceInDays } from 'date-fns';
+
+export default function HomePage() {
+  const today = new Date(); // 27 listopada 2024
+  const newYear = new Date(2025, 0, 1); // 1 stycznia 2025
+
+  const daysUntilNewYear = differenceInDays(newYear, today);
+
+  return ( 
+    <h1>Do Nowego Roku zostało: {daysUntilNewYear} dni</h1> 
+  );
+}
+```
+
+### Wyświetlanie upływu czasu
+
+Wyświetlanie, ile czasu upłynęło od podanej daty za pomocą `formatDistance`, np. `10 sekund temu`.
+
+```jsx
+import { formatDistance } from 'date-fns';
+import { pl } from 'date-fns/locale';
+
+export default function HomePage() {
+  const eventDate = new Date(2024, 10, 1); // 1 listopada 2024
+  const today = new Date();
+
+  const timePassed = formatDistance(eventDate, today, { addSuffix: true, locale: pl });
+
+  return (
+    <h1>Wydarzenie miało miejsce {timePassed}.</h1>
+  );
+}
+```
+
+### Dziwne literki do formatowania
+
+Do formatowania dat używamy literek. Każda znaczy co innego. Ważne jest również, czy jest duża czy mała. Szybka ściągawka z najpotrzebniejszymi robaczkami.
+
+| Litera | Opis                                   | Przykład (dla `2024-11-27 04:07:09`) |
+|--------|----------------------------------------|--------------------------------------|
+| **d**  | Dzień miesiąca (bez zera na początku) | `27`                                |
+| **dd** | Dzień miesiąca (z zerem na początku)  | `27`                                |
+| **E**  | Skrócony dzień tygodnia               | `Wed`                               |
+| **EEEE**| Pełna nazwa dnia tygodnia            | `Wednesday`                         |
+| **M**  | Miesiąc (bez zera na początku)        | `11`                                |
+| **MM** | Miesiąc (z zerem na początku)         | `11`                                |
+| **MMM**| Skrócona nazwa miesiąca               | `Nov`                               |
+| **MMMM**| Pełna nazwa miesiąca                 | `November`                          |
+| **yy** | Ostatnie dwie cyfry roku              | `24`                                |
+| **yyyy**| Pełny rok                            | `2024`                              |
+| **H**  | Godzina w formacie 24-godzinnym       | `14`                                |
+| **HH** | Godzina w formacie 24-godzinnym (z zerem) | `14`                            |
+| **h**  | Godzina w formacie 12-godzinnym       | `2`                                 |
+| **hh** | Godzina w formacie 12-godzinnym (z zerem) | `02`                             |
+| **a**  | AM/PM                                 | `PM`                                |
+| **m**  | Minuty (bez zera na początku)         | `7`                                 |
+| **mm** | Minuty (z zerem na początku)          | `07`                                |
+| **s**  | Sekundy (bez zera na początku)        | `9`                                 |
+| **ss** | Sekundy (z zerem na początku)         | `09`                                |
+| **XXX**| Strefa czasowa z dwukropkiem          | `+01:00`                            |
+| **x**  | Czas w milisekundach od UNIX Epoch    | `1732610829000`                     |
+
+:::note
+Do pełej dokumentacji o formatowaniu i literkach mogę odesłać pod [tym linkiem](https://date-fns.org/v4.1.0/docs/format)
+:::
+
+Robaczki można dowolnie łączyć. Kilka przykładów:
+
+```jsx
+const date = new Date();
+const formatted = format(date, 'EEEE, d MMMM yyyy', { locale: pl }); 
+console.log(formatted); // środa, 27 listopada 2024
+```
+
+```jsx
+const formatted = format(new Date(), 'dd.MM.yyyy HH:mm:ss');
+console.log(formatted); // 27.11.2024 14:07:09
+```
+
+```jsx
+const formatted = format(new Date(), 'hh:mm a');
+console.log(formatted); // 02:07 PM
+```
+
+## Strefy czasowe
+
+Strefy czasowe to też spory temat, więc postanowiłem zrobić dla nich osobny rodział. Aby używać `date-fns` dla stref czasowych potrzebujemy specjalnego pakietu o nazwie `date-fns-tz`.
+
+### Get started
+
+<Steps>
+
+1. Dodaj dodatkowy pakiet
+
+   ```sh
+   npm i date-fns date-fns-tz
+   ```
+
+</Steps>
+
+### Wyświetlanie daty w konkretnej strefie czasowej
+
+Użyj funkcji `formatInTimeZone` z biblioteki `date-fns-tz`.
+
+```jsx
+import { formatInTimeZone } from 'date-fns-tz';
+
+export default function HomePage() {
+  const now = new Date();
+  const timeZone = 'Europe/Warsaw';
+
+  const formattedDate = formatInTimeZone(now, timeZone, 'yyyy-MM-dd HH:mm:ss XXX'); // Aktualny czas w Warszawie: 2024-11-27 14:30:00 +01:00
+
+  return (
+    <h1>Aktualny czas w Warszawie: {formattedDate}</h1>
+  );
+}
+```
+
+### Przekształcenie daty z jednej strefy czasowej na inną
+
+Użyj funkcji `utcToZonedTime` i `format` z `date-fns` oraz `date-fns-tz`.
+
+```jsx
+import { utcToZonedTime, format } from 'date-fns-tz';
+
+export default function HomePage() {
+  const utcDate = new Date('2024-11-27T12:00:00Z'); // Data w UTC
+  const timeZone = 'America/New_York';
+
+  // Konwersja na strefę czasową
+  const zonedDate = utcToZonedTime(utcDate, timeZone);
+
+  // Formatowanie daty w strefie czasowej
+  const formattedDate = format(zonedDate, 'yyyy-MM-dd HH:mm:ss XXX', { timeZone }); // Czas w Nowym Jorku: 2024-11-27 07:00:00 -05:00
+
+  return (
+    <h1>Czas w Nowym Jorku: {formattedDate}</h1>
+  );
+}
+```
+
+### Obliczanie różnicy czasu między strefami
+
+Możesz obliczyć różnicę w godzinach między dwiema strefami czasowymi, używając kombinacji `utcToZonedTime` i zwykłego obliczenia różnicy dat.
+
+```jsx
+import { utcToZonedTime, differenceInHours } from 'date-fns-tz';
+
+export default function HomePage() {
+  const now = new Date();
+  const timeZone1 = 'Europe/Warsaw';
+  const timeZone2 = 'Asia/Tokyo';
+
+  const timeInWarsaw = utcToZonedTime(now, timeZone1);
+  const timeInTokyo = utcToZonedTime(now, timeZone2);
+
+  const hourDifference = differenceInHours(timeInTokyo, timeInWarsaw); // Różnica czasu między Warszawą a Tokio: 8 godzin
+
+  return (
+    <h1>Różnica czasu między Warszawą a Tokio: {hourDifference} godzin</h1>
+  );
+}
+```
+
+
+
 
 ## Checklista przed wypuszczeniem aplikacji
 
@@ -415,6 +750,33 @@ function handleMuscleClick(muscle: string) {
 Teraz jest bardzo jasne, że po kliknięciu na mięsień, zostaje też zupdate’owana tabelka.
 
 Ten przykład jeszcze nie jest taki zły, przy 1 useEffectcie dość łatwo się połapać co się dzieje, przy 11 robi się już kłopot i raz u mnie w pracy przez coś takiego padła produkcja 😭
+
+### Nieużywanie lub nadużywanie `useMemo`
+
+Hook `useMemo` pozwala na zapamiętanie wyniku funkcji obliczeniowej między renderami komponentu, co może pomóc w optymalizacji wydajności aplikacji. Jest używany głównie w przypadku "drogich" obliczeń (obliczenia, które swoją złożonością mają istotny wpływ na wydajność), które nie muszą być wykonywane na nowo przy każdym renderze.
+
+Składnia:
+```jsx
+const memoizedValue = useMemo(() => computeValue(a, b), [a, b]);
+```
+- **computeValue**: Funkcja zwracająca wynik obliczeń.
+- **[a, b]**: useMemo ponownie obliczy wartość tylko wtedy, gdy jedna z zależności w tej tablicy się zmieni.
+
+#### Kiedy używać `useMemo`?
+
+- Przy "kosztownych" obliczeniach, takich jak złożone przekształcenia dużych ilości danych.
+- Kiedy wynik obliczeń jest wielokrotnie używany w danym renderze (np. w innych hookach).
+- Przy obliczeniach, które zależą od dynamicznie zmieniających się danych.
+
+#### Kiedy nie używać `useMemo`?
+
+- Jeśli obliczenia są szybkie i nie mają zauważalnego wpływu na wydajność.
+- Gdy dodanie useMemo bardziej komplikuje kod niż przynosi korzyści.
+- Gdy zależności często się zmieniają, co może prowadzić do częstych ponownych obliczeń.
+
+:::tip
+Nie należy go używać na siłę. Najpierw upewnij się, że istnieje faktyczny problem z wydajnością, zanim go zastosujesz.
+:::
 
 ## FAQ
 
