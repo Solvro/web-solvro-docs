@@ -1,0 +1,213 @@
+---
+title: Best practices
+sidebar:
+  order: 4
+---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+## Jak zrobić ładne UI?
+
+Wbrew przekonaniom, sprawa jest prosta:
+
+1. Znajdź stronę, której design Ci się podoba i pasuje do Twojego projektu, np. robisz apke z mapą? google maps
+2. Skopiuj design 1:1, uprość i przerób go na komponenty shadcn
+3. Gotowe, ciesz się ładnym designem
+
+W UI/UX nie ma miejsca na kreatywność i jeśli sami spróbujecie stworzyć własny design na 99% skończycie z czymś dziwnym czego użytkownicy nie chcą używać. Jak tylko możecie kradnijcie designy i dostosowujcie do swoich potrzeb, użytkownicy chcą używać stron, które już znają i nie da sie sprawić by nie znali waszej stronę jeśli wygląda tak samo jak instagram 😭
+
+Poza tym, nie pisz własnych komponentów jeśli nie masz BARDZO dobrego powodu, te z shadcn’a są bardzo ładne i jak tylko możesz używaj ich 1:1, wtedy na pewno nie zbłądzisz.
+
+- Jak chcesz wiedzieć więcej na ten temat zapraszam do poczytania Refactoring UI, książka twórców tailwinda, poradnik o designie dla programistów (wymagany dostęp do dysku)
+  [https://drive.google.com/file/d/1zbsgxcK-xREkmFV7D6Z1lHZwOn4k04w-/view?usp=drive_link](https://drive.google.com/file/d/1zbsgxcK-xREkmFV7D6Z1lHZwOn4k04w-/view?usp=drive_link)
+
+## Pobieranie danych z API
+
+Tutaj mamy dwie ścieżki:
+
+1. React Server Components
+
+   React Server Components (RSC) to domyślne podejście w Next.js 14+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
+
+    ```jsx {5-6}
+    // app/products/page.tsx
+
+    export default async function ProductsPage() {
+      // Pobieranie danych z API po stronie serwera
+      const data = await fetch('https://api.example.com/data');
+      const products = await data.json();
+
+      return (
+        <div>
+          <h1>Produkty</h1>
+          <ul>
+            {products.map((product) => (
+              <li key={product.id}>
+                {product.name} - {product.price} PLN
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    ```
+
+2. Tanstack Query
+
+   Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
+
+    <Tabs>
+      <TabItem label="Zewnętrzne API">
+        ```jsx {2, 10-12}
+        // app/products/page.tsx
+        "use client"
+
+        import { useQuery } from '@tanstack/react-query';
+
+        export default function ProductsList() {
+          const { data: products, isLoading, error, refetch } = useQuery({
+            queryKey: ['products'],
+            queryFn: async () => {
+              const data = await fetch('https://api.example.com/data');
+              const products = await data.json();
+              return products
+            },
+          })
+
+          if (isLoading) return <p>Ładowanie danych...</p>;
+          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+
+          return (
+            <ul>
+              {products.map((product) => (
+                <li key={product.id}>
+                  {product.name} - {product.price} PLN
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        ```
+      </TabItem>
+      <TabItem label="Server Actions (NextJS)">
+        ```ts {2, 11}
+        // actions/products.ts
+        "use server"
+
+        import { db } from '@/lib/db';
+        /** 
+        * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
+        * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
+        * Trzeba zawsze zabezpieczyć taką funkcję, jeśli robimy rzeczy tylko dla zalogowanych użytkowników, np zmiana nazwy.
+        */
+        export async function fetchProducts() {
+          return await db.products.findMany(); // Przykład z bazą danych
+        }
+        ```
+
+        ```jsx {2, 10}
+        // app/products/page.tsx
+        "use client"
+
+        import { useQuery } from '@tanstack/react-query';
+        import { fetchProducts } from '@/actions/products.ts';
+
+        export default function ProductsList() {
+          const { data: products, isLoading, error, refetch } = useQuery({
+            queryKey: ['products'],
+            queryFn: fetchProducts,
+          })
+
+          if (isLoading) return <p>Ładowanie danych...</p>;
+          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+
+          return (
+            <ul>
+              {products.map((product) => (
+                <li key={product.id}>
+                  {product.name} - {product.price} PLN
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        ```
+      </TabItem>
+    </Tabs>
+
+    
+
+
+Do pobierania danych też potrzeba klienta API i tutaj mam zachęcam do korzystania z natywnego `fetch` , a za używanie `axios`a bez powodu będę ucinał pensje, jest bardzo mało powodów do używania axiosa w 2024 roku.
+
+## Wysyłanie danych do API
+
+Tutaj jestem opinionated i według mnie jedynym słusznym wyborem jest Tanstack Query i jego mutacje, nie próbujcie tego robić inaczej, bo będziecie sobie pluć w brodę (albo ja wam)
+
+## Zarządzanie stanem
+
+Do globalnego stanu używamy [Jotai](https://jotai.org/), a do lokalnego useState/useReducer jak serio to jest coś skomplikowanego
+
+Nigdy Context API, chyba, że macie BARDZO dobry powód
+
+## Formularze
+
+Zapraszam do dokumentacji shadcn’a, tam większość jest dobrze opisana:
+
+[https://ui.shadcn.com/docs/components/form](https://ui.shadcn.com/docs/components/form)
+
+## Autentykacja
+
+Nie mieliśmy jeszcze za dużo projektów, które by wymagały autentykacji, ale tutaj raczej zalecam iść w klasykę i klepnąć to w [AuthJS](https://authjs.dev/). Jest to rozwijany od lat produkt, który można 
+w łatwy sposób zintegrować z projektem w NextJS. Zawiera duży funkcji, takich jak logowanie OAuth2 czy magicznymi linkami, sesje bazujące na bazie danych lub tokenach JWT czy automatyczną ochronę przed CSRF.
+Ma dobrze rozwiniętą społeczność i dokumentację oraz masę tutoriali na YouTubie.
+
+Dodatkowo w ramach ciekawostki podrzucam Wam projekt działający pod nazwą [BetterAuth](https://www.better-auth.com/). 
+Jest to stosunkowo nowy projekt, który w wersję stabilną wszedł w listopadzie 2024 roku, aczkolwiek jest dobrze przemyślany i aktywnie rozwijany.
+Zalety tego projektu to między innymi, jeszcze łatwiejsza instalacja niż AuthJS czy rozwiązanie pluginowe, np. jeśli potrzebujecie użyć Passkeys to dodajecie taki plugin do configu.
+Do tego bardzo prosta dokumentacja. Polecam się zabawić.
+
+Jeśli robicie to DIY, to pewnie będziecie musieli sobie odpowiedzieć na pytanie gdzie trzymać tokeny i tutaj są dwie opcje:
+
+- LocalStorage - protsza opcja, ale mniej bezpieczna i bardziej podatna na ataki XSS
+- Cookies HttpOnly - bardziej bezpieczna opcja, ale trudniejsza w implementacji, źle zaimplementowane może prowadzić do ataków CSRF
+
+Na potrzeby Solvro cokolwiek wybierzecie będzie dobrze, a jeśli kogoś temat bardziej interesuje to tutaj można sobie poczytać:
+
+- https://tkacz.pro/how-to-securely-store-jwt-tokens
+- https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf
+
+## Landing page
+
+Jeśli jeszcze raz ktoś zmarnuje czas na robienie własnego landing page’a to go uduszę, tutaj macie dwie templatki i proszę z nich zrzynać:
+
+- [https://shadcn-landing-page.vercel.app](https://shadcn-landing-page.vercel.app/)
+- [https://shadcn-landing-page-livid.vercel.app](https://shadcn-landing-page-livid.vercel.app/)
+
+## Analityka
+
+Do analityki mamy postawione [Umami](https://umami.is/) na [https://analytics.solvro.pl](https://analytics.solvro.pl), jak chcecie dostęp to uderzajcie do Zarządu.
+
+## WYSIWYG
+
+Strasznie nie lubię tego tematu, bo tu jest milion wyborów i milion + 1 złych, obecnie rekomenduje:
+
+[https://shadcn-minimal-tiptap.vercel.app/](https://shadcn-minimal-tiptap.vercel.app/)
+
+## Tabelki
+
+Do tworzenia bardziej zaawansowanych tabelek polecam [https://tanstack.com/table/latest](https://tanstack.com/table/latest). Jest dość skomplikowany i ma wysoki próg wejścia, ale pozwoli wam na wszystko co sobie wymyślicie.
+
+Jako przykład polecam DataTable z shadcn'a:
+[https://ui.shadcn.com/docs/components/data-table](https://ui.shadcn.com/docs/components/data-table)
+
+Jeśli tabelka ma więcej niż 1000 wierszy to jest moment, żeby przenieść logikę filtrowania, paginacji i sortowania na backend, frontend przy takich ilościach powoli może zacząć zamulać. Przy 10k+ ilości wierszy to jest must-have.
+
+## Deployment
+
+Tutaj zapraszam do korzystania z naszego coolify’a pod adresem [https://devops.solvro.pl/](https://devops.solvro.pl/), jak ktoś chce dostępy to pisać do Zarządu, raczej każdy dostaje 😭
+
+## a11y
+
+Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
+
+Jak zrobić Link, który wygląda jak przycisk: [https://ui.shadcn.com/docs/components/button#as-child](https://ui.shadcn.com/docs/components/button#as-child)
