@@ -3,7 +3,8 @@ title: Best practices
 sidebar:
   order: 4
 ---
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Jak zrobić ładne UI?
 
@@ -24,16 +25,16 @@ Poza tym, nie pisz własnych komponentów jeśli nie masz BARDZO dobrego powodu,
 
 Tutaj mamy dwie ścieżki:
 
-1. React Server Components
+1.  React Server Components
 
-   React Server Components (RSC) to domyślne podejście w Next.js 14+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
+    React Server Components (RSC) to domyślne podejście w Next.js 14+. Dzięki nim dane są pobierane po stronie serwera, co eliminuje konieczność zarządzania stanami ładowania i zapewnia szybsze ładowanie stron. Zaletami jest automatyczne renderowanie danych na serwerze, brak konieczności zarządzania stanami ładowania i są proste w użyciu.
 
     ```jsx {5-6}
     // app/products/page.tsx
 
     export default async function ProductsPage() {
       // Pobieranie danych z API po stronie serwera
-      const data = await fetch('https://api.example.com/data');
+      const data = await fetch("https://api.example.com/data");
       const products = await data.json();
 
       return (
@@ -51,91 +52,99 @@ Tutaj mamy dwie ścieżki:
     }
     ```
 
-2. Tanstack Query
+2.  Tanstack Query
 
-   Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
+        Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
 
-    <Tabs>
-      <TabItem label="Zewnętrzne API">
-        ```jsx {2, 10-12}
-        // app/products/page.tsx
-        "use client"
+        <Tabs>
+          <TabItem label="Zewnętrzne API">
+            ```jsx {2, 15-16}
+            // app/products/page.tsx
+            "use client";
 
-        import { useQuery } from '@tanstack/react-query';
+            import { useQuery } from "@tanstack/react-query";
 
-        export default function ProductsList() {
-          const { data: products, isLoading, error, refetch } = useQuery({
-            queryKey: ['products'],
-            queryFn: async () => {
-              const data = await fetch('https://api.example.com/data');
-              const products = await data.json();
-              return products
-            },
-          })
+            export default function ProductsList() {
+              const {
+                data: products,
+                isLoading,
+                error,
+                refetch,
+              } = useQuery({
+                queryKey: ["products"],
+                queryFn: async () => {
+                  const data = await fetch("https://api.example.com/data");
+                  const products = await data.json();
+                  return products;
+                },
+              });
 
-          if (isLoading) return <p>Ładowanie danych...</p>;
-          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+              if (isLoading) return <p>Ładowanie danych...</p>;
+              if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
 
-          return (
-            <ul>
-              {products.map((product) => (
-                <li key={product.id}>
-                  {product.name} - {product.price} PLN
-                </li>
-              ))}
-            </ul>
-          );
-        }
-        ```
-      </TabItem>
-      <TabItem label="Server Actions (NextJS)">
-        ```ts {2, 11}
-        // actions/products.ts
-        "use server"
+              return (
+                <ul>
+                  {products.map((product) => (
+                    <li key={product.id}>
+                      {product.name} - {product.price} PLN
+                    </li>
+                  ))}
+                </ul>
+              );
+            }
+            ```
+          </TabItem>
+          <TabItem label="Server Actions (NextJS)">
+          ```ts {2, 11}
+          // actions/products.ts
+          "use server";
 
-        import { db } from '@/lib/db';
-        /** 
-        * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
-        * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
-        * Trzeba zawsze zabezpieczyć taką funkcję, jeśli robimy rzeczy tylko dla zalogowanych użytkowników, np zmiana nazwy.
-        */
-        export async function fetchProducts() {
-          return await db.products.findMany(); // Przykład z bazą danych
-        }
-        ```
+          import { db } from "@/lib/db";
+          /**
+            * PAMIĘTAJCIE, że tego typu akcje serwerowe są automatycznie generowanymi
+          * endpointami API, więc każdy może przy odrobinie umiejętności wykonać swoje rządanie do tej funkcji.
+          * Trzeba zawsze zabezpieczyć taką funkcję, jeśli robimy rzeczy tylko dla zalogowanych użytkowników, np zmiana nazwy.
+          */
+          export async function fetchProducts() {
+            return await db.products.findMany(); // Przykład z bazą danych
+          }
+          ```
 
-        ```jsx {2, 10}
-        // app/products/page.tsx
-        "use client"
+          ```jsx {2, 10}
+          // app/products/page.tsx
+          "use client";
 
-        import { useQuery } from '@tanstack/react-query';
-        import { fetchProducts } from '@/actions/products.ts';
+          import { useQuery } from "@tanstack/react-query";
+          import { fetchProducts } from "@/actions/products.ts";
 
-        export default function ProductsList() {
-          const { data: products, isLoading, error, refetch } = useQuery({
-            queryKey: ['products'],
-            queryFn: fetchProducts,
-          })
+          export default function ProductsList() {
+            const {
+              data: products,
+              isLoading,
+              error,
+              refetch,
+            } = useQuery({
+              queryKey: ["products"],
+              queryFn: fetchProducts,
+            });
 
-          if (isLoading) return <p>Ładowanie danych...</p>;
-          if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
+            if (isLoading) return <p>Ładowanie danych...</p>;
+            if (error) return <p>Wystąpił błąd podczas pobierania danych.</p>;
 
-          return (
-            <ul>
-              {products.map((product) => (
-                <li key={product.id}>
-                  {product.name} - {product.price} PLN
-                </li>
-              ))}
-            </ul>
-          );
-        }
-        ```
-      </TabItem>
-    </Tabs>
+            return (
+              <ul>
+                {products.map((product) => (
+                  <li key={product.id}>
+                    {product.name} - {product.price} PLN
+                  </li>
+                ))}
+              </ul>
+            );
+          }
+          ```
 
-    
-
+          </TabItem>
+        </Tabs>
 
 Do pobierania danych też potrzeba klienta API i tutaj mam zachęcam do korzystania z natywnego `fetch` , a za używanie `axios`a bez powodu będę ucinał pensje, jest bardzo mało powodów do używania axiosa w 2024 roku.
 
@@ -157,11 +166,11 @@ Zapraszam do dokumentacji shadcn’a, tam większość jest dobrze opisana:
 
 ## Autentykacja
 
-Nie mieliśmy jeszcze za dużo projektów, które by wymagały autentykacji, ale tutaj raczej zalecam iść w klasykę i klepnąć to w [AuthJS](https://authjs.dev/). Jest to rozwijany od lat produkt, który można 
+Nie mieliśmy jeszcze za dużo projektów, które by wymagały autentykacji, ale tutaj raczej zalecam iść w klasykę i klepnąć to w [AuthJS](https://authjs.dev/). Jest to rozwijany od lat produkt, który można
 w łatwy sposób zintegrować z projektem w NextJS. Zawiera duży funkcji, takich jak logowanie OAuth2 czy magicznymi linkami, sesje bazujące na bazie danych lub tokenach JWT czy automatyczną ochronę przed CSRF.
 Ma dobrze rozwiniętą społeczność i dokumentację oraz masę tutoriali na YouTubie.
 
-Dodatkowo w ramach ciekawostki podrzucam Wam projekt działający pod nazwą [BetterAuth](https://www.better-auth.com/). 
+Dodatkowo w ramach ciekawostki podrzucam Wam projekt działający pod nazwą [BetterAuth](https://www.better-auth.com/).
 Jest to stosunkowo nowy projekt, który w wersję stabilną wszedł w listopadzie 2024 roku, aczkolwiek jest dobrze przemyślany i aktywnie rozwijany.
 Zalety tego projektu to między innymi, jeszcze łatwiejsza instalacja niż AuthJS czy rozwiązanie pluginowe, np. jeśli potrzebujecie użyć Passkeys to dodajecie taki plugin do configu.
 Do tego bardzo prosta dokumentacja. Polecam się zabawić.
@@ -211,3 +220,7 @@ Tutaj zapraszam do korzystania z naszego coolify’a pod adresem [https://devops
 Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
 
 Jak zrobić Link, który wygląda jak przycisk: [https://ui.shadcn.com/docs/components/button#as-child](https://ui.shadcn.com/docs/components/button#as-child)
+
+```
+
+```

@@ -33,9 +33,10 @@ Dobrą praktyką jest umieszczanie krótkiego opisu obrazka poza samym src obraz
 - Nie kopiuj całego tekstu z obrazu i wszystkich najmniejszych szczegółów, jeśli nie jest to kluczowe do zrozumienia treści.
 
 Przykład:
+
 ```jsx {8}
 // app/page.tsx
-import Image from 'next/image'
+import Image from "next/image";
 
 export function MyComponent() {
   return (
@@ -43,7 +44,7 @@ export function MyComponent() {
       src="/next.svg"
       alt="Next.js logo" // Krótki opis grafiki
     />
-  )
+  );
 }
 ```
 
@@ -51,18 +52,19 @@ export function MyComponent() {
 
 Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
 
-Jak zrobić Link, który wygląda jak przycisk: 
+Jak zrobić Link, który wygląda jak przycisk:
+
 ```jsx
 // app/page.tsx
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
- 
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 export function ButtonAsChild() {
   return (
     <Button asChild>
       <Link href="/login">Login</Link>
     </Button>
-  )
+  );
 }
 ```
 

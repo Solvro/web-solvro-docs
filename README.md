@@ -8,7 +8,15 @@ Teoretycznie powinno się tu znaleźć wszystko co powinieneś/aś wiedzieć o p
 
   1. Dodaj nowy plik .md folderze `content/docs/guides/` np. `mario.md`
   2. W pliku `mario.md` musisz napisać tytuł i opis jako fronmatter, przykładowo:
-    
+
+  ```md
+  ---
+  title: Web development
+  description: Oto jak w Solvro rozwijamy aplikacje webowe.
+  ---
+
+  Heeej, to jest treść strony!
+  ```
 
 ## Jak odpalić?
 

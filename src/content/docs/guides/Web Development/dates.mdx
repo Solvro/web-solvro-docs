@@ -2,18 +2,22 @@
 title: Daty
 sidebar:
   order: 5
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
 ---
-import { Steps } from '@astrojs/starlight/components';
 
-Uff, to jest ciężki temat. Każdy kiedyś zetknie się z datami (lub już się zetknął) i bez odpowiednich narzędzi potrafi to być czasem droga przez mękę. Te wszystkie strefy czasowe, wyświetlanie w różnych formatach, porównywanie itd. 
+import { Steps } from "@astrojs/starlight/components";
 
-Nasz naczelny Żelownik Bartuś podrzucił libkę o nazwie **date-fns**. Popieram go całym serduszkiem i dzięki niej mam nadzięję sprawię, że to daty będą bały się Was a nie na odwrót.
+Uff, to jest ciężki temat. Każdy kiedyś zetknie się z datami (lub już się zetknął) i bez odpowiednich narzędzi potrafi to być czasem droga przez mękę. Te wszystkie strefy czasowe, wyświetlanie w różnych formatach, porównywanie itd.
+
+Nasz naczelny Żelownik Bartuś podrzucił libkę o nazwie [date-fns](https://date-fns.org/). Popieram go całym serduszkiem i dzięki niej mam nadzięję sprawię, że to daty będą bały się Was a nie na odwrót.
 
 :::tip
 Jeśli szukasz jakie literki wykorzystać do osiągnięcia zamierzonego efektu w formatowaniu, zapraszam do rozdziału niżej pt. "Dziwne literki do formatowania"
 :::
 
-## Basic usage
+## Get started
 
 <Steps>
 
@@ -26,123 +30,122 @@ Jeśli szukasz jakie literki wykorzystać do osiągnięcia zamierzonego efektu w
 2. Zaimportuj funkcję `format` z libki:
 
    ```jsx
-   import { format } from 'date-fns';
+   import { format } from "date-fns";
    ```
 
 3. Używaj jako `format(data, formater)`.
 
 </Steps>
 
-## Formatowanie daty
+## Przykłady
+
+### Formatowanie daty
 
 Użycie funkcji `format` do sformatowania daty w czytelny sposób.
 
-```jsx
-import { format } from 'date-fns';
+```jsx live
+import { format } from "date-fns";
 
 export default function HomePage() {
-  const today = new Date(); // 27 listopada 2024
-  const formattedDate = format(today, 'dd/MM/yyyy'); // np. 27/11/2024
+  const today = new Date();
+  const formattedDate = format(today, "dd/MM/yyyy");
 
-  return (
-    <h1>Dzisiejsza data: {formattedDate}</h1>
-  );
+  return <p>Dzisiejsza data: {formattedDate}</p>;
 }
 ```
 
-## Dodawanie dni do daty
+### Dodawanie dni do daty
 
 Użycie funkcji `addDays`, aby obliczyć przyszłe daty.
 
-```jsx
-import { addDays, format } from 'date-fns';
+```jsx live
+import { addDays, format } from "date-fns";
 
 export default function HomePage() {
-  const today = new Date(); // 27 listopada 2024
+  const today = new Date();
   const futureDate = addDays(today, 7); // Data za 7 dni
-  const formattedFutureDate = format(futureDate, 'dd MMMM yyyy'); // np. 04 grudnia 2024
+  const formattedFutureDate = format(futureDate, "dd MMMM yyyy");
 
-  return (
-    <h1>Data za tydzień: {formattedFutureDate}</h1>
-  );
+  return <p>Data za tydzień: {formattedFutureDate}</p>;
 }
 ```
 
-## Porównywanie dat
+### Porównywanie dat
 
 Sprawdzanie, czy jedna data jest przed lub po innej.
 
-```jsx
-import { isBefore, isAfter } from 'date-fns';
+```jsx live
+import { isBefore, isAfter } from "date-fns";
 
 export default function HomePage() {
-  const today = new Date(); // 27 listopada 2024
+  const today = new Date(); // Dzisiaj
   const eventDate = new Date(2024, 11, 31); // 31 grudnia 2024
 
   const isEventInFuture = isAfter(eventDate, today);
 
   return (
-    <div>
-      <h1>{isEventInFuture ? 'Wydarzenie jest w przyszłości!' : 'Wydarzenie już się odbyło.'}</h1>
-    </div>
+    <p>
+      {isEventInFuture
+        ? "Wydarzenie jest w przyszłości!"
+        : "Wydarzenie już się odbyło."}
+    </p>
   );
 }
 ```
 
-## Lokalizacja dat
+### Lokalizacja dat
 
 Formatowanie daty w języku np. Angielskim za pomocą opcji `locale`.
 
-```jsx
-import { format } from 'date-fns';
-import { en } from 'date-fns/locale';
+```jsx live
+import { format } from "date-fns";
+import { enUS } from "date-fns/locale";
 
 export default function HomePage() {
-  const today = new Date(); // 27 listopada 2024
-  const formattedDate = format(today, 'EEEE, d MMMM yyyy', { locale: en }); // np. środa, 27 listopada 2024
+  const today = new Date(); // Dzisiaj
+  const formattedDate = format(today, "EEEE, d MMMM yyyy", {
+    locale: enUS,
+  });
 
-  return (
-    <h1>Dzisiejsza data: {formattedDate}</h1>
-  );
+  return <p>Dzisiejsza data: {formattedDate}</p>;
 }
 ```
 
-## Obliczanie różnicy między datami
+### Obliczanie różnicy między datami
 
 Użycie `differenceInDays` do obliczenia liczby dni między dwiema datami.
 
-```jsx
-import { differenceInDays } from 'date-fns';
+```jsx live
+import { differenceInDays } from "date-fns";
 
 export default function HomePage() {
-  const today = new Date(); // 27 listopada 2024
+  const today = new Date(); // Dzisiaj
   const newYear = new Date(2025, 0, 1); // 1 stycznia 2025
 
   const daysUntilNewYear = differenceInDays(newYear, today);
 
-  return ( 
-    <h1>Do Nowego Roku zostało: {daysUntilNewYear} dni</h1> 
-  );
+  return <p>Do Nowego Roku zostało: {daysUntilNewYear} dni</p>;
 }
 ```
 
-## Wyświetlanie upływu czasu
+### Wyświetlanie upływu czasu
 
 Wyświetlanie, ile czasu upłynęło od podanej daty za pomocą `formatDistance`, np. `10 sekund temu`.
 
-```jsx
-import { formatDistance } from 'date-fns';
-import { pl } from 'date-fns/locale';
+```jsx live
+import { formatDistance } from "date-fns";
+import { pl } from "date-fns/locale";
 
 export default function HomePage() {
   const eventDate = new Date(2024, 10, 1); // 1 listopada 2024
   const today = new Date();
 
-  const timePassed = formatDistance(eventDate, today, { addSuffix: true, locale: pl });
+  const timePassed = formatDistance(eventDate, today, {
+    addSuffix: true,
+    locale: pl,
+  });
 
-  return (
-    <h1>Wydarzenie miało miejsce {timePassed}.</h1>
-  );
+  return <p>Wydarzenie miało miejsce {timePassed}.</p>;
 }
 ```
 
@@ -150,29 +153,29 @@ export default function HomePage() {
 
 Do formatowania dat używamy literek. Każda znaczy co innego. Ważne jest również, czy jest duża czy mała. Szybka ściągawka z najpotrzebniejszymi robaczkami.
 
-| Litera | Opis                                   | Przykład (dla `2024-11-27 04:07:09`) |
-|--------|----------------------------------------|--------------------------------------|
-| **d**  | Dzień miesiąca (bez zera na początku) | `27`                                |
-| **dd** | Dzień miesiąca (z zerem na początku)  | `27`                                |
-| **E**  | Skrócony dzień tygodnia               | `Wed`                               |
-| **EEEE**| Pełna nazwa dnia tygodnia            | `Wednesday`                         |
-| **M**  | Miesiąc (bez zera na początku)        | `11`                                |
-| **MM** | Miesiąc (z zerem na początku)         | `11`                                |
-| **MMM**| Skrócona nazwa miesiąca               | `Nov`                               |
-| **MMMM**| Pełna nazwa miesiąca                 | `November`                          |
-| **yy** | Ostatnie dwie cyfry roku              | `24`                                |
-| **yyyy**| Pełny rok                            | `2024`                              |
-| **H**  | Godzina w formacie 24-godzinnym       | `14`                                |
-| **HH** | Godzina w formacie 24-godzinnym (z zerem) | `14`                            |
-| **h**  | Godzina w formacie 12-godzinnym       | `2`                                 |
-| **hh** | Godzina w formacie 12-godzinnym (z zerem) | `02`                             |
-| **a**  | AM/PM                                 | `PM`                                |
-| **m**  | Minuty (bez zera na początku)         | `7`                                 |
-| **mm** | Minuty (z zerem na początku)          | `07`                                |
-| **s**  | Sekundy (bez zera na początku)        | `9`                                 |
-| **ss** | Sekundy (z zerem na początku)         | `09`                                |
-| **XXX**| Strefa czasowa z dwukropkiem          | `+01:00`                            |
-| **x**  | Czas w milisekundach od UNIX Epoch    | `1732610829000`                     |
+| Litera   | Opis                                      | Przykład (dla `2024-11-27 04:07:09`) |
+| -------- | ----------------------------------------- | ------------------------------------ |
+| **d**    | Dzień miesiąca (bez zera na początku)     | `27`                                 |
+| **dd**   | Dzień miesiąca (z zerem na początku)      | `27`                                 |
+| **E**    | Skrócony dzień tygodnia                   | `Wed`                                |
+| **EEEE** | Pełna nazwa dnia tygodnia                 | `Wednesday`                          |
+| **M**    | Miesiąc (bez zera na początku)            | `11`                                 |
+| **MM**   | Miesiąc (z zerem na początku)             | `11`                                 |
+| **MMM**  | Skrócona nazwa miesiąca                   | `Nov`                                |
+| **MMMM** | Pełna nazwa miesiąca                      | `November`                           |
+| **yy**   | Ostatnie dwie cyfry roku                  | `24`                                 |
+| **yyyy** | Pełny rok                                 | `2024`                               |
+| **H**    | Godzina w formacie 24-godzinnym           | `14`                                 |
+| **HH**   | Godzina w formacie 24-godzinnym (z zerem) | `14`                                 |
+| **h**    | Godzina w formacie 12-godzinnym           | `2`                                  |
+| **hh**   | Godzina w formacie 12-godzinnym (z zerem) | `02`                                 |
+| **a**    | AM/PM                                     | `PM`                                 |
+| **m**    | Minuty (bez zera na początku)             | `7`                                  |
+| **mm**   | Minuty (z zerem na początku)              | `07`                                 |
+| **s**    | Sekundy (bez zera na początku)            | `9`                                  |
+| **ss**   | Sekundy (z zerem na początku)             | `09`                                 |
+| **XXX**  | Strefa czasowa z dwukropkiem              | `+01:00`                             |
+| **x**    | Czas w milisekundach od UNIX Epoch        | `1732610829000`                      |
 
 :::note
 Do pełej dokumentacji o formatowaniu i literkach mogę odesłać pod [tym linkiem](https://date-fns.org/v4.1.0/docs/format)
@@ -180,25 +183,33 @@ Do pełej dokumentacji o formatowaniu i literkach mogę odesłać pod [tym linki
 
 Robaczki można dowolnie łączyć. Kilka przykładów:
 
-```jsx
-const date = new Date();
-const formatted = format(date, 'EEEE, d MMMM yyyy', { locale: pl }); 
-console.log(formatted); // środa, 27 listopada 2024
+```jsx live
+import { format } from "date-fns";
+import { pl } from "date-fns/locale";
+
+export default () =>
+  format(new Date(), "EEEE, d MMMM yyyy", {
+    locale: pl,
+  });
 ```
 
-```jsx
-const formatted = format(new Date(), 'dd.MM.yyyy HH:mm:ss');
-console.log(formatted); // 27.11.2024 14:07:09
+```jsx live
+import { format } from "date-fns";
+
+export default () => format(new Date(), "dd.MM.yyyy HH:mm:ss");
 ```
 
-```jsx
-const formatted = format(new Date(), 'hh:mm a');
-console.log(formatted); // 02:07 PM
+```jsx live
+import { format } from "date-fns";
+
+export default () => format(new Date(), "hh:mm a");
 ```
 
 ## Strefy czasowe
 
 Strefy czasowe to też spory temat, więc postanowiłem zrobić dla nich osobny rodział. Aby używać `date-fns` dla stref czasowych potrzebujemy specjalnego pakietu o nazwie `date-fns-tz`.
+
+### Get started
 
 <Steps>
 
@@ -210,67 +221,70 @@ Strefy czasowe to też spory temat, więc postanowiłem zrobić dla nich osobny 
 
 </Steps>
 
-### Wyświetlanie daty w konkretnej strefie czasowej
+### Przykłady
+
+#### Wyświetlanie daty w konkretnej strefie czasowej
 
 Użyj funkcji `formatInTimeZone` z biblioteki `date-fns-tz`.
 
-```jsx
-import { formatInTimeZone } from 'date-fns-tz';
+```jsx live
+import { formatInTimeZone } from "date-fns-tz";
 
 export default function HomePage() {
   const now = new Date();
-  const timeZone = 'Europe/Warsaw';
+  const timeZone = "Europe/Warsaw";
 
-  const formattedDate = formatInTimeZone(now, timeZone, 'yyyy-MM-dd HH:mm:ss XXX'); // Aktualny czas w Warszawie: 2024-11-27 14:30:00 +01:00
-
-  return (
-    <h1>Aktualny czas w Warszawie: {formattedDate}</h1>
+  const formattedDate = formatInTimeZone(
+    now,
+    timeZone,
+    "yyyy-MM-dd HH:mm:ss XXX"
   );
+
+  return <p>Aktualny czas w Warszawie: {formattedDate}</p>;
 }
 ```
 
-### Przekształcenie daty z jednej strefy czasowej na inną
+#### Przekształcenie daty z jednej strefy czasowej na inną
 
-Użyj funkcji `utcToZonedTime` i `format` z `date-fns` oraz `date-fns-tz`.
+Użyj funkcji `toZonedTime` i `format` z `date-fns` oraz `date-fns-tz`.
 
-```jsx
-import { utcToZonedTime, format } from 'date-fns-tz';
+```jsx live
+import { toZonedTime, format } from "date-fns-tz";
 
 export default function HomePage() {
-  const utcDate = new Date('2024-11-27T12:00:00Z'); // Data w UTC
-  const timeZone = 'America/New_York';
+  const utcDate = new Date("2024-11-27T12:00:00Z"); // Data w UTC
+  const timeZone = "America/New_York";
 
   // Konwersja na strefę czasową
-  const zonedDate = utcToZonedTime(utcDate, timeZone);
+  const zonedDate = toZonedTime(utcDate, timeZone);
 
   // Formatowanie daty w strefie czasowej
-  const formattedDate = format(zonedDate, 'yyyy-MM-dd HH:mm:ss XXX', { timeZone }); // Czas w Nowym Jorku: 2024-11-27 07:00:00 -05:00
+  const formattedDate = format(zonedDate, "yyyy-MM-dd HH:mm:ss XXX", {
+    timeZone,
+  }); // Czas w Nowym Jorku: 2024-11-27 07:00:00 -05:00
 
-  return (
-    <h1>Czas w Nowym Jorku: {formattedDate}</h1>
-  );
+  return <p>Czas w Nowym Jorku: {formattedDate}</p>;
 }
 ```
 
-### Obliczanie różnicy czasu między strefami
+#### Obliczanie różnicy czasu między strefami
 
-Możesz obliczyć różnicę w godzinach między dwiema strefami czasowymi, używając kombinacji `utcToZonedTime` i zwykłego obliczenia różnicy dat.
+Możesz obliczyć różnicę w godzinach między dwiema strefami czasowymi, używając kombinacji `toZonedTime` i zwykłego obliczenia różnicy dat.
 
-```jsx
-import { utcToZonedTime, differenceInHours } from 'date-fns-tz';
+```jsx live
+import { toZonedTime } from "date-fns-tz";
+import { differenceInHours } from "date-fns";
 
 export default function HomePage() {
   const now = new Date();
-  const timeZone1 = 'Europe/Warsaw';
-  const timeZone2 = 'Asia/Tokyo';
+  const timeZone1 = "Europe/Warsaw";
+  const timeZone2 = "Asia/Tokyo";
 
-  const timeInWarsaw = utcToZonedTime(now, timeZone1);
-  const timeInTokyo = utcToZonedTime(now, timeZone2);
+  const timeInWarsaw = toZonedTime(now, timeZone1);
+  const timeInTokyo = toZonedTime(now, timeZone2);
 
-  const hourDifference = differenceInHours(timeInTokyo, timeInWarsaw); // Różnica czasu między Warszawą a Tokio: 8 godzin
+  const hourDifference = differenceInHours(timeInTokyo, timeInWarsaw);
 
-  return (
-    <h1>Różnica czasu między Warszawą a Tokio: {hourDifference} godzin</h1>
-  );
+  return <p>Różnica czasu między Warszawą a Tokio: {hourDifference} godzin</p>;
 }
 ```
