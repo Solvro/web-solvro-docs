@@ -1,6 +1,7 @@
 ---
 title: Accessibility
-description: Poradnik w świecie web developmentu, jak zacząć i żyć?
+sidebar:
+  order: 3
 ---
 
 ## Opisy obrazków
