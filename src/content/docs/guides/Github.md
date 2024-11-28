@@ -61,6 +61,7 @@ Nazwę repo zaczynamy od przedrostka oznaczającego jego typ. Przewidziane na te
 | backend- | Projekt backendu aplikacji, obejmuje to wszystkie customowe backendy, CMSy, API, BaaSy itd. |
 | :------- | :------------------------------------------------------------------------------------------ |
 | web-     | Projekt aplikacji webowej, frontendowej, w tym wszystkie nowoczesne frameworki jsowe/tsowe. |
+| lib-web- | Biblioteka do aplikacji webowej, lub coś co nie wpada w ramy aplikacji                      |
 | ml-      | Projekt Machine Learning, modele, notebooki itp.                                            |
 | mobile-  | Projekt aplikacji mobilnej, zarówno w technologiach natywnych, jak i hybrydowych            |
 | script-  | Projekt zawierający skrypty pomocnicze, scrapery, crawlery itd.                             |
