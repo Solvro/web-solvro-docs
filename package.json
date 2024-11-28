@@ -7,17 +7,27 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/react": "^3.6.3",
     "@astrojs/starlight": "^0.29.2",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "astro": "^4.16.13",
+    "astro-live-code": "^0.0.4",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "dotenv": "^16.4.5",
     "google-auth-library": "^9.14.2",
     "googleapis": "^144.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rehype-slug-custom-id": "^2.0.0",
     "remark-heading-id": "^1.0.1",
     "sharp": "^0.32.5",
@@ -26,6 +36,15 @@
   },
   "devDependencies": {
     "@types/remark-heading-id": "^1.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.1",
+    "prettier-plugin-astro": "^0.14.1",
     "tsx": "^4.19.2"
+  },
+  "lint-staged": {
+    "*.{astro,md,mdx,mjs,ts,tsx,js,jsx,json}": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }

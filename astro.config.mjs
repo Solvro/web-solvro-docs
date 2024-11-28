@@ -3,6 +3,10 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import remarkHeadingId from "remark-heading-id";
 import tailwind from "@astrojs/tailwind";
+import liveCode from "astro-live-code";
+
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -11,8 +15,20 @@ export default defineConfig({
   },
   site: "https://docs.solvro.pl",
   integrations: [
+    liveCode({
+      defaultProps: {
+        "client:load": true,
+      },
+    }),
     starlight({
       defaultLocale: "pl",
+      locales: {
+        root: {
+          label: "Polski",
+          lang: "pl",
+        },
+      },
+      favicon: "favicon.ico",
       title: "Solvro",
       customCss: ["./src/tailwind.css"],
       tableOfContents: true,
@@ -22,6 +38,7 @@ export default defineConfig({
         replacesTitle: true,
       },
       lastUpdated: true,
+
       social: {
         facebook: "https://www.facebook.com/knsolvro",
         github: "https://github.com/solvro/web-solvro-docs",
@@ -44,5 +61,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    react(),
   ],
 });
