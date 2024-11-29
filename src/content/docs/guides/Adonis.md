@@ -102,20 +102,20 @@ Migracje wykonywane są w kolejności alfabetycznej (jeżeli nie zmienialiście 
 Jeżeli korzystamy z postgresa (a tak powinno być), to deklarując enumy należy skorzystać z natywnego enuma oferowanego przez bazę danych.
 
 ```jsx
-this.schema.createTable('users', (table) => {
-  table.enu('account_status', ['PENDING', 'ACTIVE', 'SUSPENDED'], {
+this.schema.createTable("users", (table) => {
+  table.enu("account_status", ["PENDING", "ACTIVE", "SUSPENDED"], {
     useNative: true,
-    enumName: 'user_account_status',
+    enumName: "user_account_status",
     existingType: false,
-  })
-})
+  });
+});
 ```
 
 W takim przypadku należy zwrócić uwagę, żeby tworzyć takiego enuma tylko w jednej migracji (inaczej dostaniemy błędem po twarzy). Należy również usunąć nowo powstały typ podczas wywołania funkcji `down()`.
 
 ```jsx
-this.schema.raw('DROP TYPE IF EXISTS "user_account_status"')
-this.schema.dropTable('users')
+this.schema.raw('DROP TYPE IF EXISTS "user_account_status"');
+this.schema.dropTable("users");
 ```
 
 Dokumentacja:
@@ -139,4 +139,3 @@ node ace make:migration --alter <name>
 Dokumentacja:
 
 https://lucid.adonisjs.com/docs/table-builder#enum--enu
-

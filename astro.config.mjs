@@ -46,7 +46,16 @@ export default defineConfig({
         replacesTitle: true,
       },
       lastUpdated: true,
-
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            src: "https://analytics.solvro.pl/script.js",
+            "data-website-id": "8d083e9b-5ad6-4abb-b9b2-4c855adb18b0",
+            defer: true,
+          },
+        },
+      ],
       social: {
         facebook: "https://www.facebook.com/knsolvro",
         github: "https://github.com/solvro/web-solvro-docs",
