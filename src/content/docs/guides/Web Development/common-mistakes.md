@@ -103,7 +103,7 @@ Dzieje się to, gdy jakakolwiek część DOM-u ma inną wartość po stronie ser
 
 Przykładami sytuacji, które mogłoby to wywołać to **używanie dat**, np przy countdownie lub **używanie wartości losowo wygenerowanych**.
 
-#### Możliwe fixy
+#### Sugerowane podejścia
 
 1. Renderowanie niedeterministycznych wartości wyłącznie po stronie klienta
    Zanim nastąpi hydracja, zwróć wersję komponentu bez treści dynamicznej. Gdy komponent zostanie w pełni załadowany, użyj `useEffect` aby zaktualizować komponent, co dzieje się po stronie klienta.
@@ -135,5 +135,15 @@ Przykładami sytuacji, które mogłoby to wywołać to **używanie dat**, np prz
      return currentDate.toLocaleString();
    }
    ```
+
+   :::caution
+   W podanym powyżej przykładzie istnieje możliwość, że strona zostanie załadowana idealnie w momencie, gdy zaokrąglenie obecnej daty nie będzie deterministyczne.
+
+   Przykład: użytkownik odwiedzi stronę o `16:20:29.5`, więc serwer zaokrągla datę do 16:20:00. Przesyłanie z serwera skryptów JS trwa około sekundy więc kod klienta uruchamia się o `16:20:30.5`, czyli w zaokrągleniu 16:21:00. W tym momencie wywala nam błąd ponieważ wygenerowany DOM klienta różni się od DOM-u serwera.
+
+   Zauważcie, że używanie innej strategii zaokrąglania nie pozbyłoby się tego problemu: zamiana `round` na `floor` lub `ceil` oznaczyłaby, że problematyczną godziną byłaby `16:20:59.5`.
+
+   Jeśli wymagana jest stuprocentowa niezawodność, nie należy korzystać z tej metody.
+   :::
 
 Metoda #2 działa w przypadku wartości, które można w jakimś stopniu zaokrąglać lub czynić mniej dokładnymi. W związku z tym, dla wartości losowo wygenerowanych (np. `Math.random()`), zaleca się stosowanie metody #1.
