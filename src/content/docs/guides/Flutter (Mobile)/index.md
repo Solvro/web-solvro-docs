@@ -12,19 +12,19 @@ https://github.com/Solvro/web-solvro-docs
 
 ## Wymagania wstępne (czyli czego spodziewamy się po czytelniku)
 
-Zakładamy, że masz już jakieś pojęcie o frameworku [Flutter](https://docs.flutter.dev/) - nie musisz być ekspertem, ale dobrze by było, żebyś kojarzył, czym mniej więcej jest i do czego służy. Docelowo poradnik ma nauczyć Cię zarówno podstaw, jak i bardziej zaawansowanych aspektów. Nie tłumaczy jednak, czym jest i po co został stworzony Flutter.
+Zakładamy, że masz już jakieś pojęcie o frameworku [Flutter](https://docs.flutter.dev/) - nie musisz być ekspertem, ale dobrze by było, żebyś kojarzył, czym mniej więcej jest i do czego służy. Docelowo poradnik ma nauczyć Cię zarówno podstaw, jak i bardziej zaawansowanych aspektów. Nie tłumaczy jednak wszystkiego.
 
-Dobrze, jeśli masz już trochę doświadczenia w programowaniu funkcyjnym i obiektowym. Oczywiście, najlepiej w języku [Dart](https://dart.dev/), ale większość mainstreamowych języków programowania powinna być wystarczającą bazą do zrozumienia większości rozdziałów.
+Dobrze też, jeśli masz już trochę doświadczenia w programowaniu funkcyjnym i obiektowym. Najlepiej w języku [Dart](https://dart.dev/), ale większość mainstreamowych języków programowania powinna być wystarczającą bazą do zrozumienia większości rozdziałów.
 
 Szczególnie dobrą podstawą są języki z [silnym typowaniem](https://pl.wikipedia.org/wiki/Typowanie_silne) i null safety takie jak typescript lub kotlin. Składnia Darta celowo łączy elementy z innych popularnych języków takich jak (java/type)script, C++, python czy java, żeby każdy mógł się w nim szybko odnaleźć.
 
 ## Słowo wstępne
 
-Flutter jest relatywnie młody i z racji swojej wieloplatformowości, jest podatny na wpływy z innych technologii. Migracje programistów z różnych środowisk wznoszą do Fluttera różnorodne nawyki, architektury i specyficzne naleciałości z poprzednich specjalności.
+Flutter jest relatywnie młody i z racji swojej wieloplatformowości, jest podatny na wpływy z innych technologii. Migracje programistów z różnych środowisk wznoszą do Fluttera różnorodne nawyki, architektury i naleciałości.
 
 Szczególnie widoczne są wpływy z obydwóch mobilnych natywnych platform Android i iOS oraz webówki (głównie Reacta). W efekcie Flutter często nie narzuca jedynego słusznego rozwiązania na wiele aspektów programowania, szczególnie w kwestii architektury aplikacji i zarządzania stanem.
 
-Dlatego ten handbook stara się wyraźnie zaznaczać, kiedy prezentowane rozwiązania są obiektywne i powszechnie uznawane, a kiedy wkraczamy w obszary bardziej subiektywne - oparte na doświadczeniach Solvro i ToPWR, Jednocześnie staramy się wspominać o najpopularniejszych alternatywach uznawanych przez społeczność Fluttera.
+Dlatego ten handbook stara się wyraźnie zaznaczać, kiedy prezentowane rozwiązania są obiektywne i powszechnie uznawane, a kiedy wkraczamy w obszary bardziej subiektywne - oparte na wyborach i preferencjach Solvro i ToPWR, Jednocześnie staramy się wspominać o innych najpopularniejszych alternatywach uznawanych przez społeczność Fluttera.
 
 :::note
 Disclaimer: Handbook jest w początkowej fazie rozwoju, więc wymagania i słowo wstępne mogą być trochę oderwane od rzeczywistości.
@@ -38,9 +38,9 @@ Jeżeli chcesz wypuszczać apki na iOS/macOS to bez inwestycji w komputerek z ja
 
 Na szczęście dzięki wieloplatformowości możesz pisać we Flutterze i testować na Androidzie, a większość funkcjonalności będzie działać na obu systemach (nie wszystkie, ale dostosowanie tego pod koniec nie powinno być trudne).
 
-Z "tańszych" OS-ów polecam raczej Linuxa niż Windowsa, ale ostateczny wybór należy do Ciebie.
+Z "tańszych" OS-ów polecam bardziej Linuxa niż Windowsa, ale ostateczny wybór należy do Ciebie.
 
-O Linuxie i WSLu możesz przeczytać więcej w napisanym przez specjalistę [Web Development Handbook](/guides/web-development#wsl). Praca na  Linuxie jest zwykle wygodniejsza niż na Windowsie, ale nie jest to wymagane.
+O Linuxie i WSLu możesz przeczytać więcej w napisanym przez specjalistę [Web Development Handbook](/guides/web-development#wsl). Praca na Linuxie jest zwykle wygodniejsza niż na Windowsie, ale nie jest to wymagane.
 
 :::tip[Link dla kolegi]
 Losowa instrukcja instalacji wirtualki macOS: https://antyweb.pl/wirtualny-macos-na-windows-10-dziala-imessage-icloud-i-inne
@@ -50,15 +50,15 @@ Losowa instrukcja instalacji wirtualki macOS: https://antyweb.pl/wirtualny-macos
 
 ### Edytor / IDE
 
-Osobiście polecam [Visual Studio Code](https://code.visualstudio.com/) - kiedy zaczynałem, miał on najlepiej działające wtyczki pod Fluttera. Trochę mniej popularny jest [Android Studio](https://developer.android.com/studio?hl=pl), który i tak musi być zainstalowany do budowania na Androida. Parę lat temu jego wtyczki były trochę bardziej toporne - mogło się to jednak w międzyczasie zmienić.
+Osobiście polecam [Visual Studio Code](https://code.visualstudio.com/) - kiedy zaczynałem, miał on najlepiej działające wtyczki pod Fluttera. Trochę mniej popularny jest [Android Studio](https://developer.android.com/studio?hl=pl), który i tak musi być zainstalowany na urządzeniu, aby móc przetestować apkę na Androidzie. Parę lat temu jego wtyczki były trochę bardziej toporne - mogło się to jednak w międzyczasie zmienić.
 
 Inne edytory to śmierć, ale to już wasza sprawa.
 
-Poniżej znajdziesz listę wtyczek oraz ustawień do VSCode, które po instalacji Fluttera, ułatwią lub wręcz umożliwią Ci pracę.
+Poniżej znajdziesz listę wtyczek oraz ustawień do VSCode, które ułatwią lub wręcz umożliwią Ci pracę. Najpierw jednak trzeba zainstalować Fluttera.
 
 ## Instalacja Fluttera
 
-Flutter, w przeciwieństwie do na przykład technologii zbudowanych na JSie, ma dość jednolite środowisko. Momentami problemem może być jego wieloplatformowość i to, że pod spodem musi zależeć trochę od natywnego Androida i iOSa oraz od przeglądarkowych i desktopowych warstw. Na szczęście sama flutterowa warstwa jest już dość jednolita i nie ma np. 15 różnych środowisk uruchomieniowych, kilku standardów czy sposobów rozwiązywania ścieżek itp. Tutaj środowisko jest jedno, a jego kierunek rozwoju jest dość silnie wytyczany przez Flutter and Dart team w Google (_z małą gwiazdką o Flocku_). A sposoby na jego instalację są właściwie tylko dwa:
+Flutter, w przeciwieństwie do na przykład technologii zbudowanych na JSie, ma dość jednolite środowisko. Momentami problemem może być jego wieloplatformowość i to, że pod spodem musi zależeć od natywnych mobilnych (Android/iOS), desktopowych lub webowych warstw. Na szczęście sama flutterowa warstwa jest już dość jednolita i nie ma np. 15 różnych środowisk uruchomieniowych, kilku standardów czy sposobów rozwiązywania ścieżek itp. Tutaj środowisko jest jedno, a jego kierunek rozwoju jest dość silnie wytyczany przez Flutter and Dart team w Google (_z małą gwiazdką o Flocku_). A sposoby na jego instalację są właściwie tylko dwa:
 
 ### Instalacja bezpośrednia 1:1 z dokumentacją
 
@@ -78,7 +78,7 @@ Jeśli zdecydujesz się na FVM, to Fluttera ani Darta nie musisz instalować glo
 Nadal jednak musisz zainstalować Android Studio i XCode, zgodnie z instrukcją z dokumentacji Fluttera.
 
 :::caution
-Nie polecam instalacji Fluttera zarówno globalnie, jak i za pomocą FVM, bo te sposoby mogą się ze sobą gryźć. Jak chcesz się przenieść z globalnej instalacji na FVM, to polecam najpierw odinstalować globalnego Fluttera.
+Nie polecam instalacji Fluttera zarówno globalnie, jak i za pomocą FVM, bo te instancje mogą się ze sobą gryźć. Jak chcesz się przenieść z globalnej instalacji na FVM, to polecam najpierw odinstalować globalnego Fluttera.
 :::
 
 :::note
@@ -104,30 +104,32 @@ Jest to jednak moja wariacja na ten temat.
 
 Moim zdaniem wszystkie wtyczki z tej listy to większy lub mniejszy must have.
 
-- [Oficjalna do Fluttera](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter): 
-  - [Oficjalne docsy](https://docs.flutter.dev/tools/vs-code): (polecam przeczytać)
+- [Oficjalna wtyczka do Fluttera](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter):
+  - [Oficjalne docsy](https://docs.flutter.dev/tools/vs-code) (polecam przeczytać)
     :::tip
-    Dwie kwestie, o których ludzie często zapominają to: 
-    1. Wbudowane snippety. Na przykład wystaczy napisać `stl` i nacisnąć tab, żeby dostać szablon `StatelessWidget`u. 
+    Dwie kwestie, o których ludzie często zapominają to:
+    1. Wbudowane snippety. Na przykład wystaczy napisać `stl` i nacisnąć tab, żeby dostać szablon `StatelessWidget`u.
     2. Refactoring assistant: `Cmd + Shift + R` i możemy na przykład okalać widget, na którym jesteśmy w `Column`.
-    :::
-- [Oficjalna do Darta](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
+       ![](../../../../assets/flutter/refactoring.png)
+       :::
+- [Oficjalna wtyczka do Darta](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
 - [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments): Kolorowe komentarze.
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens): Podświetla błędy w kodzie w przejrzysty sposób.
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Fajny Git Blame (widać kto popsuł daną linijkę).
-    ![git blame](../../../../assets/flutter/git-blame.png)
+  ![git blame](../../../../assets/flutter/git-blame.png)
 - GitHub Copilot: Każdy wie co to jest, polecam załatwić sobie darmową licencję studencką.
 - [DartPad Theme](https://marketplace.visualstudio.com/items?itemName=Alejandro-FA.vscode-theme-dartpad): Fajny theme, inspirowany dartpadem (oficjalnym playgroundem do Darta).
 - [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens): Podpowiada, która paczka w pubspecie ma dostępną nowszą wersję.
-- [Riverpod Snippets](https://marketplace.visualstudio.com/items?itemName=robert-brunhage.flutter-riverpod-snippets): 
+- [Riverpod Snippets](https://marketplace.visualstudio.com/items?itemName=robert-brunhage.flutter-riverpod-snippets):
   - Skróty do Riverpoda
   - Wystarczy napisać kilka znaków i wstawia nam template
     ![riverpod snippets](../../../../assets/flutter/riverpod-snippets.png)
 - [dart-import](https://marketplace.visualstudio.com/items?itemName=luanpotter.dart-import): Komenda do sprzątania i formatowania importów. `Cmd + Shift + P -> Fix Imports`
-    ![dart import](../../../../assets/flutter/dart-import.png)
+  ![dart import](../../../../assets/flutter/dart-import.png)
 - [Image preview](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview): Pokazuje wizualizacje assetów.
 - [Flutter Color](https://marketplace.visualstudio.com/items?itemName=circlecodesolution.ccs-flutter-color): Koloruje kolorki flutterowe (są też bardziej uniwersalne wtyczki, ale Flutter ma format`0xAARRGGBB` więc często mają konkretne problemy).
 - [Flutter Icons](https://marketplace.visualstudio.com/items?itemName=AntoineGtr.flutter-icons): Ikonki do edytora.
+
 ### Ustawienia
 
 Ważne ustawienia, które warto dodać do `settings.json` - w kontekście Flutter Developmentu:
@@ -185,18 +187,18 @@ Ważne ustawienia, które warto dodać do `settings.json` - w kontekście Flutte
 Pokazałbym Ci moje całe ustawienia, ale jest tam za dużo śmieci. Możesz sobie zerknąć na nie tutaj: https://gist.github.com/simon-the-shark/1c99f3e6f45f9af7903bad11d4dc105a
 
 :::note
-Jeśli korzystacie z FVM, to musicie jeszcze ustawić, żeby VSCode automatycznie wykrywał instancję z FVM w tym projekcie. Instukcja: https://fvm.app/documentation/guides/vscode
+Jeśli koszystasz z FVM, to musisz jeszcze ustawić, żeby VSCode automatycznie wykrywał instancję z FVM w tym projekcie. Instukcja: https://fvm.app/documentation/guides/vscode
 :::
 
 ## Jak ustawić Android Studio do pracy z Flutterem
 
-**_Nie planuję tego opisywać. Jak ktoś jest fanem JetBrainsów to poproście Mikołaja._**  
+**_Nie planuję tego opisywać. Jak ktoś jest fanem JetBrainsów to poproście Mikołaja._**
 
 Mogę tylko podrzucić linkacza, ale nawet nie czytałem: https://codewithandrea.com/articles/intellij-keyboard-shortcuts-flutter-development/
 
 ## Flutter Aliasy
 
-Nie ma jednych oficjalnie przyjętych jak np. do [Gita](https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index), ale Andrea proponuje kilka podstawowych: https://codewithandrea.com/tips/useful-aliases-flutter-dev/
+Nie ma jednych powszechnie przyjętych jak np. do [Gita](https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index), ale Andrea proponuje kilka podstawowych: https://codewithandrea.com/tips/useful-aliases-flutter-dev/
 
 ```shell
 alias fclean="flutter clean"
