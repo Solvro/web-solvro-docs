@@ -158,6 +158,33 @@ Do globalnego stanu używamy [Jotai](https://jotai.org/), a do lokalnego useStat
 
 Nigdy Context API, chyba, że macie BARDZO dobry powód
 
+## Default i niedefault exporty
+
+W naszej zacnej organizacji aka kole naukowym _umówiliśmy_ się co do jednej **konwencji pisania stron i komponentów**. Default eksporty używamy tylko na stronach typu `page.tsx`:
+
+```jsx
+// app/products/page.tsx
+export default function ProductsPage() {
+  return <div>Produkty</div>;
+}
+```
+
+ale jeśli robimy komponenty to zawsze eksportujemy je jako niedefaultowe:
+
+```jsx
+// app/products/components/ProductList.tsx
+export function ProductList() {
+  return <div>Lista produktów</div>;
+}
+```
+
+:::note
+Podrzucam linki do stackoverflow, gdzie jest to ładnie opisane:
+
+- [https://stackoverflow.com/a/68665805](https://stackoverflow.com/a/68665805)
+- [https://stackoverflow.com/a/58103685](https://stackoverflow.com/a/58103685)
+  :::
+
 ## Formularze
 
 Zapraszam do dokumentacji shadcn’a, tam większość jest dobrze opisana:
@@ -219,8 +246,4 @@ Tutaj zapraszam do korzystania z naszego coolify’a pod adresem [https://devops
 
 Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
 
-Jak zrobić Link, który wygląda jak przycisk: [https://ui.shadcn.com/docs/components/button#as-child](https://ui.shadcn.com/docs/components/button#as-child)
-
-```
-
-```
+Więcej na ten temat znajdziesz [tutaj](/guides/web-development/accessibility/#przyciski-jako-linki)
