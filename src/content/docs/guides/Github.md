@@ -32,19 +32,19 @@ Dzięki publicznemu członkostwu widać Solvro na twoim profilu, a przede wszyst
 ### Jak ustawić publiczne członkostwo \- szybki poradnik
 
 1. Wejdź na [https://github.com/orgs/Solvro/people](https://github.com/orgs/Solvro/people)
-2. Namierz siebie na liście członków i kliknij na swoją aktualną widoczność ![](../../../assets/github/image2.png)
+2. Namierz siebie na liście członków i kliknij na swoją aktualną widoczność ![informacja o prywatności członkostwa](../../../assets/github/image2.png)
 
 3. Wybierz członkostwo publiczne, i tada\! Jesteś już pełnoprawnym członkiem naszego koła.
 
-![](../../../assets/github/image3.png)
+![opcja ustawienia publicznego członkostwa](../../../assets/github/image3.png)
 
 ### Podaruj nam gwiazdki ⭐⭐⭐
 
 Zachęcamy do gwiazdkowania naszych publicznych repozytoriów Pokażmy innym, że mamy fajne projekty.
 
 1. Wchodzimy na listę repozytoriów. Ich publiczna liczba będzie tylko rosła (miejmy nadzieję).
-2. Wchodzimy po kolei w co fajniejsze projekty. ![](../../../assets/github/image9.png)
-3. Zostawiamy gwiazdkacza ⭐\! ![](../../../assets/github/image5.png)
+2. Wchodzimy po kolei w co fajniejsze projekty. ![losowo wybrany projekt Solvro](../../../assets/github/image9.png)
+3. Zostawiamy gwiazdkacza ⭐\! ![opcja gwiazdkowania repozytorium](../../../assets/github/image5.png)
 
 ## Nazewnictwo repozytoriów
 
@@ -54,7 +54,7 @@ Projekty nazywamy w pełnym [lower-kebab-case](https://www.theserverside.com/def
 
 **_typ-projektu-nazwa-projektu-suffixy_**
 
-## Lista przedrostków typów projektów.
+### Lista przedrostków typów projektów
 
 Nazwę repo zaczynamy od przedrostka oznaczającego jego typ. Przewidziane na ten moment są następujące przedrostki:
 
@@ -68,23 +68,23 @@ Nazwę repo zaczynamy od przedrostka oznaczającego jego typ. Przewidziane na te
 
 _Lista może podlegać zmianom, jeśli jest taka potrzeba._
 
-### Co, jeśli w repozytorium jest zarówno backend i frontend?
+#### Co, jeśli w repozytorium jest zarówno backend i frontend?
 
 1. Wszędzie gdzie to możliwe zachęcamy do rozdziału repozytoriów na dwa osobne.
 2. Jednak jeśli taka sytuacja zaistniała, bo np. projekt jest stary i już tak po prostu ma lub jest to aplikacja webowa monolityczna, wybierz przedrostek **_web-_**
 
-## Nazwa projektu
+### Nazwa projektu
 
 Drugą częścią nazwy jest nazwa projektu w [lower-kebab-case](https://www.theserverside.com/definition/Kebab-case)  
 np. _seg-a-2023, aplikacja-zapisowa, czasoprzestrzen-scanning_
 
 W przypadku krótkich nazw (jeśli nie wpłynie to na ich czytelność) zachęcamy do użycia prostego lower case’a np. _topwr, catchqr, planner, eventownik._
 
-## Przyrostki (suffixy)
+### Przyrostki (suffixy)
 
 Po nazwie projektu można dodawać **wiele dowolnych własnych** przyrostków według uznania (w lower kebab case). Jednak te zdefiniowane poniżej powinny być zawsze w pierwszej kolejności od końca.
 
-### Lista przyrostków funkcjonalnych
+#### Lista przyrostków funkcjonalnych
 
 | \-legacy                                                            | Projekty zastąpione nowszymi wersjami. NIE dotyczy wszystkich projektów ukończonych, TYLKO TYCH NIEAKTUALNYCH np. z racji powstania całkowicie nowej wersji w innej technologii                |
 | :------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -94,17 +94,17 @@ Po nazwie projektu można dodawać **wiele dowolnych własnych** przyrostków we
 
 _Brak innych pomysłów na ten moment, można zgłaszać propozycje._
 
-# Nazewnictwo commitów
+## Nazewnictwo commitów
 
 Jest to propozycja standaryzacji commitów. Poszczególne projekty mogą nadpisać te zasady swoimi, ale niech każdy projekt ma jakąś przyjętą spójną konwencję.
 
-## Format
+### Format
 
 Ogólny proponowany format jest następujący:
 
 **_type: short description_**
 
-## Przedrostek typu zmiany
+### Przedrostek typu zmiany
 
 | feat:     | Zmiana wprowadzająca nowe funkcjonalności.                                                                               |
 | :-------- | :----------------------------------------------------------------------------------------------------------------------- |
@@ -119,7 +119,7 @@ Czasami mogą wystąpić też inne przedrostki. Ciekawym rozwiązaniem są też 
 
 Dla zainteresowanych zalecam zapoznanie się ze spycifikacją Conventional Commits [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/)
 
-## Krótki prosty opis zmiany
+### Krótki prosty opis zmiany
 
 Powinien być krótki, po angielsku, opisujący czego dotyczy zmiana.  
 Przykłady: _login view, shopping list, product detail view, auth service, product model, new db system, ios location permissions, photo header, offline message widget, change welcome message, improve fetching time, active tile content, cold start initialization_ i można by wymieniać w nieskończoność
@@ -128,7 +128,7 @@ Czasami można się rozpisać na kilka dobrych słów, ale commity nie powinny w
 
 **UWAGA** od [272647@student.pwr.edu.pl](mailto:272647@student.pwr.edu.pl) (Bartosz Gotowski): Czasowniki w opisach powinny być w czasie teraźniejszym, a nie przeszłym. Np. _`add new logo`_ zamiast _`added new logo`_
 
-# Zarządzanie zadaniami i projektami
+## Zarządzanie zadaniami i projektami
 
 Każdy zespół projektowy powinien mieć utworzony team na Githubie. Każdy team ma maintainera (PM/TechLeada), który może dodawać członków. Team ma też swoje logo i można grupowo oznaczać ich członków w dyskusjach/issues/pr-ach.
 
@@ -136,14 +136,14 @@ Do teamu powinny być przyporządkowane repozytoria w potrzebnej liczbie i typie
 
 Jeśli kierujesz nowym projektem i nie masz jeszcze wszystkiego z listy \- napisz do kogoś z zarządu\!
 
-## Projekt / KANBAN board
+### Projekt / KANBAN board
 
 Projekty mają wiele zaawansowanych diagramów, z których możecie korzystać w projekcie, jeśli umiecie i wiecie czemu służą 😛
 
 Podstawowym typem jest jednak tablica KANBAN, gdzie można dodawać zadania w formie draft, lub przypinać issues lub pull-requesty.  
-![](../../../assets/github/image8.png)
+![strona projektu](../../../assets/github/image8.png)
 
-### Flow pracy na boardzie
+#### Flow pracy na boardzie
 
 - **PM/TechLead** tworzy zadania w formie draftów lub issues ze statusem **TODO**.
 - Ktoś chętny do jego wykonania, przypisuje się do niego jako **assignee** lub robi to **lead** od razu na **weekly**.
@@ -154,20 +154,20 @@ Podstawowym typem jest jednak tablica KANBAN, gdzie można dodawać zadania w fo
 
 Jeśli potrzebujesz bardziej szczegółowej instrukcji użycia tej tablicy, napisz na ogólnych kanałach lub do zarządu. W przypadku takich próśb, rozbudujemy tą sekcje o dokładniejszy manual.
 
-# Zadania ogólno-kołowe \- projekt KN Solvro
+## Zadania ogólno-kołowe \- projekt KN Solvro
 
 Został utworzony team i projekt [KN Solvro](https://github.com/orgs/Solvro/projects/3), gdzie zarząd i wszyscy członkowie mogą dodawać taski do zrobienia, które nie są przyporządkowane do żadnego z projektów. Dotyczą one ogólnie koła np. przygotować README organizacji lub jakiegoś starego projektu. Znajdują się tam też zadania dla działu grafików.
 
-## Dostęp / Jak wejść
+### Dostęp / Jak wejść
 
 Każdy aktywny członek Solvro powinien mieć dostęp pod tym linkiem: [https://github.com/orgs/Solvro/projects/3](https://github.com/orgs/Solvro/projects/3)  
 Jeśli nie masz dostępu, napisz do zarządu\!
 
-## Przypisujmy się i róbmy\!
+### Przypisujmy się i róbmy
 
 Zachęcamy każdego członka, który ma chwilę czasu, do przypisywania się do wolnych zadań i ich realizacji, aby przyczynić się do rozwoju naszej organizacji.
 
-# Praca programistyczna w projekcie
+## Praca programistyczna w projekcie
 
 Sekcja opisująca flow pracy programisty w projekcie na naszym GitHubie.
 
@@ -177,12 +177,12 @@ Oprócz konsolowego użycia, wszystkie edytory IDE mają wbudowane też odpowied
 
 Jeśli nie rozumiesz technikaliów związanych z którymś z poniższych punktów, odezwij się, a ktoś na pewno ci pomoże\!
 
-## Zgłoszenie chęci wykonania zadania
+### Zgłoszenie chęci wykonania zadania
 
 Wchodzimy na naszą tablice zadań i przypisujemy się do zadania sygnalizując, że zgłaszamy się do jego zrobienia:  
-![](../../../assets/github/image6.png)
+![zgłaszanie się do PR](../../../assets/github/image6.png)
 
-## Rozpoczęcie pracy nad zadaniem
+### Rozpoczęcie pracy nad zadaniem
 
 1. Zmieniamy status taska na **In Progress**
 2. Tworzymy nowego **brancha** z nazwą lub opisem taska. Proponujemy dodać prefix związane z głównym typem zadania:
@@ -196,15 +196,15 @@ np. feat/ add login screen
 
 3. Pracujemy na tym branchu, jest on nasz, commitujemy i pushujemy tam nasze zmiany, kiedy uznamy to za słuszne. Nie trzeba się wstydzić pushowania niedokończonych zadań, są one na osobnym branchu i nikomu nie przeszkadzają.
 
-## Code review, finalizacja zadania i sprzątanie
+### Code review, finalizacja zadania i sprzątanie
 
 1. Gdy jesteśmy gotowi, zmieniamy status taska na **In Review** (jeśli taki status jest w projekcie).
 2. Tworzymy pull requesta z naszego brancha na branch **main** lub **dev** (jeśli aplikacja na main jest już opublikowaną wersją produkcyjną).
-   ![](../../../assets/github/image7.png)
+   ![przycisk otwórz PR](../../../assets/github/image7.png)
 
 3. Dodajemy znaczący tytuł (najlepiej powiązany z nazwą lub numerem taska/tasków) i krótko wypisujemy co zmieniliśmy lub dodaliśmy. Jeśli napotkaliśmy jakiś problem/dylemat, możemy wyjaśnić jak go rozwiązaliśmy, jakiej dokonaliśmy decyzji i dlaczego. Jeśli z jakiegoś powodu nie wykonaliśmy 100% zakresu zadania, to jest to dobre miejsce żeby o tym wspomnieć. Jeśli chcesz ładnie sformatować swój opis, obczaj [tą szybką ściągę do gh markdowna](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 4. Można oznaczyć swojego techleada jako reviewer (opcjonalne).
-5. Po prawej na dole, w sekcji _Development_ możesz przypiąć **issue** (np. swoje zadanie), który zostanie automatycznie zamknięty po zmergowaniu tego pull requesta. ![](../../../assets/github/image4.png)
+5. Po prawej na dole, w sekcji _Development_ możesz przypiąć **issue** (np. swoje zadanie), który zostanie automatycznie zamknięty po zmergowaniu tego pull requesta. ![dodawanie issues do PR](../../../assets/github/image4.png)
 6. Oczekujemy na code review od naszego techleada.
 7. Przeglądamy komentarze, wprowadzamy sugestie i dyskutujemy nad rzeczami, z którymi się nie zgadzamy. Zadajemy pytania i wprowadzamy zmiany, commitujemy i pushujemy.
 8. Pingujemy code reviewer’a po wprowadzeniu każdej fazy poprawek (chyba, że ma on ustawione wszystkie powiadomienia do projektu).
@@ -214,11 +214,11 @@ np. feat/ add login screen
 12. Zmieniamy status taska na **Done**.
 13. Onto the next adventure\!💥💥💥
 
-# Dokumentacja repozytoriów
+## Dokumentacja repozytoriów
 
 Jako Koło aktualnie dążymy do maksymalizacji liczby repozytoriów open source, aby prężnie prezentować się na GitHubie, ale każdy projekt przed publicznym wypuszczeniem musi mieć co najmniej krótkie README i LICENSE.
 
-## LICENSE
+### LICENSE
 
 Możecie wraz z zespołem projektowym wybrać dowolną licencję, lecz nasze propozycje to:
 
@@ -228,9 +228,9 @@ Możecie wraz z zespołem projektowym wybrać dowolną licencję, lecz nasze pro
 
 Oficjalna instrukcja od Githuba, jak dodać gotowy szablon wielu popularnych licencji. [https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository)
 
-## README
+### README
 
-### Początkowy must-have:
+#### Początkowy must-have
 
 Każde repozytorium przed wypuszczeniem powinno mieć README z co najmniej następującą zawartością:
 
@@ -239,7 +239,7 @@ Każde repozytorium przed wypuszczeniem powinno mieć README z co najmniej nast�
 3. Krótki opis projektu, jego pomysły/zamysły i np. parę przykładowych/flagowych featerów.
 4. Sekcja \#Development \- rozwijana na bieżąco wraz z pisanym kodem, gdzie programiści dopisują informacje techniczne np. jak odpalić projekt, zainstalować dependencies, ustawić środowisko itd. Można też podlinkować instrukcje szczegółowe do napisanych przez siebie (lub nie) modułów, których można używać pisząc kod w projekcie. Początkowo ta sekcja może być pusta lub zawierać tylko komendę odpalającą debug builda/serwer lokalny w wybranym frameworku.
 
-### Dalszy rozwój
+#### Dalszy rozwój
 
 Na tym etapie projektu, można już upublicznić repozytorium. Następnie repo można rozszerzać o wiele sekcji. Poniżej lista propozycji:
 
@@ -261,7 +261,7 @@ _LISTA OTWARTA, CZEKAM NA SUGESTIE_
 
 Uwaga: Oprócz README repozytoriów, każdy projekt (kanban board) ma też swoje README \- które przydałoby się wypełnić, ale może być takie same jak głównego repozytorium
 
-# Koniec
+## Koniec
 
 To już koniec tego handbooka. Mam nadzieję, że był przydatny i aż tak bardzo nie bolał, mimo zauważalnej liczby stron. Proszę zgłaszać swoje propozycje zmiany tego dokumentu i miłego kodowania 🙂🙃🙂
 

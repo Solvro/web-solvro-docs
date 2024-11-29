@@ -19,25 +19,25 @@ Spełniamy potrzebę dostępu do skonsolidowanych i łatwo dostępnych informacj
 
 ### Historia ToPWR
 
-**2021**
+#### 2021
 
 - Oryginalny pomysł aplikacji: Jakub Legut.
 
-**2022**
+#### 2022
 
 - Pierwotne wydanie aplikacji w wersji 0.5.1.
   - Osiągnięcie: 100-200 pobrań.
   - Poprzedni zespół rozpadł się lub zakończył studia.
   - Aplikacja wykonana w technologiach natywnych Android i iOS, oraz Strapi CMS.
 
-**2023**
+#### 2023
 
 - **Grudzień**: Reaktywacja projektu.
   - Całkowicie nowy skład zespołu.
   - Przepisanie aplikacji od nowa w technologii Flutter i Directus CMS.
   - Współpraca z Samorządem Wydziałowym i Kołami Naukowymi.
 
-**2024**
+#### 2024
 
 - **Październik**:
   - Wydanie wersji v1.0.0 na Google Play oraz App Store.

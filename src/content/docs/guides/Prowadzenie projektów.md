@@ -170,6 +170,6 @@ Przedstawione tu informacje są wskazówką do przeprowadzenia projektu w KN Sol
 
 Pamiętajmy, że nie robimy projektu tylko dla siebie, ale dla wspólnoty jaką jest Solvro i PWR. Dlatego istotne jest pozostawienie po sobie solidnej dokumentacji i przekazanie wiedzy na kolejne pokolenia.
 
-**Prezes VII Zarządu KN Solvro**
+### Prezes VII Zarządu KN Solvro
 
 Dawid Linek
