@@ -86,3 +86,57 @@ Dokumentacja Adonisa proponuje następujące wtyczki
 ### Webstorm
 
 Po zainstalowaniu Adonisa Webstorm powinien to wykryć i zaproponować nam instalację wtyczki [Adonis](https://plugins.jetbrains.com/plugin/22932-adonis).
+
+## Migracje
+
+### Ogólne
+
+Migracje służą do zmieniania struktury bazy danych. **Podczas ich pisania należy zwrócić uwagę na o żeby funcja `down()` odwracała całkowicie działanie funkcji `up()`. Niezastosowanie się do tej uwagi może nam przynieść dużo problemów przy ewentualnym niepowodzeniu migracji**
+
+### Kolejność
+
+Migracje wykonywane są w kolejności alfabetycznej (jeżeli nie zmienialiście nazw jest to kolejność tworzenia). Trzeba o tym pamiętać tworząc migracje, które są zależne od siebie. Najpierw tworzymy migrację od której będą zależeć inne, dopiero potem te zależne. W przypadku pomyłki najłatwiej zmienić nazwę.
+
+### Enumy w PostgreSQL
+
+Jeżeli korzystamy z postgresa (a tak powinno być), to deklarując enumy należy skorzystać z natywnego enuma oferowanego przez bazę danych.
+
+```jsx
+this.schema.createTable('users', (table) => {
+  table.enu('account_status', ['PENDING', 'ACTIVE', 'SUSPENDED'], {
+    useNative: true,
+    enumName: 'user_account_status',
+    existingType: false,
+  })
+})
+```
+
+W takim przypadku należy zwrócić uwagę, żeby tworzyć takiego enuma tylko w jednej migracji (inaczej dostaniemy błędem po twarzy). Należy również usunąć nowo powstały typ podczas wywołania funkcji `down()`.
+
+```jsx
+this.schema.raw('DROP TYPE IF EXISTS "user_account_status"')
+this.schema.dropTable('users')
+```
+
+Dokumentacja:
+
+https://lucid.adonisjs.com/docs/table-builder#enum--enu
+
+### Rollbacki na produkcji
+
+```
+NIE ROBIC POD ZADNYM POZOREM!!!
+(chyba ze macie pozwolenie od TL, HEAD of BACKEND i PAPIEZA)
+albo nie macie cennych danych w bazie
+```
+
+W 99% rollback kończy się utratą danych w bazie produkcyjnej. Trzeba też pamiętać, że na produkcji migracje są wywoływane tylko w przód, więc zmiana starych migracji nie wpłynie na stan bazy. Co zatem robić? Trzeba stworzyć nowy plik z migracją, w którym edytujemy dotychczasowy stan tabeli.
+
+```bash
+node ace make:migration --alter <name>
+```
+
+Dokumentacja:
+
+https://lucid.adonisjs.com/docs/table-builder#enum--enu
+
