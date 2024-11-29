@@ -8,25 +8,25 @@ sidebar:
 
 Dobrą praktyką jest umieszczanie krótkiego opisu obrazka poza samym src obrazka. Służy to czytnikom ekranów, wspiera SEO oraz jest wyświetlany w przypadku, gdy zdjęcie nie może się załadować.
 
-### Podstawowe zasady:
+### Podstawowe zasady
 
 - **Zwięzłość i celność** – Opis powinien być krótki i oddawać cel obrazu. Unikaj zbędnych szczegółów, chyba że są kluczowe do zrozumienia treści obrazu.
 - **Kontekst obrazu** – Skup się na tym, co obraz wnosi do strony. Na przykład, jeśli zdjęcie przedstawia osobę szczęśliwą, ważne może być opisanie jej emocji.
 - **Unikaj zwrotów „obrazek przedstawia”** – Czytniki ekranowe automatycznie rozpoznają obraz, więc wystarczy przejść od razu do treści opisu.
 - **Unikaj powtarzania tekstu z otoczenia obrazu** – Jeśli tekst obok obrazu już wyjaśnia jego znaczenie, opis alt może być bardziej ogólny lub pominięty.
 
-### Kiedy stosować alt-a:
+### Kiedy stosować alt-a
 
 - **Obrazy informacyjne**: Opisz, co jest kluczowe, np. „Wykres słupkowy przedstawiający roczny wzrost sprzedaży o 20%” zamiast „Wykres słupkowy”.
 - **Logo firmy**: Opis może być prosty, np. „Logo firmy Contoso”, ale jeśli logo jest linkiem, warto dodać „Logo Contoso – strona główna”.
 - **Infografiki**: Oddaj istotę przekazywanych danych, np. „Infografika prezentująca korzyści z recyklingu: zmniejszenie odpadów o 50%”.
 
-### Kiedy nie stosować:
+### Kiedy nie stosować
 
 - **Obrazy dekoracyjne**: Jeśli obraz nie wnosi żadnej wartości informacyjnej (ramki czy jakiś gwiazdki pływające po stronie), oznacz go jako dekoracyjny (np. alt="").
 - **Ikony z tekstem obok**: Jeśli ikona ma objaśniający tekst tuż obok, alt text nie jest konieczny.
 
-### Tego nie rób:
+### Tego nie rób
 
 - Nie używaj nazw plików jako alt textu.
 - Nie stosuj losowych ciągów znaków lub ogólników, takich jak „Zdjęcie” czy „xxx”.

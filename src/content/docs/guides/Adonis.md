@@ -6,13 +6,13 @@ description: Szybki start dla tych, którzy chcą poznać Adonisa i tworzyć św
 ## Przydatne linki
 
 - Dokumentacja Adonisa
-  - https://docs.adonisjs.com/guides/preface/introduction
+  - <https://docs.adonisjs.com/guides/preface/introduction>
 - Dokumentacja Lucid - ORM Adonisa (być może bardziej przydatny niż główna dokumentacja)
-  - https://lucid.adonisjs.com/docs/introduction
+  - <https://lucid.adonisjs.com/docs/introduction>
 - Krótki kurs AdonisJs6 od twórców
-  - https://adocasts.com/series/lets-learn-adonisjs-6
+  - <https://adocasts.com/series/lets-learn-adonisjs-6>
 - Kurs Solvro "Od zera do backend developera"
-  - https://github.com/Solvro/backend-course
+  - <https://github.com/Solvro/backend-course>
 
 ## Wstęp
 
@@ -120,13 +120,13 @@ this.schema.dropTable("users");
 
 Dokumentacja:
 
-https://lucid.adonisjs.com/docs/table-builder#enum--enu
+<https://lucid.adonisjs.com/docs/table-builder#enum--enu>
 
 ### Rollbacki na produkcji
 
-```
-NIE ROBIC POD ZADNYM POZOREM!!!
-(chyba ze macie pozwolenie od TL, HEAD of BACKEND i PAPIEZA)
+```text
+NIE ROBIĆ POD ŻADNYM POZOREM!!!
+(chyba że macie pozwolenie od TL, HEAD of BACKEND i PAPIEŻA)
 albo nie macie cennych danych w bazie
 ```
 
@@ -138,4 +138,4 @@ node ace make:migration --alter <name>
 
 Dokumentacja:
 
-https://lucid.adonisjs.com/docs/table-builder#enum--enu
+<https://lucid.adonisjs.com/docs/table-builder#enum--enu>
