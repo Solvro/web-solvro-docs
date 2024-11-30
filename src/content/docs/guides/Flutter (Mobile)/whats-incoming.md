@@ -2,6 +2,7 @@
 title: Co tu jeszcze będzie?
 sidebar:
   hidden: true
+description: Co jeszcze będzie w tym handbooku
 ---
 
 ## Co tu będzie?

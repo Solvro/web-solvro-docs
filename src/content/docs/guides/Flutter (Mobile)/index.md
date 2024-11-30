@@ -2,13 +2,14 @@
 title: Get started
 sidebar:
   order: 1
+description: "Wszystko co musisz wiedzieć, żeby zacząć pracę z Flutterem"
 ---
 
 Hejo żelo! Witamy w Handbooku Flutterowca od Solvro. To miejsce, gdzie staramy się zebrać wszystko i jeszcze trochę, co wiemy o programowaniu we Flutterze - z głównym naciskiem na platformy mobilne (ale nie tylko).
 
 Poradnik jest dość subiektywny - zachęcamy do dyskusji nad dowolnym rozdziałem - _issues i pr'ki są mile widziane_.
 
-https://github.com/Solvro/web-solvro-docs
+<https://github.com/Solvro/web-solvro-docs>
 
 ## Wymagania wstępne (czyli czego spodziewamy się po czytelniku)
 
@@ -43,7 +44,7 @@ Z "tańszych" OS-ów polecam bardziej Linuxa niż Windowsa, ale ostateczny wybó
 O Linuxie i WSLu możesz przeczytać więcej w napisanym przez specjalistę [Web Development Handbook](/guides/web-development#wsl). Praca na Linuxie jest zwykle wygodniejsza niż na Windowsie, ale nie jest to wymagane.
 
 :::tip[Link dla kolegi]
-Losowa instrukcja instalacji wirtualki macOS: https://antyweb.pl/wirtualny-macos-na-windows-10-dziala-imessage-icloud-i-inne
+Losowa instrukcja instalacji wirtualki macOS: <https://antyweb.pl/wirtualny-macos-na-windows-10-dziala-imessage-icloud-i-inne>
 
 **Disclaimer**: Jest to niezgodne z licencją macOS i robisz to na własną odpowiedzialność.
 :::
@@ -73,7 +74,7 @@ Wszystko jest dokładnie opisane w [oficjlanych docsach Fluttera](https://flutte
 
 Wadą pierwszej metody jest to, że Flutter jest zainstalowany globalnie i jeżeli pracujesz nad kilkoma projektami, to musisz używać jednej wersji Fluttera. FVM pozwala na zainstalowanie wielu wersji Fluttera i łatwe przełączanie między nimi.
 
-Dlatego moim zaleceniem jest zainstalowanie FVM i korzystanie z niego od samego początku: https://fvm.app/documentation/getting-started/installation.
+Dlatego moim zaleceniem jest zainstalowanie FVM i korzystanie z niego od samego początku: <https://fvm.app/documentation/getting-started/installation>.
 Jeśli zdecydujesz się na FVM, to Fluttera ani Darta nie musisz instalować globalnie, bo FVM zrobi to za Ciebie.
 Nadal jednak musisz zainstalować Android Studio i XCode, zgodnie z instrukcją z dokumentacji Fluttera.
 
@@ -92,7 +93,7 @@ fvm flutter {command}
 fvm dart {command}
 ```
 
-Można też ustawić aliasy/symlinki w terminalu, żeby nie pisać `fvm` za każdym razem. Instrukcje znajdziesz w docsach: https://fvm.app/documentation/guides/running-flutter
+Można też ustawić aliasy/symlinki w terminalu, żeby nie pisać `fvm` za każdym razem. Instrukcje znajdziesz w docsach: <https://fvm.app/documentation/guides/running-flutter>
 :::
 
 ## Jak ustawić VSCode'a do pracy z Flutterem
@@ -136,69 +137,69 @@ Ważne ustawienia, które warto dodać do `settings.json` - w kontekście Flutte
 
 1. Fix all errors on Save
 
-```json
-"[dart]": {
-        "editor.codeActionsOnSave": {
-            "source.fixAll": true
-        }
-    }
-```
+   ```json
+   "[dart]": {
+           "editor.codeActionsOnSave": {
+               "source.fixAll": true
+           }
+       }
+   ```
 
 2. Format on Save
 
-```json
-"[dart]": {
-   "editor.formatOnSave": true
-}
-```
+   ```json
+   "[dart]": {
+     "editor.formatOnSave": true
+   }
+   ```
 
 3. Bracked Pair Colorization
 
-```json
-"[dart]": {
-    "editor.bracketPairColorization.enabled": true
-}
-```
+   ```json
+   "[dart]": {
+       "editor.bracketPairColorization.enabled": true
+   }
+   ```
 
 4. Preview Flutter UI Guides
 
-```json
-"dart.previewFlutterUiGuides": true
+   ```json
+   "dart.previewFlutterUiGuides": true
 
-```
+   ```
 
 5. Enable Sticky Scroll
 
-```json
-"editor.stickyScroll.enabled": true,
-```
+   ```json
+   "editor.stickyScroll.enabled": true,
+   ```
 
 6. Enable file nesting for auto-generated Dart files
 
-```json
-"explorer.fileNesting.patterns": {
-    "*.dart": "${capture}.g.dart, ${capture}.freezed.dart, ${capture}.gr.dart, ${capture}.tailor.dart, ${capture}.gform.dart",
-    "*.graphql": "${capture}.graphql.dart"
-},
-"explorer.fileNesting.enabled": true,
-"explorer.fileNesting.expand": false,
-```
+   ```json
+   "explorer.fileNesting.patterns": {
+       "*.dart": "${capture}.g.dart, ${capture}.freezed.dart, ${capture}.gr.dart, ${capture}.tailor.dart, ${capture}.gform.dart",
+       "*.graphql": "${capture}.graphql.dart"
+   },
+   "explorer.fileNesting.enabled": true,
+   "explorer.fileNesting.expand": false,
+   ```
 
-Pokazałbym Ci moje całe ustawienia, ale jest tam za dużo śmieci. Możesz sobie zerknąć na nie tutaj: https://gist.github.com/simon-the-shark/1c99f3e6f45f9af7903bad11d4dc105a
+Pokazałbym Ci moje całe ustawienia, ale jest tam za dużo śmieci. Możesz sobie zerknąć na nie tutaj: <https://gist.github.com/simon-the-shark/1c99f3e6f45f9af7903bad11d4dc105a>
 
 :::note
-Jeśli koszystasz z FVM, to musisz jeszcze ustawić, żeby VSCode automatycznie wykrywał instancję z FVM w tym projekcie. Instukcja: https://fvm.app/documentation/guides/vscode
+Jeśli koszystasz z FVM, to musisz jeszcze ustawić, żeby VSCode automatycznie wykrywał instancję z FVM w tym projekcie. Instukcja: <https://fvm.app/documentation/guides/vscode>
 :::
 
 ## Jak ustawić Android Studio do pracy z Flutterem
 
 **_Nie planuję tego opisywać. Jak ktoś jest fanem JetBrainsów to poproście Mikołaja._**
 
-Mogę tylko podrzucić linkacza, ale nawet nie czytałem: https://codewithandrea.com/articles/intellij-keyboard-shortcuts-flutter-development/
+Mogę tylko podrzucić linkacza, ale nawet nie czytałem: <https://codewithandrea.com/articles/intellij-keyboard-shortcuts-flutter-development/>
 
 ## Flutter Aliasy
 
-Nie ma jednych powszechnie przyjętych jak np. do [Gita](https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index), ale Andrea proponuje kilka podstawowych: https://codewithandrea.com/tips/useful-aliases-flutter-dev/
+Nie ma jednych powszechnie przyjętych jak np. do [Gita](https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index), ale Andrea proponuje kilka podstawowych: <https://codewithandrea.com/tips/useful-aliases-flutter-dev/>
 
 ```shell
 alias fclean="flutter clean"
