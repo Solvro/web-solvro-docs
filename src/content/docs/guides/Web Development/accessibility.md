@@ -50,7 +50,7 @@ export function MyComponent() {
 
 ## Przyciski jako linki
 
-Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
+Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się zepsują jak spróbują to przeczytać
 
 Jak zrobić Link, który wygląda jak przycisk:
 

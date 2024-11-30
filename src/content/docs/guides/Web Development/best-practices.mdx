@@ -6,19 +6,19 @@ sidebar:
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 
-## Jak zrobić ładne UI?
+## Jak zrobić ładne UI?
 
 Wbrew przekonaniom, sprawa jest prosta:
 
-1. Znajdź stronę, której design Ci się podoba i pasuje do Twojego projektu, np. robisz apke z mapą? google maps
+1. Znajdź stronę, której design Ci się podoba i pasuje do Twojego projektu, np. robisz apke z mapą? google maps
 2. Skopiuj design 1:1, uprość i przerób go na komponenty shadcn
-3. Gotowe, ciesz się ładnym designem
+3. Gotowe, ciesz się ładnym designem
 
-W UI/UX nie ma miejsca na kreatywność i jeśli sami spróbujecie stworzyć własny design na 99% skończycie z czymś dziwnym czego użytkownicy nie chcą używać. Jak tylko możecie kradnijcie designy i dostosowujcie do swoich potrzeb, użytkownicy chcą używać stron, które już znają i nie da sie sprawić by nie znali waszej stronę jeśli wygląda tak samo jak instagram 😭
+W UI/UX nie ma miejsca na kreatywność i jeśli sami spróbujecie stworzyć własny design na 99% skończycie z czymś dziwnym czego użytkownicy nie chcą używać. Jak tylko możecie kradnijcie designy i dostosowujcie do swoich potrzeb, użytkownicy chcą używać stron, które już znają i nie da sie sprawić by nie znali waszej stronę jeśli wygląda tak samo jak instagram 😭
 
-Poza tym, nie pisz własnych komponentów jeśli nie masz BARDZO dobrego powodu, te z shadcn’a są bardzo ładne i jak tylko możesz używaj ich 1:1, wtedy na pewno nie zbłądzisz.
+Poza tym, nie pisz własnych komponentów jeśli nie masz BARDZO dobrego powodu, te z shadcn’a są bardzo ładne i jak tylko możesz używaj ich 1:1, wtedy na pewno nie zbłądzisz.
 
-- Jak chcesz wiedzieć więcej na ten temat zapraszam do poczytania Refactoring UI, książka twórców tailwinda, poradnik o designie dla programistów (wymagany dostęp do dysku)
+- Jak chcesz wiedzieć więcej na ten temat zapraszam do poczytania Refactoring UI, książka twórców tailwinda, poradnik o designie dla programistów (wymagany dostęp do dysku)
   [https://drive.google.com/file/d/1zbsgxcK-xREkmFV7D6Z1lHZwOn4k04w-/view?usp=drive_link](https://drive.google.com/file/d/1zbsgxcK-xREkmFV7D6Z1lHZwOn4k04w-/view?usp=drive_link)
 
 ## Pobieranie danych z API
@@ -54,7 +54,7 @@ Tutaj mamy dwie ścieżki:
 
 2.  Tanstack Query
 
-        Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
+        Tego używamy gdy chcemy mieć większą kontrolę nad tym co się dzieje w naszej aplikacji, potrzebujemy odświeżać często dane albo na przykład mamy jakąś skomplikowaną logikę po stronie klienta (typu użytkownik najpierw wybiera jakąś zakładkę i dopiero wtedy pobieramy coś z api albo jakikolwiek case z bardziej zaawansowanym filtrowaniem)
 
         <Tabs>
           <TabItem label="Zewnętrzne API">
@@ -150,11 +150,11 @@ Do pobierania danych też potrzeba klienta API i tutaj mam zachęcam do korzysta
 
 ## Wysyłanie danych do API
 
-Tutaj jestem opinionated i według mnie jedynym słusznym wyborem jest Tanstack Query i jego mutacje, nie próbujcie tego robić inaczej, bo będziecie sobie pluć w brodę (albo ja wam)
+Tutaj jestem opinionated i według mnie jedynym słusznym wyborem jest Tanstack Query i jego mutacje, nie próbujcie tego robić inaczej, bo będziecie sobie pluć w brodę
 
 ## Zarządzanie stanem
 
-Do globalnego stanu używamy [Jotai](https://jotai.org/), a do lokalnego useState/useReducer jak serio to jest coś skomplikowanego
+Do globalnego stanu używamy [Jotai](https://jotai.org/), a do lokalnego useState/useReducer jak serio to jest coś skomplikowanego
 
 Nigdy Context API, chyba, że macie BARDZO dobry powód
 
@@ -214,7 +214,7 @@ Na potrzeby Solvro cokolwiek wybierzecie będzie dobrze, a jeśli kogoś temat b
 
 ## Landing page
 
-Jeśli jeszcze raz ktoś zmarnuje czas na robienie własnego landing page’a to go uduszę, tutaj macie dwie templatki i proszę z nich zrzynać:
+Jeśli jeszcze raz ktoś zmarnuje czas na robienie własnego landing page’a to go uduszę, tutaj macie dwie templatki i proszę z nich zrzynać:
 
 - [https://shadcn-landing-page.vercel.app](https://shadcn-landing-page.vercel.app/)
 - [https://shadcn-landing-page-livid.vercel.app](https://shadcn-landing-page-livid.vercel.app/)
@@ -225,7 +225,7 @@ Do analityki mamy postawione [Umami](https://umami.is/) na [https://analytics.so
 
 ## WYSIWYG
 
-Strasznie nie lubię tego tematu, bo tu jest milion wyborów i milion + 1 złych, obecnie rekomenduje:
+Strasznie nie lubię tego tematu, bo tu jest milion wyborów i milion + 1 złych, obecnie rekomenduje:
 
 [https://shadcn-minimal-tiptap.vercel.app/](https://shadcn-minimal-tiptap.vercel.app/)
 
@@ -236,7 +236,7 @@ Do tworzenia bardziej zaawansowanych tabelek polecam [https://tanstack.com/table
 Jako przykład polecam DataTable z shadcn'a:
 [https://ui.shadcn.com/docs/components/data-table](https://ui.shadcn.com/docs/components/data-table)
 
-Jeśli tabelka ma więcej niż 1000 wierszy to jest moment, żeby przenieść logikę filtrowania, paginacji i sortowania na backend, frontend przy takich ilościach powoli może zacząć zamulać. Przy 10k+ ilości wierszy to jest must-have.
+Jeśli tabelka ma więcej niż 1000 wierszy to jest moment, żeby przenieść logikę filtrowania, paginacji i sortowania na backend, frontend przy takich ilościach powoli może zacząć zamulać. Przy 10k+ ilości wierszy to jest must-have.
 
 ## Deployment
 
@@ -244,6 +244,6 @@ Tutaj zapraszam do korzystania z naszego coolify’a pod adresem [https://devops
 
 ## a11y
 
-Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się popierdolą jak spróbują to przeczytać
+Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się zepsują jak spróbują to przeczytać
 
 Więcej na ten temat znajdziesz [tutaj](/guides/web-development/accessibility/#przyciski-jako-linki)
