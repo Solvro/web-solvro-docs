@@ -53,6 +53,7 @@ export default defineConfig({
             src: "https://analytics.solvro.pl/script.js",
             "data-website-id": "8d083e9b-5ad6-4abb-b9b2-4c855adb18b0",
             defer: true,
+            "data-domains": "docs.solvro.pl",
           },
         },
       ],
