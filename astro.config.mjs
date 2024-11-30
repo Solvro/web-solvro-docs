@@ -57,6 +57,9 @@ export default defineConfig({
           },
         },
       ],
+      components: {
+        Head: "./src/overrides/Head.astro",
+      },
       social: {
         facebook: "https://www.facebook.com/knsolvro",
         github: "https://github.com/solvro/web-solvro-docs",

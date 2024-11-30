@@ -2,6 +2,7 @@
 title: Częste błędy & FAQ
 sidebar:
   order: 6
+description: Powinieneś unikać tych błędów w swoim kodzie.
 ---
 
 W tej sekcji znajdziesz najpopularniejsze błędy i sekcję FAQ.

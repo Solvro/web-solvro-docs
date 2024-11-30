@@ -2,6 +2,7 @@
 title: Accessibility
 sidebar:
   order: 3
+description: Czyli jak zrobić, żeby Twoja aplikacja była dostępna dla wszystkich.
 ---
 
 ## Opisy obrazków
