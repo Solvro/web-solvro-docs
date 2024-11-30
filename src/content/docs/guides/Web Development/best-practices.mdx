@@ -158,23 +158,43 @@ Do globalnego stanu używamy [Jotai](https://jotai.org/), a do lokalnego useStat
 
 Nigdy Context API, chyba, że macie BARDZO dobry powód
 
-## Default i niedefault exporty
+## Nazwane i domyślne exporty
 
-W naszej zacnej organizacji aka kole naukowym _umówiliśmy_ się co do jednej **konwencji pisania stron i komponentów**. Default eksporty używamy tylko na stronach typu `page.tsx`:
-
-```jsx
-// app/products/page.tsx
-export default function ProductsPage() {
-  return <div>Produkty</div>;
-}
-```
-
-ale jeśli robimy komponenty to zawsze eksportujemy je jako niedefaultowe:
+Umówiliśmy się co do jednej konwencji pisania stron i komponentów. Zawsze używamy nazwanych eksportów.
 
 ```jsx
 // app/products/components/ProductList.tsx
+
+// ✅
 export function ProductList() {
   return <div>Lista produktów</div>;
+}
+
+// ✅
+export const formatDate = (date: Date) => {
+  return date.toLocaleDateString();
+};
+
+// ❌
+export default function ProductList() {
+  return <div>Lista produktów</div>;
+}
+
+// ❌
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString();
+};
+export default formatDate;
+```
+
+Default eksportów używamy tylko na stronach typu `page.tsx`, bo NextJS tego wymaga:
+
+```jsx
+// app/products/page.tsx
+
+// ✅
+export default function ProductsPage() {
+  return <div>Produkty</div>;
 }
 ```
 
