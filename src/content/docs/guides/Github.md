@@ -15,36 +15,43 @@ Mamy utworzoną organizację, do której powinni należeć wszyscy członkowie i
 
 ### Jak dołączyć
 
-Aby dołączyć do organizacji, należy wysłać swój nick lub link konta na GitHubie do wybranego członka zarządu. Jeśli nie posiadasz konta: [załóż je](https://github.com/signup) czym prędzej\!
+Aby dołączyć do organizacji, należy wysłać swój nick lub link konta na GitHubie do wybranego członka zarządu. Jeśli nie posiadasz konta: [załóż je](https://github.com/signup) czym prędzej!
 
 ## Pierwsze kroki
 
-Jeśli już jesteś członkiem naszej organizacji, oto lista rzeczy, od których powinieneś zacząć\!
+Jeśli już jesteś członkiem naszej organizacji, oto lista rzeczy, od których powinieneś zacząć!
 
 ### Publiczne członkostwo
 
-Domyślnie po dołączeniu do organizacji, jesteś członkiem prywatnym, a świat zewnętrzny nie wie, że jesteś członkiem naszego koła. Jest to niedopuszczalne\! Prawda?
+Domyślnie po dołączeniu do organizacji, jesteś członkiem prywatnym, a świat zewnętrzny nie wie, że jesteś członkiem naszego koła. Jest to niedopuszczalne! Prawda?
 
-Jeśli się nas wstydzisz i nie chcesz chwalić się członkostwem \- twoja sprawa, ale serdecznie zachęcamy wszystkich członków do ustawiania publicznego członkostwa\! Pokażmy, że jest nas dużo\!
+Jeśli się nas wstydzisz i nie chcesz chwalić się członkostwem - twoja sprawa, ale serdecznie zachęcamy wszystkich członków do ustawiania publicznego członkostwa! Pokażmy, że jest nas dużo!
 
 Dzięki publicznemu członkostwu widać Solvro na twoim profilu, a przede wszystkim, nasza organizacja prezentuje się prężnie i licznie dla wszystkich przeglądających.
 
-### Jak ustawić publiczne członkostwo \- szybki poradnik
+### Jak ustawić publiczne członkostwo - szybki poradnik
 
 1. Wejdź na [https://github.com/orgs/Solvro/people](https://github.com/orgs/Solvro/people)
-2. Namierz siebie na liście członków i kliknij na swoją aktualną widoczność ![informacja o prywatności członkostwa](../../../assets/github/image2.png)
+2. Namierz siebie na liście członków i kliknij na swoją aktualną widoczność
 
-3. Wybierz członkostwo publiczne, i tada\! Jesteś już pełnoprawnym członkiem naszego koła.
+   ![informacja o prywatności członkostwa](../../../assets/github/image2.png)
 
-![opcja ustawienia publicznego członkostwa](../../../assets/github/image3.png)
+3. Wybierz członkostwo publiczne, i tada! Jesteś już pełnoprawnym członkiem naszego koła.
+
+   ![opcja ustawienia publicznego członkostwa](../../../assets/github/image3.png)
 
 ### Podaruj nam gwiazdki ⭐⭐⭐
 
 Zachęcamy do gwiazdkowania naszych publicznych repozytoriów Pokażmy innym, że mamy fajne projekty.
 
 1. Wchodzimy na listę repozytoriów. Ich publiczna liczba będzie tylko rosła (miejmy nadzieję).
-2. Wchodzimy po kolei w co fajniejsze projekty. ![losowo wybrany projekt Solvro](../../../assets/github/image9.png)
-3. Zostawiamy gwiazdkacza ⭐\! ![opcja gwiazdkowania repozytorium](../../../assets/github/image5.png)
+2. Wchodzimy po kolei w co fajniejsze projekty.
+
+   ![losowo wybrany projekt Solvro](../../../assets/github/image9.png)
+
+3. Zostawiamy gwiazdkacza ⭐\!
+
+   ![opcja gwiazdkowania repozytorium](../../../assets/github/image5.png)
 
 ## Nazewnictwo repozytoriów
 
@@ -86,11 +93,11 @@ Po nazwie projektu można dodawać **wiele dowolnych własnych** przyrostków we
 
 #### Lista przyrostków funkcjonalnych
 
-| \-legacy                                                            | Projekty zastąpione nowszymi wersjami. NIE dotyczy wszystkich projektów ukończonych, TYLKO TYCH NIEAKTUALNYCH np. z racji powstania całkowicie nowej wersji w innej technologii                |
-| :------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \-legacy-legacy                                                     | Projekty dwukrotnie zastąpione (tak, mamy takie)                                                                                                                                               |
-| \-android, \-ios, \-react,-flutter, \-angular, \-vue, \-svelte, itd | Opcjonalny suffix technologiczny; Szczególnie przydatne jak mamy ten sam projekt o tym samym typie w dwóch różnych technologiach np. _mobile-topwr-ios-legacy_ i _mobile-topwr-android-legacy_ |
-| \-team1, \-team2                                                    | Opcjonalny suffix zespołu; Przydatne jeśli dwa zespoły robią podobny projekt np. jakieś zadanie z ML-a.                                                                                        |
+| -legacy                                                       | Projekty zastąpione nowszymi wersjami. NIE dotyczy wszystkich projektów ukończonych, TYLKO TYCH NIEAKTUALNYCH np. z racji powstania całkowicie nowej wersji w innej technologii                |
+| :------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -legacy-legacy                                                | Projekty dwukrotnie zastąpione (tak, mamy takie)                                                                                                                                               |
+| -android, -ios, -react,-flutter, -angular, -vue, -svelte, itd | Opcjonalny suffix technologiczny; Szczególnie przydatne jak mamy ten sam projekt o tym samym typie w dwóch różnych technologiach np. _mobile-topwr-ios-legacy_ i _mobile-topwr-android-legacy_ |
+| -team1, -team2                                                | Opcjonalny suffix zespołu; Przydatne jeśli dwa zespoły robią podobny projekt np. jakieś zadanie z ML-a.                                                                                        |
 
 _Brak innych pomysłów na ten moment, można zgłaszać propozycje._
 
@@ -134,13 +141,14 @@ Każdy zespół projektowy powinien mieć utworzony team na Githubie. Każdy tea
 
 Do teamu powinny być przyporządkowane repozytoria w potrzebnej liczbie i typie (z permisjami WRITE) oraz projekt (z permisjami WRITE).
 
-Jeśli kierujesz nowym projektem i nie masz jeszcze wszystkiego z listy \- napisz do kogoś z zarządu\!
+Jeśli kierujesz nowym projektem i nie masz jeszcze wszystkiego z listy - napisz do kogoś z zarządu!
 
 ### Projekt / KANBAN board
 
 Projekty mają wiele zaawansowanych diagramów, z których możecie korzystać w projekcie, jeśli umiecie i wiecie czemu służą 😛
 
-Podstawowym typem jest jednak tablica KANBAN, gdzie można dodawać zadania w formie draft, lub przypinać issues lub pull-requesty.  
+Podstawowym typem jest jednak tablica KANBAN, gdzie można dodawać zadania w formie draft, lub przypinać issues lub pull-requesty.
+
 ![strona projektu](../../../assets/github/image8.png)
 
 #### Flow pracy na boardzie
@@ -154,14 +162,14 @@ Podstawowym typem jest jednak tablica KANBAN, gdzie można dodawać zadania w fo
 
 Jeśli potrzebujesz bardziej szczegółowej instrukcji użycia tej tablicy, napisz na ogólnych kanałach lub do zarządu. W przypadku takich próśb, rozbudujemy tą sekcje o dokładniejszy manual.
 
-## Zadania ogólno-kołowe \- projekt KN Solvro
+## Zadania ogólno-kołowe - projekt KN Solvro
 
 Został utworzony team i projekt [KN Solvro](https://github.com/orgs/Solvro/projects/3), gdzie zarząd i wszyscy członkowie mogą dodawać taski do zrobienia, które nie są przyporządkowane do żadnego z projektów. Dotyczą one ogólnie koła np. przygotować README organizacji lub jakiegoś starego projektu. Znajdują się tam też zadania dla działu grafików.
 
 ### Dostęp / Jak wejść
 
 Każdy aktywny członek Solvro powinien mieć dostęp pod tym linkiem: [https://github.com/orgs/Solvro/projects/3](https://github.com/orgs/Solvro/projects/3)  
-Jeśli nie masz dostępu, napisz do zarządu\!
+Jeśli nie masz dostępu, napisz do zarządu!
 
 ### Przypisujmy się i róbmy
 
@@ -175,11 +183,12 @@ Zakładamy, że znasz podstawowe komendy git. Jeśli jednak nie jesteś pewien, 
 
 Oprócz konsolowego użycia, wszystkie edytory IDE mają wbudowane też odpowiednie integracje do gita.
 
-Jeśli nie rozumiesz technikaliów związanych z którymś z poniższych punktów, odezwij się, a ktoś na pewno ci pomoże\!
+Jeśli nie rozumiesz technikaliów związanych z którymś z poniższych punktów, odezwij się, a ktoś na pewno ci pomoże!
 
 ### Zgłoszenie chęci wykonania zadania
 
-Wchodzimy na naszą tablice zadań i przypisujemy się do zadania sygnalizując, że zgłaszamy się do jego zrobienia:  
+Wchodzimy na naszą tablice zadań i przypisujemy się do zadania sygnalizując, że zgłaszamy się do jego zrobienia:
+
 ![zgłaszanie się do PR](../../../assets/github/image6.png)
 
 ### Rozpoczęcie pracy nad zadaniem
@@ -187,12 +196,12 @@ Wchodzimy na naszą tablice zadań i przypisujemy się do zadania sygnalizując
 1. Zmieniamy status taska na **In Progress**
 2. Tworzymy nowego **brancha** z nazwą lub opisem taska. Proponujemy dodać prefix związane z głównym typem zadania:
 
-| feat/     | zadanie, którego głównym celem jest dodanie jakieś funkcjonalności  |
-| :-------- | :------------------------------------------------------------------ |
-| fix/      | zadanie, którego głównym celem jest naprawienie jakiegoś błędu      |
-| refactor/ | zadanie, które nie zmienia funkcjonalności, tylko jakiś refactoring |
+   | feat/     | zadanie, którego głównym celem jest dodanie jakieś funkcjonalności  |
+   | :-------- | :------------------------------------------------------------------ |
+   | fix/      | zadanie, którego głównym celem jest naprawienie jakiegoś błędu      |
+   | refactor/ | zadanie, które nie zmienia funkcjonalności, tylko jakiś refactoring |
 
-np. feat/ add login screen
+   np. feat/ add login screen
 
 3. Pracujemy na tym branchu, jest on nasz, commitujemy i pushujemy tam nasze zmiany, kiedy uznamy to za słuszne. Nie trzeba się wstydzić pushowania niedokończonych zadań, są one na osobnym branchu i nikomu nie przeszkadzają.
 
@@ -200,11 +209,15 @@ np. feat/ add login screen
 
 1. Gdy jesteśmy gotowi, zmieniamy status taska na **In Review** (jeśli taki status jest w projekcie).
 2. Tworzymy pull requesta z naszego brancha na branch **main** lub **dev** (jeśli aplikacja na main jest już opublikowaną wersją produkcyjną).
+
    ![przycisk otwórz PR](../../../assets/github/image7.png)
 
 3. Dodajemy znaczący tytuł (najlepiej powiązany z nazwą lub numerem taska/tasków) i krótko wypisujemy co zmieniliśmy lub dodaliśmy. Jeśli napotkaliśmy jakiś problem/dylemat, możemy wyjaśnić jak go rozwiązaliśmy, jakiej dokonaliśmy decyzji i dlaczego. Jeśli z jakiegoś powodu nie wykonaliśmy 100% zakresu zadania, to jest to dobre miejsce żeby o tym wspomnieć. Jeśli chcesz ładnie sformatować swój opis, obczaj [tą szybką ściągę do gh markdowna](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 4. Można oznaczyć swojego techleada jako reviewer (opcjonalne).
-5. Po prawej na dole, w sekcji _Development_ możesz przypiąć **issue** (np. swoje zadanie), który zostanie automatycznie zamknięty po zmergowaniu tego pull requesta. ![dodawanie issues do PR](../../../assets/github/image4.png)
+5. Po prawej na dole, w sekcji _Development_ możesz przypiąć **issue** (np. swoje zadanie), który zostanie automatycznie zamknięty po zmergowaniu tego pull requesta.
+
+   ![dodawanie issues do PR](../../../assets/github/image4.png)
+
 6. Oczekujemy na code review od naszego techleada.
 7. Przeglądamy komentarze, wprowadzamy sugestie i dyskutujemy nad rzeczami, z którymi się nie zgadzamy. Zadajemy pytania i wprowadzamy zmiany, commitujemy i pushujemy.
 8. Pingujemy code reviewer’a po wprowadzeniu każdej fazy poprawek (chyba, że ma on ustawione wszystkie powiadomienia do projektu).
@@ -212,7 +225,7 @@ np. feat/ add login screen
 10. Rozwiązujemy potencjalne merge konflikty.
 11. Jeśli chcesz, to możesz też usunąć tego brancha lokalnie (`git branch -d my_branch`) i wyczyścić cache zdalnych branchy (`git fetch -–prune`).
 12. Zmieniamy status taska na **Done**.
-13. Onto the next adventure\!💥💥💥
+13. Onto the next adventure!💥💥💥
 
 ## Dokumentacja repozytoriów
 
@@ -235,35 +248,35 @@ Oficjalna instrukcja od Githuba, jak dodać gotowy szablon wielu popularnych lic
 Każde repozytorium przed wypuszczeniem powinno mieć README z co najmniej następującą zawartością:
 
 1. Tytuł/nazwa projektu.
-2. Banner (zdjęcie) \- customowy projektu, lub w przypadku braku takiego, domyślny banner KN Solvro.
+2. Banner (zdjęcie) - customowy projektu, lub w przypadku braku takiego, domyślny banner KN Solvro.
 3. Krótki opis projektu, jego pomysły/zamysły i np. parę przykładowych/flagowych featerów.
-4. Sekcja \#Development \- rozwijana na bieżąco wraz z pisanym kodem, gdzie programiści dopisują informacje techniczne np. jak odpalić projekt, zainstalować dependencies, ustawić środowisko itd. Można też podlinkować instrukcje szczegółowe do napisanych przez siebie (lub nie) modułów, których można używać pisząc kod w projekcie. Początkowo ta sekcja może być pusta lub zawierać tylko komendę odpalającą debug builda/serwer lokalny w wybranym frameworku.
+4. Sekcja #Development - rozwijana na bieżąco wraz z pisanym kodem, gdzie programiści dopisują informacje techniczne np. jak odpalić projekt, zainstalować dependencies, ustawić środowisko itd. Można też podlinkować instrukcje szczegółowe do napisanych przez siebie (lub nie) modułów, których można używać pisząc kod w projekcie. Początkowo ta sekcja może być pusta lub zawierać tylko komendę odpalającą debug builda/serwer lokalny w wybranym frameworku.
+
+[Przykładowe README](https://github.com/Solvro/mobile-topwr/blob/main/README.md)
 
 #### Dalszy rozwój
 
 Na tym etapie projektu, można już upublicznić repozytorium. Następnie repo można rozszerzać o wiele sekcji. Poniżej lista propozycji:
 
-5. Lista użytych technologii.
-6. Krótka historia projektu.
-7. Dlaczego powstał ten projekt.
-8. Pomysłodawcy projektu.
-9. Lista członków zespołu i ich role/zakres obowiązków.
-10. Prosty Changelog z najważniejszymi/przełomowymi zmianami.
-11. W przypadku paczek/pluginów, sekcja Breaking Changes \- zawierająca ostrzeżenia o zmianach powodujących niezgodność starego kodu z nową wersją.
-12. W przypadku paczek/pluginów, bardziej rozbudowana dokumentacja, lub link do niej.
-13. Contribution guidelines \- instrukcje dla kontrybutorów zewnętrznych, którzy chcieliby się zaangażować w nasz projekt open-source.
-14. Przykładowe screeny z aplikacji.
-15. Linki do innych repozytoriów z projektu.
-16. Star history: [https://star-history.com/](https://star-history.com/)
-17. Repobeats: [https://repobeats.axiom.co/](https://repobeats.axiom.co/)
+1. Lista użytych technologii.
+2. Krótka historia projektu.
+3. Dlaczego powstał ten projekt.
+4. Pomysłodawcy projektu.
+5. Lista członków zespołu i ich role/zakres obowiązków.
+6. Prosty Changelog z najważniejszymi/przełomowymi zmianami.
+7. W przypadku paczek/pluginów, sekcja Breaking Changes - zawierająca ostrzeżenia o zmianach powodujących niezgodność starego kodu z nową wersją.
+8. W przypadku paczek/pluginów, bardziej rozbudowana dokumentacja, lub link do niej.
+9. Contribution guidelines - instrukcje dla kontrybutorów zewnętrznych, którzy chcieliby się zaangażować w nasz projekt open-source.
+10. Przykładowe screeny z aplikacji.
+11. Linki do innych repozytoriów z projektu.
+12. Star history: [https://star-history.com/](https://star-history.com/)
+13. Repobeats: [https://repobeats.axiom.co/](https://repobeats.axiom.co/)
 
 _LISTA OTWARTA, CZEKAM NA SUGESTIE_
 
 Uwaga: Oprócz README repozytoriów, każdy projekt (kanban board) ma też swoje README \- które przydałoby się wypełnić, ale może być takie same jak głównego repozytorium
 
-## Koniec
-
 To już koniec tego handbooka. Mam nadzieję, że był przydatny i aż tak bardzo nie bolał, mimo zauważalnej liczby stron. Proszę zgłaszać swoje propozycje zmiany tego dokumentu i miłego kodowania 🙂🙃🙂
 
-![](../../../assets/github/image10.png)
+![Podpis Szymona Kowalińskiego](../../../assets/github/image10.png)
 **Wiceprezes VII Zarządu KN Solvro**
