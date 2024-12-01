@@ -29,11 +29,13 @@ Link do dockerfile’a z adonisowej dokumentacji, który możecie dostosować do
 
 Crème de la crème, dostępny pod adresem https://devops.solvro.pl - o dostępy do zarządu
 
+_Widok projektów - wszystkie projekty postawione na Coolify_
 ![](../../../assets/deployment/image8.png)
 
+_Każdy projekt ma swoje zasoby (Resources), które składają się na cały system projektu_
 ![](../../../assets/deployment/image11.png)
 
-### Baza danych
+## Baza danych
 
 W naszym przypadku używamy Postgresql, tu nie ma większej filozofii, wystarczy się przeklikać i Coolify wszystko za nas ogarnie.
 
@@ -63,72 +65,116 @@ Ważne dane, które będą potrzebne do envów na backendzie:
 - Username
 - Password
 - PostgresSQL URL (internal)
+  - **postgres://\{username\}:\{password\}@\{host\}:\{port\}/\{database\}**
 
-### Aplikacja
+## Aplikacja
 
-![](../../../assets/deployment/image4.png)
+### Tworzenie resource'a
 
-Jeśli nie chcecie bawić się potem z autodeployem to wybierzcie Private Repository (with GitHub App) (nie sugerujcie się nazwą, z public repo będzie działać xd)
+<Steps>
 
-![](../../../assets/deployment/image12.png)
+1. Klikamy `New` i tworzymy nowy resource
 
-Wybieracie localhosta
+2. Wybieramy Private Repository (with GitHub App) - nie sugerujcie się nazwą, z publicznym repo będzie działać
 
-![](../../../assets/deployment/image18.png)
+3. Wybieramy serwer
 
-Nie ma zbyt dużego wyboru xd Wybieracie solvro-coolify
+   - localhost - typowo produkcyjny serwer, dostępny pod adresami `*.solvro.pl`
+   - Seohost - ma więcej ramu i wrzucamy tam mniej ważne projekty albo projekty członków, dostępny pod adresami `*.s.solvro.pl`
 
-![](../../../assets/deployment/image7.png)
+4. Wybieramy Github App
 
-Wybieracie swoje repo
+5. Wybieramy repozytorium
 
-![](../../../assets/deployment/image13.png)
+6. Wybieramy brancha, którego Coolify ma deployować  
+    Wybieramy jak Coolify ma tworzyć obraz kontenera (zawsze **Dockerfile** przy Adonisie)
+   ![](../../../assets/deployment/image13.png)
+7. Czas na konfigurację 🚀
 
-W tym widoku domyślnie jest wybrany Nixpacks, jeśli wam to odpowiada, to zostawcie, a jak nie to wybierzcie Dockerfile (zawsze przy adonisie).
+</Steps>
 
-![](../../../assets/deployment/image2.png)
+### General
 
-Uważka: po zmianach w zakładce zapisujcie zmiany, żeby potem nie wychodziły jakieś kwiatki.
+Po udanym procesie tworzenia resource’a powinniście ujrzeć następujący widok
 
 ![](../../../assets/deployment/image17.png)
+:::tip
+Po zmianach w zakładce zapisujcie zmiany, żeby potem nie wychodziły jakieś kwiatki.
 
-Widok po udanym utworzeniu resourca.  
+![](../../../assets/deployment/image2.png)
+:::
+
 Na początku warto zmienić nazwę na bardziej czytelną, zmienić domenę \{poddomena\}.solvro.pl, ewentualnie dodać opis.  
-Jeśli macie monorepo to warto też zmienić Base Directory, jeśli macie np. w jednym repo frontend i backend.  
 Przykład:
-
 ![](../../../assets/deployment/image3.png)
+
+Jeśli macie monorepo to warto też zmienić Base Directory, jeśli macie np. w jednym repo frontend i backend.  
+Przykład z [Planera](https://github.com/Solvro/web-planer) 🔥:
+![](../../../assets/deployment/image21.png)
+
+#### Network
+
+Ports Exposes jest istotny, domyślnie Adonis słucha na porcie 3333 - jeśli ustawiliście inny w env-ach to zmieńcie na ten z env-ów.  
+Porst mappings - jeśli nie macie konkretnych powodów, to nie zmieniajcie mapowania portów do hosta.
 ![](../../../assets/deployment/image5.png)
 
-Dalej w zakładce General, Ports Exposes jest istotny, domyślnie Adonis słucha na porcie 3333. Zakładka Pre/Post Deployment Commands jest użyteczna, jeśli chcecie, żeby po każdym deployu jakaś akcja się wykonała - w naszym przypadku wykonujemy migracje:
+Zakładka Pre/Post Deployment Commands jest użyteczna, jeśli chcecie, żeby po każdym deployu jakaś akcja się wykonała - w naszym przypadku wykonujemy migracje:
 
 ```sh
 node ace migration:run --force
 ```
 
-![](../../../assets/deployment/image20.png)
+### Advanced
 
 W advance’ach warto zaznaczyć Preview Deployments co pozwoli na sprawdzenie działania aplikacji po otworzeniu pull requestu na repo.
+Ostatnio (11.2024) Bartosz pisał, że automatyczne preview deployments są wyłączone i jeśli chcemy zrobić preview deployment, to musimy sobie wyklikać.
 
-![](../../../assets/deployment/image9.png)
+![](../../../assets/deployment/image20.png)
+
+### Preview deployments
+
+![](../../../assets/deployment/image22.png)
+
+### Zmienne środowiskowe
+
+Kolejna ważna zakładka, Enviroment Variables - tu ustawiacie niezbędne zmienne środowiskowe.
+
 ![](../../../assets/deployment/image19.png)
 
-Kolejna ważna zakładka, Enviroment Variables - tu ustawiacie niezbędne zmienne środowiskowe. Polecam wejść w widok developerski, przekleić envy z folderu projektu adonisa i poustawiać odpowiednie wartości:
+Polecam wejść w widok developerski, przekleić envy z folderu projektu adonisa i poustawiać odpowiednie wartości:
 
 ![](../../../assets/deployment/image16.png)
 
 Dane do zmiennych zaczynających się od DB\_\{zmienna\} wyciągacie z bazy którą uprzednio utworzyliście, wszystkie dane możecie wyciągnąć z URL’a bazy:
 
 ![](../../../assets/deployment/image15.png)
+_**postgres://\{username\}:\{password\}@\{host\}:\{port\}/\{database\}**_
 
-np. wklejając do Gepetto albo Kloda
+Jeśli nie chcecie ręcznie przeklejać danych z url'a możecie poprosić Gepetto albo Kloda (jest to względnie bezpieczne)
 
-![](../../../assets/deployment/image6.png)
+### Source
 
 W Sourcie mozecie wybrać brancha, którego chcecie deployować.
 
+![](../../../assets/deployment/image6.png)
+
+### Health checks
+
+Jeśli nie chcecie mieć irytującego warningu koło statusu resource’a to możecie ustawić healthchecki [https://coolify.io/docs/knowledge-base/health-checks/](https://coolify.io/docs/knowledge-base/health-checks/)
+
 ![](../../../assets/deployment/image10.png)
 
-Jeśli nie chcecie mieć irytującego warningu koło statusu resource’a to możecie ustawić healthchecki ([https://coolify.io/docs/knowledge-base/health-checks/](https://coolify.io/docs/knowledge-base/health-checks/))
+### Deployments
+
+Zdarzyć się może, że w trakcie deploy-u co się wykrzaczy - na ratunek przychodzi zakładka _Deployments_, w której możecie sprawdzić logi wszystkich deploy-ów i naprawić usterkę.
+
+![](../../../assets/deployment/image23.png)
+
+### Terminal
+
+Jeśli macie uprawnienia admina to, macie możliwość połączenia się do kontenera przez terminal. Można to zrobić na 2 sposoby:
+
+1. Będąc w resourcie przejść do zakładki _Terminal_ - jeśli mamy więcej niż 1 deploy, to trzeba wybrać, do którego kontenera chcemy się połączyć.
+2. Kliknąć na sidebarze w _Terminal_, a następnie wybrać kontener (z wszystkich dostępnych na serwerze), do którego chcemy się połączyć.
 
 Po więcej szczegółów: [https://coolify.io/docs/](https://coolify.io/docs/)
