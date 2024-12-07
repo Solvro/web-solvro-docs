@@ -108,3 +108,49 @@ Do edytowania markdowna polecamy wbudowany edytor w **Visual Studio Code**:
 </Steps>
 
 Ewentualnie można użyć jakiegoś onlineowego edytora markdowna, np. https://stackedit.io/app# i potem skopiować zawartość do pliku.
+
+### Jak pisać ładnie?
+
+Tutaj są wszystkie tricki, które można tutaj robić: https://starlight.astro.build/guides/authoring-content/
+
+:::tip
+Można coś takiego!
+:::
+
+> Albo coś takiego
+
+```bash title="Tutaj tytuł!"
+npm install
+```
+
+```diff lang="js"
+  function thisIsJavaScript() {
+    // This entire block gets highlighted as JavaScript,
+    // and we can still add diff markers to it!
+-   console.log('Old code to be removed')
++   console.log('New and shiny code!')
+  }
+```
+
+Astro wspiera również format `.mdx`, który pozwala na importowanie komponentów Reacta do plików Markdown.
+
+Dzięki temu możemy tworzyć bardziej interaktywne i dynamiczne dokumentacje. Na stronie https://starlight.astro.build/components/using-components znajdziesz listę dostępnych komponentów i przykładowe użycie.
+
+My najczęściej używamy komponentu `<Steps>`, który pozwala na stworzenie krok po kroku instrukcji:
+
+```mdx
+import { Steps } from "@astrojs/starlight/components";
+
+## Jak napisać dobry post techniczny?
+
+<Steps>
+1. **Zastanów się nad grupą docelową.**
+
+Czy kierujesz swój post do osób znających podstawy, czy do bardziej zaawansowanych użytkowników? Dostosuj treść i ciekawostki do odbiorców. Unikaj omawiania zbyt trudnych zagadnień, ponieważ może to zniechęcić czytelników.
+
+2. **Zacznij od chwytliwego jednozdaniowego wezwania.** Przyciągnij uwagę użytkownika catchy zdaniem z emotikonami, np.:
+
+   "‼️ Sprawdź, czy też popełniasz ten błąd w React — jak większość początkujących! ‼️"
+
+</Steps>
+```
