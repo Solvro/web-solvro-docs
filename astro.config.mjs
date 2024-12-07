@@ -70,6 +70,15 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "Start here",
+          items: [
+            {
+              label: "Jak pisać dokumentacje?",
+              link: "/how-to-write-docs",
+            },
+          ],
+        },
+        {
           label: "Handbooki",
           autogenerate: { directory: "guides" },
         },
