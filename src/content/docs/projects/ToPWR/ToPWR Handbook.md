@@ -48,6 +48,8 @@ Spełniamy potrzebę dostępu do skonsolidowanych i łatwo dostępnych informacj
   - Rozszerzenie zespołu o blisko 25 nowych członków.
   - Otworzenie projektu Graf Wiedzy.
   - Przeprowadzenie całkowitej restrukturyzacji organizacyjnej.
+- **Grudzień**:
+  - Udana obrona ToPWR jako projektu strategicznego Solvro. Zdobycie tytułu Strategicznego Koła Naukowego.
 
 ## Dalsza dokumentacja
 
