@@ -51,10 +51,4 @@ Spełniamy potrzebę dostępu do skonsolidowanych i łatwo dostępnych informacj
 
 ## Dalsza dokumentacja
 
-[ WIP ] Pojawią się tu odnośniki do pozostałych dokumentów, gdy zostaną już przeniesione z Google Docs do Markdown.
-
-Aktualnie dokumentację możecie znaleźć na naszym [Drive](https://drive.google.com/drive/u/1/folders/1ORR0wwdxavBk_Nc69RVakDeUh-51NCrA).
-
-- [Zespoły](https://www.youtube.com/watch?v=HNdbKLIw5rs)
-- [Struktura Organizacyjna](https://www.youtube.com/watch?v=HNdbKLIw5rs)
-- ...
+Aktualnie dokumentację możecie znaleźć na naszym [Drive](https://drive.google.com/drive/u/1/folders/11QjwNo7-om1iUBJAt6IF_RDic7uaEpLt).
