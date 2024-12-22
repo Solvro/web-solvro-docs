@@ -5,26 +5,11 @@ description: Jak korzystamy z kanałów komunikacyjnych (Discord, Messenger, Git
 
 ## TL;DR
 
-W trakcie pracy nad projektem ToPWR i wszystkimi jego inicjatywami, każdy członek zespołu ma do dyspozycji kilka kanałów komunikacji. Poniżej opisane są ich główne cele i zalecane sposoby używania.
+- **Messenger**: Najlepszy do błyskawicznych spraw, krótkich pytań i ogłoszeń, gdzie liczy się szybka reakcja.
 
-- **Discord**:
+- **Discord**: Miejsce na dłuższe dyskusje, spotkania i uzgodnienia projektowe (np. design, architektura, decyzje techniczne).
 
-  - Dyskusje techniczne, szczególnie przy większych wątkach.
-  - Spotkania (np. Weekly, spontaniczne).
-  - Uzgodnienia dotyczące designu, kodu, dokumentacji.
-
-- **Messenger**:
-
-  - Szybkie informacje i ogłoszenia.
-  - Natychmiastowe odpowiedzi, sprawy „na już”.
-  - Miękkie sprawy organizacyjne (np. potwierdzenia, dogadywanie terminów).
-
-- **GitHub**:
-  - Rozmowy o konkretnych fragmentach kodu.
-  - Pull Requesty, Issues, dokumentowanie zmian.
-  - Miejsce na krytyczne decyzje dotyczące kodu.
-
-> **Notka**: Powyższy podział nie jest sztywny. Zespół może decydować o elastycznym korzystaniu z dowolnego kanału. **Jednakże**, proponowany podział jest mocno zalecany. Musi być on jednolity dla całego programu ToPWR. Najważniejsze, by ustalenia, które będą istotne w przyszłości, zawsze były odpowiednio udokumentowane i łatwe do odnalezienia.
+- **GitHub**: Służy do rozmów nad konkretnym kodem, wystawiania i recenzowania Pull Requestów oraz zgłaszania Issues.
 
 ## Kanały komunikacyjne
 
@@ -88,3 +73,5 @@ W trakcie pracy nad projektem ToPWR i wszystkimi jego inicjatywami, każdy czło
 
 4. **Archiwizacja**:
    - Po zakończeniu projektu lub sprintu, przejrzyjcie kanały (szczególnie na Discordzie i Messengerze), by najważniejsze informacje trafiły do oficjalnej dokumentacji (np. w Handbooku, repozytorium, lub Google Drive).
+
+> **Notka**: Powyższy podział nie jest sztywny. Zespół może decydować o elastycznym korzystaniu z dowolnego kanału. **Jednakże**, proponowany podział jest mocno zalecany. Musi być on jednolity dla całego programu ToPWR. Najważniejsze, by ustalenia, które będą istotne w przyszłości, zawsze były odpowiednio udokumentowane i łatwe do odnalezienia.
