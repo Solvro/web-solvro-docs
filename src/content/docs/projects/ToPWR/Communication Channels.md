@@ -24,7 +24,7 @@ description: Jak korzystamy z kanałów komunikacyjnych (Discord, Messenger, Git
 **Zalecenia**:
 
 1. **Wydzielone kanały tematyczne**: Aby uniknąć chaosu, korzystaj z kanałów na Discordzie zgodnie z ich przeznaczeniem (np. #backend, #mobile, #main, etc.).
-2. **Dokumentuj ustalenia**: Po zakończeniu ważnej dyskusji, kluczowe wnioski przenieś do odpowiedniego miejsca (np. do issue na GitHub albo Google Docs).
+2. **Dokumentuj ustalenia**: Po zakończeniu ważnej dyskusji, kluczowe wnioski przenieś do odpowiedniego miejsca (np. do issue na GitHub albo Google Docs). Chodzi o te wszystkie rzeczy, które mogą w jakiś sposób przydać się w przyszłości, lub wytłumaczyć podjęte decyzje.
 3. **Używaj wątków**: Pamiętaj o używaniu wątków do dłuższych rozmów (threads).
 
 ### Messenger
@@ -38,8 +38,9 @@ description: Jak korzystamy z kanałów komunikacyjnych (Discord, Messenger, Git
 **Zalecenia**:
 
 1. **Proste pytania i szybkie decyzje**: Jeżeli potrzebujesz natychmiastowej odpowiedzi — Messenger jest najlepszy.
-2. **Nie nadużywaj**: Częste powiadomienia na Messengerze mogą rozpraszać. Jeśli sprawa nie jest pilna, rozważ użycie Discord.
-3. **Potwierdzaj kluczowe ustalenia**: Po zakończeniu rozmowy w Messengerze, która ma wpływ na projekt, zapisz krótkie podsumowanie np. w notatce lub w innym, bardziej „trwałym” kanale (np. Discord/Google Docs). Możesz też odezwać się do jednego z kierowników projektu.
+2. **Nie nadużywaj**: Częste powiadomienia na Messengerze mogą rozpraszać. Jeśli sprawa nie jest pilna, użyj Discord.
+3. **Przenieś rozmowę na Discord**: Nie bój się przenieść rozmowy prywatnej z Messengera na publiczny kanał Discord. Bardzo do tego zachęcamy - w ten sposób uzyskujesz więcej perspektyw na dany temat, a inni na bieżąco informowani są o aktualnych sprawach.
+4. **Potwierdzaj kluczowe ustalenia**: Po zakończeniu rozmowy w Messengerze, która ma wpływ na projekt, zapisz krótkie podsumowanie np. w notatce lub w innym, bardziej „trwałym” kanale (np. Discord/Google Docs). Możesz też odezwać się do jednego z kierowników projektu.
 
 ### GitHub (Komentarze/Pull Requesty)
 
@@ -52,7 +53,7 @@ description: Jak korzystamy z kanałów komunikacyjnych (Discord, Messenger, Git
 **Zalecenia**:
 
 1. **Konkretne komentarze**: Komentuj bezpośrednio w kodzie przy danym fragmencie (np. w PR), aby wiadomo było, do czego odnosisz swoją uwagę.
-2. **Opisowe PR**: Twórz pull requesty z opisem kontekstu, co i dlaczego zostało zmienione oraz jak przetestować te zmiany.
+2. **Opisowe PR**: Twórz pull requesty z opisem kontekstu, co i dlaczego zostało zmienione oraz jak przetestować te zmiany. Screenshoty (a czasem nawet GIFy) twoich zmian są konieczne, gdy tylko są w stanie zobrazować wprowadzone zmiany.
 3. **Używaj szablonów**: Jeśli repozytorium twojego projektu posiada szablony PR lub issue, wypełniaj je, aby zachować spójny format w całym zespole.
 
 ## Sugerowane dobre praktyki i dodatkowe pomysły dla kierowników
@@ -67,11 +68,7 @@ description: Jak korzystamy z kanałów komunikacyjnych (Discord, Messenger, Git
    - W Messengerze trudno wrócić do starych wątków. Jeśli temat wymaga dłuższych ustaleń, **przenieś** dyskusję na Discord.
    - W przypadku krytycznych decyzji dot. kodu — przechodź na GitHuba (Issues/PR), aby był łatwy dostęp do kontekstu w przyszłości.
 
-3. **Etykieta komunikacyjna**:
-
-   - Unikaj pisania w godzinach nocnych lub w trakcie ustalonych okresów, gdy projekt ma przerwę, jeśli nie jest to konieczne. Zwłaszcza na Messengerze, gdzie powiadomienia przychodzą bezpośrednio na telefon (oraz często na konta prywante, a nie dedykowane do pracy).
-
-4. **Archiwizacja**:
+3. **Archiwizacja**:
    - Po zakończeniu projektu lub sprintu, przejrzyjcie kanały (szczególnie na Discordzie i Messengerze), by najważniejsze informacje trafiły do oficjalnej dokumentacji (np. w Handbooku, repozytorium, lub Google Drive).
 
 > **Notka**: Powyższy podział nie jest sztywny. Zespół może decydować o elastycznym korzystaniu z dowolnego kanału. **Jednakże**, proponowany podział jest mocno zalecany. Musi być on jednolity dla całego programu ToPWR. Najważniejsze, by ustalenia, które będą istotne w przyszłości, zawsze były odpowiednio udokumentowane i łatwe do odnalezienia.
