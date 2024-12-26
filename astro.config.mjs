@@ -79,6 +79,10 @@ export default defineConfig({
           ],
         },
         {
+          label: "Solvro",
+          autogenerate: { directory: "solvro" },
+        },
+        {
           label: "Handbooki",
           autogenerate: { directory: "guides" },
         },
