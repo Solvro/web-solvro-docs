@@ -9,9 +9,9 @@ description: Pierwsze kroki w dokumentacji Solvro
 
 Nasza dokumentacja to źródło wiedzy o naszym kole. Znajdziesz tutaj:
 
-- Informacje o technologiach, które wykorzystujemy, oraz poradniki, jak z nich korzystać.
+- Informacje o technologiach, które wykorzystujemy oraz poradniki, jak z nich korzystać.
 - Szczegóły dotyczące celów naszego koła.
-- Informacje o zarządzie i składzie członków.
+- Informacje o zarządzie i członkach
 - Opisy realizowanych projektów.
 - Wskazówki dotyczące narzędzi używanych przez koło.
 - Wszystko, co potrzebne, aby efektywnie działać w naszym kole i lepiej je zrozumieć.
@@ -24,17 +24,17 @@ Dokumentacja jest podzielona na sekcje:
 
 1. Start here - wszystko co potrzebne do korzystania z dokumentacji.
 2. Handbooki - poradniki od członków, dla członków. Dotyczą technologii, narzędzi, organizacji pracy oraz umiejętności miękkich.
-3. Projekty - informacje o projektach nad którymi działamy.
+3. Projekty - informacje o projektach, nad którymi działamy.
 
 Skorzystaj z menu nawigacyjnego po lewej stronie, aby przejść do interesujących Cię obszarów.
 
 ### Jak dołożyć cegiełkę do dokumentacji?
 
-Nasza dokumentacja jest otwarta na wszelkie sugestie. Widzisz błąd? Chcesz coś zmienić lub dodać? A może masz pomysł na nowy materiał? Nie czekaj! Wszystkie potrzebne informacje znajdziesz [tutaj](https://docs.solvro.pl/how-to-write-docs).
+Nasza dokumentacja jest otwarta na wszelkie sugestie. Widzisz błąd? Chcesz coś zmienić lub dodać? A może masz pomysł na nowy materiał? Nie czekaj! Wszystkie potrzebne informacje znajdziesz w [poradniku pisania dokumentacji](https://docs.solvro.pl/how-to-write-docs).
 
 ## Przewodnik po dokumentacji
 
-Znając [wstępne informacje](https://docs.solvro.pl/solvro/hello-there/#na-początek) o naszej dokumentacji, chcielibyśmy zaproponować Ci kolejność w której powinieneś przejrzeć nasze zasoby.
+Znając [wstępne informacje](https://docs.solvro.pl/hello-there/#na-początek) o naszej dokumentacji, chcielibyśmy zaproponować Ci kolejność, w której powinieneś przejrzeć nasze zasoby.
 
 ### Dla gości
 
@@ -45,11 +45,11 @@ Znając [wstępne informacje](https://docs.solvro.pl/solvro/hello-there/#na-pocz
 
 Ogólne informacje:
 
-- [Poznaj nasz zarząd](https://docs.solvro.pl/solvro/vii_board/)
 - [Zapoznaj się z naszą strategią](https://docs.solvro.pl/solvro/strategy/)
 - [Kanały komunikacji](https://docs.solvro.pl/guides/communication-channels/)
 - [Jak używać GitHuba?](https://docs.solvro.pl/guides/github/)
 - [Jak prowadzimy projekty? Czego się spodziewać?](https://docs.solvro.pl/guides/prowadzenie-projekt%C3%B3w/)
+- [Poznaj nasz zarząd](https://docs.solvro.pl/solvro/vii_board/)
 
 Poradniki technologiczne:
 
