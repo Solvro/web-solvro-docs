@@ -11,7 +11,7 @@ Nasza dokumentacja to źródło wiedzy o naszym kole. Znajdziesz tutaj:
 
 - Informacje o technologiach, które wykorzystujemy oraz poradniki, jak z nich korzystać.
 - Szczegóły dotyczące celów naszego koła.
-- Informacje o zarządzie i członkach
+- Informacje o zarządzie i członkach.
 - Opisy realizowanych projektów.
 - Wskazówki dotyczące narzędzi używanych przez koło.
 - Wszystko, co potrzebne, aby efektywnie działać w naszym kole i lepiej je zrozumieć.
