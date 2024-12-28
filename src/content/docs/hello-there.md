@@ -54,7 +54,7 @@ Ogólne informacje:
 Poradniki technologiczne:
 
 - [Web](./guides/Web%20Development/index.mdx)
-- [Mobile](./guides/Web%20Development/index.mdx)
+- [Mobile](./guides/Flutter%20(Mobile)/index.md)
 
 ### Dla starych wyjadaczy
 
