@@ -30,38 +30,38 @@ Skorzystaj z menu nawigacyjnego po lewej stronie, aby przejść do interesujący
 
 ### Jak dołożyć cegiełkę do dokumentacji?
 
-Nasza dokumentacja jest otwarta na wszelkie sugestie. Widzisz błąd? Chcesz coś zmienić lub dodać? A może masz pomysł na nowy materiał? Nie czekaj! Wszystkie potrzebne informacje znajdziesz w [poradniku pisania dokumentacji](https://docs.solvro.pl/how-to-write-docs).
+Nasza dokumentacja jest otwarta na wszelkie sugestie. Widzisz błąd? Chcesz coś zmienić lub dodać? A może masz pomysł na nowy materiał? Nie czekaj! Wszystkie potrzebne informacje znajdziesz w [poradniku pisania dokumentacji](/how-to-write-docs) .
 
 ## Przewodnik po dokumentacji
 
-Znając [wstępne informacje](https://docs.solvro.pl/hello-there/#na-początek) o naszej dokumentacji, chcielibyśmy zaproponować Ci kolejność, w której powinieneś przejrzeć nasze zasoby.
+Znając [wstępne informacje](#na-początek) o naszej dokumentacji, chcielibyśmy zaproponować Ci kolejność, w której powinieneś przejrzeć nasze zasoby.
 
 ### Dla gości
 
-- [Poznaj nasz zarząd](https://docs.solvro.pl/solvro/vii_board/)
-- [Zapoznaj się z naszą strategią](https://docs.solvro.pl/solvro/strategy/)
+- [Poznaj nasz zarząd](/solvro/vii_board)
+- [Zapoznaj się z naszą strategią](/solvro/strategy)
 
 ### Dla nowych członków
 
 Ogólne informacje:
 
-- [Zapoznaj się z naszą strategią](https://docs.solvro.pl/solvro/strategy/)
-- [Kanały komunikacji](https://docs.solvro.pl/guides/communication-channels/)
-- [Jak używać GitHuba?](https://docs.solvro.pl/guides/github/)
-- [Jak prowadzimy projekty? Czego się spodziewać?](https://docs.solvro.pl/guides/prowadzenie-projekt%C3%B3w/)
-- [Poznaj nasz zarząd](https://docs.solvro.pl/solvro/vii_board/)
+- [Zapoznaj się z naszą strategią](./solvro/strategy/)
+- [Kanały komunikacji](./guides/Communication%20Channels.md)
+- [Jak używać GitHuba?](./guides/Github.md)
+- [Jak prowadzimy projekty? Czego się spodziewać?](./guides/Prowadzenie%20projektów.md)
+- [Poznaj nasz zarząd](/solvro/vii_board)
 
 Poradniki technologiczne:
 
-- [Web](https://25.docs.solvro.pl/guides/web-development/)
-- [Mobile](https://25.docs.solvro.pl/guides/flutter-mobile/)
+- [Web](./guides/Web%20Development/index.mdx)
+- [Mobile](./guides/Flutter%20(Mobile)/index.md)
 
 ### Dla starych wyjadaczy
 
 Oprócz materiałów dla nowych członków, warto zapoznać się z:
 
-- [Jak prowadzić projekt?](https://docs.solvro.pl/guides/prowadzenie-projekt%C3%B3w/)
-- [Deploy Guide](https://25.docs.solvro.pl/guides/deployment/)
+- [Jak prowadzić projekt?](./guides/Prowadzenie%20projektów.md)
+- [Deploy Guide](./guides/Deployment.mdx)
 
 ---
 
