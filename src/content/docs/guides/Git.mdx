@@ -52,7 +52,7 @@ Jeżeli po komendzie dodamy nazwę, to git utworzy nowy katalog o danej nazwie, 
 
 import newRepo01 from "#assets/git/new-repo-01.cast";
 
-<AsciinemaPlayer src={newRepo01} idleTimeLimit={1} cols={140} rows={40} >
+<AsciinemaPlayer src={newRepo01} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
 
 1. Tworzymy nowe repozytorium - `git init <nazwa>`
 2. Przechodzimy do nowo utworzonego katalogu i sprawdzamy status repo - `git status`
@@ -65,7 +65,7 @@ By zainicjować nowe repozytorium gita w istniejącym katalogu, wystarczy do nie
 
 import newRepo02 from "#assets/git/new-repo-02.cast";
 
-<AsciinemaPlayer src={newRepo02} idleTimeLimit={1} cols={140} rows={40}>
+<AsciinemaPlayer src={newRepo02} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
 
 1. Przechodzimy do katalogu z istniejącym projektem
 2. Sprawdzamy zawartość projektu - 2 pliki
@@ -86,7 +86,7 @@ Nie rób tego w repozytoriach, które są ważne i dla których nie masz kopii z
 
 import newRepo03 from "#assets/git/new-repo-03.cast";
 
-<AsciinemaPlayer src={newRepo03} idleTimeLimit={1} cols={140} rows={40}>
+<AsciinemaPlayer src={newRepo03} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
 
 1. Przechodzimy do katalogu z repozytorium
 2. Usuwamy `.git`
@@ -118,7 +118,7 @@ Jeżeli ktoś korzysta z integracji gita w swoim ulubionym edytorze, to zapewne 
 
 import commit01 from "#assets/git/committing-01.cast";
 
-<AsciinemaPlayer src={commit01} idleTimeLimit={1} cols={140} rows={40} >
+<AsciinemaPlayer src={commit01} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
 
 1. Sprawdzamy, jakie mamy niezapisane zmiany - `git status`
 2. Dodajemy kolejno każdy zmieniony plik - `git add <plik>`
@@ -167,7 +167,7 @@ git config user.name "<nazwa użytkownika/imie/nazwisko/pseudonim>"
 
 import commit02 from "#assets/git/committing-02.cast";
 
-<AsciinemaPlayer src={commit02} idleTimeLimit={1} cols={140} rows={40}>
+<AsciinemaPlayer src={commit02} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
 
 1. Ustawiamy globalnie dane użytkownika
 2. Sprawdzamy status repo - zmiany są nadal przygotowane od ostatniego nagrania
@@ -186,7 +186,7 @@ Jak opublikować repozytorium i nowe wpisy?
 
 Jeżeli jesteśmy na świeżo utworzonym repozytorium, najpierw trzeba stworzyć jakieś miejsce na publikację -
 może to być repozytorium na dowolnym z hostów wymienionych (bądź nie) na wstępie dokumentacji.
-Jeżeli jesteśmy na repozytorium sklonowanym to adres, z którego repozytorium sklonowaliśmy zostanie automatycznie zapisany jako repozytorium zdalne `origin`.
+Jeżeli jesteśmy na repozytorium sklonowanym, to adres, z którego repozytorium sklonowaliśmy zostanie automatycznie zapisany jako repozytorium zdalne `origin`.
 
 Jeżeli jest to pierwszy raz, gdy używasz danego hosta (np. GitHub), trzeba będzie również skonfigurować wybrany sposób dostępu.
 Uniwersalnym protokołem do wysyłania zmian jest SSH - wystarczy wygenerować parę kluczy SSH (jeżeli jeszcze ich nie mamy) i dodać ten publiczny do swojego konta.
@@ -213,7 +213,7 @@ Jeżeli nie chcemy zapisywać nowej konfiguracji jako domyślnej, wystarczy usun
 
 import publish01 from "#assets/git/publishing-01.cast";
 
-<AsciinemaPlayer src={publish01} idleTimeLimit={1} cols={140} rows={40} >
+<AsciinemaPlayer src={publish01} idleTimeLimit={1} cols={140} rows={40} theme="monokai" >
 
 1. Sprawdzamy skonfigurowane repozytoria zdalne - `git remote` - brak
 2. Konfigurujemy nowe repozytorium zdalne "origin" - `git remote add <nazwa> <adres>`
@@ -241,13 +241,16 @@ Różne organizacje, projekty i autorzy mają różne opinie na temat stylu opis
 
 import commit03 from "#assets/git/committing-03.cast";
 
-<AsciinemaPlayer src={commit03} idleTimeLimit={1} cols={140} rows={40}>
+<AsciinemaPlayer src={commit03} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
 
 1. Dokonujemy jakieś zmiany w repozytorium
 2. Przygotowujemy wybrane zmiany do złożenia
-3. Dokonujemy zapisu i opisujemy zmiany, oznaczając Linusa Torvaldsa jako współautora
-4. Wysyłamy zmiany do zdalnego repo
-5. Sprawdzamy `git log` - widać cały opis zmian
-6. Sprawdzamy `git log --oneline` - widać tylko pierwszą linijkę
+3. Dokonujemy zapisu i opisujemy zmiany:
+4. Dodajemy krótki opis
+5. Tworzymy dłuższy, szczegółowy opis zmian
+6. Oznaczamy Linusa Torvaldsa jako współautora zmiany
+7. Wysyłamy zmiany do zdalnego repo
+8. Sprawdzamy `git log` - widać cały opis zmian
+9. Sprawdzamy `git log --oneline` - widać tylko pierwszą linijkę
 
 </AsciinemaPlayer>
