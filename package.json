@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "check": "astro check",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
@@ -22,7 +23,6 @@
     "astro": "^4.16.16",
     "astro-live-code": "^0.0.4",
     "astro-og-canvas": "^0.5.4",
-    "astro-rehype-relative-markdown-links": "^0.16.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "react": "^18.3.1",
@@ -30,6 +30,7 @@
     "rehype-slug-custom-id": "^2.0.0",
     "remark-heading-id": "^1.0.1",
     "sharp": "^0.32.5",
+    "starlight-links-validator": "^0.14.1",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.7.2"
   },

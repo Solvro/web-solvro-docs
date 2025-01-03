@@ -38,30 +38,35 @@ Znając [wstępne informacje](#na-początek) o naszej dokumentacji, chcielibyśm
 
 ### Dla gości
 
-- [Poznaj nasz zarząd](/solvro/vii_board)
-- [Zapoznaj się z naszą strategią](/solvro/strategy)
+TODO: Dla Dawida Linka od odkomentowania
+
+<!-- - [Poznaj nasz zarząd](/solvro/vii_board) -->
+<!-- - [Zapoznaj się z naszą strategią](/solvro/strategy) -->
 
 ### Dla nowych członków
 
 Ogólne informacje:
 
-- [Zapoznaj się z naszą strategią](./solvro/strategy/)
-- [Kanały komunikacji](./guides/Communication%20Channels.md)
-- [Jak używać GitHuba?](./guides/Github.md)
-- [Jak prowadzimy projekty? Czego się spodziewać?](./guides/Prowadzenie%20projektów.md)
-- [Poznaj nasz zarząd](/solvro/vii_board)
+TODO: Dla Dawida Linka od odkomentowania
+
+<!-- - [Zapoznaj się z naszą strategią](/solvro/strategy) -->
+
+- [Kanały komunikacji](/guides/communication-channels)
+- [Jak używać GitHuba?](/guides/github/)
+- [Jak prowadzimy projekty? Czego się spodziewać?](/guides/prowadzenie-projektów)
+<!-- - [Poznaj nasz zarząd](/solvro/vii_board) -->
 
 Poradniki technologiczne:
 
-- [Web](./guides/Web%20Development/index.mdx)
-- [Mobile](./guides/Flutter%20(Mobile)/index.md)
+- [Web](/guides/web-development/)
+- [Mobile](/guides/flutter-mobile/)
 
 ### Dla starych wyjadaczy
 
 Oprócz materiałów dla nowych członków, warto zapoznać się z:
 
-- [Jak prowadzić projekt?](./guides/Prowadzenie%20projektów.md)
-- [Deploy Guide](./guides/Deployment.mdx)
+- [Jak prowadzić projekt?](/guides/prowadzenie-projektów/)
+- [Deploy Guide](/guides/deployment/)
 
 ---
 
