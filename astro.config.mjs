@@ -4,22 +4,14 @@ import starlight from "@astrojs/starlight";
 import remarkHeadingId from "remark-heading-id";
 import tailwind from "@astrojs/tailwind";
 import liveCode from "astro-live-code";
-import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-links";
 import react from "@astrojs/react";
+import starlightLinksValidator from "starlight-links-validator";
 
 // https://astro.build/config
 export default defineConfig({
   markdown: {
     // @ts-expect-error ??????
     remarkPlugins: [remarkHeadingId],
-    rehypePlugins: [
-      [
-        rehypeAstroRelativeMarkdownLinks,
-        {
-          contentPath: "src/content/docs",
-        },
-      ],
-    ],
   },
   site: "https://docs.solvro.pl",
   integrations: [
@@ -29,6 +21,11 @@ export default defineConfig({
       },
     }),
     starlight({
+      plugins: [
+        starlightLinksValidator({
+          exclude: ["http://localhost:4321"],
+        }),
+      ],
       defaultLocale: "pl",
       locales: {
         root: {

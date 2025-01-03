@@ -91,7 +91,7 @@ Lead jest odpowiedzialny za jego utworzenie, odpowiednie skonfigurowanie pól i 
 
 Pamiętajmy o jak najbardziej pomocnych opisach zadań najlepiej od razu z linkami/screenami do makiety UI/UX.
 
-Więcej informacji można znaleźć w [Handbooku Githuba](./Github.md)
+Więcej informacji można znaleźć w [Handbooku Githuba](/guides/github)
 
 ### Makiety UI/UX
 
@@ -150,7 +150,7 @@ Od tego momentu przechodzimy na tzw. produkcję, gdzie reliability musi być zac
 
 Infrastrukturą wdrożenia będzie zajmował się devops i końcowo produkcyjna aplikacja będzie hostowana na innym serwerze niż developerska. Domena aplikacji produkcyjnej jest subdomeną solvro.pl
 
-Więcej info z deploymentu znajdziesz w [Handbooku Deploymentu](./Deployment.mdx).
+Więcej info z deploymentu znajdziesz w [Handbooku Deploymentu](/guides/deployment).
 
 ## Zamknięcie lub dalsza praca
 

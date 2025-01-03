@@ -18,14 +18,14 @@ description: Szybki start dla tych, którzy chcą poznać Adonisa i tworzyć św
 
 Oto lista najważniejszych rzeczy, które warto w mniejszym lub większym stopniu ogarniać biorąc się za naukę korzystania z Adonisa:
 
-- **Git i GitHub** - podstawowe narzędzia pracy każdego developera. Z zasadami korzystania stosowanymi w Solvro można zapoznać się w [Handbook GitHub](./Github.md)
+- **Git i GitHub** - podstawowe narzędzia pracy każdego developera. Z zasadami korzystania stosowanymi w Solvro można zapoznać się w [Handbook GitHub](/guides/github)
 - **IDE** - środowisko do pracy z kodem. Do najpopularniejszych opcji należy Visual Studio Code i Webstorm od Jetbrains.
 - **TypeScript** - jest to podstawowy język wykorzystywany przez Adonisa. Bez jego znajomości ciężko cokolwiek zrobić.
 - **NodeJS** - technologia pozwalająca na uruchamianie JS poza przeglądarką. Wykorzystywana do budowania backendu. Zrozumienie działania importów i menadżera pakietów NPM jest potrzebne do sprawnego poruszania się po frameworku.
 
 ## Instalacja
 
-Proces instalacji został szczegółowo przedstawiony [tutaj](https://docs.adonisjs.com/guides/getting-started/installation).
+Proces instalacji został szczegółowo przedstawiony [w dokumentacji adonisa](https://docs.adonisjs.com/guides/getting-started/installation).
 
 ### NodeJs
 
@@ -72,7 +72,7 @@ npm run format
 
 ## Deployment
 
-[Poradnik jak zdeployować apkę Adonisową](./Deployment.mdx)
+[Poradnik jak zdeployować apkę Adonisową](/guides/deployment)
 
 ## Rozszerzenia
 
