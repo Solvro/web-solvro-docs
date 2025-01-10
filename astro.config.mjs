@@ -35,7 +35,7 @@ export default defineConfig({
       },
       favicon: "favicon.ico",
       title: "Solvro",
-      customCss: ["./src/tailwind.css"],
+      customCss: ["./src/tailwind.css", "./src/solvro.css"],
       tableOfContents: true,
       logo: {
         light: "./src/assets/logo_dark.png",
