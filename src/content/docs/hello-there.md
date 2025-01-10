@@ -46,22 +46,22 @@ Znając [wstępne informacje](#na-początek) o naszej dokumentacji, chcielibyśm
 Ogólne informacje:
 
 - [Zapoznaj się z naszą strategią](/solvro/strategy)
-- [Kanały komunikacji](/guides/communication-channels)
-- [Jak używać GitHuba?](/guides/github/)
-- [Jak prowadzimy projekty? Czego się spodziewać?](/guides/prowadzenie-projektów)
+- [Kanały komunikacji](/sections/management/communication-channels)
+- [Jak używać GitHuba?](/sections/management/github)
+- [Jak prowadzimy projekty? Czego się spodziewać?](/sections/management/prowadzenie-projektów/)
 - [Poznaj nasz zarząd](/solvro/vii_board)
 
 Poradniki technologiczne:
 
-- [Web](/guides/web-development/)
-- [Mobile](/guides/flutter-mobile/)
+- [Web](/sections/frontend/)
+- [Mobile](/sections/mobile/)
 
 ### Dla starych wyjadaczy
 
 Oprócz materiałów dla nowych członków, warto zapoznać się z:
 
-- [Jak prowadzić projekt?](/guides/prowadzenie-projektów/)
-- [Deploy Guide](/guides/deployment/)
+- [Jak prowadzić projekt?](/sections/management/prowadzenie-projektów/)
+- [Deploy Guide](/sections/devops/deployment/)
 
 ---
 
