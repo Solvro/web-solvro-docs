@@ -6,13 +6,13 @@ Teoretycznie powinno się tu znaleźć wszystko co powinieneś/aś wiedzieć o p
 
 - Jak dodać nową stronę?
 
-  1. Dodaj nowy plik .md folderze `content/docs/guides/` np. `mario.md`
+  1. Dodaj nowy plik .md folderze `content/docs/solvro/` np. `mario.md`
   2. W pliku `mario.md` musisz napisać tytuł i opis jako fronmatter, przykładowo:
 
   ```md
   ---
   title: Web development
-  description: Oto jak w Solvro rozwijamy aplikacje webowe.
+  description: Oto jak w Solvro gramy w mario.
   ---
 
   Heeej, to jest treść strony!
