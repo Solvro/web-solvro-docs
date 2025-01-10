@@ -73,6 +73,10 @@ export default defineConfig({
           label: "Start here",
           items: [
             {
+              label: "Gdzie zacząć?",
+              link: "/hello-there",
+            },
+            {
               label: "Jak pisać dokumentacje?",
               link: "/how-to-write-docs",
             },
