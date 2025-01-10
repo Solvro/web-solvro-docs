@@ -1,6 +1,7 @@
 ---
 title: Deploy
 description: Jak postawić apke na naszym serwerze na coolify?
+order: 10
 ---
 
 import { Steps } from "@astrojs/starlight/components";
@@ -30,10 +31,10 @@ Link do dockerfile’a z adonisowej dokumentacji, który możecie dostosować do
 Crème de la crème, dostępny pod adresem https://devops.solvro.pl - o dostępy do zarządu
 
 _Widok projektów - wszystkie projekty postawione na Coolify_
-![](../../../assets/deployment/image8.png)
+![](../../../../assets/deployment/image8.png)
 
 _Każdy projekt ma swoje zasoby (Resources), które składają się na cały system projektu_
-![](../../../assets/deployment/image11.png)
+![](../../../../assets/deployment/image11.png)
 
 ## Baza danych
 
@@ -58,7 +59,7 @@ W naszym przypadku używamy Postgresql, tu nie ma większej filozofii, wystarczy
 
 </Steps>
 
-![](../../../assets/deployment/image14.png)
+![](../../../../assets/deployment/image14.png)
 
 Ważne dane, które będą potrzebne do envów na backendzie:
 
@@ -88,7 +89,7 @@ Ważne dane, które będą potrzebne do envów na backendzie:
 
 6. Wybieramy brancha, którego Coolify ma deployować  
     Wybieramy jak Coolify ma tworzyć obraz kontenera (zawsze **Dockerfile** przy Adonisie)
-   ![](../../../assets/deployment/image13.png)
+   ![](../../../../assets/deployment/image13.png)
 7. Czas na konfigurację 🚀
 
 </Steps>
@@ -97,26 +98,26 @@ Ważne dane, które będą potrzebne do envów na backendzie:
 
 Po udanym procesie tworzenia resource’a powinniście ujrzeć następujący widok
 
-![](../../../assets/deployment/image17.png)
+![](../../../../assets/deployment/image17.png)
 :::tip
 Po zmianach w zakładce zapisujcie zmiany, żeby potem nie wychodziły jakieś kwiatki.
 
-![](../../../assets/deployment/image2.png)
+![](../../../../assets/deployment/image2.png)
 :::
 
 Na początku warto zmienić nazwę na bardziej czytelną, zmienić domenę \{poddomena\}.solvro.pl, ewentualnie dodać opis.  
 Przykład:
-![](../../../assets/deployment/image3.png)
+![](../../../../assets/deployment/image3.png)
 
 Jeśli macie monorepo to warto też zmienić Base Directory, jeśli macie np. w jednym repo frontend i backend.  
 Przykład z [Planera](https://github.com/Solvro/web-planer) 🔥:
-![](../../../assets/deployment/image21.png)
+![](../../../../assets/deployment/image21.png)
 
 #### Network
 
 Ports Exposes jest istotny, domyślnie Adonis słucha na porcie 3333 - jeśli ustawiliście inny w env-ach to zmieńcie na ten z env-ów.  
 Porst mappings - jeśli nie macie konkretnych powodów, to nie zmieniajcie mapowania portów do hosta.
-![](../../../assets/deployment/image5.png)
+![](../../../../assets/deployment/image5.png)
 
 Zakładka Pre/Post Deployment Commands jest użyteczna, jeśli chcecie, żeby po każdym deployu jakaś akcja się wykonała - w naszym przypadku wykonujemy migracje:
 
@@ -129,25 +130,25 @@ node ace migration:run --force
 W advance’ach warto zaznaczyć Preview Deployments co pozwoli na sprawdzenie działania aplikacji po otworzeniu pull requestu na repo.
 Ostatnio (11.2024) Bartosz pisał, że automatyczne preview deployments są wyłączone i jeśli chcemy zrobić preview deployment, to musimy sobie wyklikać.
 
-![](../../../assets/deployment/image20.png)
+![](../../../../assets/deployment/image20.png)
 
 ### Preview deployments
 
-![](../../../assets/deployment/image22.png)
+![](../../../../assets/deployment/image22.png)
 
 ### Zmienne środowiskowe
 
 Kolejna ważna zakładka, Enviroment Variables - tu ustawiacie niezbędne zmienne środowiskowe.
 
-![](../../../assets/deployment/image19.png)
+![](../../../../assets/deployment/image19.png)
 
 Polecam wejść w widok developerski, przekleić envy z folderu projektu adonisa i poustawiać odpowiednie wartości:
 
-![](../../../assets/deployment/image16.png)
+![](../../../../assets/deployment/image16.png)
 
 Dane do zmiennych zaczynających się od DB\_\{zmienna\} wyciągacie z bazy którą uprzednio utworzyliście, wszystkie dane możecie wyciągnąć z URL’a bazy:
 
-![](../../../assets/deployment/image15.png)
+![](../../../../assets/deployment/image15.png)
 _**postgres://\{username\}:\{password\}@\{host\}:\{port\}/\{database\}**_
 
 Jeśli nie chcecie ręcznie przeklejać danych z url'a możecie poprosić Gepetto albo Kloda (jest to względnie bezpieczne)
@@ -156,19 +157,19 @@ Jeśli nie chcecie ręcznie przeklejać danych z url'a możecie poprosić Gepett
 
 W Sourcie mozecie wybrać brancha, którego chcecie deployować.
 
-![](../../../assets/deployment/image6.png)
+![](../../../../assets/deployment/image6.png)
 
 ### Health checks
 
 Jeśli nie chcecie mieć irytującego warningu koło statusu resource’a to możecie ustawić healthchecki [https://coolify.io/docs/knowledge-base/health-checks/](https://coolify.io/docs/knowledge-base/health-checks/)
 
-![](../../../assets/deployment/image10.png)
+![](../../../../assets/deployment/image10.png)
 
 ### Deployments
 
 Zdarzyć się może, że w trakcie deploy-u co się wykrzaczy - na ratunek przychodzi zakładka _Deployments_, w której możecie sprawdzić logi wszystkich deploy-ów i naprawić usterkę.
 
-![](../../../assets/deployment/image23.png)
+![](../../../../assets/deployment/image23.png)
 
 ### Terminal
 

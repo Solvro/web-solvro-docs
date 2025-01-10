@@ -84,8 +84,8 @@ export default defineConfig({
           autogenerate: { directory: "solvro" },
         },
         {
-          label: "Handbooki",
-          autogenerate: { directory: "guides" },
+          label: "Sekcje",
+          autogenerate: { directory: "sections" },
         },
         {
           label: "Projekty",
