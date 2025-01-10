@@ -38,23 +38,18 @@ Znając [wstępne informacje](#na-początek) o naszej dokumentacji, chcielibyśm
 
 ### Dla gości
 
-TODO: Dla Dawida Linka od odkomentowania
-
-<!-- - [Poznaj nasz zarząd](/solvro/vii_board) -->
-<!-- - [Zapoznaj się z naszą strategią](/solvro/strategy) -->
+- [Poznaj nasz zarząd](/solvro/vii_board)
+- [Zapoznaj się z naszą strategią](/solvro/strategy)
 
 ### Dla nowych członków
 
 Ogólne informacje:
 
-TODO: Dla Dawida Linka od odkomentowania
-
-<!-- - [Zapoznaj się z naszą strategią](/solvro/strategy) -->
-
+- [Zapoznaj się z naszą strategią](/solvro/strategy)
 - [Kanały komunikacji](/guides/communication-channels)
 - [Jak używać GitHuba?](/guides/github/)
 - [Jak prowadzimy projekty? Czego się spodziewać?](/guides/prowadzenie-projektów)
-<!-- - [Poznaj nasz zarząd](/solvro/vii_board) -->
+- [Poznaj nasz zarząd](/solvro/vii_board)
 
 Poradniki technologiczne:
 
