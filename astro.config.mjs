@@ -77,6 +77,14 @@ export default defineConfig({
               label: "Jak pisać dokumentacje?",
               link: "/how-to-write-docs",
             },
+            {
+              label: "Komunikacja",
+              link: "/communication",
+            },
+            {
+              label: "Jak używać githuba?",
+              link: "/github",
+            },
           ],
         },
         {

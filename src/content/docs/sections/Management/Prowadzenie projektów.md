@@ -91,7 +91,7 @@ Lead jest odpowiedzialny za jego utworzenie, odpowiednie skonfigurowanie pól i 
 
 Pamiętajmy o jak najbardziej pomocnych opisach zadań najlepiej od razu z linkami/screenami do makiety UI/UX.
 
-Więcej informacji można znaleźć w [Handbooku Githuba](/sections/management/github/)
+Więcej informacji można znaleźć w [Handbooku Githuba](/github)
 
 ### Makiety UI/UX
 

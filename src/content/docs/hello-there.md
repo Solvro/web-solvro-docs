@@ -46,8 +46,8 @@ Znając [wstępne informacje](#na-początek) o naszej dokumentacji, chcielibyśm
 Ogólne informacje:
 
 - [Zapoznaj się z naszą strategią](/solvro/strategy)
-- [Kanały komunikacji](/sections/management/communication-channels)
-- [Jak używać GitHuba?](/sections/management/github)
+- [Kanały komunikacji](/communication)
+- [Jak używać GitHuba?](/github)
 - [Jak prowadzimy projekty? Czego się spodziewać?](/sections/management/prowadzenie-projektów/)
 - [Poznaj nasz zarząd](/solvro/vii_board)
 
