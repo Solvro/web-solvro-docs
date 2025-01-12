@@ -36,11 +36,11 @@ Dzięki publicznemu członkostwu widać Solvro na twoim profilu, a przede wszyst
 1. Wejdź na [https://github.com/orgs/Solvro/people](https://github.com/orgs/Solvro/people)
 2. Namierz siebie na liście członków i kliknij na swoją aktualną widoczność
 
-   ![informacja o prywatności członkostwa](../../../../assets/github/image2.png)
+   ![informacja o prywatności członkostwa](../../assets/github/image2.png)
 
 3. Wybierz członkostwo publiczne, i tada! Jesteś już pełnoprawnym członkiem naszego koła.
 
-   ![opcja ustawienia publicznego członkostwa](../../../../assets/github/image3.png)
+   ![opcja ustawienia publicznego członkostwa](../../assets/github/image3.png)
 
 ### Podaruj nam gwiazdki ⭐⭐⭐
 
@@ -49,11 +49,11 @@ Zachęcamy do gwiazdkowania naszych publicznych repozytoriów Pokażmy innym, ż
 1. Wchodzimy na listę repozytoriów. Ich publiczna liczba będzie tylko rosła (miejmy nadzieję).
 2. Wchodzimy po kolei w co fajniejsze projekty.
 
-   ![losowo wybrany projekt Solvro](../../../../assets/github/image9.png)
+   ![losowo wybrany projekt Solvro](../../assets/github/image9.png)
 
 3. Zostawiamy gwiazdkacza ⭐\!
 
-   ![opcja gwiazdkowania repozytorium](../../../../assets/github/image5.png)
+   ![opcja gwiazdkowania repozytorium](../../assets/github/image5.png)
 
 ## Nazewnictwo repozytoriów
 
@@ -151,7 +151,7 @@ Projekty mają wiele zaawansowanych diagramów, z których możecie korzystać w
 
 Podstawowym typem jest jednak tablica KANBAN, gdzie można dodawać zadania w formie draft, lub przypinać issues lub pull-requesty.
 
-![strona projektu](../../../../assets/github/image8.png)
+![strona projektu](../../assets/github/image8.png)
 
 #### Flow pracy na boardzie
 
@@ -191,7 +191,7 @@ Jeśli nie rozumiesz technikaliów związanych z którymś z poniższych punktó
 
 Wchodzimy na naszą tablice zadań i przypisujemy się do zadania sygnalizując, że zgłaszamy się do jego zrobienia:
 
-![zgłaszanie się do PR](../../../../assets/github/image6.png)
+![zgłaszanie się do PR](../../assets/github/image6.png)
 
 ### Rozpoczęcie pracy nad zadaniem
 
@@ -212,13 +212,13 @@ Wchodzimy na naszą tablice zadań i przypisujemy się do zadania sygnalizując
 1. Gdy jesteśmy gotowi, zmieniamy status taska na **In Review** (jeśli taki status jest w projekcie).
 2. Tworzymy pull requesta z naszego brancha na branch **main** lub **dev** (jeśli aplikacja na main jest już opublikowaną wersją produkcyjną).
 
-   ![przycisk otwórz PR](../../../../assets/github/image7.png)
+   ![przycisk otwórz PR](../../assets/github/image7.png)
 
 3. Dodajemy znaczący tytuł (najlepiej powiązany z nazwą lub numerem taska/tasków) i krótko wypisujemy co zmieniliśmy lub dodaliśmy. Jeśli napotkaliśmy jakiś problem/dylemat, możemy wyjaśnić jak go rozwiązaliśmy, jakiej dokonaliśmy decyzji i dlaczego. Jeśli z jakiegoś powodu nie wykonaliśmy 100% zakresu zadania, to jest to dobre miejsce żeby o tym wspomnieć. Jeśli chcesz ładnie sformatować swój opis, obczaj [tą szybką ściągę do gh markdowna](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 4. Można oznaczyć swojego techleada jako reviewer (opcjonalne).
 5. Po prawej na dole, w sekcji _Development_ możesz przypiąć **issue** (np. swoje zadanie), który zostanie automatycznie zamknięty po zmergowaniu tego pull requesta.
 
-   ![dodawanie issues do PR](../../../../assets/github/image4.png)
+   ![dodawanie issues do PR](../../assets/github/image4.png)
 
 6. Oczekujemy na code review od naszego techleada.
 7. Przeglądamy komentarze, wprowadzamy sugestie i dyskutujemy nad rzeczami, z którymi się nie zgadzamy. Zadajemy pytania i wprowadzamy zmiany, commitujemy i pushujemy.
@@ -280,5 +280,5 @@ Uwaga: Oprócz README repozytoriów, każdy projekt (kanban board) ma też swoje
 
 To już koniec tego handbooka. Mam nadzieję, że był przydatny i aż tak bardzo nie bolał, mimo zauważalnej liczby stron. Proszę zgłaszać swoje propozycje zmiany tego dokumentu i miłego kodowania 🙂🙃🙂
 
-![Podpis Szymona Kowalińskiego](../../../../assets/github/image10.png)
+![Podpis Szymona Kowalińskiego](../../assets/github/image10.png)
 **Wiceprezes VII Zarządu KN Solvro**
