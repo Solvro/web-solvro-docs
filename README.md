@@ -11,7 +11,7 @@ Teoretycznie powinno się tu znaleźć wszystko co powinieneś/aś wiedzieć o p
 
   ```md
   ---
-  title: Web development
+  title: Gaming section
   description: Oto jak w Solvro gramy w mario.
   ---
 
