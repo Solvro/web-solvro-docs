@@ -13,7 +13,7 @@ const accent = {
 const gray = {
   100: "#F6FAFD",
   200: "#EAF4FB",
-  300: "#DFEDFA",
+  300: "#C4D9EC",
   400: "#D9E8FF",
   500: "#274276",
   600: "#203560",
