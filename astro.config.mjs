@@ -58,6 +58,7 @@ export default defineConfig({
         Head: "./src/overrides/Head.astro",
       },
       social: {
+        email: "mailto:kn.solvro@pwr.edu.pl",
         facebook: "https://www.facebook.com/knsolvro",
         github: "https://github.com/solvro/web-solvro-docs",
         linkedin: "https://www.linkedin.com/company/knsolvro",
