@@ -56,6 +56,7 @@ export default defineConfig({
       ],
       components: {
         Head: "./src/overrides/Head.astro",
+        SocialIcons: "./src/overrides/SocialIcons.astro",
       },
       social: {
         email: "mailto:kn.solvro@pwr.edu.pl",
