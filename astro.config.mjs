@@ -89,15 +89,15 @@ export default defineConfig({
         },
         {
           label: "Solvro",
-          autogenerate: { directory: "solvro" },
+          autogenerate: { directory: "solvro", collapsed: true },
         },
         {
           label: "Sekcje",
-          autogenerate: { directory: "sections" },
+          autogenerate: { directory: "sections", collapsed: true },
         },
         {
           label: "Projekty",
-          autogenerate: { directory: "projects" },
+          autogenerate: { directory: "projects", collapsed: true },
         },
       ],
     }),
