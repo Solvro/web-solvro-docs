@@ -1,166 +1,53 @@
 ---
-title: Witaj w Solvro!
-description: Dokumentacja dla nowych oraz obecnych członków koła Solvro
-template: splash
-hero:
-  tagline: Dokumentacja odnośnie wszystkiego co Solvro 🚀
-  image:
-    file: ../../assets/logo_high.png
-  actions:
-    - text: Zacznij tutaj
-      link: /hello-there
-      icon: right-arrow
+title: Gdzie zacząć?
+description: Pierwsze kroki w dokumentacji Solvro
 ---
 
-import { LinkCard } from "@astrojs/starlight/components";
+import {
+  Steps,
+  Card,
+  CardGrid,
+  LinkCard,
+  Aside,
+} from "@astrojs/starlight/components";
 
-## Kim jesteśmy
+## Cześć 👋
 
-KN Solvro to **Strategiczne Studenckie Koło Naukowe** działające na Wydziale Informatyki i Telekomunikacji. Gromadzimy ponad 100 abitnych studentów napędzających innowacje na Politechnice Wrocławskiej. Lubimy się nazywać Politechnicznym SoftwareHousem, a naszym mottem jest “Otwieramy drzwi do świata IT”.
+Miło nam Cię powitać w otwartej dokumentacji organizacyjnej KN Solvro. Jest to miejsce, gdzie przechowujemy lata rozwoju naszej organizacji, zarówno od strony zarządczej jak i technicznej. Możesz znaleźć tu sprawozdania, procesy, poradniki i instrukcje dotyczące działalności Koła Naukowego Solvro.
 
-Analizując kim jesteśmy zaczynamy od **Strategiczne**. Otrzymując to bardzo unikatowe wyróżnienie działamy w obszarach mających wpływ na większość studentów naszej uczelni. Podejmujemy się odważnych działań godnie reprezentując KN Solvro i Politechnikę Wrocławską.
+### Dla gości
 
-Następnie mamy **Studenckie**. Jako koło działające na Politechnice Wrocławskiej aktywnie wspieramy społeczność studencką tworząc rozwiązania przed studentów dla studentów.
+<LinkCard title="Nasza oficjalna strona" href="solvro.pwr.edu.pl" />
+<LinkCard title="Strategia KN Solvro" href="/solvro/strategy" />
+<LinkCard title="Obecny zarząd" href="/solvro/vii_board" />
+<LinkCard title="Historia" href="/solvro/history" />
 
-Jak nazwa wskazuje jesteśmy **Kołem**. Symbolizuje to zgromadzenie ludzi działających ku wspólnemu celowi. W ramach jednej organizacji jesteśmy zintegrowani, wymieneiamy się wiedzą i doświadczeniem oraz razem dbamy o przyszłość koła.
+### Dla nowych członków
 
-Na koniec mamy **Naukowe**. Działając na jednej z najlepszych uczelni technicznych w kraju szczycimy się solidnym podejściem naukowym. Oprócz głęboko technicznych projektów poszerzających granice nauki jesteśmy zawsze na skraju co obecny świat nam oferuje wykorzystując dobre praktyki organizacyjne, programistyczne i projektowe.
+<LinkCard title="Jak pracujemy" href="/structure" />
+<LinkCard title="Komunikacja" href="/communication" />
+<LinkCard title="GitHub" href="/github" />
 
-Motto VII zarządu brzmi “Move fast and break things”, więc zgodnie z tą filozofią ekspansywnie się rozwijamy w wielu różnych obszarach i nie boimy się porażek - wyciągamy wnioski i działamy dalej.
+### Dla starych wyjadaczy
 
-<LinkCard title="Strategia KN Solvro" href="/solvro/strategy/" />
-<LinkCard title="Obecny zarząd" href="/solvro/vii_board/" />
+<LinkCard title="Jak pisać dokumentację" href="/how-to-write-docs" />
+<LinkCard
+  title="Prowadzenie projektów"
+  href="/sections/management/prowadzenie-projektów/"
+/>
 
-## Czym się zajmujemy
+## Nasza działalność
 
-![Co robimy](../../assets/solvro/what-we-do.png)
-
-<LinkCard title="Struktura KN Solvro" href="/solvro/structure/" />
-
-## Historia
-
-import { Card, CardGrid } from "@astrojs/starlight/components";
-
-<CardGrid stagger>
-  <Card title="2018" >
-    Założenie KN Solvro przez 6 studentów chcących dać studentom Politechniki Wrocławskiej możliwości do poznania najnowszych technologii używanych na rynku. Pierwotną opiekunką była dr inż. Małgorzata Sulkowska.
-
-    Założyciele - Adrian Mucha, Maciej Dziadyk, Maciej Hajduk, Maciej Kabała, Mateusz Resterny, Mateusz Walczak
-
-    I Zarząd - Mateusz Walczak, Maciej Kabała, Maciej Dziadyk
-
-  </Card>
-  <Card title="2019" >
-II Zarząd - Mateusz Walczak, Maciej Dziadyk, Maciej Kabała
-
-    * [Aplikacja na międzynarodowy konkurs inżynierski EBEC](https://solvro.pwr.edu.pl/portfolio/symulator-sklepu-na-konkurs-ebec/)
-    * Patronat Medialny i wystąpienie na prestiżowej Konferencji ML in PL
-    * Współpraca projektowa z Fundacją Pomoc z Polski
-    * Współpraca projektowa z Fundacją Pomocy Humanitarnej Redemptoris Missio
-    * Projekt do rezerwacji stolików dla Czasoprzestrzeni
-    * Rozpoczęcie cyklu Solvro Talk
-
-  </Card>
-  <Card title="2020" >
-  III Zarząd - Marcin Szuster, Jakub Balicki, Oskar Rek
-
-    * [Solvro Sante](https://solvro.pwr.edu.pl/portfolio/solvro-sante/) - System wspierający szczepienia w Papui Nowej Gwinei
-    * Wygrana na BEST Hacks 2020
-    * Współpraca projektowa z TK Games
-    * Współpraca projektowa z LiteFlow
-    * Utworzenie sekcji Machine Learning
-    * Projekt Machine Learning Network Simulator
-    * Odświeżenie strony internetowej Solvro
-    * Opiekunem zostaje dr inż. Piotr Syga
-
-  </Card>
-  <Card title="2021" >
-  IV Zarząd - Marcin Szuster, Krzysztof Krawczyk, Jakub Balicki
-
-    * zDolnyŚląsk - aplikacja pozwalająca na dzielenie się rozwiązaniami problemów województwa dolnośląskiego
-    * Współpraca projektowa z Poznańskim KN GHOST
-    * [Lokalniej](https://solvro.pwr.edu.pl/portfolio/lokalniej/) - aplikacja dla rzemieślników z Dolnego Śląska
-    * Patronat medialny prestiżowej konferencji ML in PL
-    * Rozpoczęcie prac nad pierwszą wersją ToPWR
-    * Mentoring przy hackatonie BEST Hacks
-    * Udział w ogólnopolskim finale hackatonu Hack4Lem
-
-  </Card>
-  <Card title="2022">
-  V Zarząd - Krzysztof Krawczyk, Anna Magierewicz, Kacper Kiedos
-    * [Znajdź swoją trasę](https://solvro.pwr.edu.pl/portfolio/znajdz-swoja-trase/) - wrocławska gra miejska 
-    * Współpraca przy organizacji BEST Hacks 2022
-    * Współpraca z Ulam Labs przy projekcie BitJar
-    * Współpraca z fundacją Dolnośląski Warsztat przy projekcie Lokalniej
-    * Wywiady w Radiu Rodzina, Radiu Czwórka, Telewizji TVP3, Dziale Informacji i Telewizji Echo24
-    * Utworzenie ról DevOps, Project Manager, Social Media Specialist
-    * Wydanie pierwszej wersji ToPWR (v0.5.1)
-    * Projekt Klasyfikacja rodzaju guza mózgu na zdjęciach MRI
-    * Uczestnictwo w MICCAI 2022 Singapur
-    * Uczestnictwo w GeoMedIA Workshop 2022 Amsterdam
-    * II miejsce na HackYeah 2022
-  </Card>
-  <Card title="2023" >
-  VI Zarząd - Dawid Rymarczyk, Anna Magierewicz, Mateusz Topczewski
-  * Przeniesienie KN Solvro na Wydział Informatyki i Telekomunikacji
-  * Uczestnictwo w BEST Hacks 2023 jako mentorzy
-  * Współpraca projektowa z "The Software Partner"
-  * Współpraca projektowa z Identt
-  * Prowadzenie warsztatów na Tygodniu Biometrii W4N 
-  * Projekt Segmentacja semantyczna rodzaju guzów piersi na zdjęciach USG
-  * Projekt Challenge SEG.A dotyczący segmentacji chorób aorty
-  * Współpraca z SKNF Bozon (AGH) przy projekcie [Fizyczni](https://solvro.pwr.edu.pl/portfolio/fizyczni/)
-  * Uczestnictwo w GHOST DAY 2023
-  * I miejsce na HackYeah 2023
-  </Card>
-  <Card title="2024" >
-  VII Zarząd - Dawid Linek, Szymon Kowaliński, Wiktoria Mróz
-    * Restrukturyzacja KN Solvro
-    * Utworzenie [długoterminowego planu strategicznego](/solvro/strategy)
-    * Wypuszczenie nowej wersji strony 
-    * Współpraca z firmą Identt przy [DeepFake Monitor](https://solvro.pwr.edu.pl/portfolio/)
-    * Projekt [SEG.A.2023](https://solvro.pwr.edu.pl/portfolio/seg-a-2023/) - Segmentation of the Aorta
-    * [ToPWR](https://solvro.pwr.edu.pl/portfolio/to-pwr/) - wypuszczenie wersji `v1.0.0`, `v1.1.0`, `v1.1.1`
-    * [Eventownik](https://solvro.pwr.edu.pl/portfolio/eventownik/) - wspomaganie wydarzeń na Politechnice Wrocławskiej
-    * [Planer](https://solvro.pwr.edu.pl/portfolio/planer/) - asystent układania planów
-    * Projekt [Patch The Planet](https://solvro.pwr.edu.pl/portfolio/patch-the-planet/)
-    * Uczestnictwo w PP-RAI 2024 Warszawa
-    * Uczestnictwo w FlutterCon Europe 2024 Berlin
-    * I miejsce na [HackYeah 2024](https://solvro.pwr.edu.pl/blog/hack-yeah-2024-zwyciezone/) w kategorii Artificial Intelligence
-    * Współorganizowanie prestiżowej konferencji ML in PL 2024
-    * Uczestnictwo w konferencji 4Developers 
-    * Uczestnictwo w IDEAHACK IDEAS NCBR  
-    * Organizacja Konferencji Kół Naukowych i Aktywnych Studentów [WITKoN 2024](https://solvro.pwr.edu.pl/blog/konferencja-kol-naukowych-i-aktywnych-studentow-wit-kon-2024/) 
-    * II miejsce w ErgoSlide Challenge 2024
-    * Rozpoczęcie pracy nad Aplikacją Juwenalia 2025
-    * Rozpoczęcie pracy nad [LED Cube](https://solvro.pwr.edu.pl/portfolio/ledcube/)
-    * Rozpoczęcie pracy nad PromoCHATor
-    * Utrzymanie strony LEM Wrocław
-    * Solvro Talki m.in z pracownikami [Intela](https://solvro.pwr.edu.pl/blog/scrum-w-praktyce/), JetBrains i Centralnego Ośrodka Informatyki
-    * Zdobycie tytułu [Koła Strategicznego Politechniki Wrocławskiej](https://solvro.pwr.edu.pl/blog/podsumowanie-roku-2024/)
-    * Udział w konkursie o przydział pomieszczeń
-    * \>14 000 użytkowników naszych aplikacji
-    * \>90 000 wyświetleń na social mediach
-  </Card>
-  <Card title="2025" >
-    * [PromoCHATor](https://promochator.solvro.pl) - wybierz idealnego promotora
-    * Otrzymanie biura na działalność KN Solvro w T17
-  </Card>
-</CardGrid>
-
-## Kontakt
+Nasze codzienne działanie skupia się na nabywaniu umiejętności twardych w poszczególnych sekcjach technicznych, które potem przekładamy na praktyczne projekty napędzające innowację na Politechnice Wrocławskiej.
 
 <CardGrid>
-  <LinkCard
-    title="Mail kn.solvro@pwr.edu.pl"
-    href="mailto:kn.solvro@pwr.edu.pl"
-  />
-  <LinkCard
-    title="Strona solvro.pwr.edu.pl"
-    href="https://solvro.pwr.edu.pl/contact"
-  />
-  <LinkCard title="Github" href="https://github.com/solvro" />
-  <LinkCard title="Facebook" href="https://www.facebook.com/knsolvro" />
-  <LinkCard title="LinkedIn" href="https://www.linkedin.com/company/knsolvro" />
-  <LinkCard title="Instagram" href="https://www.instagram.com/knsolvro/" />
+  ### Sekcje ### Projekty
+  <LinkCard title="Frontend" href="/sections/frontend/" />
+  <LinkCard title="ToPWR" href="/projects/topwr/handbook/" />
 </CardGrid>
+
+## Jak dołożyć cegiełkę do dokumentacji?
+
+Nasza dokumentacja jest otwarta na wszelkie sugestie. Widzisz błąd? Chcesz coś zmienić lub dodać? A może masz pomysł na nowy materiał? Nie czekaj! Wszystkie potrzebne informacje znajdziesz w [poradniku pisania dokumentacji](/how-to-write-docs).
+
+**Zapraszamy również do kontaktu przez naszą [stronę](https://solvro.pwr.edu.pl/contact) lub [maila](mailto:kn.solvro@pwr.edu.pl) 🚀**
