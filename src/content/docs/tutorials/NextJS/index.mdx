@@ -1,0 +1,400 @@
+---
+title: Przyjemny formularz feedback
+sidebar:
+  order: 1
+description: Wszystko co musisz wiedzieć o programowaniu frontu w Solvro
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import ImageFeedback1 from "#assets/tutorials/feedback-1.png";
+import ImageFeedback2 from "#assets/tutorials/feedback-2.png";
+import ImageFeedback3 from "#assets/tutorials/feedback-3.png";
+import ImageFeedback4 from "#assets/tutorials/feedback-4.png";
+import ImageFeedback5 from "#assets/tutorials/feedback-5.png";
+import ImageFeedback6 from "#assets/tutorials/feedback-6.png";
+import ImageFeedback7 from "#assets/tutorials/feedback-7.png";
+
+Elo żelo, czy zastanawiałeś się kiedyś, jak zrobić formularz feedbacku, który będzie przyjemny dla użytkownika ale też szybki w wykonaniu dla ciebie bez konieczności tworzenia panelu administracyjnego u siebie? W tym poradniku dowiesz się, jak to zrobić z wykorzystaniem Twojego ulubionego frameworku NextJS (może być dowolny inny, nawet zwykły HTML) oraz backendu w postaci Formularzy Google. Zamysł jest taki, żeby stworzyć w pełni właśny formularz na własnej stronie, a odpowiedzi przeglądać na stronie formularzy google czy w arkuszach google.
+
+## Założenia
+
+Technologie użyte:
+
+1. NextJS jako przykład frameworku na frontcie
+2. Google Forms jako backend z odpowiedziami
+3. shadcn/ui jako biblioteka komponentów
+
+## tl;dr
+
+Wszystko sprowadza się do wysłania formularza POST do Google Forms z odpowiednimi danymi:
+
+```html
+<form action="https://docs.google.com/forms/.../formResponse" method="POST">
+  <input type="text" name="entry.123456789" />
+  <input type="text" name="entry.987654321" />
+  <button type="submit">Submit</button>
+</form>
+```
+
+Aczkolwiek zrobimy to w bardziej elegancki sposób z użyciem `react-hook-form` i `shadcn/ui` oraz zabezpieczeniem, przeciwko spamowaniu.
+
+## Let's gooo 🚀
+
+To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
+
+<Steps>
+
+1. **Stwórz nowy formularz:**
+
+   Przejdź na stronę [Google Forms](https://docs.google.com/forms/u/0/), stwórz nowy formularz i dodaj swoje pytania.
+
+   <img
+     src={ImageFeedback1}
+     alt="Stwórz nowy formularz"
+     width={"100%"}
+     height={"auto"}
+   />
+
+2. **Opublikuj formularz i stwórz arkusz**
+
+   Następnie opublikuj publicznie swój forms:
+
+   - Przycisk "Opublikuj"
+   - W kategorii respondenci kliknij "Zarządzaj"
+   - 'Dostęp ogólny -> Widok respondenta' zmień z "Politechnika Wrocławska" na "Każda osoba mająca link"
+   - "Gotowe" -> "Opublikuj"
+
+   <img
+     src={ImageFeedback2}
+     alt="Opublikuj formularz"
+     width={"100%"}
+     height={"auto"}
+   />
+
+   ```jsx
+   // app/layout.tsx
+   export const metadata: Metadata = {
+     title: 'Twój tytuł',
+     description: 'I jakiś fajny opis',
+     keywords: [ 'Next.js', 'Tag 2', 'Tag 3' ],
+     openGraph: {...},
+   };
+   ```
+
+   :::caution
+   Ustawianie metadaty można wykonać tylko w komponencie serwerowym, tj. nie w plikach z `"use client"`
+   :::
+
+3. **Stwórz połączony arkusz google**
+
+   Możesz przeglądać również odpowiedzi i łatwo je udostępniać dzięki arkuszom Google. Wystarczy, że po przejściu do zakładki odpowiedzi, <br/>klikniesz zielony przycisk "Link do Arkuszy" -> "Utwórz":
+
+   <img
+     src={ImageFeedback3}
+     alt="Stwórz arkusz"
+     width={"100%"}
+     height={"auto"}
+   />
+
+   :::tip
+   Arkusz ten będzie automatycznie aktualizowany o nowe odpowiedzi oraz zmiany w formularzu, więc nie musisz się o to martwić. Możesz go wygodnie udostępniać innym osobom.
+   :::
+
+4. **Nowy komponent na stronie**
+
+   Naszedł czas na dodanie formularza do swojej strony. Przejdźmy do Twojego projektu NextJS, stwórzmy nowy client komponent `FeedbackForm.tsx`:
+
+   ```tsx
+   // FeedbackForm.tsx
+   "use client";
+
+   import React from "react";
+
+   export function FeedbackForm() {
+     return <div>Witam</div>;
+   }
+   ```
+
+5. **Wymagane dependencies**
+
+   Do obsługi `<form>` użyjmy `react-hook-form` i komponentu shadcn/ui `Form`.
+   Najpierw dodaj ten komponent do projektu:
+
+   ```bash
+   npx shadcn@latest add form
+   ```
+
+6. **Schemat**
+
+   Aby upewnić się, że użytkownik wysyła tylko takie dane, które są wymagane, stwórzmy schemat formularza:
+
+   ```tsx
+   // schemas.ts
+   import { z } from "zod";
+
+   export const FeedbackFormSchema = z.object({
+     option1: z.string(),
+     option2: z.string(),
+   });
+   ```
+
+7. **Formularz**
+
+   Następnie dodajmy formularz do naszego komponentu:
+
+   ```tsx
+   // FeedbackForm.tsx
+   "use client";
+
+   import { zodResolver } from "@hookform/resolvers/zod";
+   import React from "react";
+   import { useForm } from "react-hook-form";
+   import type { z } from "zod";
+
+   import { Button } from "@/components/ui/button";
+   import {
+     Form,
+     FormControl,
+     FormField,
+     FormItem,
+     FormLabel,
+     FormMessage,
+   } from "@/components/ui/form";
+   import { Input } from "@/components/ui/input";
+   import { FeedbackFormSchema } from "@/types/schemas";
+
+   export function FeedbackForm() {
+     const form = useForm<z.infer<typeof FeedbackFormSchema>>({
+       resolver: zodResolver(FeedbackFormSchema),
+       defaultValues: {
+         option1: "",
+         option2: "",
+       },
+     });
+
+     async function onSubmit(values: z.infer<typeof FeedbackFormSchema>) {
+       // Do something with the form values
+     }
+     return (
+       <div className="m-10 w-full rounded-md border p-5 sm:max-w-[425px]">
+         <h1 className="text-lg font-semibold">Formularz</h1>
+         <Form {...form}>
+           <form
+             onSubmit={form.handleSubmit(onSubmit)}
+             className="grid w-full gap-4 py-4 sm:max-w-[425px]"
+           >
+             <FormField
+               control={form.control}
+               name="option1"
+               render={({ field }) => (
+                 <FormItem>
+                   <FormLabel>Opcja 1</FormLabel>
+                   <FormControl>
+                     <Input
+                       placeholder="np. Błąd związany z formularzem"
+                       {...field}
+                     />
+                   </FormControl>
+                   <FormMessage />
+                 </FormItem>
+               )}
+             />
+             <FormField
+               control={form.control}
+               name="option2"
+               render={({ field }) => (
+                 <FormItem>
+                   <FormLabel>Opcja 2</FormLabel>
+                   <FormControl>
+                     <Input
+                       placeholder="np. Błąd związany z formularzem"
+                       {...field}
+                     />
+                   </FormControl>
+                   <FormMessage />
+                 </FormItem>
+               )}
+             />
+             <Button type="submit">Prześlij zgłoszenie</Button>
+           </form>
+         </Form>
+       </div>
+     );
+   }
+   ```
+
+   :::tip
+   Jest to podstawowa metoda tworzenia formularzy z `shadcn/ui` i `react-hook-form`. Jeśli nie rozumiesz tego kodu, zachęcam do odwiedzenia [dokumentacji](https://ui.shadcn.com/docs/components/form) shadcn/ui.
+   :::
+
+   Efekt tego wygląda mniej więcej tak:
+
+   {" "}
+
+   <img src={ImageFeedback4} width={"100%"} height={"auto"} />
+
+8. **Backend**
+
+   Aby cała magia mogła się zadziać, stwórzmy `Server Action`, która będzie wysyłać dane do Google.
+
+   ```tsx
+   // actions/feedback.ts
+   "use server";
+
+   import type { z } from "zod";
+
+   import { env } from "@/env.mjs";
+   import { FeedbackFormSchema } from "@/types/schemas";
+
+   export const sendFeedbackForm = async (
+     values: z.infer<typeof FeedbackFormSchema>
+   ) => {
+     try {
+       FeedbackFormSchema.parse(values);
+
+       // Jakaś funkcja do sprawdzania rate-limitów, czy użytkownik nie spamuje
+       // const isSpam = await checkSpam(values);
+       // if (isSpam) { return false } czy coś
+
+       const googleFormUrl = process.env.FORMS_LINK;
+
+       const formData = new URLSearchParams();
+       formData.append(process.env.FORMS_OPTION1, values.option1);
+       formData.append(process.env.FORMS_OPTION2, values.option2);
+
+       const response = await fetch(googleFormUrl, {
+         method: "POST",
+         body: formData,
+         headers: {
+           "Content-Type": "application/x-www-form-urlencoded",
+         },
+       });
+
+       // Obsługa odpowiedzi
+       if (response.ok) {
+         return true;
+       } else {
+         console.error("Error while sending feedback form", response);
+       }
+     } catch (error) {
+       console.error("Error while sending feedback form", error);
+     }
+   };
+   ```
+
+9. **Zdobycie potrzebnych danych**
+
+   Aby uzupełnić .env o potrzebne dane, przejdź do swojego formularza Google i w górnym topbarze po prawej kliknij ikonke oka, czyli podgląd:
+
+   <img src={ImageFeedback5} width={"100%"} height={"auto"} />
+
+   Następnie otwórz narzędzia deweloperskie przeglądarki i wybierz zakładkę `Elements`. Następnie inspect toolem (`Ctrl + Shift + C`) najedź na formularz i znajdź element `form`:
+
+   <img src={ImageFeedback6} width={"100%"} height={"auto"} />
+
+   Skopiuj link z `action` i zapisz do zmiennej `FORMS_LINK` w env.
+
+   Następnie wyszukaj `Ctrl + F` w devtoolsach (nie na stronie!) `entry.` aby znaleźć dwa pola (jeśli tyle miałeś w formularzu) i skopiuj je do odpowiednich zmiennych. Są one ułożone zwykle w dobrej kolejności:
+
+   <img src={ImageFeedback7} width={"100%"} height={"auto"} />
+
+   Przykładowy `.env`:
+
+   ```
+    // .env
+    FORMS_LINK=https://docs.google.com/forms/.../formResponse
+    FORMS_OPTION1=entry.123456789
+    FORMS_OPTION2=entry.987654321
+   ```
+
+10. **Połączenie formularza z backendem**
+
+    Na sam koniec zostało połączenie formularza z backendem. Wystarczy dodać `Server Action` do naszego formularza:
+
+    ```tsx {20, 32}
+    // FeedbackForm.tsx
+    "use client";
+
+    import { zodResolver } from "@hookform/resolvers/zod";
+    import React from "react";
+    import { useForm } from "react-hook-form";
+    import type { z } from "zod";
+
+    import { Button } from "@/components/ui/button";
+    import {
+      Form,
+      FormControl,
+      FormField,
+      FormItem,
+      FormLabel,
+      FormMessage,
+    } from "@/components/ui/form";
+    import { Input } from "@/components/ui/input";
+    import { FeedbackFormSchema } from "@/types/schemas";
+    import { sendFeedbackForm } from "@/actions/feedback";
+
+    export function FeedbackForm() {
+      const form = useForm<z.infer<typeof FeedbackFormSchema>>({
+        resolver: zodResolver(FeedbackFormSchema),
+        defaultValues: {
+          option1: "",
+          option2: "",
+        },
+      });
+
+      async function onSubmit(values: z.infer<typeof FeedbackFormSchema>) {
+        await sendFeedbackForm(values);
+      }
+      return (
+        <div className="m-10 w-full rounded-md border p-5 sm:max-w-[425px]">
+          <h1 className="text-lg font-semibold">Formularz</h1>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="grid w-full gap-4 py-4 sm:max-w-[425px]"
+            >
+              <FormField
+                control={form.control}
+                name="option1"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Opcja 1</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="np. Błąd związany z formularzem"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="option2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Opcja 2</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="np. Błąd związany z formularzem"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">Prześlij zgłoszenie</Button>
+            </form>
+          </Form>
+        </div>
+      );
+    }
+    ```
+
+</Steps>
+
+## That's it
+
+Na koniec możesz do tego dodać jakieś ładowanie, komunikaty o sukcesie, błędach, użyć react-query, disable przycisk i pola w czasie wysylania itp. ale to już zależy od Ciebie. Teraz możesz cieszyć się swoim własnym formularzem feedbacku, który jest szybki i przyjemny dla użytkownika.
