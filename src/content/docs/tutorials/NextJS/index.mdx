@@ -14,7 +14,9 @@ import ImageFeedback5 from "#assets/tutorials/feedback-5.png";
 import ImageFeedback6 from "#assets/tutorials/feedback-6.png";
 import ImageFeedback7 from "#assets/tutorials/feedback-7.png";
 
-Elo żelo, czy zastanawiałeś się kiedyś, jak zrobić formularz feedbacku, który będzie przyjemny dla użytkownika ale też szybki w wykonaniu dla ciebie bez konieczności tworzenia panelu administracyjnego u siebie? W tym poradniku dowiesz się, jak to zrobić z wykorzystaniem Twojego ulubionego frameworku NextJS (może być dowolny inny, nawet zwykły HTML) oraz backendu w postaci Formularzy Google. Zamysł jest taki, żeby stworzyć w pełni właśny formularz na własnej stronie, a odpowiedzi przeglądać na stronie formularzy google czy w arkuszach google.
+Elo żelo! Czy zastanawiałeś się kiedyś, jak zrobić formularz feedbacku, który będzie przyjemny dla użytkownika, a jednocześnie szybki w wykonaniu dla ciebie, bez konieczności tworzenia panelu administracyjnego u siebie? W tym poradniku dowiesz się, jak to osiągnąć z wykorzystaniem Twojego ulubionego frameworku Next.js (lub dowolnego innego, nawet zwykłego HTML-a) oraz backendu w postaci Formularzy Google.
+
+Zamysł jest taki, aby stworzyć w pełni własny formularz na swojej stronie, a odpowiedzi przeglądać wygodnie na stronie Formularzy Google lub w Arkuszach Google. Dzięki temu zaoszczędzisz czas na tworzeniu infrastruktury, jednocześnie zachowując pełną kontrolę nad wyglądem i działaniem formularza.
 
 ## Założenia
 
@@ -71,20 +73,6 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
      height={"auto"}
    />
 
-   ```jsx
-   // app/layout.tsx
-   export const metadata: Metadata = {
-     title: 'Twój tytuł',
-     description: 'I jakiś fajny opis',
-     keywords: [ 'Next.js', 'Tag 2', 'Tag 3' ],
-     openGraph: {...},
-   };
-   ```
-
-   :::caution
-   Ustawianie metadaty można wykonać tylko w komponencie serwerowym, tj. nie w plikach z `"use client"`
-   :::
-
 3. **Stwórz połączony arkusz google**
 
    Możesz przeglądać również odpowiedzi i łatwo je udostępniać dzięki arkuszom Google. Wystarczy, że po przejściu do zakładki odpowiedzi, <br/>klikniesz zielony przycisk "Link do Arkuszy" -> "Utwórz":
@@ -133,8 +121,8 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
    import { z } from "zod";
 
    export const FeedbackFormSchema = z.object({
-     option1: z.string(),
-     option2: z.string(),
+     email: z.string(),
+     content: z.string(),
    });
    ```
 
@@ -161,14 +149,15 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
      FormMessage,
    } from "@/components/ui/form";
    import { Input } from "@/components/ui/input";
+   import { Textarea } from "@/components/ui/textarea";
    import { FeedbackFormSchema } from "@/types/schemas";
 
    export function FeedbackForm() {
      const form = useForm<z.infer<typeof FeedbackFormSchema>>({
        resolver: zodResolver(FeedbackFormSchema),
        defaultValues: {
-         option1: "",
-         option2: "",
+         email: "",
+         content: "",
        },
      });
 
@@ -185,13 +174,13 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
            >
              <FormField
                control={form.control}
-               name="option1"
+               name="email"
                render={({ field }) => (
                  <FormItem>
-                   <FormLabel>Opcja 1</FormLabel>
+                   <FormLabel>Adres email</FormLabel>
                    <FormControl>
                      <Input
-                       placeholder="np. Błąd związany z formularzem"
+                       placeholder="123456@student.pwr.edu.pl"
                        {...field}
                      />
                    </FormControl>
@@ -201,15 +190,12 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
              />
              <FormField
                control={form.control}
-               name="option2"
+               name="content"
                render={({ field }) => (
                  <FormItem>
-                   <FormLabel>Opcja 2</FormLabel>
+                   <FormLabel>Treść</FormLabel>
                    <FormControl>
-                     <Input
-                       placeholder="np. Błąd związany z formularzem"
-                       {...field}
-                     />
+                     <Textarea placeholder="Treść zgłoszenia" {...field} />
                    </FormControl>
                    <FormMessage />
                  </FormItem>
@@ -224,7 +210,7 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
    ```
 
    :::tip
-   Jest to podstawowa metoda tworzenia formularzy z `shadcn/ui` i `react-hook-form`. Jeśli nie rozumiesz tego kodu, zachęcam do odwiedzenia [dokumentacji](https://ui.shadcn.com/docs/components/form) shadcn/ui.
+   Jest to podstawowa metoda tworzenia formularzy z `shadcn/ui` i `react-hook-form`. Jeśli nie rozumiesz tego kodu, zachęcam do odwiedzenia [dokumentacji shadcn/ui](https://ui.shadcn.com/docs/components/form).
    :::
 
    Efekt tego wygląda mniej więcej tak:
@@ -259,8 +245,8 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
        const googleFormUrl = process.env.FORMS_LINK;
 
        const formData = new URLSearchParams();
-       formData.append(process.env.FORMS_OPTION1, values.option1);
-       formData.append(process.env.FORMS_OPTION2, values.option2);
+       formData.append(process.env.FORMS_email, values.email);
+       formData.append(process.env.FORMS_content, values.content);
 
        const response = await fetch(googleFormUrl, {
          method: "POST",
@@ -303,8 +289,8 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
    ```
     // .env
     FORMS_LINK=https://docs.google.com/forms/.../formResponse
-    FORMS_OPTION1=entry.123456789
-    FORMS_OPTION2=entry.987654321
+    FORMS_email=entry.123456789
+    FORMS_content=entry.987654321
    ```
 
 10. **Połączenie formularza z backendem**
@@ -337,8 +323,8 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
       const form = useForm<z.infer<typeof FeedbackFormSchema>>({
         resolver: zodResolver(FeedbackFormSchema),
         defaultValues: {
-          option1: "",
-          option2: "",
+          email: "",
+          content: "",
         },
       });
 
@@ -355,7 +341,7 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
             >
               <FormField
                 control={form.control}
-                name="option1"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Opcja 1</FormLabel>
@@ -371,7 +357,7 @@ To są szybkie kroki, dzięki którym stworzysz formularz feedbacku:
               />
               <FormField
                 control={form.control}
-                name="option2"
+                name="content"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Opcja 2</FormLabel>
