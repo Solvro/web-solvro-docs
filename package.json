@@ -12,6 +12,10 @@
     "format": "prettier --write .",
     "prepare": "husky"
   },
+  "imports": {
+    "#assets/*": "./src/assets/*?url",
+    "#components/*": "./src/components/*.astro"
+  },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^3.6.3",
