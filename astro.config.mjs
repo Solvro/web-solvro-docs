@@ -101,10 +101,6 @@ export default defineConfig({
           label: "Projekty",
           autogenerate: { directory: "projects", collapsed: true },
         },
-        {
-          label: "Poradniki",
-          autogenerate: { directory: "tutorials" },
-        },
       ],
     }),
     tailwind({
