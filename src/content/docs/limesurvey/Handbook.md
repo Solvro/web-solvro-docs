@@ -7,6 +7,7 @@ description: Zarządzanie kontami badawczymi studentów i uprawnieniami na nasze
 
 ### Dostęp do platformy
 **URL instancji:** https://limesurvey.s.solvro.pl/  
+**Adres URL logowania:** https://limesurvey.s.solvro.pl/admin  
 **E-mail do pomocy technicznej:** kn.solvro@pwr.edu.pl
 
 📩 Studenci muszą poprosić o konta za pośrednictwem maila, podając następujące informacje:
@@ -20,7 +21,7 @@ description: Zarządzanie kontami badawczymi studentów i uprawnieniami na nasze
 
 ## Tworzenie nowego użytkownika w LimeSurvey
 
-Aby utworzyć nowego użytkownika, otwórz okno zarządzania użytkownikami, klikając `Konfiguracja` (znajdująca się na głównym pasku narzędzi LimeSurvey) -> `Zarządzanie użytkownikami`. <br>
+Aby utworzyć nowego użytkownika, otwórz okno zarządzania użytkownikami, klikając `Konfiguracja` (znajdująca się na głównym pasku narzędzi LimeSurvey) → `Zarządzanie użytkownikami`.  
 Następnie kliknij `Dodaj` użytkownika, znajdujące się w prawym górnym rogu tabeli kontrolnej użytkowników. Pojawi się okno, w którym należy:
 - Wprowadzić pożądaną nazwę użytkownika w polu **Nazwa użytkownika**.
 - Wprowadzić adres e-mail w polu **Email**. Należy pamiętać, że:
@@ -48,7 +49,7 @@ Możesz teraz dodać lub usunąć następujące uprawnienia:
 - **Grupy użytkowników**: Pozwala użytkownikowi tworzyć, przeglądać, aktualizować i usuwać grupy użytkowników.
 - **Użytkownicy**: Pozwala użytkownikowi tworzyć, modyfikować i usuwać własnych użytkowników administracyjnych. Nowo utworzeni użytkownicy nie mogą mieć wyższych uprawnień niż ich twórca. Nie można edytować użytkowników należących do innych administratorów, chyba że nadano uprawnienie Superadministratora.
 - **Superadministrator**: Może być nadany tylko przez innego Superadministratora i daje pełny dostęp do całej aplikacji LimeSurvey, w tym do instalacji wtyczek oraz używania dowolnych treści (w tym JavaScript) w ankietach.
- - **Używanie wewnętrznej autoryzacji bazy danych**: Pozwala użytkownikowi logować się do LimeSurvey poprzez stronę uwierzytelniania (np. http://domena/admin/authentication/sa/login). Jeśli ta opcja jest odznaczona, użytkownik otrzyma komunikat o błędzie: „Wewnętrzna metoda uwierzytelniania bazy danych nie jest dozwolona dla tego użytkownika”.
+ - **Używanie wewnętrznej autoryzacji bazy danych**: Pozwala użytkownikowi logować się do LimeSurvey poprzez stronę uwierzytelniania (np. http://domain/admin/authentication/sa/login). Jeśli ta opcja jest odznaczona, użytkownik otrzyma komunikat o błędzie: „Wewnętrzna metoda uwierzytelniania bazy danych nie jest dozwolona dla tego użytkownika”.
 > [!NOTE]
 > Wszystkie powyższe uprawnienia nadane Superadministratorowi nie mogą zostać usunięte przez interfejs użytkownika (GUI).
 
@@ -66,3 +67,10 @@ Możesz teraz dodać lub usunąć następujące uprawnienia:
 - **Superadministrator** – daje pełne uprawnienia do systemu, co jest zbędne dla zwykłego użytkownika.
 - **Users → Manage** – użytkownik nie powinien zarządzać innymi użytkownikami.
 - **Settings & Plugins** – zarządzanie ustawieniami globalnymi i pluginami.
+
+## Domyślny motyw ankiet
+Wszystkie nowo utworzone ankiety mają domyślnie przypisany motyw "**solvro**", który został zaprojektowany specjalnie na potrzeby naszego koła. Dzięki temu ankiety mają spójny wygląd i są dostosowane do naszych standardów wizualnych. 😊
+
+> [!TIP]
+> Jeśli chcesz użyć innego motywu, możesz zmienić go w ustawieniach ankiety:  
+> **Survey → Settings → General → "Theme" section**
