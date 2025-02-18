@@ -55,6 +55,40 @@ Zachęcamy do gwiazdkowania naszych publicznych repozytoriów Pokażmy innym, ż
 
    ![opcja gwiazdkowania repozytorium](../../assets/github/image5.png)
 
+## Nazewnictwo commitów
+
+Jest to propozycja standaryzacji commitów. Poszczególne projekty mogą nadpisać te zasady swoimi, ale niech każdy projekt ma jakąś przyjętą spójną konwencję.
+
+### Format
+
+Ogólny proponowany format jest następujący:
+
+**_type: short description_**
+
+### Przedrostek typu zmiany
+
+| feat:     | Zmiana wprowadzająca nowe funkcjonalności.                                                                               |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------- |
+| fix:      | Zmiana naprawiająca istniejące funkcjonalności.                                                                          |
+| refactor: | Refaktoryzacja/refaktoring, zmiana nie wprowadza zmian w funkcjonalnościach, jedynie zmienia strukturę/sposób wykonania. |
+| chore:    | “Nudna” czynność, np. inicjalizacja repo, podbicie numeru builda, release                                                |
+| docs:     | Zmiana dokumentacji (np. README, LICENSE).                                                                               |
+| ci:       | Zmiany związane z Github Actions                                                                                         |
+| test:     | Dodanie testów albo ich poprawa                                                                                          |
+
+Czasami mogą wystąpić też inne przedrostki. Ciekawym rozwiązaniem są też zakresy np. _feat(blog): code snippets_ lub _fix(login view): password strength calculator_
+
+Dla zainteresowanych zalecam zapoznanie się ze spycifikacją Conventional Commits [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/)
+
+### Krótki prosty opis zmiany
+
+Powinien być krótki, po angielsku, opisujący czego dotyczy zmiana.  
+Przykłady: _login view, shopping list, product detail view, auth service, product model, new db system, ios location permissions, photo header, offline message widget, change welcome message, improve fetching time, active tile content, cold start initialization_ i można by wymieniać w nieskończoność
+
+Czasami można się rozpisać na kilka dobrych słów, ale commity nie powinny wykraczać poza widoczne na githubie miejsce. (Wasze edytory IDE powinny o tym ostrzegać)
+
+**UWAGA** od [272647@student.pwr.edu.pl](mailto:272647@student.pwr.edu.pl) (Bartosz Gotowski): Czasowniki w opisach powinny być w czasie teraźniejszym, a nie przeszłym. Np. _`add new logo`_ zamiast _`added new logo`_
+
 ## Nazewnictwo repozytoriów
 
 W celu ujednolicenia nazewnictwa repozytoriów, obowiązuje następująca konwencja.
@@ -102,40 +136,6 @@ Po nazwie projektu można dodawać **wiele dowolnych własnych** przyrostków we
 | -team1, -team2                                                | Opcjonalny suffix zespołu; Przydatne jeśli dwa zespoły robią podobny projekt np. jakieś zadanie z ML-a.                                                                                        |
 
 _Brak innych pomysłów na ten moment, można zgłaszać propozycje._
-
-## Nazewnictwo commitów
-
-Jest to propozycja standaryzacji commitów. Poszczególne projekty mogą nadpisać te zasady swoimi, ale niech każdy projekt ma jakąś przyjętą spójną konwencję.
-
-### Format
-
-Ogólny proponowany format jest następujący:
-
-**_type: short description_**
-
-### Przedrostek typu zmiany
-
-| feat:     | Zmiana wprowadzająca nowe funkcjonalności.                                                                               |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------- |
-| fix:      | Zmiana naprawiająca istniejące funkcjonalności.                                                                          |
-| refactor: | Refaktoryzacja/refaktoring, zmiana nie wprowadza zmian w funkcjonalnościach, jedynie zmienia strukturę/sposób wykonania. |
-| chore:    | “Nudna” powtarzalna czynność np. podbicie numeru builda.                                                                 |
-| init:     | Commit dodający jakiś boilerplate frameworka/projektu, cokolwiek “początkowego”.                                         |
-| merge:    | Merge branchów.                                                                                                          |
-| docs:     | Zmiana dokumentacji (np. README, LICENSE).                                                                               |
-
-Czasami mogą wystąpić też inne przedrostki. Ciekawym rozwiązaniem są też zakresy np. _feat(blog): code snippets_ lub _fix(login view): password strength calculator_
-
-Dla zainteresowanych zalecam zapoznanie się ze spycifikacją Conventional Commits [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/)
-
-### Krótki prosty opis zmiany
-
-Powinien być krótki, po angielsku, opisujący czego dotyczy zmiana.  
-Przykłady: _login view, shopping list, product detail view, auth service, product model, new db system, ios location permissions, photo header, offline message widget, change welcome message, improve fetching time, active tile content, cold start initialization_ i można by wymieniać w nieskończoność
-
-Czasami można się rozpisać na kilka dobrych słów, ale commity nie powinny wykraczać poza widoczne na githubie miejsce. (Wasze edytory IDE powinny o tym ostrzegać)
-
-**UWAGA** od [272647@student.pwr.edu.pl](mailto:272647@student.pwr.edu.pl) (Bartosz Gotowski): Czasowniki w opisach powinny być w czasie teraźniejszym, a nie przeszłym. Np. _`add new logo`_ zamiast _`added new logo`_
 
 ## Zarządzanie zadaniami i projektami
 
