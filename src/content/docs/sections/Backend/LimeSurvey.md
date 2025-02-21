@@ -118,3 +118,11 @@ potrzeby naszego koła. Dzięki temu ankiety mają spójny wygląd i są dostoso
 
 > 💡 Jeśli chcesz użyć innego motywu, możesz zmienić go w ustawieniach ankiety:  
 > **Survey → Settings → General → "Theme" section**
+
+### Przykładowa ankieta
+
+Aby lepiej zrozumieć możliwości LimeSurvey oraz przetestować działanie platformy, przygotowaliśmy przykładową ankietę dotyczącą opinii o systemie LimeSurvey Solvro.
+
+🔗 Ankieta jest dostępna pod [tym linkiem](https://limesurvey.s.solvro.pl/index.php/424459?lang=pl).
+
+Ankieta może służyć jako przykład dla nowych użytkowników LimeSurvey oraz jako inspiracja do tworzenia własnych badań.
