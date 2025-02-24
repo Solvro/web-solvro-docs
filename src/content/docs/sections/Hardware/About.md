@@ -17,7 +17,7 @@ Już na wczesnym etapie nasze projekty przyciągają uwagę firm spoza środowis
 
 ### Aktualne Projekty
 
-#### [LED Cube](./projects/ledcube/handbook/)
+#### [LED Cube](https://docs.solvro.pl/projects/ledcube/handbook/)
 
 Projekt LED Cube to innowacyjna inicjatywa polegająca na stworzeniu modularnej kostki z LED-ów, która wizualizuje obiekty i obrazy w przestrzeni 3D. Od listopada dynamicznie rozwijamy ten projekt, a dzięki zaangażowaniu Mikołaja, Karola i Michała udało się stworzyć pierwszy prototyp technologii wyświetlania obrazów na matrycy 3D. To rozwiązanie otwiera nowe możliwości w dziedzinie wizualizacji danych i interaktywnych prezentacji oraz ugruntowuje kierunek rozwoju koła w tworzenie własnych, fizycznych rozwiązań technologicznych.
 
