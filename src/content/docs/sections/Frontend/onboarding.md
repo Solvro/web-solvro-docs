@@ -12,7 +12,7 @@ Przede wszystkim, każdy członek Koła powinien zostać dodany na grupę na Mes
 ## GitHub
 
 W Solvro, a w szczególności w sekcji Frontend pracujemy z kodem, więc GitHub jest najważniejszą częścią naszego workflow'u. Przede wszystkim, ustaw sobie publiczne członkostwo na naszej organizacji. Jeśli nie wiesz jak, skorzystaj z krótkiego [poradnika](https://docs.solvro.pl/github#publiczne-cz%C5%82onkostwo).<br/>
-Na stronie organizacji Solvro na Githubie możesz też zobaczyć wszystkie nasze projekty i związane z nimi repozytoria, więc jeśli masz ochotę, to się rozejrzyj i zobacz co gotujemy albo już ugotowaliśmy. </br>
+Na stronie organizacji Solvro na Githubie możesz zobaczyć wszystkie nasze projekty i związane z nimi repozytoria, więc jeśli masz ochotę, rozejrzyj się i zobacz co gotujemy albo już ugotowaliśmy. </br>
 
 ### Nazewnictwo repozytoriów i commitów
 
@@ -29,7 +29,7 @@ Serwer Solvro jest podzielony na kilka grup kanałów:
 - **Solvro** - Główny kanał dyskusyjny Main na sprawy niezwiązane z żadnym projektem, czy sekcją. Kanał random (chyba sam siebie tłumaczy).
 - **Sekcje** - Dedykowane kanały tekstowe dla każdej sekcji.
 - **Other** - Kanały niezwiązane z niczym innym na serwerze, ale nadal związane z kołem. Znajdziecie tu na przykład nasze kursy, czy też kanał na chwalenie sie projektami.
-- **Według projektu** - Każdy projekt ma swoje własne kanały tekstowe, w celu organizowania wszelkich dyskusji związanych tylko z tym projektem. Jeżeli na projekt skałada się kilka sekcji (np. Frontend, Backend, UI/UX), każda sekcja będzie miała też swój własny kanał, żeby nie zawalać głównego kanału projektu. Poza kanałami tekstowymi, kazdy projekt ma też kanał głosowy, na którym odbywają się wszystkie spotkania projektowe.
+- **Według projektu** - Każdy projekt ma swoje własne kanały tekstowe, w celu organizowania wszelkich dyskusji związanych tylko z danym projektem. Jeżeli na projekt składa się kilka sekcji (np. Frontend, Backend, UI/UX), każda sekcja będzie miała też swój własny kanał, żeby nie zawalać głównego kanału projektu. Poza kanałami tekstowymi, kazdy projekt ma też kanał głosowy, na którym odbywają się wszystkie spotkania projektowe.
 
 Pamiętajmy też, żeby dla każdej dłuższej rozmowy tworzyć osobny wątek, żeby nie zawalać kanału. Co jak co, ale czytelny kanał to dobry kanał :)
 
@@ -41,7 +41,7 @@ Jak możecie się domyslić z nagłówka, do pisania kodu polecamy VS Code'a ze 
 
 Pewnie czytając ten artykuł nie raz przyszła wam do głowy taka, lub podobna myśl:</br></br> _No dobra, cały czas mówicie o tych sekcjach, jakbym wiedział(a) o co chodzi_. </br></br> Już tłumaczymy. Pomyśl o sekcjach jak o działach w przedsiębiorstwie. Każda z nich zajmuje się innym obszarem działania organizacji tak, żeby korzystać ze specjalizacji ich członków. Tylko że w naszym przypadku członkowie sekcji są porozrzucani między projektami. </br>
 
-Każdy członek sekcji, poza pracą w swoim projekcie. musi w ciągu kwartału wykonać przynajmniej jedno zadanie operacyjne przydzielone przez leadera sekcji, lub wybrane samodzielnie spośród nieprzydzielonych zadań. Wykonanie danego zadania pozwala wam utrzymać status aktywnego członka KN Solvro. _Tylko, co mi daje taki status?_ Ano, co chyba najwazniejsze, chroni was przed wyrzuceniem z koła. Poza tym pozwala wam przykładowo uczestniczyć w Walnych Zgromadzeniach i w nich głosować.
+Każdy członek sekcji, poza pracą w swoim projekcie musi w ciągu kwartału wykonać przynajmniej jedno zadanie operacyjne przydzielone przez leadera sekcji, lub wybrane samodzielnie spośród nieprzydzielonych zadań. Wykonanie danego zadania pozwala wam utrzymać status aktywnego członka KN Solvro. _Tylko, co mi daje taki status?_ Ano, co chyba najwazniejsze, chroni was przed wyrzuceniem z koła. Poza tym pozwala wam przykładowo uczestniczyć w Walnych Zgromadzeniach i w nich głosować.
 
 ## Co robić jak się nie wie co robić?
 
