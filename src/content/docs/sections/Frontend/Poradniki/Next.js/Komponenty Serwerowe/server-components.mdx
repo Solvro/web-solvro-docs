@@ -1,0 +1,77 @@
+---
+title: Komponenty serwerowe w Next.js
+description: Omówienie komponentów serwerowych w Next.js i ich możliwości
+sidebar:
+  order: 4
+---
+
+W tej części omówię, czym są komponenty serwerowe, jakie mają supermoce i dlaczego uważam, że Fullstack w Next.js jest najfajnieszym sposobem pisania kodu.<br/><br/>
+W trakcie twojej przygody w Solvro, bardzo możliwym jest to, że musiał\*ś zaciągnąć jakieś dane z zewnętrznego API. Prawdopodobnie wtedy dopisał\*ś na górze pliku `"use server"`. Jednak w komponencie React'owym jest to zbędne. Next.js default'uje się do komponentów serwerowych dla ułatwienia pracy, chyba że dopiszesz mu `"use client"`.
+
+## Na czym polegają komponenty serwerowe?
+
+Komponenty serwerowe to takie, które są renderowane po stronie serwera. Dzięki temu możemy wykonywać operacje, takie jak pobieranie danych z zewnętrznego API, czy dostęp do bazy danych. To drugie pozwala nam całkowicie wyeliminować potrzebę korzystania z backendu, bo możemy po prostu napisać funkcję serwerową, która zaciąga dane z bazy, przetwarza je i zwraca na przykład w postaci zwykłego obiektu (JSON'a), ale o tym później.
+
+## Jak uzywać `"use server"`?
+
+### Funkcja serwerowa
+
+Funkcja serwerowa to swego rodzaju backend, który nie wymaga ani osobnego backendu, ani nie jest wywoływany na endpoint'cie. Zamiast tego, jest to zwykłą funkcja, którą możemy wywołać w komponencie serwerowym. Funkcja serwerowa zwraca dane, które możemy przekazać do komponentu klienckiego. Jedyne co trzeba zrobić, to utworzyć plik z rozszerzeniem .ts poza folderem /app i oznaczyć go dyrektywą `"use server"`. Przykładowa funkcja z jednego z moich projektów:
+
+```jsx
+"use server"
+
+import { prisma } from '@/prisma/prisma';
+import { cache } from 'react';
+
+export const getBalance = cache(async (user: string) => {
+    const balance = await prisma.user.findFirst({
+        where: {
+            id: user
+        },
+        select: {
+            balance: true
+        }
+    })
+
+    if(!balance) {
+        return 0
+    }
+
+    return balance.balance
+})
+```
+
+Troche się dzieje w tej funkcji, więc pochylmy się chwilę nad nią. Na początku importujemy naszego klienta Prisma, który pozwala nam na dostęp do bazy danych, ale o nim opowiem dokłądniej w dalszej części. Następnie importujemy cache, który, jak można się domyślić, pozwala nam na cachowanie danych, co jest przydatne, kiedy chcemy uniknąć zbędnych zapytań do bazy danych. W funkcji `getBalance` zaciągamy z bazy danych saldo użytkownika, a jeżeli go nie ma, zwracamy 0. Na końcu zwracamy saldo użytkownika.<br/><br/>
+
+W tym przypadku funkcja zwraca jedną wartość w postaci `number`. Jednakże, funkcja serwerowa może zwracać również obiekt, tablicę, czy nawet `null` lub `undefined`, co raczej nie jest zalecane. Wszystko zależy od tego, co dana funkcja ma robić. Wszystko fajnie, tylko co dalej możemy zrobić z naszą funkcją serwerową?
+
+### Komponent serwerowy
+
+Komponent serwerowy ma między innymi możliwość wywołania funkcji serwerowej i przekazania jej wyniku do komponentu klienckiego, czy też uruchamiania asynchronicznych funkcji. Przykład komponentu serwerowego renderującego wynik działania funkcji serwerowej:
+
+```jsx
+import { getBalance } from "@/sciezka/getBalance";
+
+export async function Page() {
+  const balance = await getBalance("uuid-uzytkownika");
+
+  return <div>Saldo użytkownika: {balance}</div>;
+}
+```
+
+W tym przykładzie wywołujemy funkcję `getBalance`, podajemy jej odpowiedni argument, w tym przypadku uuid użytkownika, którego saldo chcemy zaciagnąć i przypisujemy wynik do zmiennej `balance`. Następnie renderujemy wynik w komponencie. Z racji, że jesteśmy wewnątrz komponentu serwerowego, możemy używać funkcji asynchronicznych, co jest niemożliwe\* w komponencie klienckim. <br/><br/>
+
+_\* niemożliwe, chyba że użyjemy hooka `useEffect` potraktowanego czarną magią widoczną poniżej_
+
+```jsx
+	const [balance, setBalance] = useState(0)
+
+	useEffect(() => {
+		setDataTableStore(data);
+		const getTransactionSummaries = async () => {
+			setBalance(await getBalance(user?.valueOf() as string))
+		}
+		getTransactionSummaries()
+	}, []);
+```
