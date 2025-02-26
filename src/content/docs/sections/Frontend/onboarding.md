@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-Elo żeloo! Witamy nowego Fronciaka na pokładzie! W tym handbooku dowiesz się wszystkiego, co potrzebujesz do rozpoczecia pracy w Kole i w swoim projekcie. </br>
+Elo żeloo! Witamy nowego Fronciaka na pokładzie! W tym handbooku dowiesz się wszystkiego, co potrzebujesz do rozpoczecia pracy w Kole i w swoim projekcie. <br />
 
 Zanim zaczniemy, jak już pewnie zauważył\*ś, sekcja Frontend ma całą swoją sekcję na niniejszych docsach. Warto się z nią zapoznać, a w szczególności z [Best practices](https://docs.solvro.pl/sections/frontend/best-practices/) i [Częste błędy & FAQ](https://docs.solvro.pl/sections/frontend/common-mistakes/)
 
@@ -15,8 +15,8 @@ Przede wszystkim, każdy członek Koła powinien zostać dodany na grupę na Mes
 
 ## GitHub
 
-W Solvro, a w szczególności w sekcji Frontend pracujemy z kodem, więc GitHub jest najważniejszą częścią naszego workflow'u. Przede wszystkim, ustaw sobie publiczne członkostwo na naszej organizacji. Jeśli nie wiesz jak, skorzystaj z krótkiego [poradnika](https://docs.solvro.pl/github#publiczne-cz%C5%82onkostwo).<br/>
-Na stronie organizacji Solvro na Githubie możesz zobaczyć wszystkie nasze projekty i związane z nimi repozytoria, więc jeśli masz ochotę, rozejrzyj się i zobacz co gotujemy albo już ugotowaliśmy. </br>
+W Solvro, a w szczególności w sekcji Frontend pracujemy z kodem, więc GitHub jest najważniejszą częścią naszego workflow'u. Przede wszystkim, ustaw sobie publiczne członkostwo na naszej organizacji. Jeśli nie wiesz jak, skorzystaj z krótkiego [poradnika](https://docs.solvro.pl/github#publiczne-cz%C5%82onkostwo).<br />
+Na stronie organizacji Solvro na Githubie możesz zobaczyć wszystkie nasze projekty i związane z nimi repozytoria, więc jeśli masz ochotę, rozejrzyj się i zobacz co gotujemy albo już ugotowaliśmy. <br />
 
 ### Nazewnictwo repozytoriów i commitów
 
@@ -45,13 +45,13 @@ Jak możecie się domyslić z nagłówka, do pisania kodu polecamy VS Code'a ze 
 
 ## Sekcje
 
-Pewnie czytając ten artykuł nie raz przyszła wam do głowy taka, lub podobna myśl:</br></br> _No dobra, cały czas mówicie o tych sekcjach, jakbym wiedział(a) o co chodzi_. </br></br> Już tłumaczymy. Pomyśl o sekcjach jak o działach w przedsiębiorstwie. Każda z nich zajmuje się innym obszarem działania organizacji tak, żeby korzystać ze specjalizacji ich członków. Tylko że w naszym przypadku członkowie sekcji są porozrzucani między projektami. </br>
+Pewnie czytając ten artykuł nie raz przyszła wam do głowy taka, lub podobna myśl:<br /><br /> _No dobra, cały czas mówicie o tych sekcjach, jakbym wiedział(a) o co chodzi_. <br /><br /> Już tłumaczymy. Pomyśl o sekcjach jak o działach w przedsiębiorstwie. Każda z nich zajmuje się innym obszarem działania organizacji tak, żeby korzystać ze specjalizacji ich członków. Tylko że w naszym przypadku członkowie sekcji są porozrzucani między projektami. <br />
 
 Każdy członek sekcji, poza pracą w swoim projekcie musi w ciągu kwartału wykonać przynajmniej jedno zadanie operacyjne przydzielone przez leadera sekcji, lub wybrane samodzielnie spośród nieprzydzielonych zadań. Wykonanie danego zadania pozwala wam utrzymać status aktywnego członka KN Solvro. _Tylko, co mi daje taki status?_ Ano, co chyba najwazniejsze, chroni was przed wyrzuceniem z koła. Poza tym pozwala wam przykładowo uczestniczyć w Walnych Zgromadzeniach i w nich głosować, czy też daje możliwość ubiegania się o wcześniejsze zapisy na zajęcia.
 
 ## Co robić jak się nie wie co robić?
 
-**Krótka odpowiedź:** Pytaj. </br>
+**Krótka odpowiedź:** Pytaj. <br />
 
 **Długa odpowiedź:** Napisz na kanale swojego projektu. Przedstaw problem, na który się natknąłeś. Na pewno ktoś z twojego projektu, lub nawet z zewnątrz ci pomoże. Dużo doświadczonych kolegów starszych stażem chodzi między kanałami i patrzy, czy ktoś nie potrzebuje pomocy. Więc nie bój się pytać, bo w inny sposób się nie nauczysz ;)
 
