@@ -1,0 +1,43 @@
+---
+title: Zapytania do bazy danych w Prisma
+description: Omówienie składni zapytań do bazy danych w ORM Prisma.
+sidebar:
+  order: 6
+---
+
+Teraz już wiesz jak dodać Prismę do swojego projektu. Czas zaciągnąć jakieś dane. Składnia zapytań w Prismie jest bardzo prosta i wygląda mniej-więcej tak:
+
+```ts
+prisma.nazwaTabeli.typFinda({
+  where: {
+    kolumna: wartość,
+  },
+  select: {
+    kolumna: true,
+  },
+  include: {
+    nazwaTabeliWRelacji: {
+      select: {
+        kolumnaZTabeliWRelacji: true,
+      },
+    },
+  },
+});
+```
+
+Teraz co tu się wydarzyło? Przede wszystkim odnieśliśmy się do naszego globalnego obektu `prisma`. Dalej, wybieramy z jakiej tabeli chcemy wyciągnąć dane.
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  Pamiętaj, że jeśli nazwa tabeli zaczyna się z dużej litery, lub jest złożona z
+  kilku słów, Prisma konwertuje ją na camelCase. Przykładowo, jeśli masz tabelę
+  `UserPosts`, to w Prismie będzie ona nazywać się `userPosts`.
+</Aside>
+
+`typFinda` definuje w jaki sposób Prisma będzie szukać dane w tabeli. Dostępne opcje to `findMany`, `findFirst` (odpowiada LIMIT 1 w SQL) i `findUnique` (odpowiada DISTINCT w SQL). <br/><br/>
+Wewnątrz find'a możemy doprecyzować co dokładnie chcemy, żeby Prisma nam zwróciła.
+
+- `where` pozwala nam filtrować dane. Jako `wartość` możemy wpisać statyczną wartość, lub zmienną podaną na przykład jako argument funkcji serwerowej
+- `select` pozwala nam wybrać, które kolumny chcemy zwrócić. Możemy też zwrócić wszystkie kolumny, wogóle nie wpisując `select` do zapytania
+- `include` pozwala nam zwrócić dane z relacji. Wewnątrz `include` możemy zagnieżdżać kolejne `select` i `include`, co pozwala na zwrócenie danych z relacji relacji. Generalnie, zabawa z zagnieżdżonymi relacjami. Jakie zagnieżdżenie będzie głębokie zależy tylko od twojej struktury bazy danych.
