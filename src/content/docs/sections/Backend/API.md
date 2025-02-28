@@ -55,7 +55,7 @@ https://przykladowa.strona.pl/api/v1/users
 
 Zapytanie do ścieżki `/api/v1/users` strony `https://przykladowa.strona.pl` możemy podzielić na 2 i wytłumaczyć w jakim celu istnieją:
 
-- `/api/v1` informuje nas, i jest jednocześnie konwencją, że korzystami z API w wersji pierwszej. Jeżeli dany serwis, aplikacja działa już długo, to deweloperzy mogliby chcieć "zaktualizować" cały serwis do np. wersji `v2`, ale dla już wcześniej zaprogramowanych, innych aplikacji nadal `v1` byłoby dostępne.
+- `/api/v1` informuje nas, i jest jednocześnie konwencją, że korzystamy z API w wersji pierwszej. Jeżeli dany serwis, aplikacja działa już długo, to deweloperzy mogliby chcieć "zaktualizować" cały serwis do np. wersji `v2`, ale dla już wcześniej zaprogramowanych, innych aplikacji nadal `v1` byłoby dostępne.
 - `/users` jest zasobem, który próbujemy odczytać, dodać coś do niego, zmodyfikować go lub coś z niego usunąć. W tym przypadku będą to użytkownicy danego portalu, a serwer powinien nam odesłać odpowiedź, która wygląda mniej więcej tak:
 
 ```json
@@ -63,14 +63,14 @@ Zapytanie do ścieżki `/api/v1/users` strony `https://przykladowa.strona.pl` mo
   {
     "id": 1,
     "firstName": "Jan",
-    "firstName": "Przykładowy",
+    "lastName": "Przykładowy",
     "email": "jan.przykladowy@mail.pl",
     "password": "c3VwZXJfZHVwZXJfbmllc2Ftb3dpdGVfaGFzxYJvXzEyMw=="
   },
   {
     "id": 2,
     "firstName": "Karol",
-    "firstName": "Solvrowski",
+    "lastName": "Solvrowski",
     "email": "karol.solvrowski@mail.pl",
     "password": "YWRvbmlzX3RvX25pZXNhbW93aXR5X2ZyYW1ld29ya186RA=="
   },
@@ -89,7 +89,7 @@ Podczas gdy dostajemy atrybut `id` w odpowiedzi od serwera, niektóre dane są t
 ```json
 {
   "firstName": "Jakub",
-  "firstName": "Techniczny",
+  "lastName": "Techniczny",
   "email": "jakub.techniczny@mail.pl",
   "password": "moje_hasło_jest_widoczne!"
 }
@@ -103,7 +103,7 @@ Jeżeli wszystko przebiegło pomyślnie, serwer powinien odesłać nam odpowied�
 {
   "id": 3,
   "firstName": "Jakub",
-  "firstName": "Techniczny",
+  "lastName": "Techniczny",
   "email": "jakub.techniczny@mail.pl"
 }
 ```
@@ -114,7 +114,7 @@ Nawiązując też do pierwszego zapytania, w którym widzimy _zaszyfrowane_ has�
 {
   "id": 1,
   "firstName": "Jan",
-  "firstName": "Przykładowy",
+  "lastName": "Przykładowy",
   "email": "jan.przykladowy@mail.pl"
 }
 ```
