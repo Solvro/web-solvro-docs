@@ -1,0 +1,191 @@
+---
+import "asciinema-player/dist/bundle/asciinema-player.css";
+interface Props {
+  src: string;
+  idleTimeLimit?: number;
+  cols?: number;
+  rows?: number;
+  terminalFontFamily?: string;
+  preload?: boolean;
+  theme?: string;
+}
+
+const { src, ...opts } = Astro.props;
+opts.terminalFontFamily ??= "'Hack Nerd Font Mono', monospace";
+opts.preload ??= true;
+---
+
+<style is:global>
+  /* register the nerd font */
+  @font-face {
+    font-family: "Hack Nerd Font Mono";
+    src: local("Hack Nerd Font Mono Regular"),
+      url("../assets/HackNerdFontMono-Regular.ttf");
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: "Hack Nerd Font Mono";
+    src: local("Hack Nerd Font Mono Bold"),
+      url("../assets/HackNerdFontMono-Bold.ttf");
+    font-weight: bold;
+  }
+  /* center the play button */
+  asciinema-player .ap-play-button span {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  asciinema-player {
+    display: block;
+    padding: 0.25em;
+
+    &:has(.chapters) {
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.25em;
+      background-color: var(--sl-color-gray-7);
+    }
+  }
+
+  asciinema-player .chapters li {
+    font-size: 0.75em;
+    cursor: pointer;
+  }
+  asciinema-player .chapters li.current {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  asciinema-player .chapters {
+    max-height: 8em;
+    overflow-y: scroll;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+</style>
+<script>
+  //@ts-expect-error - asciinema is not ts :(
+  import * as AsciinemaPlayer from "asciinema-player";
+
+  interface AsciinemaPlayerType {
+    getCurrentTime(): number;
+    getDuration(): number;
+    play(): Promise<void>;
+    pause(): void;
+    seek(
+      location: number | string | { marker: number | "prev" | "next" }
+    ): Promise<void>;
+    addEventListener(
+      eventName: "play" | "playing" | "pause" | "ended",
+      handler: () => void
+    ): void;
+    addEventListener(
+      eventName: "input",
+      handler: (event: { data: string }) => void
+    ): void;
+    addEventListener(
+      eventName: "marker",
+      handler: (event: { index: number; time: number; label: string }) => void
+    ): void;
+    dispose(): void;
+  }
+
+  class AsciinemaPlayerElement extends HTMLElement {
+    protected player?: AsciinemaPlayerType;
+    protected chapterList?: HTMLOListElement;
+
+    connectedCallback() {
+      // remove all children of the element, but save the last <ol>
+      for (const child of this.children) {
+        if (child instanceof HTMLOListElement) {
+          this.chapterList = child;
+        }
+        this.removeChild(child);
+      }
+
+      // create a node for the player
+      const playerNode = document.createElement("div");
+      playerNode.classList.add("player");
+      this.appendChild(playerNode);
+
+      // insert the chapter list below the player (if we've saved one)
+      if (this.chapterList !== undefined) {
+        this.chapterList.classList.add("chapters");
+        this.appendChild(this.chapterList);
+        this.chapterList.addEventListener("click", (ev) => {
+          if (this.chapterList === undefined) return;
+
+          // find out which chapter got clicked
+          const index = Array.from(this.chapterList.children).indexOf(
+            (ev.target as Element).closest("li") as Element
+          );
+          if (index < 0) return;
+
+          // seek to this chapter
+          this.markerReached(index);
+          this.player?.seek({ marker: index });
+
+          // ensure the player is in view
+          this.scrollIntoView({
+            block: "nearest",
+            behavior: "smooth",
+          });
+        });
+      }
+
+      // insert the player (after ensuring the custom font loads)
+      document.fonts.load("1em Hack Nerd Font Mono").then(() => {
+        this.player = AsciinemaPlayer.create(
+          this.getAttribute("src"),
+          playerNode,
+          JSON.parse(this.getAttribute("opts") ?? "{}")
+        );
+
+        this.player?.addEventListener("marker", ({ index }) =>
+          this.markerReached(index)
+        );
+      });
+    }
+
+    private markerReached(index: number) {
+      if (this.chapterList === undefined) {
+        return;
+      }
+
+      // unmark other chapters
+      for (const chapter of this.chapterList.querySelectorAll(".current")) {
+        chapter.classList.remove("current");
+      }
+
+      const currentChapter = this.chapterList.children[index];
+      if (currentChapter === undefined) {
+        return;
+      }
+      // mark the new one
+      currentChapter?.classList?.add("current");
+
+      // scroll to it
+      const containerRect = this.chapterList.getBoundingClientRect();
+      const chapterRect = currentChapter.getBoundingClientRect();
+      this.chapterList.scrollBy({
+        top: -(
+          containerRect.y +
+          containerRect.height / 2 -
+          chapterRect.height / 2 -
+          chapterRect.y
+        ),
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+
+    disconnectedCallback() {
+      this.player?.dispose();
+    }
+  }
+
+  customElements.define("asciinema-player", AsciinemaPlayerElement);
+</script>
+
+<asciinema-player src={src} opts={JSON.stringify(opts)}>
+  <slot />
+</asciinema-player>
