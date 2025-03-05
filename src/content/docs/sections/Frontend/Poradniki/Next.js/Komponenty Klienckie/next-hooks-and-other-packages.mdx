@@ -29,7 +29,7 @@ export function Page() {
 }
 ```
 
-Dzięki useRouter mozemy też blokować scrollowanie na stronie, kiedy zmieniamy ścieżkę:
+Dzięki useRouter możemy też blokować scrollowanie na stronie, kiedy zmieniamy ścieżkę:
 
 ```jsx
 "use client";
@@ -49,6 +49,14 @@ export function Page() {
   );
 }
 ```
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  Warto zaznaczyć, że useRouter najczęściej jest wykorzystywany wewnątrz funkcji
+  będących event handlerami, ale dla prostoty zrozumienia podałem przykład jak
+  można zamienić zwykły przycisk w link.
+</Aside>
 
 #### Wszystkie metody dostępne w obiekcie routera
 
