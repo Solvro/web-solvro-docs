@@ -1,6 +1,8 @@
 ---
 title: Hardware info
 description: Odkryj naszą sekcję hardware w Solvro – rozwijamy technologie od listopada 2024, realizując innowacyjne projekty.
+sidebar:
+  order: 1
 ---
 
 ### Wizja i Misja
