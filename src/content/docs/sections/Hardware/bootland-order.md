@@ -12,7 +12,7 @@ Czas na zakupy z Botlandem! 🎉 Tutaj masz kilka wskazówek, jak to zrobić spr
 
 ## Na Początek
 
-🔑 Musisz mieć dostęp do konta Solvro w Botlandzie, żeby otrzymać zniżki. Jeśli potrzebujesz danych logowania, skontaktuj się z Zarządem, najlepiej z Szymonem - the privileged god. 🌟 Informacja o jednolitym menedżerze haseł również pojawi się tu, jak tylko będzie gotowa!
+🔑 Musisz mieć dostęp do konta Solvro w Botlandzie, żeby otrzymać zniżki. Jeśli potrzebujesz danych logowania, skontaktuj się z Zarządem, bądź z przewodniczącym sekcji hardware. 🌟 Informacja o jednolitym menedżerze haseł również pojawi się tu, jak tylko będzie gotowa!
 
 ## Jak To Zrobić?
 
