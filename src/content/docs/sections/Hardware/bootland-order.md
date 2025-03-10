@@ -24,7 +24,7 @@ Czas na zakupy z Botlandem! 🎉 Tutaj masz kilka wskazówek, jak to zrobić spr
 
 📌Nie zapomnij, że kody rabatowe Solvro aplikują się automatycznie.
 
-4️⃣ Przejdź do realizacji płatności.
+3️⃣ Przejdź do realizacji płatności.
 
 🚨 WAŻNE! Musisz zmienić adres faktury (nie usuwać!)
 
@@ -38,10 +38,10 @@ Czas na zakupy z Botlandem! 🎉 Tutaj masz kilka wskazówek, jak to zrobić spr
 📌Końcowo to wygląda tak:
 ![alt text](../../../../assets/hardware/zamowienia/dodane-adresy.png)
 
-#### 5. Następnie wybieramy dostawę i płatność
+4️⃣ Następnie wybieramy dostawę i płatność
 
 👉 Wybierasz sposób dostawy i płatności – nic więcej nie trzeba robić.
 
-#### 6. Pamiętaj o usunięciu swojego adresu
+5️⃣ Pamiętaj o usunięciu swojego adresu
 
 📌 Jeśli nie chcesz, by Twój adres został w systemie i był widoczny dla innych, usuń go z panelu adresów po złożeniu zamówienia.
