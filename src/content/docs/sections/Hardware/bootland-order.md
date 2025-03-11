@@ -16,7 +16,7 @@ Czas na zakupy z Botlandem! 🎉 Tutaj masz kilka wskazówek, jak to zrobić spr
 
 ## Jak To Zrobić?
 
-1️⃣ Wejdź na stronę https://botland.com.pl/ i zaloguj się swoimi danymi.
+1️⃣ Wejdź na stronę https://botland.com.pl/ i zaloguj się pozyskanymi danymi.
 
 2️⃣ Dodaj produkty do koszyka - pamiętaj, że inni też mogą je przeglądać, więc zapisz swoje wybory!
 📌 Tak wygląda widok koszyka:
@@ -31,6 +31,7 @@ Czas na zakupy z Botlandem! 🎉 Tutaj masz kilka wskazówek, jak to zrobić spr
 1. Zaznacz opcję „Adres do faktury różni się od adresu dostawy”.
 2. Zmień dane tak, by nie wystawiać faktury na Fundację Manus ani na Politechnikę Wrocławską.
 3. Tak samo zmień adres dostawy, jeśli jest inny.
+4. Nie zapomnij dodać swój numer telefonu, aby otrzymywać powiadomienia o przesyłce
 
 📌 Zaznacz inny adres:
 ![alt text](../../../../assets/hardware/zamowienia/adres-faktury.png)
