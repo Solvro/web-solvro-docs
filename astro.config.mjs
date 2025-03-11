@@ -87,6 +87,10 @@ export default defineConfig({
               label: "Jak używać githuba?",
               link: "/github",
             },
+            {
+              label: "Git handbook",
+              autogenerate: { directory: "git", collapsed: true },
+            },
           ],
         },
         {
