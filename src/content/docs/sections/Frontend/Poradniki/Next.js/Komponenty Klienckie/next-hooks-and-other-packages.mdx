@@ -19,6 +19,8 @@ Wcześniej wspomniałem, że Next dostarcza nam wiele hooków, które ułatwiaj�
 import { useRouter } from "next/navigation";
 // funkcje typu loginUser, updateUser to hipotetyczne funkcje,
 // które nam przetwarzają zapytanie o logowanie
+const router = useRouter();
+
 	const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
 		const loginStatus = await loginUser(data)
 		setLoginResponse(loginStatus.message)
