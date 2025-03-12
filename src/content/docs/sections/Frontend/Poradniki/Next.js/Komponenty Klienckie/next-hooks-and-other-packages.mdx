@@ -2,7 +2,7 @@
 title: Hooki i komponenty Next.js oraz inne paczki
 description: Omówienie hooków dostarczanych przez Next.js oraz innych przydatnych paczek.
 sidebar:
-  order: 3
+  order: 11
 ---
 
 Wcześniej wspomniałem, że Next dostarcza nam wiele hooków, które ułatwiają nam pracę z frameworkiem. W tej części omówię najbardziej przydatne hooki oraz inne paczki, które mogą ci się przydać.
@@ -17,46 +17,36 @@ Wcześniej wspomniałem, że Next dostarcza nam wiele hooków, które ułatwiaj�
 "use client";
 
 import { useRouter } from "next/navigation";
-
-export function Page() {
-  const router = useRouter();
-
-  return (
-    <button type="button" onClick={() => router.push("/dashboard")}>
-      Dashboard
-    </button>
-  );
-}
+// funkcje typu loginUser, updateUser to hipotetyczne funkcje,
+// które nam przetwarzają zapytanie o logowanie
+	const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
+		const loginStatus = await loginUser(data)
+		setLoginResponse(loginStatus.message)
+		if (loginStatus.message === 'Logged in') {
+			updateUser(loginStatus.uuid)
+			setCookie('currentUser', loginStatus.uuid)
+			router.push('/dashboard')
+		}
+	};
 ```
 
-Dzięki useRouter możemy też blokować scrollowanie na stronie, kiedy zmieniamy ścieżkę:
+W powyższym przykładzie mamy funkcję `onSubmit`, która po zalogowaniu użytkownika przekierowuje go na stronę `/dashboard`. Dzięki `router.push` możemy zmieniać ścieżkę na dowolną, a także przekazywać dodatkowe opcje, takie jak blokowanie scrollowania na stronie:
 
 ```jsx
 "use client";
 
 import { useRouter } from "next/navigation";
 
-export function Page() {
-  const router = useRouter();
-
-  return (
-    <button
-      type="button"
-      onClick={() => router.push("/dashboard", { scroll: false })}
-    >
-      Dashboard
-    </button>
-  );
-}
+	const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
+		const loginStatus = await loginUser(data)
+		setLoginResponse(loginStatus.message)
+		if (loginStatus.message === 'Logged in') {
+			updateUser(loginStatus.uuid)
+			setCookie('currentUser', loginStatus.uuid)
+			router.push('/dashboard', { scroll: false })
+		}
+	};
 ```
-
-import { Aside } from "@astrojs/starlight/components";
-
-<Aside>
-  Warto zaznaczyć, że useRouter najczęściej jest wykorzystywany wewnątrz funkcji
-  będących event handlerami, ale dla prostoty zrozumienia podałem przykład jak
-  można zamienić zwykły przycisk w link.
-</Aside>
 
 #### Wszystkie metody dostępne w obiekcie routera
 
@@ -130,7 +120,7 @@ Opcjonalne:
 
 ### Link
 
-`Link` to komponent Nexta pozwalający na nawigację między stronami. Jest zoptymalizowaną wersją komponentu `a` z czystego HTML'a.
+`Link` to komponent Nexta pozwalający na nawigację między stronami. Jest zoptymalizowaną wersją komponentu `a` z czystego HTML'a, który od razu prefetchuje dane dla ścieżki pod podanym linkiem, przez co skracamy czas ładowania.
 
 ```jsx
 "use client";
@@ -175,7 +165,7 @@ function Counter() {
 
 ### Shadcn/ui
 
-Shadcn/ui to paczka, która dostarcza gotowe komponenty ui. Tak się składa, że w Solvro korzystamy z Shadcn'a do stylowania naszych aplikacji. Od innych bibliotek UI różni się tym, że jest bardzo lekki i prosty w użyciu. Zamiast instalowania wielkiej paczki, która zawiera wszystkie komponenty, możemy instalować tylko te, które są nam potrzebne. Zainstalowane komponenty mozemy też dowolnie edytować, dodając do nich własne style za pomocą TailwindCSS'a.
+Shadcn/ui to paczka, która dostarcza gotowe komponenty ui. Tak się składa, że w Solvro korzystamy z Shadcn'a do stylowania naszych aplikacji. Od innych bibliotek UI różni się tym, że jest bardzo lekki i prosty w użyciu. Zamiast instalowania wielkiej paczki, która zawiera wszystkie komponenty, możemy instalować tylko te, które są nam potrzebne. Zainstalowane komponenty mozemy też dowolnie edytować, dodając do nich własne style za pomocą TailwindCSS'a. Największym atutem Shadcn'a jest to, że możemy całkowicie edytować każdy dodany komponent, a nie tak jak na przykład w Material UI, gdzie mamy gotowe komponenty, które nam udostępniają propy do stylizacji, ale nie możemy ich edytować w pełnym stopniu.
 
 Instalacja paczki:
 
@@ -200,7 +190,7 @@ import { Steps } from "@astrojs/starlight/components";
 4. Zaimportuj komponent
 
    ```jsx
-   import { Button } from "@components/ui/button";
+   import { Button } from "@/components/ui/button";
 
    export function Home() {
      return (

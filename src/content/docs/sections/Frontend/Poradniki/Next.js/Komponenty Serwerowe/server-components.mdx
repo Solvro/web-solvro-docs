@@ -2,8 +2,18 @@
 title: Komponenty serwerowe w Next.js
 description: Omówienie komponentów serwerowych w Next.js i ich możliwości
 sidebar:
-  order: 4
+  order: 12
 ---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside type="danger" title="Disclaimer">
+  Musimy pamiętać, że mimo tego, że funkcje serwerowe są zwykłymi funkcjami,
+  nadal dla nich są generowane endpoint'y, które widać w network tabie w
+  inspektorze przeglądarki. Dlatego należy je zabezpieczać tak samo jak zwykłe
+  endpoint'y backendowe, szczególnie jeśli są wykonywane w komponencie
+  klienckim. Fajnie jest jednak nie leakować wszystkich naszych danych :)
+</Aside>
 
 W tej części omówię, czym są komponenty serwerowe, jakie mają supermoce i dlaczego uważam, że Fullstack w Next.js jest najfajnieszym sposobem pisania kodu.<br/><br/>
 W trakcie twojej przygody w Solvro, bardzo możliwym jest to, że musiał\*ś zaciągnąć jakieś dane z zewnętrznego API. Prawdopodobnie wtedy dopisał\*ś na górze pliku `"use server"`. Jednak w komponencie React'owym jest to zbędne. Next.js default'uje się do komponentów serwerowych dla ułatwienia pracy, chyba że dopiszesz mu `"use client"`.
@@ -16,16 +26,15 @@ Komponenty serwerowe to takie, które są renderowane po stronie serwera. Dzięk
 
 ### Funkcja serwerowa
 
-Funkcja serwerowa to swego rodzaju backend, który nie wymaga ani osobnego backendu, ani nie jest wywoływany na endpoint'cie. Zamiast tego, jest to zwykłą funkcja, którą możemy wywołać w komponencie serwerowym. Funkcja serwerowa zwraca dane, które możemy przekazać do komponentu klienckiego. Jedyne co trzeba zrobić, to utworzyć plik z rozszerzeniem .ts poza folderem /app i oznaczyć go dyrektywą `"use server"`. Przykładowa funkcja z jednego z moich projektów:
+Funkcja serwerowa to swego rodzaju backend, który nie wymaga ani osobnego backendu, ani nie jest wywoływany na endpoint'cie. Zamiast tego, jest to zwykła funkcja, którą możemy wywołać w komponencie serwerowym. Funkcja serwerowa zwraca dane, które możemy przekazać do komponentu klienckiego. Jedyne co trzeba zrobić, to utworzyć plik z rozszerzeniem .ts poza folderem `/app` (najlepiej w folderze `/actions`) i oznaczyć go dyrektywą `"use server"`. Przykładowa funkcja z jednego z moich projektów:
 
 ```jsx
 "use server"
 
 import { prisma } from '@/prisma/prisma';
-import { cache } from 'react';
 
-export const getBalance = cache(async (user: string) => {
-    const balance = await prisma.user.findFirst({
+export async function getBalance(user: string) {
+    const dbQuery = await prisma.user.findFirst({
         where: {
             id: user
         },
@@ -34,15 +43,15 @@ export const getBalance = cache(async (user: string) => {
         }
     })
 
-    if(!balance) {
+    if(!dbQuery) {
         return 0
     }
 
-    return balance.balance
+    return dbQuery.balance
 })
 ```
 
-Trochę się dzieje w tej funkcji, więc pochylmy się chwilę nad nią. Na początku importujemy naszego klienta Prisma, który pozwala nam na dostęp do bazy danych, ale o nim opowiem dokładniej w dalszej części. Następnie importujemy cache, który, jak można się domyślić, pozwala nam na cachowanie danych, co jest przydatne, kiedy chcemy uniknąć zbędnych zapytań do bazy danych. W funkcji `getBalance` zaciągamy z bazy danych saldo użytkownika, a jeżeli go nie ma, zwracamy 0. Na końcu zwracamy saldo użytkownika.<br/><br/>
+Trochę się dzieje w tej funkcji, więc pochylmy się chwilę nad nią. Na początku importujemy naszego klienta Prisma, który pozwala nam na dostęp do bazy danych, ale o nim opowiem dokładniej w dalszej części. W funkcji `getBalance` zaciągamy z bazy danych saldo użytkownika, a jeżeli go nie ma, zwracamy 0. Na końcu zwracamy saldo użytkownika.<br/><br/>
 
 W tym przypadku funkcja zwraca jedną wartość w postaci `number`. Jednakże, funkcja serwerowa może zwracać również obiekt, tablicę, czy nawet `null` lub `undefined`, co raczej nie jest zalecane. Wszystko zależy od tego, co dana funkcja ma robić. Wszystko fajnie, tylko co dalej możemy zrobić z naszą funkcją serwerową?
 
@@ -51,26 +60,35 @@ W tym przypadku funkcja zwraca jedną wartość w postaci `number`. Jednakże, f
 Komponent serwerowy ma między innymi możliwość wywołania funkcji serwerowej i przekazania jej wyniku do komponentu klienckiego, czy też uruchamiania asynchronicznych funkcji. Przykład komponentu serwerowego renderującego wynik działania funkcji serwerowej:
 
 ```jsx
-import { getBalance } from "@/sciezka/getBalance";
+import { getBalance } from "@/actions/getBalance";
 
 export async function Page() {
-  const balance = await getBalance("uuid-uzytkownika");
-
+  const user = await auth();
+  const balance = await getBalance(user.id);
   return <div>Saldo użytkownika: {balance}</div>;
 }
 ```
 
 W tym przykładzie wywołujemy funkcję `getBalance`, podajemy jej odpowiedni argument, w tym przypadku uuid użytkownika, którego saldo chcemy zaciągnąć i przypisujemy wynik do zmiennej `balance`. Następnie renderujemy wynik w komponencie. Z racji, że jesteśmy wewnątrz komponentu serwerowego, możemy używać funkcji asynchronicznych, co jest niemożliwe\* w komponencie klienckim. <br/><br/>
 
-_\* niemożliwe, chyba że użyjemy hooka `useEffect` potraktowanego czarną magią widoczną poniżej_
+\_\* niemożliwe, chyba że użyjemy hooka `useEffect` potraktowanego czarną magią widoczną poniżej:
 
 ```jsx
-	const [balance, setBalance] = useState(0)
+const [balance, setBalance] = useState(0);
+const { user } = useSession();
 
-	useEffect(() => {
-		const getTransactionSummaries = async () => {
-			setBalance(await getBalance(user?.valueOf() as string))
-		}
-		getTransactionSummaries()
-	}, []);
+async function getTransactionSummaries() {
+  if (!user) return;
+  try {
+    const result = await getBalance(user.id);
+    setBalance(result);
+  } catch (error) {
+    console.error(error);
+    // handle np jakis toast
+  }
+}
+
+useEffect(() => {
+  void getTransactionSummaries();
+}, []);
 ```

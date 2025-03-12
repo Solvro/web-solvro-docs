@@ -2,7 +2,7 @@
 title: Łączenie z bazą danych
 description: Wprowadzenie do łączenia z bazą danych w komponentach serwerowych w Next.js poprzez ORM Prisma.
 sidebar:
-  order: 5
+  order: 13
 ---
 
 W poprzedniej części omówiłem, czym są komponenty serwerowe i jak możemy dzięki nim wyeliminować backend. Wprowadziłem też kolejną paczkę o nazwie Prisma, którą teraz omówię trochę dokładniej.
@@ -13,7 +13,7 @@ Prisma to ORM (Object-Relational Mapper), który pozwala na łatwe łączenie si
 
 ## Jak zacząć korzystać z Prisma?
 
-import { Steps } from "@astrojs/starlight/components";
+import { Steps, Aside } from "@astrojs/starlight/components";
 
 <Steps>
 1. Zainstaluj paczkę w swoim projekcie:
@@ -88,10 +88,11 @@ import { Steps } from "@astrojs/starlight/components";
 
         if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
         ```
+        <Aside type="tip" title="Fun fact">
+          Powyższy kod jest taki rozległy po to, żeby prisma zachowywała się jak na produkcji, czyli nie tworzyła nowego klienta dla każdego zapytania. Warto zainicjalizować klienta raz i używać go w całej sesji.
+        </Aside>
 
-</Steps>
-
-import { Aside } from "@astrojs/starlight/components";
+    </Steps>
 
 <Aside type="tip">
   Prisma daje możliwość podejrzenia zawartości bazy danych bez potrzeby
@@ -103,4 +104,8 @@ import { Aside } from "@astrojs/starlight/components";
     alt="Prisma Studio"
     style="margin-left:auto; margin-right:auto"
   />
+  Nie jest to jednak zalecany sposób zarządzania bazą danych, ale przydatny do
+  szybkiego podejrzenia zawartości. Dla bardziej zaawansowanych operacji
+  najlepiej korzystać z dedykowanego interfejsu, takiego jak DBeaver, albo
+  wspomniany PHPMyAdmin.
 </Aside>
