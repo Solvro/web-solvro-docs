@@ -1,0 +1,111 @@
+---
+title: Łączenie z bazą danych
+description: Wprowadzenie do łączenia z bazą danych w komponentach serwerowych w Next.js poprzez ORM Prisma.
+sidebar:
+  order: 13
+---
+
+W poprzedniej części omówiłem, czym są komponenty serwerowe i jak możemy dzięki nim wyeliminować backend. Wprowadziłem też kolejną paczkę o nazwie Prisma, którą teraz omówię trochę dokładniej.
+
+## Czym jest Prisma?
+
+Prisma to ORM (Object-Relational Mapper), który pozwala na łatwe łączenie się z bazą danych. Prisma pozwala na tworzenie zapytań do bazy danych w języku TypeScript, co jest dużym ułatwieniem, jeżeli piszesz w Next.js, a dzięki temu przy okazji jest odporna na SQL injection. Prisma obsługuje wiele baz danych, takich jak PostgreSQL, MySQL, SQLite, czy SQL Server. Ja osobiście korzystam z MySQL i na jego przykłądzie będę przedstawiał przykłady, chociaż sama składnia zapytań się nie zmienia.
+
+## Jak zacząć korzystać z Prisma?
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Steps>
+1. Zainstaluj paczkę w swoim projekcie:
+    ```bash
+    npm install prisma
+    ```
+
+2.  Zainicjalizuj Prisma w swoim projekcie:
+
+    ```bash
+    npx prisma init
+    ```
+
+    Po wykonaniu tej komendy zostanie utworzony folder `prisma` w twoim projekcie, w którym znajdziesz plik `schema.prisma`. W tym pliku definiujesz strukturę tabel w twojej bazie danych. Poza tym powstanie plik .env (jeśli już nie istnieje) w roocie twojego projektu, w którym będziesz mógł zdefiniować adres do połączenia z twoją bazą.
+
+3.  Zdefiniuj połączenie z bazą danych w pliku `schema.prisma`:
+
+    ```prisma
+    datasource db {
+      provider = "mysql"
+      url      = env("DATABASE_URL")
+    }
+    ```
+
+4.  Zdefiniuj adres połączenia z lokalną bazą danych w pliku `.env`:
+
+    ```txt
+    DATABASE_URL="mysql://user:password@server_address:3306/database_name"
+    ```
+
+    Adresem może też być adres bazy hostowanej w chmurze, np. Postgress z NeonDB.
+
+5.  Dodaj swoje tabele:
+
+    ```prisma
+    model User {
+      id        Int      @id @default(autoincrement())
+      name      String
+      email     String   @unique
+      posts     Post[]
+    }
+
+    model Post {
+      id        Int      @id @default(autoincrement())
+      title     String
+      content   String?
+      author    User?    @relation(fields: [authorId], references: [id])
+      authorId  Int?
+    }
+    ```
+
+    Prisma ma swój własny język używany do definiowania schematów tabel w bazie danych. W powyższym przykładzie definiujemy dwie tabele: `User` i `Post`. Tabela `User` ma pola `id`, `name`, `email` i relację z tabelą `Post`. Tabela `Post` ma pola `id`, `title`, `content`, relację z tabelą `User` i pole `authorId`, które jest kluczem obcym do tabeli `User`.
+
+6.  Wygeneruj klienta Prismy:
+
+    ```bash
+    npx prisma generate
+    ```
+
+    Po wykonaniu tej komendy zostanie wygenerowany klient Prisma, który pozwoli na wykonywanie zapytań do bazy danych. Przy pierwszej generacji klienta Prisma będzie chciała doinstalować paczkę `@prisma/client`, jeśli sam już tego nie zrobiłeś.
+
+7.  Zdefiniuj globalną instancję klienta Prismy w swoim projekcie. Jest to potrzebne głównie po to, żeby na produkcji nie tworzyć osobnego klienta dla każdego zapytania. Jak możesz się domyślić, każdy klient zżera zasoby, więc warto zainicjalizować go raz i używać jednego klienta na sesję:
+
+        ```ts
+        import { PrismaClient } from "@prisma/client";
+
+        const globalForPrisma = global as unknown as {
+            prisma: PrismaClient | undefined;
+        };
+
+        export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+        if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+        ```
+        <Aside type="tip" title="Fun fact">
+          Powyższy kod jest taki rozległy po to, żeby prisma zachowywała się jak na produkcji, czyli nie tworzyła nowego klienta dla każdego zapytania. Warto zainicjalizować klienta raz i używać go w całej sesji.
+        </Aside>
+
+</Steps>
+
+<Aside type="tip">
+  Prisma daje możliwość podejrzenia zawartości bazy danych bez potrzeby
+  stawiania osobno nakładki graficzej, typu PHPMyAdmin. Wystarczy, że w
+  terminalu wpiszesz `npx prisma studio` i zostanie uruchomione okno
+  przeglądarki z interfejsem graficznym do zarządzania bazą danych.
+  <img
+    src="/src/assets/tutorials/nextjs/prisma-studio.png"
+    alt="Prisma Studio"
+    style="margin-left:auto; margin-right:auto"
+  />
+  Nie jest to jednak zalecany sposób zarządzania bazą danych, ale przydatny do
+  szybkiego podejrzenia zawartości. Dla bardziej zaawansowanych operacji
+  najlepiej korzystać z dedykowanego interfejsu, takiego jak DBeaver, albo
+  wspomniany PHPMyAdmin.
+</Aside>

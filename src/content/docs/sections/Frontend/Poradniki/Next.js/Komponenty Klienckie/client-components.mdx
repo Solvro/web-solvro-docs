@@ -1,0 +1,47 @@
+---
+title: Komponenty klienckie w Next.js
+description: Omówienie komponentów klienckich w Next.js
+sidebar:
+  order: 10
+---
+
+Podział na komponenty klienckie i serwerowe istnieje w Next'cie od dawna, ale mocno się różnił od stanu obecnego. Kiedyś, zanim dodano App Router, używaliśmy `getServerSideProps` i `getStaticProps` do pobierania danych na serwerze. Były to funkcje serwerowe, które zwracały dane do komponentu klienckiego, ale o tym dokładniej w części o komponentach serwerowych. Dawny Pages Router został zamieniony na App Router w stabilnej wersji w Next.js 13.4 i funkcjonuje do dziś. Razem z App Routerem dodano znajome ci już dyrektywy "use client" i "use server", które dopisujesz w pierwszej linijce pliku.
+
+## Na co dokładnie pozwalają komponenty klienckie?
+
+Pomyśl o takiej analogii: komponenty klienckie to wyspy reaktywności otoczone statycznym contentem generowanym na serwerze w czasie rzeczywistym. Pozwalają one na wykonywanie kodu na kliencie, czyli w przeglądarce. Dzięki temu możemy manipulować DOM'em, czy wykonywać inne operacje, które wymagają dostępu do przeglądarki, takie jak używanie hooków z Reacta, czy ustawianie event listenerów, typu `onClick`. Świetną grafikę możemy znaleźć w dokumentacji Next.js:
+
+<img
+  src="https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Flearn%2Fdark%2Fthinking-in-ppr.png&w=1920&q=75"
+  alt="Next.js prerendering, © 2025 Vercel, Inc."
+/>
+
+Jak widać na przykładzie powyżej, wszystkie komponenty, które muszą być rerenderowane na bieżąco, w tym przypadku koszyk i sekcja polecanych, są komponentami klienckimi. Wszystko, co jest statyczne, tutaj opis produktu i navbar, jest generowane na serwerze.
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside type="danger">
+  Jeżeli dany komponent oznaczymy jako kliencki, wszystkie jego child komponenty
+  automatycznie stają się klienckie. **Next.js nie pozwoli stworzyć komponentu
+  serwerowego wewnątrz komponentu klienckiego, więc wszelki data fetching musi
+  się odbyć przed deklaracją client componentu!**
+</Aside>
+
+## Supermoce komponentów klienckich
+
+Jak już wcześniej wspomniałem, komponenty klienckie pozwalają na wykonywanie kodu po stronie klienta. Dzięki temu możemy wykonywać operacje, które wymagają dostępu do przeglądarki, takie jak:
+
+- Ustawianie event listenerów, np. `onClick`
+- Używanie hooków z Reacta
+- Manipulowanie DOM'em, np. dynamiczne renderowanie elementów na podstawie stanu
+- Zarządzanie stanem komponentu, np. za pomocą hooków `useState` i `useReducer` albo zewnętrznych bibliotek, takich jak na przykład polecany przeze mnie Zustand
+- Korzystanie z hooków dostarczanych przez Next.js, typu chyba najczęściej używany `useRouter` do zmieniania obecnej ścieżki, lub odświerzenia strony
+- Korzystanie z wieeeeelu innych hooków, które możemy doinstalować do naszej aplikacji
+
+<Aside type="tip">
+  Importując hooki dostarczane przez Next.js'a upewnij się, że nie importujesz
+  legacy hook'a. Przykładowo `useRouter` powinieneś zaimportować z
+  `next/navigation` a nie `next/router`. <br />
+  Next utrzymuje backward compatibility ze względu na aplikacje działające
+  jeszcze na Pages Routerze.
+</Aside>
