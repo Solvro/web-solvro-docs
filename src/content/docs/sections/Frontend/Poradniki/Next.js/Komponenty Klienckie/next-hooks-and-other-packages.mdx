@@ -15,11 +15,12 @@ Wcześniej wspomniałem, że Next dostarcza nam wiele hooków, które ułatwiaj�
 
 ```jsx
 "use client";
-
 import { useRouter } from "next/navigation";
-// funkcje typu loginUser, updateUser to hipotetyczne funkcje,
-// które nam przetwarzają zapytanie o logowanie
-const router = useRouter();
+
+function Component() {
+        // funkcje typu loginUser, updateUser to hipotetyczne funkcje,
+        // które nam przetwarzają zapytanie o logowanie
+        const router = useRouter();
 
 	const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
 		const loginStatus = await loginUser(data)
@@ -30,25 +31,12 @@ const router = useRouter();
 			router.push('/dashboard')
 		}
 	};
+
+	return (<form.../>)
+}
 ```
 
 W powyższym przykładzie mamy funkcję `onSubmit`, która po zalogowaniu użytkownika przekierowuje go na stronę `/dashboard`. Dzięki `router.push` możemy zmieniać ścieżkę na dowolną, a także przekazywać dodatkowe opcje, takie jak blokowanie scrollowania na stronie:
-
-```jsx
-"use client";
-
-import { useRouter } from "next/navigation";
-
-	const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
-		const loginStatus = await loginUser(data)
-		setLoginResponse(loginStatus.message)
-		if (loginStatus.message === 'Logged in') {
-			updateUser(loginStatus.uuid)
-			setCookie('currentUser', loginStatus.uuid)
-			router.push('/dashboard', { scroll: false })
-		}
-	};
-```
 
 #### Wszystkie metody dostępne w obiekcie routera
 
@@ -103,6 +91,16 @@ export function Page() {
     />
   );
 }
+```
+
+Ważną częścią Next'a i komponentu Image jest to, że jeżeli obraz zaciągamy z zewnętrznego źródła (`src="https://linkdoobrazu.com/jakisobraz.png"`), to do pliku next.config.js musimy dodać domenę, z której będzie on załadowany:
+
+```js
+module.exports = {
+  images: {
+    domains: ["linkdoobrazu.com"],
+  },
+};
 ```
 
 #### Właściwości komponentu Image
