@@ -15,7 +15,7 @@ description: Jakie standardy API stosujemy w Solvro
   - https://swagger.io/resources/open-api/
 - Projekt Adonis-Autoswagger:
   - <https://github.com/ad-on-is/adonis-autoswagger>
-  - [Komentarze, z których można korzystać do dokumetnacji](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#-extend-controllers)
+  - [Komentarze, z których można korzystać do dokumentacji](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#-extend-controllers)
   - [Struktura `@responseBody` i przykłady](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#responsebody-examples)
   - [Przykład jak możemy okomentować funkcje w kontrolerze](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#practical-example)
 - Inne rozwiązania dla ScalarUI:
@@ -254,4 +254,4 @@ Zdarza się, że w `@responseBody` nie damy poprawnego JSONa przez co silnik gen
 
 Przykład: `{ "hej": "kolego", slyszales: "ze", solvro: "jest cool?" }`
 
-W tym przypadku `slyszales` nie ma cudzysłowów, przez co Autoswagger niepoprwanie odczyta atrybut lub kompletnie nie wyświetli danego `@responseBody`.
+W tym przypadku `slyszales` nie ma cudzysłowów, przez co Autoswagger niepoprawnie odczyta atrybut lub kompletnie nie wyświetli danego `@responseBody`.
