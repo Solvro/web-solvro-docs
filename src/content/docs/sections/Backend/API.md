@@ -245,12 +245,12 @@ public async index({ auth }: HttpContext) {
 - `@index` - informuje nas o tym, że funkcja zwraca GET wszystkich eventów (indeksuje je dla odbiorcy)
 - `@operationId` - customowe ID, które jest unikatowe w całej dokumentacji. Jednocześnie powinno ono w miarę sygnalizować co robi dany endpoint
 - `@description` - opis danego endpointu, nie musi być długi jeżeli operacja jest prosta, nastomiast dla bardziej złożonych powinno być opisane jak dokładnie się zachowuje
-- `@responseBody` - w skrócie: to co zwracamy. Może być to dany typ z projektu, iż Autoswagger rozumie typy i stara się je wkleić do dokumentacji (przyjemna automatyzacja). W przypadku nietypowych zastosowań można wstawić customowy JSON, który będzie odsyłany przez API. Cała lista tego jak możemy to sformatować znajduje się [tutaj](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#responsebody-examples)
+- `@responseBody` - w skrócie: to co zwracamy. Może być to dany typ z projektu, iż Autoswagger rozumie typy i stara się je wkleić do dokumentacji (przyjemna automatyzacja). W przypadku nietypowych zastosowań można wstawić customowy JSON, który będzie odsyłany przez API. Cała lista tego jak możemy to sformatować znajduje się [tutaj](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#responsebody-examples)
 - `@tag` - tag, za pomocą którego możemy przypisać endpoint do danej grupy, aby łatwiej było przeglądać dokumentacje
 
 #### Często popełniane błędy
 
-Zdarza się, że w `@responseBody` nie damy poprawnego JSONa przez co silnik generowania dokumentacji nie będzie poprawnie formatował nam danego obiektu. Nie ma wbudowanego sposobu automatycznego sprawdzania czy na pewno jest poprawny. Warto sprawdzić online (lub wyćwiczonym okiem), czy na pewno w odpowiednich miejscach znajdują się cudzysłowy.
+Zdarza się, że w `@responseBody` nie damy poprawnego JSONa przez co silnik generowania dokumentacji nie będzie poprawnie formatował nam danego obiektu. Nie ma wbudowanego sposobu automatycznego sprawdzania czy na pewno jest poprawny. Warto sprawdzić online (lub wyćwiczonym okiem), czy na pewno w odpowiednich miejscach znajdują się cudzysłowy.
 
 Przykład: `{ "hej": "kolego", slyszales: "ze", solvro: "jest cool?" }`
 
