@@ -15,6 +15,12 @@ description: Jakie standardy API stosujemy w Solvro
   - https://swagger.io/resources/open-api/
 - Projekt Adonis-Autoswagger:
   - <https://github.com/ad-on-is/adonis-autoswagger>
+  - [Komentarze, z których można korzystać do dokumetnacji](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#-extend-controllers)
+  - [Struktura `@responseBody` i przykłady](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#responsebody-examples)
+  - [Przykład jak możemy okomentować funkcje w kontrolerze](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#practical-example)
+- Inne rozwiązania dla ScalarUI:
+  - <https://stackoverflow.com/questions/36634281/list-of-swagger-ui-alternatives>
+  - [RapiDoc](https://rapidocweb.com/)
 
 ## Wstęp
 
@@ -133,13 +139,13 @@ Aby móc łatwo komunikować się i wiedzieć jakie są endpointy na backendzie,
 
 ### Autoswagger
 
-Projekt Autoswagger pozwala na automatyczne wygenerowanie dokumentacji z kodu danego frameworku, a potem na wyświetlanie go za pomocą Swagger UI na równie automatycznie wygenerowanej stronie 🤯
+Projekt Autoswagger pozwala na automatyczne wygenerowanie dokumentacji z kodu danego frameworku, a potem na wyświetlanie go za pomocą np. ScalarUI na równie automatycznie wygenerowanej stronie 🤯
 
 ### Adonis-Autoswagger
 
 Dla naszego głównego frameworku istnieje rozwiązanie, które po zainstalowaniu jednego pakietu (i pakietów, na którym się on opiera) i kilku prostych zmian w kodzie dostajemy automatyczną dokumentację, którą możemy podpiąć pod dowolny endpoint!
 
-#### Instalacja
+#### Instalacja frontendu dla swaggera (ScalarUI)
 
 Po dokładne instrukcje i opis działania zapraszam na [stronę projektu](https://github.com/ad-on-is/adonis-autoswagger).
 
@@ -149,7 +155,7 @@ Wchodzimy do projektu z Adonisem i wpisujemy:
 npm install adonis-autoswagger
 ```
 
-Następnie musimy napisać konfigurację autoswaggera, najlepiej w folderze `/config`. Plik może nazywać się jakkolwiek, natomiast konwencją podaną przez projekt jest nazwanie go `swagger.ts`. Następnie zamieszczamy tam następującą konfiguracje:
+Następnie musimy napisać konfigurację Autoswaggera, najlepiej w folderze `/config`. Plik może nazywać się jakkolwiek, natomiast konwencją podaną przez projekt jest nazwanie go `swagger.ts`. Następnie zamieszczamy tam następującą konfiguracje:
 
 ```ts
 import path from "node:path";
@@ -174,7 +180,7 @@ export default {
 };
 ```
 
-Teraz możemy zaktualizować `routes.ts`, aby autoswagger wykrył nasze endpointy i automatycznie wygenerował dla nich dokumentacje:
+Teraz możemy zaktualizować `routes.ts`, aby Autoswagger wykrył nasze endpointy i automatycznie wygenerował dla nich dokumentacje:
 
 Wszystkie statyczne kontrolery musimy zamienić na lazy-loaded:
 
@@ -183,7 +189,7 @@ import TestController from "#controllers/test_controller"; //NIEPOPRAWNIE ❌
 const TestController = () => import("#controllers/test_controller"); //POPRAWNIE ✅
 ```
 
-A w dodatku dodać route'y dla Swagger UI i do zwracania dokumentacji w postaci YAMLa:
+A w dodatku dodać route'y dla ScalarUI i do zwracania dokumentacji w postaci YAMLa:
 
 ```ts
 import AutoSwagger from "adonis-autoswagger";
@@ -196,10 +202,56 @@ router.get("/swagger", async () => {
   return AutoSwagger.default.docs(router.toJSON(), swagger);
 });
 
-//dla Swagger UI, korzysta ze ścieżki /swagger do zaciągnięcia dokumentacji
+//dla Scalar UI, korzysta ze ścieżki /swagger do zaciągnięcia dokumentacji
 router.get("/docs", async () => {
   return AutoSwagger.default.scalar("/swagger");
 });
 ```
 
 Teraz powinniśmy móc wejść na ścieżkę `/docs` i móc zobaczyć naszą automatyczną dokumentację API! 🎉
+
+#### Alternatywy ScalarUI (RapiDoc)
+
+Istnieje [wiele innych rozwiązań](https://stackoverflow.com/questions/36634281/list-of-swagger-ui-alternatives) dokumentujących aplikacje za pomocą plików według standardu OpenAPI. Jednym z takich rozwiązań jest [RapiDoc](https://rapidocweb.com/), który jest również wbudowane w projekt Autoswagger i równie łatwo zaimplementować to w projekcie.
+
+Wystarczy, że zamiast funkcji `.scalar("/swagger");` dla endpointa `/docs`, użyjemy `.rapidoc("/swagger")`:
+
+```ts
+router.get("/docs", async () => {
+  return AutoSwagger.default.rapidoc("/swagger");
+});
+```
+
+Przy czym pamiętajmy, że na jednej ścieżce może stać tylko **jeden** frontend, więc w przypadku chęci skorzystania z obydwu rozwiązań, można stworzyć front RapiDoca, na przykład na ścieżce `/rapidoc`.
+
+### Dokumentacja endpointów
+
+Korzystanie z Autoswaggera pozwala nam również na automatyczną dokumentacje kodu, za pomocą komentarzy nad daną funkcją w kontrolerze. Wszystkie opcje z wytłumaczeniem jak działają i jak można je użyć da się znaleźć [tutaj](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#-extend-controllers). Dla przykładu:
+
+```ts
+/**
+ * @index
+ * @operationId getEvents
+ * @description Returns admin events
+ * @responseBody 200 - <Event[]>
+ * @tag event
+ */
+public async index({ auth }: HttpContext) {
+  await auth.user?.preload("events");
+  return auth.user?.events;
+}
+```
+
+- `@index` - informuje nas o tym, że funkcja zwraca GET wszystkich eventów (indeksuje je dla odbiorcy)
+- `@operationId` - customowe ID, które jest unikwatowe w całej dokumentacji. Jednocześnie powinno ono w miarę sygnalizwoać co robi dany endpoint
+- `@description` - opis danego endpointu, nie musi być długi jeżeli operacja jest prosta, nastomiast dla bardziej złożonych powinno być opisane jak dokładnie się zachowuje
+- `@responseBody` - w skrócie: to co zwracamy. Może być to dany typ z projektu, iż Autoswagger rozumie typy i stara się je wkleić do dokumentacji (przyjemna automatyzacja). W przypadku nietypowych zastosowań można wstawić customowy JSON, który będzie odsyłany przez API. Cała lista tego jak możemy to sformatować znajduje się [tutaj](https://github.com/ad-on-is/adonis-autoswagger?tab=readme-ov-file#responsebody-examples)
+- `@tag` - tag, za pomocą którego możemy przypisać endpoint do danej grupy, aby łatwiej było przeglądać dokumentacje
+
+#### Często popełniane błędy
+
+Zdarza się, że w `@responseBody` nie damy poprawnego JSONa przez co silnik generowania dokumentacji nie będzie poprawnie formatował nam danego obiektu. Nie ma wbudowanego sposobu automatycznego sprawdzania czy na pewno jest poprawny. Warto sprawdzić online (lub wyćwiczonym okiem), czy na pewno w odpowiednich miejscach znajdują się cudzysłowy.
+
+Przykład: `{ "hej": "kolego", slyszales: "ze", solvro: "jest cool?" }`
+
+W tym przypadku `slyszales` nie ma cudzysłowów, przez co Autoswagger niepoprwanie odczyta atrybut lub kompletnie nie wyświetli danego `@responseBody`.
