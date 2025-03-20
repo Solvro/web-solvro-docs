@@ -1,0 +1,208 @@
+---
+title: Hooki i komponenty Next.js oraz inne paczki
+description: Omówienie hooków dostarczanych przez Next.js oraz innych przydatnych paczek.
+sidebar:
+  order: 11
+---
+
+Wcześniej wspomniałem, że Next dostarcza nam wiele hooków, które ułatwiają nam pracę z frameworkiem. W tej części omówię najbardziej przydatne hooki oraz inne paczki, które mogą ci się przydać.
+
+## Hooki pozwalające manipulować ścieżką
+
+### useRouter
+
+`useRouter` to hook dostarczany przez Next.js, który pozwala na dostęp do obiektu routera. Dzięki niemu możemy zmieniać obecną ścieżkę lub odświeżać stronę. Przykład użycia:
+
+```jsx
+"use client";
+import { useRouter } from "next/navigation";
+
+function Component() {
+        // funkcje typu loginUser, updateUser to hipotetyczne funkcje,
+        // które nam przetwarzają zapytanie o logowanie
+        const router = useRouter();
+
+	const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
+		const loginStatus = await loginUser(data)
+		setLoginResponse(loginStatus.message)
+		if (loginStatus.message === 'Logged in') {
+			updateUser(loginStatus.uuid)
+			setCookie('currentUser', loginStatus.uuid)
+			router.push('/dashboard')
+		}
+	};
+
+	return (<form.../>)
+}
+```
+
+W powyższym przykładzie mamy funkcję `onSubmit`, która po zalogowaniu użytkownika przekierowuje go na stronę `/dashboard`. Dzięki `router.push` możemy zmieniać ścieżkę na dowolną, a także przekazywać dodatkowe opcje, takie jak blokowanie scrollowania na stronie:
+
+#### Wszystkie metody dostępne w obiekcie routera
+
+- `router.push(href: string, { scroll: boolean })` - zmienia ścieżkę na podaną w `href`
+- `router.replace(href: string, { scroll: boolean })` - zmienia ścieżkę na podaną w `href` bez dodawania nowego wpisu do historii
+- `router.refresh()` - odświeża stronę
+- `router.prefetch(href: string)` - pobiera dane dla podanej ścieżki w celu przyspieszenia nawigacji
+- `router.back()` - cofa się do poprzedniej strony
+- `router.forward()` - przechodzi do następnej strony w historii
+
+### usePathname i useSearchParams
+
+`usePathname` i `useSearchParams` to hooki, które pozwalają na dostęp do obecnego URL'a oraz parametrów zapytania. Przykład użycia:
+
+```jsx
+"use client";
+
+import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+
+export function NavigationEvents() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const url = `${pathname}?${searchParams}`;
+    console.log(url);
+  }, [pathname, searchParams]);
+
+  return "...";
+}
+```
+
+## Komponenty Next.js
+
+### Image
+
+`Image` to komponent dostarczany przez Next.js, który optymalizuje obrazy na stronie. Dzięki niemu możemy ładować obrazy w sposób zoptymalizowany, co przyspiesza ładowanie strony. Przykład użycia:
+
+```jsx
+"use client";
+
+import Image from "next/image";
+
+export function Page() {
+  return (
+    <Image
+      src="/path/to/image.jpg"
+      alt="Description of the image"
+      width={500}
+      height={500}
+    />
+  );
+}
+```
+
+Ważną częścią Next'a i komponentu Image jest to, że jeżeli obraz zaciągamy z zewnętrznego źródła (`src="https://linkdoobrazu.com/jakisobraz.png"`), to do pliku next.config.js musimy dodać domenę, z której będzie on załadowany:
+
+```js
+module.exports = {
+  images: {
+    domains: ["linkdoobrazu.com"],
+  },
+};
+```
+
+Więcej na ten temat znajdziesz w [oficjalnej dokumentacji](https://nextjs.org/docs/pages/api-reference/components/image#domains).
+
+#### Właściwości komponentu Image
+
+Wymagane:
+
+- `src` - ścieżka do obrazu
+- `alt` - opis obrazu
+- `width` - szerokość obrazu
+- `height` - wysokość obrazu
+
+Opcjonalne:
+
+- `quality` - jakość obrazu (zakres od 1 do 100)
+- `priority` - określa, czy obraz powinien być ładowany priorytetowo
+- `placeholder` - obraz, który jest wyświetlany podczas ładowania właściwego obrazu, lub `placeholder="blur"` dla efektu rozmycia na czas ładowania
+
+### Link
+
+`Link` to komponent Nexta pozwalający na nawigację między stronami. Jest zoptymalizowaną wersją komponentu `a` z czystego HTML'a, który od razu prefetchuje dane dla ścieżki pod podanym linkiem, przez co skracamy czas ładowania.
+
+```jsx
+"use client";
+
+import Link from "next/link";
+
+export default function Page() {
+  return <Link href="/dashboard">Dashboard</Link>;
+}
+```
+
+## Inne przydatne paczki
+
+### Zustand
+
+Zustand to paczka, która pozwala na zarządzanie stanem aplikacji w prosty sposób. Jest to alternatywa dla Reduxa, która jest znacznie lżejsza i prostsza w użyciu. [Tutaj znajdziesz pełną dokumentację Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction). [Przykładowy store z Zustand i jego aktualizacja](https://zustand-demo.pmnd.rs/):
+
+```jsx
+"use client";
+import { create } from 'zustand'
+
+type Store = {
+  count: number
+  inc: () => void
+}
+
+const useStore = create<Store>()((set) => ({
+  count: 1,
+  inc: () => set((state) => ({ count: state.count + 1 })),
+}))
+
+function Counter() {
+  const { count, inc } = useStore()
+  return (
+    <div>
+      <span>{count}</span>
+      <button onClick={inc}>one up</button>
+    </div>
+  )
+}
+```
+
+### Shadcn/ui
+
+Shadcn/ui to paczka, która dostarcza gotowe komponenty ui. Tak się składa, że w Solvro korzystamy z Shadcn'a do stylowania naszych aplikacji. Od innych bibliotek UI różni się tym, że jest bardzo lekki i prosty w użyciu. Zamiast instalowania wielkiej paczki, która zawiera wszystkie komponenty, możemy instalować tylko te, które są nam potrzebne. Zainstalowane komponenty mozemy też dowolnie edytować, dodając do nich własne style za pomocą TailwindCSS'a. Największym atutem Shadcn'a jest to, że możemy całkowicie edytować każdy dodany komponent, a nie tak jak na przykład w Material UI, gdzie mamy gotowe komponenty, które nam udostępniają propy do stylizacji, ale nie możemy ich edytować w pełnym stopniu.
+
+Instalacja paczki:
+
+import { Steps } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. Zainstaluj paczkę `shadcn/ui`:
+
+   ```bash
+   npx shadcn@latest init
+   ```
+
+2. Podążaj za instrukcjami w konsoli
+
+3. Dodaj komponent do swojej aplikacji:
+
+   ```bash
+   npx shadcn@latest add button
+   ```
+
+4. Zaimportuj komponent
+
+   ```jsx
+   import { Button } from "@/components/ui/button";
+
+   export function Home() {
+     return (
+       <div>
+         <Button>Click me</Button>
+       </div>
+     );
+   }
+   ```
+
+</Steps>
+
+Dokładną dokumentację ze wszystkimi dostępnymi komponentami znajdziesz [tutaj](https://ui.shadcn.com/docs).
