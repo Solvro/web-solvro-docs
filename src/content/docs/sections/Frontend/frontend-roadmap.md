@@ -31,13 +31,13 @@ CSS - Cascading Style Sheets. Służy do stylowania twojej strony. Chcesz zeby p
 
 Po krótkiej zabawie pora na tworzenie pierwszych sensownych layoutów. Tutaj powinieneś zainteresować się flexboxem i gridem. Do flexboxa polecam [tutorial od Bro Code’a](https://www.youtube.com/watch?v=GteJWhCikCk), a do grida poradnik od twojego kolejnego przyjaciela - kanał Web Dev Simplified: [link](https://www.youtube.com/watch?v=9zBsdzdE4sM). Po przejściu przez te poradniki polecam fajne gierki, które pozwolą Ci sprawdzić twoją świeżo nabytą wiedzę: [flexboxowa żabka](https://flexboxfroggy.com/#pl) i [grid garden](https://cssgridgarden.com/#pl)
 
-Po przejsciu tych gierek na pewno spróbowałbym odwzorać jakaś stronke, np. Youtube’a czy nawet stronę naszego koła. Na razie nie przejmuj się animacjami i interakcją z użytkownikiem, tutaj chodzi o to zebyś zrozumiał jak efektywnie wykorzystywać cssa do uzyskania odpowiedniego layoutu. Jeśli już udało ci się odwzorować jakąś stronke, wejdz w devtoolsy i pobaw się rozdzielczością. Całkiem prawdopodobnie strona kompletnie Ci się rozjedzie i nie bardzo będziesz wiedział co zrobić. Niestety twoja stronka nie jest na razie **responsywna**, czyli nie nie jest gotowa na dynamiczne zmiany rozdzielczości ekranu twojej przeglądarki. Aby naprawić widok strony, poczytaj trochę o responsive web design - czyli tworzeniem stron zoptymalizowanych do wyświetlania ich na róznych urządzeniach i rozdzielczościach. Podstawowy poradnik jest [tutaj](https://www.youtube.com/watch?v=K24lUqcT0Ms). owtórze się, ale poeksperymentuj, pomachaj tym suwakiem z boku strony lub zmieniaj urządzenia w devtoolsach. Inaczej tego nie zrozumiesz 😭😭😭.
+Po przejsciu tych gierek na pewno spróbowałbym odwzorować jakąś stronkę. Tutaj macie kilka przykładów: [link](<[link](https://www.youtube.com/watch?v=9zBsdzdE4sM)>). Na razie nie przejmuj się animacjami i interakcją z użytkownikiem, tutaj chodzi o to zebyś zrozumiał jak efektywnie wykorzystywać cssa do uzyskania odpowiedniego layoutu. Jeśli już udało ci się odwzorować jakąś stronke, wejdz w devtoolsy i pobaw się rozdzielczością. Całkiem prawdopodobnie strona kompletnie Ci się rozjedzie i nie bardzo będziesz wiedział co zrobić. Niestety twoja stronka nie jest na razie **responsywna**, czyli nie nie jest gotowa na dynamiczne zmiany rozdzielczości ekranu twojej przeglądarki. Aby naprawić widok strony, poczytaj trochę o responsive web design - czyli tworzeniem stron zoptymalizowanych do wyświetlania ich na róznych urządzeniach i rozdzielczościach. Podstawowy poradnik jest [tutaj](https://www.youtube.com/watch?v=K24lUqcT0Ms). Powtórze się, ale poeksperymentuj, pomachaj tym suwakiem z boku strony lub zmieniaj urządzenia w devtoolsach. Inaczej tego nie zrozumiesz 😭😭😭.
 
 ### JavaScript
 
 Jeden z najpopularniejszych języków programowania. JS pozwala dodać twojej stronie interaktywności. Tutaj wybrałbym na start jakiś kurs od Bro Code’a czy freeCodeCamp’u. Niestety, trzeba jakoś się tego nauczyć i poświęcic czas jakiemuś kursowi. Po poznaniu podstaw i ogarnięciu manipulowania DOM’em (jeśli nie wiesz co to DOM po poradnikach, koniecznie o tym poczytaj!), zrobiłbym nic innego jak zwykłą to-do listę, najbardziej popularny startowy projekt każdego frontasia.
 
-Co po tym? Tutaj już radzę wymyślić już coś swojego lub zainspirować się czymś z neta. Spróbuj wykorzystać `fetch API` w kolejnym projekcie. Jeśli nie było tego w twoim poradniku to łap [link](https://www.youtube.com/watch?v=37vxWr0WgQk). Nie bój się oglądać poradników z tworzenia projektów(np. weather apki) i po prostu dodawać do nich swoich funkcjonalności. Na start na pewno będzie ci ciężko więc nie przejmuj się że ciężko ci coś stworzyć. Z każdym projektem będzie Ci coraz łatwiej. Polecam poświęcić trochę czasu na zrozumienie JS zanim przejdziesz dalej.
+Co po tym? Tutaj już radzę wymyślić już coś swojego lub zainspirować się czymś z neta. Spróbuj wykorzystać `fetch API` w kolejnym projekcie. Jeśli nie było tego w twoim poradniku to łap [link](https://www.youtube.com/watch?v=37vxWr0WgQk). Nie bój się oglądać poradników z tworzenia projektów(np. weather apki) i po prostu dodawać do nich swoich funkcjonalności. Na start na pewno będzie Ci ciężko więc nie przejmuj się że masz problemy żeby coś stworzyć. Z każdym projektem będzie Ci coraz łatwiej. Polecam poświęcić trochę czasu na zrozumienie JS zanim przejdziesz dalej.
 
 :::tip
 Nie lekceważ błędów! Zanim wyślesz prompta do dżepetto, staraj się zrozumieć co powoduje error. Jeśli nie możesz rozkminić danego błędu, ktoś na [StackOverflow](https://stackoverflow.com/questions) na pewno spotkał się z podobnym problemem w swoim kodzie!
@@ -67,7 +67,7 @@ Nie lekceważ błędów! Zanim wyślesz prompta do dżepetto, staraj się zrozum
 
 Po stworzeniu kilku prostych projektów zdecydowanie zalecam przejść na TypeScript’a. Nie będę się tu rozpisywał, łapcie link do [handbooka](https://www.typescriptlang.org/docs/handbook/intro.html), tam jest wszystko wyjaśnione. Must have do pracy przy projektach frontendowych w naszym kole. Daje też [link do poradnika](https://www.youtube.com/watch?v=jBmrduvKl5w) od Kyle'a z Web Dev Simplified, który tworzy szybki projekcik z użyciem już poznanych przez Ciebie technologii i TypeScript'a.
 
-Na początku może być Ci trochę cieżko, typeErrory będą Cię irytować i nie za bardzo będziesz wiedzieć jak je naprawić. Z czasem jednak zrozumiesz dlaczego warto było się przerzucić.
+Na początku może być Ci trochę ciężko, typeErrory będą Cię irytować i nie za bardzo będziesz wiedzieć jak je naprawić. Z czasem jednak zrozumiesz dlaczego warto było się przerzucić.
 
 ## Diving deeper
 
@@ -86,7 +86,7 @@ Czym jest Tailwind? Tailwind to css’owy framwork, który slużą do stylowania
   <div>
     <img classname="size-48 shadow-xl rounded-md" alt="" src="/img/cover.png" />
   </div>
-  <div classname="flex items-center md:items">
+  <div classname="flex items-center">
     <span classname="text-2xl font-medium">Class Warfare</span>
     <span classname="font-medium text-sky-500">The Anti-Patterns</span>
     <span classname="flex gap-2 font-medium text-gray-600 dark:text-gray-400">
@@ -102,8 +102,54 @@ Poradnik jak dodać Tailwind'a do swojego projektu, jeśli używałeś create vi
 
 ### React cd.
 
-Po odwzorowaniu któregoś z projektów, radzę zabrać się za kurs **Epic React** stworzony przez react’owego guru - **Kenta C. Doddsa**. Wszystkie materiały znajdziesz na naszym dysku w zakładce Wiedza/Frontend. Jest to duuuuuży kurs więc trochę ci zajmie, jest też według mnie całkiem trudny - ale nie przejmuj się tym, nie bój się pytać członków sekcji frontend o pomoc.
+Po odwzorowaniu któregoś z projektów, radzę zabrać się za kurs **Epic React** stworzony przez react’owego guru - **Kent C. Dodds**. Wszystkie materiały znajdziesz na naszym dysku w zakładce Wiedza/Frontend. Jest to duuuuuży kurs więc trochę ci zajmie, jest też według mnie całkiem trudny - ale nie przejmuj się tym, nie bój się pytać członków sekcji frontend o pomoc.
 
 Co po przejściu tego kursu? Tutaj już powinieneś całkiem nieźle ogarniać i mieć pomysł na projekt który chciałbyś zrealizować. Jednak jeśli potrzebujesz inspiracji to zachęcam do zrobienia projektów z naszych rekrutacji: [2024 zima](https://github.com/Solvro/rekrutacja-wiosna-2024/blob/main/frontend.md), [2024 lato](https://github.com/Solvro/rekrutacja/blob/main/frontend.md). Polecam również przejść przez zadanka rekrutacyjne od Web Dev Cody'ego, które pozwolą ci sprawdzić twoje ogólne rozumienie React’a: [link](https://www.youtube.com/playlist?list=PL6x5Q-Sj_Bla3_wMqhETxMBjFml0XJNPI)
 
 W przyszłości pewnie bedziesz rozglądać się za swoją pierwszą pracą. Większość rozmów technicznych polega na zrobieniu jakiegoś zadanka lub sprawdzeniu wiedzy teoretycznej. Na froncie leetcode'owanie zbytnio nie pomoże. Przykładowe pytania znajdziesz tutaj: [JavaScript](https://github.com/sudheerj/javascript-interview-questions), [React](https://github.com/sudheerj/reactjs-interview-questions). Zadań raczej nie przewidzisz 😭😭😭😭.
+
+### Shadcn
+
+Shadcn to zestaw narzędzi i komponentów opartych na React, który ułatwia tworzenie interfejsów użytkownika. Shadcn oferuje gotowe do użycia komponenty, które można łatwo dostosować do potrzeb swoich aplikacji. Shadcn bardzo przyśpiesza development, ma bardzo dużą ilość gotowych komponentów wraz ze świetną dokumentacją i przykładami jak ich użyć. Bardzo begineer friendly, im szybciej zaczniecie korzystać, tym lepiej. Łapcie [link](https://ui.shadcn.com/) do docsów.
+
+### Zarządzanie globalnym stanem React’a
+
+Na pewno w którymś z twoich projektów będziesz musiał zarządzać globalnym stanem React’a. Jest dużo narzędzi dostępnych na rynku, najbardziej znanym i rozpoznawalnym narzędziem jest Redux, którego relaese przypadł na 2015. W Solvro używamy Jotai’a wypuszczonego w 2022 roku. Ta libka jest bardziej przyjazna dla programistów, ma minimalistyczne API i po prostu jest prosta w użyciu i elastyczna. [Link](https://jotai.org/) do docsów.
+
+### Next.js
+
+Next.js to framework oparty na React używany do budowania fullstackowych aplikacji webowych. Przy tworzeniu projektów używa się React’a do tworzenia interfejsu użytkownika i Next.js’a dla dodatkowych funkcjonalności i optymalizacji.
+
+Niektóre z głównych funkcji Next.js to:
+
+- **Routing** - file-system based routing zbudowany na komponentach serwerowych, który wspiera layouty, zagnieżdzone routes'y, stany ładowania, czy handlowanie errorów.
+- **Rendering** - Renderowanie po stronie klienta i serwera, statyczne i dynamiczne renderowanie na serwerze
+- **Fetchowanie danych** - Uproszczone fetchowanie danych przy użyciu async/await w komponentach serwerowych, rozszerzone fetch api dla memoizacji requestów, cachowania danych i rewalidacji
+- **Stylowanie** - Wsparcie dla preferowanych przez ciebie metod stylowania, włączając moduły CSS’a, Tailwind i CSS-in-JS
+- **Optymalizacja** - Optymalizacja obrazków, czcionek, czy skryptów pozwala na lepsze doświadczenia użytkownika
+- **Typescript** - Ulepszone wsparcie dla typescript’a
+
+Dokumentacja Next'a jest bardzo przyjazna i w łatwy sposób się z niej korzysta. Twórcy Next'a stworzyli tutorial, w którym tworzysz prosty projekt, który świetnie pokazuje możliwości framework'a i bardzo dobrze tłumaczy koncepty. Jeśli chcesz zacząć z Next’em to zdecydowanie przejdź przez ten [kurs](https://nextjs.org/learn?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=home).
+
+Dokumentacja Next’a ma również kurs doszkolający z React’a i kurs dotyczący Pages Router’a. Różnice między pages routerem, a app routerem : [link](https://nextjs.org/docs#app-router-vs-pages-router).
+
+Po przejściu kursu z dokumentacji, rozpocząłbym po prostu kolejny projekt. Tutaj już sami powinniście wymyśleć coś fajnego 😊. Najlepszą nauką jest praktyka.
+
+### Honorable mentions
+
+#### Literatura
+
+**RefactoringUI od tworcow tailwinda** - na naszym dysku
+
+#### Sass
+
+Preprocesor css, który rozszerza możliwości standardowego CSS, umożliwiając bardziej zaawansowane i zorganizowane pisanie stylów. Sass wprowadza takie funkcje jak:
+
+- **Zagnieżdżanie**: Pozwala na zagnieżdżanie reguł CSS w sposób hierarchiczny, co ułatwia organizację kodu.
+- **Zmienne**: Umożliwia definiowanie zmiennych, co pozwala na łatwe zarządzanie kolorami, czcionkami i innymi wartościami w całym projekcie.
+- **Mixins**: Umożliwiają tworzenie zestawów reguł CSS, które można wielokrotnie wykorzystywać w różnych miejscach.
+- **Dziedziczenie**: Pozwala na dziedziczenie właściwości z jednego selektora do drugiego, co ułatwia tworzenie spójnych stylów.
+
+#### Poradnik z używania libek do autentykacji
+
+- **BetterAuth**- Poradnik z tworzenia autentykacji z użyciem credentialsów. Twórca poradnika używa w swoim tutorialu Next.js + Prisma + Shadcn. [Link](https://www.youtube.com/watch?v=BiVwYIUophk)
