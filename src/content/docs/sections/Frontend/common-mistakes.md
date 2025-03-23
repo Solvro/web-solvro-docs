@@ -1,7 +1,7 @@
 ---
 title: Częste błędy & FAQ
 sidebar:
-  order: 6
+  order: 7
 description: Powinieneś unikać tych błędów w swoim kodzie.
 ---
 
