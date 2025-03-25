@@ -90,13 +90,20 @@ Jeśli chcesz do nas dołączyć, skontaktuj się z **przewodniczącym sekcji!**
 
 ### Członkowie sekcji
 
-{["ibtyog","pb3dpb3d","Skiperpol","czaja307","kamilfedio","MoonPrincess06","Mikuu-252","Lennox2536","jakubkobus","huskyybtw","dominikkorwek","loudsheep","mateusz-plaska","kamilramocki","sxlecquer","Kawaban","Batory12","Leadman5555","Matistan","GOLDER303","stepkos","mini-bomba","karolwolek"].map((username) => (
+{(await fetch("https://cms.solvro.pl/items/Team?fields=name,sociale.link&filter[specialization][Specializations_id][name][_eq]=Backend&filter[sociale][link][_contains]=github")
+.then((res) => res.json())
+.catch(() => ({ data: [] })))
+.data.map((user) => {
+const githubUrl = user.sociale.find((social) => social.link.includes("github")).link.trim();
+return (
 
-<Image
-  alt={username}
-  src={`https://github.com/${username}.png?size=50`}
-  width={50}
-  height={50}
-  style={{ display: "inline-block", margin: "5px 5px" }}
-/>
-))}
+<a href={githubUrl} title={user.name}>
+  <Image
+    alt={user.name}
+    src={`${githubUrl}.png?size=50`}
+    width={50}
+    height={50}
+    style={{ display: "inline-block", margin: "5px" }}
+  />
+</a>
+); } )}
