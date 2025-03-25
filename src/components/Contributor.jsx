@@ -1,12 +1,3 @@
-/*
-      <Contributor
-        link="https://github.com/dawidlinek"
-        name="Dawid"
-        surname="Linek"
-        title="Project Manager"
-      />
-*/
-
 export function Contributor(props) {
   return (
     <td
@@ -23,9 +14,17 @@ export function Contributor(props) {
           width="50"
           height="50"
           alt={`${props.name} ${props.surname}`}
+          title={`${props.name} ${props.surname}`}
         />
       </a>
-      <p style={{ fontSize: "0.8em", color: "#777", fontStyle: "italic" }}>
+      <p
+        style={{
+          margin: "0",
+          fontSize: "0.8em",
+          color: "var(--s1-color-black)",
+          fontStyle: "italic",
+        }}
+      >
         {props.title}
       </p>
     </td>
