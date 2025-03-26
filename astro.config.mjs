@@ -6,12 +6,13 @@ import tailwind from "@astrojs/tailwind";
 import liveCode from "astro-live-code";
 import react from "@astrojs/react";
 import starlightLinksValidator from "starlight-links-validator";
+import { mermaidRemarkPlugin } from "./src/plugins/mermaid";
 
 // https://astro.build/config
 export default defineConfig({
   markdown: {
     // @ts-expect-error ??????
-    remarkPlugins: [remarkHeadingId],
+    remarkPlugins: [remarkHeadingId, mermaidRemarkPlugin],
   },
   site: "https://docs.solvro.pl",
   integrations: [
