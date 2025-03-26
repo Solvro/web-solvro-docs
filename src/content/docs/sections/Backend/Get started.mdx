@@ -9,6 +9,7 @@ import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
 
 import { Image } from "astro:assets";
 import { Picture } from "astro:assets";
+import { getTeam, TeamMembers } from "../../../../components/TeamMembers";
 
 # O sekcji backend
 
@@ -90,20 +91,4 @@ Jeśli chcesz do nas dołączyć, skontaktuj się z **przewodniczącym sekcji!**
 
 ### Członkowie sekcji
 
-{(await fetch("https://cms.solvro.pl/items/Team?fields=name,sociale.link&filter[specialization][Specializations_id][name][_eq]=Backend&filter[sociale][link][_contains]=github")
-.then((res) => res.json())
-.catch(() => ({ data: [] })))
-.data.map((user) => {
-const githubUrl = user.sociale.find((social) => social.link.includes("github")).link.trim();
-return (
-
-<a href={githubUrl} title={user.name}>
-  <Image
-    alt={user.name}
-    src={`${githubUrl}.png?size=50`}
-    width={50}
-    height={50}
-    style={{ display: "inline-block", margin: "5px" }}
-  />
-</a>
-); } )}
+{<TeamMembers team={await getTeam("Backend")} />}
