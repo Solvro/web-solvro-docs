@@ -1,0 +1,74 @@
+---
+// Import this file using a side effect import to render all mermaid codeblocks on the client side.
+// import "#components/Mermaid";
+---
+
+<script>
+  import mermaid from "mermaid";
+  initializeMermaid();
+  const themeObserver = new MutationObserver(() => {
+    initializeMermaid();
+    document.dispatchEvent(new CustomEvent("mermaidrerender"));
+  });
+  themeObserver.observe(document.documentElement, {
+    attributeFilter: ["data-theme"],
+  });
+
+  function initializeMermaid() {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme:
+        document.documentElement.dataset["theme"] === "dark" ? "dark" : "base",
+    });
+  }
+
+  class MermaidDiagram extends HTMLElement {
+    protected diagramCode?: string;
+    protected listenerAbort: AbortController = new AbortController();
+
+    connectedCallback() {
+      this.listenerAbort.abort();
+      this.listenerAbort = new AbortController();
+      if (this.diagramCode === undefined) {
+        const preElement = this.querySelector("pre.mermaid");
+        if (preElement === null) {
+          console.error(
+            "Invalid mermaid element: could not find a pre.mermaid element with diagram code",
+            this
+          );
+          return;
+        }
+        this.diagramCode = preElement.textContent ?? "";
+      }
+      this.rerender();
+      document.addEventListener("mermaidrerender", this.rerender.bind(this), {
+        signal: this.listenerAbort.signal,
+      });
+    }
+
+    async rerender() {
+      if (this.diagramCode === undefined) {
+        throw new Error("Attempted to render a diagram with no code");
+      }
+      const div = document.createElement("div");
+      this.appendChild(div);
+      const result = await mermaid.render(
+        `mermaid-diagram-${Math.floor(Math.random() * 10000000)}`,
+        this.diagramCode,
+        div
+      );
+      div.innerHTML = result.svg;
+      result.bindFunctions?.(div);
+      for (const node of this.childNodes) {
+        if (node !== div) {
+          node.remove();
+        }
+      }
+    }
+
+    disconnectedCallback() {
+      this.listenerAbort.abort();
+    }
+  }
+  customElements.define("mermaid-diagram", MermaidDiagram);
+</script>
