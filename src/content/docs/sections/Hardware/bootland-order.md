@@ -2,7 +2,7 @@
 title: Zamówienia w Botlandzie
 description: Wszystko, co musimy wiedzieć przy zamówieniu.
 sidebar:
-  order: 2
+  order: 4
 ---
 
 ## Wprowadzenie

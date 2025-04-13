@@ -70,22 +70,14 @@ Możemy również cofnąć i usunąć wszystkie zmiany do poprzedniego commita, 
 
 Jednakże, jeżeli wszystkie migawki łączyłby liniowy związek, nie możemy łatwo prototypować - jeśli cofnęlibyśmy się o kilka commitów i tam coś zmienili, ryzykowalibyśmy, że coś wywali się nam w najnowszym commit'cie.
 
-<img
-  src="/src/assets/tutorials/git-basics/one-branch-ex.png"
-  alt="Praca na jednej gałęzi"
-  style="margin-left:auto; margin-right:auto"
-/>
+![Przykład z jedną gałęzią w git](../../../../assets/tutorials/git-basics/one-branch-ex.png)
 
 Powyższy diagram pokazuje tworzenie commit'ów na jednej gałęzi.  
 Załóżmy, że potrzebujesz przetestować, jak wyglądają dwa różne rozwiązania - głupio byłoby w tym celu kopiować i izolować cały projekt czy usuwać jedne rozwiązanie na rzecz drugiego. Zamiast tego wystarczy utworzyć dwie nowe gałęzie.
 
 ### Gałęzie (ang. branches)
 
-<img
-  src="/src/assets/tutorials/git-basics/multi-branch-ex.png"
-  alt="Praca na jednej gałęzi"
-  style="margin-left:auto; margin-right:auto"
-/>
+![Przykład wielu gałęzi w git](../../../../assets/tutorials/git-basics/multi-branch-ex.png)
 
 Gałęzie pozwalają ci izolować swoją pracę na jednej wersji repozytorium, nie naruszając innych. Możesz na nich prototypować nowe funkcjonalności bez przeszkadzania innym i rozwalania sobie kodu na gałęzi _main_.  
 Aby utworzyć nową gałąź, używamy komendy:  
@@ -119,11 +111,8 @@ Musimy połączyć dwie gałęzie, a jest na to kilka sposobów.
 
 #### Merge
 
-<img
-  src="/src/assets/tutorials/git-basics/git-3-branches.png"
-  alt="Przykład mergowania z 3 gałęziami"
-  style="margin-left:auto; margin-right:auto"
-/>
+![Git repo z 3 gałęziami](../../../../assets/tutorials/git-basics/git-3-branches.png)
+
 _Przy większej ilości gałęzi, trudno odczytać coś z diagramu historii._
 
 W przypadku zwykłego merge zachowujemy szczegółowy dostęp do wszystkich zmian, jednak tworzymy _merge commits_,
@@ -136,11 +125,8 @@ FF merge nie tworzy merge commit'a i zwyczajnie przenosi zmiany na główną ga�
 
 #### Merge --squash
 
-<img
-  src="/src/assets/tutorials/git-basics/git-merge-squash-example.png"
-  alt="Przykład git merge z flagą --squash"
-  style="margin-left:auto; margin-right:auto"
-/>
+![git merge z flagą squash](../../../../assets/tutorials/git-basics/git-merge-squash-example.png)
+
 _Tworzymy jeden duży commit w miejscu scalenia gałęzi_ `git merge --squash
 feat_1` `git commit -m "abc"`
 
@@ -150,11 +136,7 @@ Pozwala to zachować liniową historię, jednakże tracimy szczegóły na temat 
 
 #### Rebase
 
-<img
-  src="/src/assets/tutorials/git-basics/git-rebase-example.png"
-  alt="Przykład git rebase"
-  style="margin-left:auto; margin-right:auto"
-/>
+![Przykład git rebase](../../../../assets/tutorials/git-basics/git-rebase-example.png)
 _(będąc na gałęzi feat)_ `git rebase main`
 
 Git rebase "przenosi" początek naszej gałęzi na koniec gałęzi źródłowej.
@@ -177,11 +159,7 @@ Zdarza się, że scalając dwie gałęzie, które w międzyczasie były modyfiko
 Nie jest to nic strasznego, bo tak długo, jak rozumiemy kod, a zmiany nie były dużych rozmiarów rozwiązywanie konfliktów jest bardzo proste.
 W skonfliktowanych plikach znajdziemy takie oznaczenia:
 
-<img
-  src="/src/assets/tutorials/git-basics/git-conflict-example.png"
-  alt="Przykład konfliktow w git"
-  style="margin-left:auto; margin-right:auto"
-/>
+![Przykład konfliktów w git](../../../../assets/tutorials/git-basics/git-conflict-example.png)
 
 - HEAD - w tej sekcji są zmiany z gałęzi, na której się znajdujemy
 - Jest ona oddzielona od zmian z drugiej gałęzi za pomocą separatora "======="
