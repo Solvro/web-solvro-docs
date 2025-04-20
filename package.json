@@ -24,6 +24,7 @@
     "@astrojs/tailwind": "^5.1.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "asciinema-player": "^3.8.1",
     "astro": "^4.16.16",
     "astro-live-code": "^0.0.4",
     "astro-og-canvas": "^0.5.4",
@@ -44,6 +45,7 @@
     "lint-staged": "^15.2.10",
     "prettier": "^3.4.1",
     "prettier-plugin-astro": "^0.14.1",
+    "sass-embedded": "^1.82.0",
     "tsx": "^4.19.2"
   },
   "lint-staged": {

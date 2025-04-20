@@ -1,0 +1,238 @@
+---
+title: "Git handbook, rozdział 1: Kampania jednoosobowa"
+description: "Podstawowe, własne repo z liniową historią"
+sidebar:
+  label: "R1: Kampania jednoosobowa"
+  order: 1
+---
+
+import AsciinemaPlayer from "#components/AsciinemaPlayer";
+import {
+  Steps,
+  Tabs,
+  TabItem,
+  Card,
+  CardGrid,
+} from "@astrojs/starlight/components";
+
+## A czym tak właściwie ten git jest?
+
+Git to tzw. system kontroli wersji. (Version Control System, VCS)
+
+Pozwala on na śledzenie, jak pliki w repozytorium zmieniały się na przestrzeni czasu, przez różne wersje, tworzone przez róznych użytkowników.
+
+Ułatwia to współpracę - nie trzeba się bawić z wysyłaniem zipów całego repo, wystarczy zrobić swoje zmiany na swojej gałęzi i/lub forku,
+a następnie powiedzieć osobie odpowiedzialnej za głowną gałęź, by pobrała zmiany z twojej gałęzi.
+
+## Nowe repozytorium
+
+By móc korzystać z gita, należy stworzyć lub pobrać jakieś repozytorium.
+Powiedzmy, że zaczynamy nowy projekt i chcemy stworzyć dla niego nowe repozytorium.
+
+Do tworzenia nowego repozytorium służy komenda [`git init`](https://git-scm.com/docs/git-init).
+Jeżeli po komendzie dodamy nazwę, to git utworzy nowy katalog o danej nazwie, w którym powstanie repozytorium.
+
+import newRepo01 from "#assets/git/chapter-1/new-repo-01.cast";
+
+<AsciinemaPlayer src={newRepo01} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
+
+1. Tworzymy nowe repozytorium - `git init <nazwa>`
+2. Przechodzimy do nowo utworzonego katalogu i sprawdzamy status repo - `git status`
+3. działa 😎👍
+
+</AsciinemaPlayer>
+
+A co jeżeli mamy już jakiś projekt, na którym chcielibyśmy zacząć używać gita?
+By zainicjować nowe repozytorium gita w istniejącym katalogu, wystarczy do niego przejść i wykonać komendę `git init` bez żadnych dodatkowych parametrów.
+
+import newRepo02 from "#assets/git/chapter-1/new-repo-02.cast";
+
+<AsciinemaPlayer src={newRepo02} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
+
+1. Przechodzimy do katalogu z istniejącym projektem
+2. Sprawdzamy zawartość projektu - 2 pliki
+3. Inicjujemy repozytorium w istniejącym katalogu - `git init`
+4. Sprawdzamy status repo - `git status`
+5. Sprawdzamy ponownie zawartość katalogu - pojawił się nowy ukryty katalog `.git`
+
+</AsciinemaPlayer>
+
+Zauważmy, że po zainicjowaniu repozytorium w katalogu pojawił się nowy ukryty katalog - `.git`.
+W nim git przechowuje całą historię repozytorium.
+Jeżeli omyłkowo zainicjowaliśmy repozytorium, to usunięcie tego ukrytego katalogu cofnie inicjalizację repozytorium.
+
+:::caution
+Usunięcie katalogu `.git` spowoduje bezpowrotne usunięcie całej zapisanej historii repozytorium!
+Nie rób tego w repozytoriach, które są ważne i dla których nie masz kopii zapasowej!
+:::
+
+import newRepo03 from "#assets/git/chapter-1/new-repo-03.cast";
+
+<AsciinemaPlayer src={newRepo03} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
+
+1. Przechodzimy do katalogu z repozytorium
+2. Usuwamy `.git`
+3. Sprawdzamy status repo - `git status`
+4. 🦀 repozytorium is gone 🦀
+
+</AsciinemaPlayer>
+
+## Tworzenie zapisów
+
+No dobra, mamy już repo; co dalej?
+Repozytorium gita bez żadnych zapisów użyteczne nie jest, więc utwórzmy pierwszy wpis.
+
+By utworzyć zapis, trzeba kolejno:
+
+<Steps>
+
+1. Sprawdzić, jakie niezapisane zmiany mamy w repozytorium - komenda `git status`
+2. Zastanowić się, które z nich chcemy złożyć w nowy zapis.
+
+   Czasami chcemy po prostu wszystko wrzucić w jeden zapis, a innymi czasy chcemy rozdzielić zmiany na kilka zapisów.
+   Teraz właśnie warto sobie to zaplanować.
+
+3. Dodać (aka. przygotować do złożenia) zmiany, które chcemy złozyć w nowy zapis - komenda `git add`.
+4. Na koniec wreszcie dokonać zapisu - komenda `git commit`.
+
+</Steps>
+Jeżeli ktoś korzysta z integracji gita w swoim ulubionym edytorze, to zapewne wykonuje te same kroki, tylko klikając przyciski zamiast pisania komend.
+
+import commit01 from "#assets/git/chapter-1/committing-01.cast";
+
+<AsciinemaPlayer src={commit01} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
+
+1. Sprawdzamy, jakie mamy niezapisane zmiany - `git status`
+2. Dodajemy kolejno każdy zmieniony plik - `git add <plik>`
+3. Sprawdzamy jeszcze raz status repo - `git status`
+4. Dokonujemy zapisu - `git commit`
+5. error?????????????
+
+</AsciinemaPlayer>
+
+### Konfiguracja tożsamości
+
+Jeżeli pierwszy raz korzystasz z gita, nie dokonywał\*ś żadnej wcześniejszej konfiguracji, i próbujesz wykonywać po kolei ćwiczenia, to zapewnie przy próbie utworzenia zapisu otrzymał\*ś błąd, podobnie jak na nagraniu powyżej.
+
+Oznacza on, że git nie miał w swojej konfiguracji twojego imienia/nazwiska/pseudonimu i adresu email.
+Git używa tych danych do przypisywania twoich zapisów do ciebie.
+
+To, jakie dane ustawisz zależy od tego, w jakich projektach pracujesz i jak preferujesz się w nich podpisywać.
+Jeżeli pracujesz głównie nad swoimi osobistymi projektami, to masz pełną dowolność -
+możesz użyć swojego imienia i nazwiska, albo nicku;
+możesz użyć swojego głównego adresu email, lub jakiegoś dodatkowego,
+albo nawet adresu typu noreply, przypisanego tobie przez twojego hosta repozytoriów (np. Github).
+Natomiast w projektach służbowych zapewne będziesz używał imienia i nazwiska oraz służbowego adresu email.
+
+Te dane możesz ustawić zarówno globalnie (dla wszystkich repozytoriów), jak i lokalnie (dla wybranego repozytorium).
+
+<Tabs>
+  <TabItem label="Ustaw globalnie">
+
+```bash
+# wykonaj gdziekolwiek tbh
+git config --global user.email "<email>"
+git config --global user.name "<nazwa użytkownika/imie/nazwisko/pseudonim>"
+```
+
+  </TabItem>
+  <TabItem label="Ustaw lokalnie">
+
+```bash
+# wykonaj w repozytorium
+git config user.email "<email>"
+git config user.name "<nazwa użytkownika/imie/nazwisko/pseudonim>"
+```
+
+  </TabItem>
+</Tabs>
+
+import commit02 from "#assets/git/chapter-1/committing-02.cast";
+
+<AsciinemaPlayer src={commit02} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
+
+1. Ustawiamy globalnie dane użytkownika
+2. Sprawdzamy status repo - zmiany są nadal przygotowane od ostatniego nagrania
+3. Dokonujemy zapisu - `git commit`
+4. Otwiera się domyślny edytor - wpisujemy nazwę (i opcjonalnie opis) zmiany,
+   zapisujemy, zamykamy
+5. Sprawdzamy status repo - brak zmian do złożenia
+6. Sprawdzamy historię zapisów - `git log` - nowy zapis jest widoczny
+
+</AsciinemaPlayer>
+
+## Publikacja zmian
+
+Dokonaliśmy pierwszego wpisu, jednak jak na razie jest on dostępny tylko na naszym komputerze.
+Jak opublikować repozytorium i nowe wpisy?
+
+Jeżeli jesteśmy na świeżo utworzonym repozytorium, najpierw trzeba stworzyć jakieś miejsce na publikację -
+może to być repozytorium na dowolnym z hostów wymienionych (bądź nie) na wstępie dokumentacji.
+Jeżeli jesteśmy na repozytorium sklonowanym, to adres, z którego repozytorium sklonowaliśmy zostanie automatycznie zapisany jako repozytorium zdalne `origin`.
+
+Jeżeli jest to pierwszy raz, gdy używasz danego hosta (np. GitHub), trzeba będzie również skonfigurować wybrany sposób dostępu.
+Uniwersalnym protokołem do wysyłania zmian jest SSH - wystarczy wygenerować parę kluczy SSH (jeżeli jeszcze ich nie mamy) i dodać ten publiczny do swojego konta.
+Sposób dodania wygenerowanego klucza do konta GitHub opisuje [ich dokumentacja](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account). (tl;dr skopiuj klucz publiczny, wklej w odpowiednim miejscu w ustawieniach konta, done)
+
+W dalszych przykładach zamiast standardowego hosta będę używał tzw. "bare" repo na tym samym komputerze.
+Różnica polega na tym, że zamiast wklejać adres repozytorium, który skopiowałbym z np. GitHuba, wpisuję po prostu ścieżkę do lokalnego "zdalnego" repozytorium.
+
+Do zarządzania zdalnymi kopiami repozytorium służy komenda `git remote`.
+
+- Bez żadnych parametrów wypisze ona wszystkie skonfigurowane zdalne repozytoria.
+- Aby dodać nowe, należy użyć komendy `git remote add <nazwa> <adres>`.
+- Komendą `git remote get-url <nazwa>` sprawdzimy, jaki adres zdalnego repo kryje się pod daną nazwą.
+- Komendą `git remote set-url <nazwa> <URL>` zmienimy adres danego zdalnego repo, np. gdy chcemy zmienić protokół z HTTP na SSH (lub odwrotnie).
+
+Gdy mamy skonfigurowane już repozytorium zdalne, możemy opublikować zmiany z aktualnej gałęzi komendą `git push`.
+
+Jeżeli jest to pierwszy raz, gdy publikujemy daną gałąź, to git będzie chciał troszeczke więcej informacji o tym, gdzie tą gałąż "wypchnąć".
+(chyba że ktoś już skonfigurował gita, by się sam domyślił, o co chodzi [to jest literalnie jedna komenda, wyświetlana nawet w komunikacie błędu])
+Wtedy trzeba użyć rozwiniętej formy tej komendy - `git push --set-upstream <nazwa zdalnego repo> <nazwa zdalnej gałęzi>`.
+Czyli jeżeli dla przykładu chcemy wypchnąć aktualną gałąź do repozytorium "origin", na gałąź o nazwie "feat/epicki-ficzer"
+i zapisać tą konfigurację na przyszłość, użyjemy komendy `git push --set-upstream origin feat/epicki-ficzer`.
+Jeżeli nie chcemy zapisywać nowej konfiguracji jako domyślnej, wystarczy usunąć flagę `--set-upstream`.
+
+import publish01 from "#assets/git/chapter-1/publishing-01.cast";
+
+<AsciinemaPlayer src={publish01} idleTimeLimit={1} cols={140} rows={40} theme="monokai" >
+
+1. Sprawdzamy skonfigurowane repozytoria zdalne - `git remote` - brak
+2. Konfigurujemy nowe repozytorium zdalne "origin" - `git remote add <nazwa> <adres>`
+3. Wypychamy zmiany do repozytorium zdalnego - `git push`
+4. Sprawdzamy `git log` - zdalna gałąź jest widoczna jako "origin/master"
+
+</AsciinemaPlayer>
+
+## Trochę więcej o opisach zapisów/commitów
+
+Opis zapisu składa się z kilku części:
+
+- Pierwsza linijka, czyli nazwa, krótki opis, czy jakkolwiek inaczej ktoś to chce nazywać - w edytorach, hostach repozytorów, czy w wyjściu z `git log` jest zawsze wyświetlana.
+  Jej długość jest ograniczona, co dobre edytory powinny wymuszać - przekroczenie pewnej długości powoduje często jej skracanie i ukrywanie reszty.
+  Powinna ona w skrócie opisywać wszystkie zmiany dokonane w zapisie.
+- Dalszy, opcjonalny opis, oddzielony od pierwszej linijki pustą linijką.
+  Tutaj można się dokładniej rozpisać na temat dokonanych zmian, różnych zawiłości wybranych rozwiązań lub zawrzeć swoje inne filozoficzne przemyślenia.
+  Graficzne interfejsy do gita oraz `git log --oneline` zazwyczaj ukryją tą część za jakimś przyciskiem lub najechaniem kursorem.
+- Tzw. "trailery", w stylu headerów email lub HTTP.
+  To, jakie trailery są wspierane zależy głównie od hosta repo i innego oprogramowania.
+  Przykładem jest `Co-authored-by: autor <mail-autora@example.org>`, który służy do oznaczania współautorów zapisu.
+  Zazwyczaj wstawia je się po opisie, zostawiając jedną pustą linijkę.
+
+Różne organizacje, projekty i autorzy mają różne opinie na temat stylu opisów. Styl używany w Solvro został opisany [w handbooku dla GitHuba](/github#nazewnictwo-commitów).
+
+import commit03 from "#assets/git/chapter-1/committing-03.cast";
+
+<AsciinemaPlayer src={commit03} idleTimeLimit={1} cols={100} rows={25} theme="monokai" >
+
+1. Dokonujemy jakieś zmiany w repozytorium
+2. Przygotowujemy wybrane zmiany do złożenia
+3. Dokonujemy zapisu i opisujemy zmiany:
+4. Dodajemy krótki opis
+5. Tworzymy dłuższy, szczegółowy opis zmian
+6. Oznaczamy Linusa Torvaldsa jako współautora zmiany
+7. Wysyłamy zmiany do zdalnego repo
+8. Sprawdzamy `git log` - widać cały opis zmian
+9. Sprawdzamy `git log --oneline` - widać tylko pierwszą linijkę
+
+</AsciinemaPlayer>

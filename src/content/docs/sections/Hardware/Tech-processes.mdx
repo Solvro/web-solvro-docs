@@ -1,0 +1,89 @@
+---
+title: Jak wytwarzamy technologie w Solvro?
+description: Dokumentacja procesu tworzenia technologii w Solvro
+sidebar:
+  order: 2
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
+import { Card } from "@astrojs/starlight/components";
+
+## Intro
+
+Hejka,
+Znajdujesz się na stronie, która krok po kroku przeprowadzi Cię przez proces budowania rozwiązania technologicznego w Solvro.
+
+## Proces tworzenia technologii
+
+### 1️⃣ Dokładne zebranie wymagań:
+
+#### Plany, projekty, rysunki, konstrukcje
+
+    Należy zebrać dokładne (na poziomie inżynierskim) dokumenty ilustrujące wizje. Do takich dokumentów należą:
+      - Rysunek techniczny \*
+      - Model 3D \*
+      - Animacje ruchu/działania
+      - Dokładny opis słowny \*
+      - Fizyczne konstrukcje \*
+
+    > \*    - (z zaznaczonymi wymiarami, jednostkami, skalą i legendą)
+
+#### W jaki sposób stworzyć takie dokumenty?
+
+    <Card title="Rysunek techniczny" icon="pen">
+      Najlepiej na papierze milimetrowym/programach umożliwiających rysowanie po siatce milimetrowej, narysuj szkielety (widoczne krawędzie) wg. wybranego układu.
+
+      Pamiętaj o dokładnym oznaczeniu wymiarów, jednostek, skali, zbioru elementów i ewentualnej legendzie.
+    </Card>
+    <Card title="Model 3D" icon="seti:prisma">
+      Domyślnie, w Solvro korzystamy z Autocad Fusion 360 oraz Blender do tworzenia modeli 3D.
+
+      Ważne, aby eksportować projekt do plików wspierających zachowywanie skali.
+    </Card>
+    <Card title="Pliki gerber" icon="seti:pipeline">
+      Domyślnie, w Solvro korzystamy z Autocad Fusion 360 oraz KiCad
+    </Card>
+    <Card title="Dokładny opis słowny " icon="document">
+      Domyślnie, w Solvro karta projektu służy za dokładny opis słowny projektu i mogą w niej być zawarte dokładne wymiary i zachowania technologii, którą zamierzamy stworzyć
+    </Card>
+
+### 2️⃣ Budżet
+
+Na podstawie zebranych dokumentów ilustrujących należy przeanalizować koszty projektu i ustalić priorytety.
+Należy również przeprowadzić analizę ryzyka w projekcie i przydzielić każdemu ryzyku odpowiedni priorytet.
+
+#### W skład ryzyka wchodzi m.in.:
+
+    - Uszkodzenie komponentów elektronicznych
+    - Uszkodzenie narzędzi
+    - Brak finansów na kontynuacje projektu
+
+#### W skład kosztów wchodzi m.in.:
+
+    - Koszt elementów elektronicznych \* \*\*
+    - Koszt materiałów konstrukcyjnych (np. druku 3d)  \* \*\*
+    - Koszt budowy (np. lutowania)  \*\*
+
+> \* - pieniężny
+>
+> \*\* - czasowy (aproksymowany)
+
+### 3️⃣ Wytworzenie technologii
+
+#### Ustalenie harmonogramu działań
+
+    Według priorytetów ustalonych w budżecie należy stworzyć harmonogram prac. Harmonogram prac może istnieć w dowolnej formie, natomiast ważne jest by taski na githubie miały dokładnie te same ustalone daty na dany etap prac.
+
+#### Realizacja projektu
+
+    W trakcie prac prawie na pewno wystąpią opóźnienia, braki w finansowaniu, uszkodzenia komponentów etc.
+    Żeby temu zapobiegać należy:
+
+    1. Przeprowadzić szkolenia dla członków projektu, którzy nie są zaznajomieni z danym etapem / technologią.
+    2. Wprowadzić redundantne zasoby - to znaczy do otrzymanego, wyestymowanego budżetu doliczyć kwotę / czas nadmiarowy stanowiący amortyzację przy niespodziewanym ryzyku
+
+<Aside type="tip">
+  Zapoznaj się z materiałami szkoleniowymi w zakładce
+  [Hardware/Tutorials](/sections/hardware/tutorials)
+</Aside>
