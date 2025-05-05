@@ -111,7 +111,7 @@ Moim zdaniem wszystkie wtyczki z tej listy to większy lub mniejszy must have.
     Dwie kwestie, o których ludzie często zapominają to:
     1. Wbudowane snippety. Na przykład wystaczy napisać `stl` i nacisnąć tab, żeby dostać szablon `StatelessWidget`u.
     2. Refactoring assistant: `Cmd + Shift + R` i możemy na przykład okalać widget, na którym jesteśmy w `Column`.
-       ![](../../../../assets/flutter/refactoring.png)
+       ![Screen z refactoringiem](../../../../assets/flutter/refactoring.png)
        :::
 - [Oficjalna wtyczka do Darta](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
 - [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments): Kolorowe komentarze.
