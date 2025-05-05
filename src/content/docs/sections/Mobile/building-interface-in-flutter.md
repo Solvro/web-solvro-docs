@@ -35,7 +35,7 @@ class WelcomeText extends StatelessWidget {
 
 ### StatefulWidget
 
-- **Definicja**: Są to dynamiczne widgety, które mogą przechowywać i aktualizować swój stan. Jest to podstawowy, wbudowany do Fluttera sposób na zarządzanie stanem.
+- **Definicja**: To dynamiczne widgety, które mogą przechowywać i aktualizować swój stan. Jest to podstawowy, wbudowany do Fluttera sposób na [zarządzanie stanem](/sections/mobile/state-management/).
 - **Zastosowanie**: Używane są tam, gdzie interfejs musi reagować na zmiany, na przykład przy licznikach lub rozwijanych zakładkach.
 - **Przykład**:
 
@@ -70,6 +70,8 @@ class _MyCounterState extends State<MyCounter> {
   }
 }
 ```
+
+Alternatywy do niego znajdziesz w [zakładace o zarządzaniu stanem](/sections/mobile/state-management/)
 
 ## Bogata biblioteka widgetów
 
@@ -148,7 +150,7 @@ class MyWidget extends StatelessWidget {
 
 ### Podsumowanie
 
-Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niekorzystnie wpływają na performance i są uznawane w naszym kole za **antypattern** (mimo, że w internecie można znaleźć z nimi wiele przykładów, czasem nawet w oficjalnych docsach).
+Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niekorzystnie wpływają na performance i są uznawane w naszym kole za **antypattern** (mimo że można znaleść w internecie wiele przykładów z nimi, nawet czasem w oficjalnych docsach). Wydzielanie osobnych widgetów ma same zalety (poza kilkoma dodatkowymi linijkami boilerplate'u).
 
 ## Kilka dodatkowych zasad lub porad
 
@@ -183,7 +185,7 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
 ### 5. Międzynarodowość (i18n)
 
 - **Intl**: Używaj pakietu `intl` do formatowania dat, liczb i walut.
-- **Directionality**: Obsługuj różne kierunki tekstu (LTR/RTL) :)) - dla ambitnych
+- **Directionality**: Obsługuj różne kierunki tekstu (LTR/RTL) - dla ambitnych :)).
 - **Localizations**: Implementuj obsługę różnych języków. Obczaj np. [oficjalny sposób z docsów](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization).
 
 ### 6. Animacje i Przejścia
