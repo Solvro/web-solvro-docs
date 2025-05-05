@@ -12,7 +12,7 @@ Zarządzanie stanem w Flutterze obejmuje dwa główne rodzaje stanów:
 - **Definicja**: Stan związany zazwyczaj bezpośrednio z interfejsem. Ograniczony do jednego widgetu lub małego poddrzewa widgetów i zarządzany wewnątrz niego.
 - **Przykład**: Np. "czy zakładka jest rozwinięta"
 - _Rozwiązania/sposoby_:
-  - `StatefullWidget` - wbudowany i domyślny sposób, jest ok, nic z nim nie ma złego. Jedynym jego minusem jest dość rozwlekły syntax.
+  - `StatefulWidget` - wbudowany i domyślny sposób, jest ok, nic z nim nie ma złego. Jedynym jego minusem jest dość rozwlekły syntax.
   - `ValueNotifier` - również wbudowany w Darta i Fluttera sposób, dużo mniej popularny, ale moim zdaniem bardzo fajna alternatywa, jeśli ktoś nie lubi dodatkowych dependencies, warto go stosować. [Poczytaj np. tutaj](https://medium.com/@asterjoules/complete-guide-to-valuenotifier-in-flutter-0557f7c426b9)
   - `flutter_hooks` - port z Reacta :). Jeśli ktoś nie wie czym są hooki, to polecam spróbować. Są wygodne i pozwalają zrobić rzeczy w dużo mniej linijek kodu, dlatego je lubię - ale jeśli ktoś nie ma backgroundu z Reacta to musi się douczyć osobnej teorii do tego.
 
@@ -46,7 +46,7 @@ Zarządzanie stanem w Flutterze obejmuje dwa główne rodzaje stanów:
 Riverpod jest szczególnie przydatny w przypadku bardziej skomplikowanych aplikacji, gdzie jego elastyczność i zaawansowane funkcje mogą pomóc w efektywnym zarządzaniu stanem.
 
 :::note
-W ramach nauki polecam przeczytać [całą dokumentację](https://riverpod.dev/). Nie należy się bać! Jest naprawdę fajna, wartoo
+W ramach nauki polecam przeczytać [całą dokumentację](https://riverpod.dev/). Nie należy się bać! Jest naprawdę fajna, warto
 :::
 
 ### Przykład użycia Riverpoda
