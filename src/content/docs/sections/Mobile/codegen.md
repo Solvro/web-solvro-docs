@@ -21,7 +21,7 @@ Podstawowe narzędzie do generacji kodu w Dart/Flutter. Pozwala na uruchamianie 
 
 ```yaml
 dev_dependencies:
-  build_runner: <<version>>
+  build_runner: "<latest_version>" # Replace with actual version
 ```
 
 ### Jak używać generatorów kodu
@@ -56,4 +56,4 @@ flutter pub run build_runner build --delete-conflicting-outputs
 Na ten moment mogę polecić:
 
 - [Mój artykuł z przykładami na temat dynamicznej generacji kodu](https://solvro.pwr.edu.pl/pl/blog/flutter-dart-i-dynamiczna-generacja-kodu/) - napisany na podstawie mojego talka na WitKon 2024 o tej samej tematyce.
-- [The Ultimate Guide od Code With Andrea](https://codewithandrea.com/articles/dart-flutter-code-generation/) - fire content z wieeloma przykładami.
+- [The Ultimate Guide od Code With Andrea](https://codewithandrea.com/articles/dart-flutter-code-generation/) - fire content z wieloma przykładami.
