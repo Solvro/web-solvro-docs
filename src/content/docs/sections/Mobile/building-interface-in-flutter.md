@@ -113,7 +113,7 @@ class MyWidget extends StatelessWidget {
 
 1. **Naruszenie zasady pojedynczej odpowiedzialności** - klasa widgetu powinna być odpowiedzialna tylko za swój własny build
 2. **Trudność w testowaniu** - metody prywatne są trudniejsze do testowania
-3. **Nadmiarowe przebudowy** - każda taka metoda jest wywoływana przy każdym przebudowaniu widgetu (to jest podstawowy problem). Odbieramy Frameworkowi możliwość zdecydowania o tym, kiedy widget powinien być przebudowany, a kiedy nie. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance.
+3. **Nadmiarowe przebudowy** - każda taka metoda jest wywoływana przy każdym przebudowaniu widgetu (to jest podstawowy problem). Odbieramy Frameworkowi możliwość zdecydowania o tym, kiedy widget powinien być przebudowany, a kiedy nie. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance.
 
 ### Lepszym rozwiązaniem jest
 
@@ -148,4 +148,59 @@ class MyWidget extends StatelessWidget {
 
 ### Podsumowanie
 
-Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niekorzystnie wpływają na performance i są uznawane w naszym kole za **antypattern** (mimo że można znaleść w internecie wiele przykładów z nimi, nawet czasem w oficjalnych docsach).
+Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niekorzystnie wpływają na performance i są uznawane w naszym kole za **antypattern** (mimo że można znaleść w internecie wiele przykładów z nimi, nawet czasem w oficjalnych docsach).
+
+## Kilka dodatkowych zasady lub porad
+
+### 1. Responsywność i Adaptacja
+
+- **MediaQuery**: Używaj `MediaQuery` do dostosowywania rozmiarów i układów do różnych rozmiarów ekranu, orientacji lub systemowych paddingów. (Zobacz też `SafeArea`).
+- **LayoutBuilder**: Używaj `LayoutBuilder` do tworzenia responsywnych layoutów bazujących na dostępnej przestrzeni
+- **Flexible i Expanded**: Wykorzystuj te widgety w `Row` i `Column` do elastycznego rozkładania przestrzeni
+- **AspectRatio**: Używaj do zachowania proporcji elementów
+- **SingleChildScrollView** - Jeśli strona ma pole tekstowe, warto użyć tego wokół widoku, aby pozwolić na scrollowanie ekranu po wysunięciu się klawiatury.
+- i wiele wiele innych...
+
+### 2. Hierarchia i Organizacja
+
+- **Single Responsibility**: Każdy widget powinien mieć jedno, jasno określone zadanie
+- **Shallow Widget Tree**: Staraj się utrzymywać płytkie drzewo widgetów dla lepszej wydajności
+- **Extract Widgets**: Wydzielaj powtarzające się lub złożone części UI do osobnych widgetów
+
+### 3. Wydajność
+
+- **const Constructors**: Używaj `const` konstruktorów gdzie to możliwe
+- **ListView.builder**: Używaj dla długich list zamiast zwykłego `ListView`. Inną opcją jest również `ListView.separated` lub wszystkie slivery z builder based delegatami.
+- **CachedNetworkImage**: Używaj do efektywnego ładowania i cachowania obrazów
+
+### 4. Dostępność (Accessibility)
+
+- **Semantics**: Dodawaj semantykę dla czytników ekranu
+- **ExcludeSemantics**: Używaj dla elementów czysto dekoracyjnych
+- **Tooltip**: Dodawaj podpowiedzi dla interaktywnych elementów
+- Dbaj o kontrasty i dostosowanie interfejsów do skalowanych czcionek.
+
+### 5. Międzynarodowość (i18n)
+
+- **Intl**: Używaj pakietu `intl` do formatowania dat, liczb i walut
+- **Directionality**: Obsługuj różne kierunki tekstu (LTR/RTL) :)) - dla ambitnych
+- **Localizations**: Implementuj obsługę różnych języków. Obczaj np. [oficjalny sposób z docsów](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)
+
+### 6. Animacje i Przejścia
+
+Flutter oferuje wiele ciekawych widgetów, które w łatwy sposób wspierają animacje i przejścia. Kilka przykładowych:
+
+- **AnimatedContainer**: Używaj do płynnych zmian właściwości
+- **Hero**: Implementuj płynne przejścia między ekranami
+- **AnimatedBuilder**: Używaj do kontrolowanych animacji
+- **TweenAnimationBuilder**: Używaj do animacji zdefiniowanych wartości
+
+I wiele, wiele innych: [w dokumentacji](https://docs.flutter.dev/ui/widgets/animation)
+
+To tylko kilka przykładowych zasad, jeśli tylko masz pomysł na więcej, zapraszam do [kontrybucji](https://github.com/Solvro/web-solvro-docs).
+
+## Ciekawostka - function widgets
+
+Za pomocą generacji kodu, można pisać widgety funckcyjnie jak w Reactie za pomocą tej biblioteki: [https://pub.dev/packages/functional_widget](https://pub.dev/packages/functional_widget).
+
+Jest to ładniejszy zapis, ale w mojej ocenie kosztuje to nas za dużo dodatkowego czasu podczas generacji kodu, która i tak jest wyraźnie przeciążona. **Zatem w Solvro nie używamy tej paczki, a przynajmniej dopóki nie wprowadzą pełnych makr do Darta**
