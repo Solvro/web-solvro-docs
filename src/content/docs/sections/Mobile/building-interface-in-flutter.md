@@ -71,7 +71,7 @@ class _MyCounterState extends State<MyCounter> {
 }
 ```
 
-Alternatywy do niego znajdziesz w [zakładace o zarządzaniu stanem](/sections/mobile/state-management/)
+Alternatywy do niego znajdziesz w [zakładce o zarządzaniu stanem](/sections/mobile/state-management/)
 
 ## Bogata biblioteka widgetów
 
