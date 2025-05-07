@@ -9,11 +9,11 @@ Dynamiczna generacja kodu (ang. code generation) to potężne narzędzie w ekosy
 
 ### Dlaczego warto używać generacji kodu?
 
-1. **Redukcja boilerplate'u** - eliminacja powtarzającego się kodu
-2. **Type safety** - generowany kod jest w pełni typowany
-3. **Automatyzacja** - redukcja błędów ludzkich
-4. **Wydajność** - kod generowany jest w czasie kompilacji (a nawet przed)
-5. **Łatwiejsze utrzymanie** - mniej kodu do zarządzania
+1. **Redukcja boilerplate'u** - eliminacja powtarzającego się kodu.
+2. **Type safety** - generowany kod jest w pełni typowany.
+3. **Automatyzacja** - redukcja błędów ludzkich.
+4. **Wydajność** - kod generowany jest w czasie kompilacji (a nawet przed).
+5. **Łatwiejsze utrzymanie** - mniej kodu do zarządzania.
 
 ### build_runner
 
@@ -26,8 +26,8 @@ dev_dependencies:
 
 ### Jak używać generatorów kodu
 
-1. Dodaj odpowiednie zależności do `pubspec.yaml`
-2. Zdefiniuj klasy z adnotacjami
+1. Dodaj odpowiednie zależności do `pubspec.yaml`.
+2. Zdefiniuj klasy z adnotacjami.
 3. Uruchom generator:
 
 ```bash
@@ -55,5 +55,5 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 Na ten moment mogę polecić:
 
-- [Mój artykuł z przykładami na temat dynamicznej generacji kodu](https://solvro.pwr.edu.pl/pl/blog/flutter-dart-i-dynamiczna-generacja-kodu/) - napisany na podstawie mojego talka na WitKon 2024 o tej samej tematyce.
+- [Mój artykuł z przykładami na temat dynamicznej generacji kodu](https://solvro.pwr.edu.pl/pl/blog/flutter-dart-i-dynamiczna-generacja-kodu/) - napisany na podstawie mojego talka na WiTKON 2024 o tej samej tematyce.
 - [The Ultimate Guide od Code With Andrea](https://codewithandrea.com/articles/dart-flutter-code-generation/) - fire content z wieloma przykładami.
