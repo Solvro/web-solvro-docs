@@ -35,8 +35,12 @@ class WelcomeText extends StatelessWidget {
 
 ### StatefulWidget
 
-- **Definicja**: Są to dynamiczne widgety, które mogą przechowywać i aktualizować swój stan. Jest to podstawowy, wbudowany do Fluttera sposób na zarządzanie stanem.
-- **Zastosowanie**: Używane są tam, gdzie interfejs musi reagować na zmiany, na przykład przy licznikach lub rozwijanych zakładkach.
+- **Definicja**: To dynamiczne widgety, które mogą przechowywać i aktualizować swój stan. Jest to podstawowy, wbudowany do Fluttera sposób na [zarządzanie stanem](/sections/mobile/state-management/).
+- **Zastosowanie**:
+
+  - Używane są tam, gdzie interfejs musi reagować na zmiany, na przykład przy licznikach lub rozwijanych zakładkach.
+  - Dostarcza tkz. lifecycle methods, bez których mogłoby być ciężko napisać aplikację. Czytaj niżej ->.
+
 - **Przykład**:
 
 ```dart
@@ -67,6 +71,84 @@ class _MyCounterState extends State<MyCounter> {
         ),
       ],
     );
+  }
+}
+```
+
+**Uwaga**: Sam StatelessWidget nie wystarczy nam do zbudowania aplikacji. Można jednak w pełni zastąpić StatefulWidgeta za pomocą flutter_hooks (więcej o tym [w sekcji o zarządzanie stanem](/sections/mobile/state-management/)).
+
+### Lifecycle Methods - metody cyklu życia StatefulWidget
+
+StatefulWidget udostępnia kilka metod, które pozwalają na reagowanie na cykl życia widgetu. Pozwala nam to na wywołanie (czasem potrzebnych) efektów ubocznych.
+
+- **initState()**: Wywoływana tylko raz, gdy widget jest tworzony. Idealne miejsce do:
+
+  - Inicjalizacji zmiennych stanu
+  - Subskrypcji na strumienie danych
+  - Inicjalizacji kontrolerów
+  - Wykonania operacji asynchronicznych przy starcie
+
+- **dispose()**: Wywoływana gdy widget jest usuwany z drzewa. Służy do:
+
+  - Czyszczenia zasobów
+  - Anulowania subskrypcji
+  - Zwalniania kontrolerów
+  - Zapobiegania wyciekom pamięci (**ważne!**)
+
+- **didUpdateWidget()**: Wywoływana gdy widget jest aktualizowany z nowymi właściwościami. Przydatna do:
+
+  - Reagowania na zmiany w konfiguracji
+  - Aktualizacji stanu w zależności od nowych propsów
+
+- **didChangeDependencies()**: Wywoływana gdy zależności widgetu się zmieniają (np. Theme, MediaQuery). Używana do:
+  - Aktualizacji stanu bazującego na InheritedWidgets (np. Theme, MediaQuery)
+  - Reagowania na inne zmiany w BuildContext
+
+Przykład wykorzystania metod cyklu życia:
+
+```dart
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({super.key});
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  late StreamSubscription _subscription;
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+    _subscription = someStream.listen((data) {
+      // Obsługa danych ze strumienia
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(MyStatefulWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Reakcja na zmiany w `widget`
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reakcja na zmiany w zależnościach
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 ```
@@ -201,6 +283,6 @@ To tylko kilka przykładowych zasad, jeśli tylko masz pomysł na więcej, zapra
 
 ## Ciekawostka - function widgets
 
-Za pomocą generacji kodu, można pisać widgety funkcyjne, jak w Reactie, za pomocą tej biblioteki: [https://pub.dev/packages/functional_widget](https://pub.dev/packages/functional_widget).
+Za pomocą generacji kodu, można pisać widgety funkcyjne, jak w Reactie, za pomocą tej biblioteki: [https://pub.dev/packages/functional_widget](https://pub.dev/packages/functional_widget).
 
 Jest to ładniejszy zapis, ale w mojej ocenie kosztuje to nas za dużo dodatkowego czasu podczas generacji kodu, która i tak jest wyraźnie przeciążona. **Zatem w Solvro nie używamy tej paczki, a przynajmniej dopóki nie wprowadzą pełnych makr do Darta.**
