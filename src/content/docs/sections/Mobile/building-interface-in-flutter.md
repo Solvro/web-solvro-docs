@@ -195,9 +195,9 @@ class MyWidget extends StatelessWidget {
 
 ### Dlaczego to jest problem?
 
-1. **Naruszenie zasady pojedynczej odpowiedzialności** - klasa widgetu powinna być odpowiedzialna tylko za swój własny build.
+1. **KISS** - Keep It Simple, Stupid - zasada mówiąca, że kod powinien być jak najprostszy. Zamiast builder methods, lepiej jest tworzyć osobne, jasno nazwane widgety, bo widget jest naturalnym elementem budującym UI we Flutterze, a metody i funkcje w zamyśle nie mają takiego zastosowania w tym frameworku. Widget można też wydzielić do osobnych plików, a metod nie.
 2. **Trudność w testowaniu** - metody prywatne są trudniejsze do testowania.
-3. **Nadmiarowe przebudowy** - każda taka metoda jest wywoływana przy każdym przebudowaniu widgetu (to jest podstawowy problem). Odbieramy frameworkowi możliwość zdecydowania o tym, kiedy widget powinien być przebudowany, a kiedy nie. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance.
+3. **Nadmiarowe przebudowy** (performance) - jest to podstawowy problem tego podejścia. Widget jako wbudowany element składowy frameworka, pozwala zdecydować Flutterowi, kiedy jakiś element UI ma być przebudowany, a kiedy nie. Używając builder methods, odbieramy frameworkowi możliwość zdecydowania o tym, kiedy widget powinien być przebudowany, a kiedy nie. Każda taka metoda wywoła się za każdym możliwym razem - odbieramy frameworkowi możliwość jakiekolwiek optymalizacji. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance (czytaj niżej).
 
 ### Lepszym rozwiązaniem jest
 
