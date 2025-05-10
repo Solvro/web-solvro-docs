@@ -248,8 +248,8 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
 ### 2. Hierarchia i Organizacja
 
 - **Single Responsibility**: Każdy widget powinien mieć jedno, jasno określone zadanie.
-- **Shallow Widget Tree**: Staraj się utrzymywać płytkie drzewo widgetów dla lepszej wydajności.
-- **Extract Widgets**: Wydzielaj powtarzające się lub złożone części UI do osobnych widgetów.
+- **Shallow Widget Tree**: Staraj się utrzymywać płytkie drzewo widgetów dla lepszej wydajności i czytelności.
+- **Extract Widgets**: Wydzielaj powtarzające się lub złożone części UI do osobnych widgetów. (m.in. zasada KISS)
 
 ### 3. Wydajność
 
@@ -267,6 +267,10 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
   // ❌ Źle - nie można użyć const bo TextStyle nie jest const. Aplikacja nam się nie skompiluje.
   const MyWidget({super.key, required this.title, this.style = TextStyle()});
   ```
+
+- **ListView.builder**: Używaj dla długich list zamiast zwykłego `ListView`. Inną opcją jest również `ListView.separated` lub wszystkie slivery z builder based delegatami.
+- **CachedNetworkImage**: Używaj do efektywnego ładowania i cachowania obrazów.
+- **Paginacja**: W przypadku bardzo dużych kolekcji danych, warto wprowadzić paginację dla list danych, aby zoptymalizować wydajność i zużycie pamięci. Rozważ użycie gotowych rozwiązań do np. infinity scrolla.
 
 ### 4. Dostępność (Accessibility)
 
