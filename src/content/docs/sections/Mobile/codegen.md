@@ -15,6 +15,15 @@ Dynamiczna generacja kodu (ang. code generation) to potężne narzędzie w ekosy
 4. **Wydajność** - kod generowany jest w czasie kompilacji (a nawet przed).
 5. **Łatwiejsze utrzymanie** - mniej kodu do zarządzania.
 
+### Minusy codegen'u
+
+1. **Złożoność konfiguracji** - wymaga dodatkowego setupu i konfiguracji w projekcie.
+2. **Wolniejszy build** - proces generacji kodu może wydłużyć czas kompilacji. W przypadku skomplikowanych projektów może zająć kilka minut (w szczególności jak nie jest przez nas zoptymalizowany).
+3. **Debugowanie** - może być trudniejsze ze względu na generowany kod.
+4. **Zależności** - wymaga dodatkowych zależności w projekcie.
+5. **Krzywa uczenia** - wymaga znajomości specyficznych narzędzi i koncepcji.
+6. **Overhead w małych projektach** - w małych projektach korzyści mogą nie przewyższać kosztów implementacji.
+
 ### build_runner
 
 Podstawowe narzędzie do generacji kodu w Dart/Flutter. Pozwala na uruchamianie generatorów kodu.
