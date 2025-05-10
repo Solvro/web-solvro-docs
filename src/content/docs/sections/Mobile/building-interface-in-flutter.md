@@ -17,7 +17,7 @@ Są dwa podstawowe rodzaje widgetów w podstawie Fluttera:
   - Nie powinny posiadać mutowalnych pól.
   - Nie powinny mieć żadnych skutków ubocznych (metoda `build` powinna być [deklaratywną czystą funkcją](https://medium.com/programming-hints/pure-functions-dbefce363946s)).
   - Mogą być parametryzowane (przez argumenty w konstruktorze).
-  - Jeśli to możliwe, powinny wykorzystywać kontruktor `const`.
+  - Jeśli to możliwe, powinny wykorzystywać kontruktor `const` (patrz niżej).
 - **Przykład**:
 
 ```dart
@@ -39,7 +39,7 @@ class WelcomeText extends StatelessWidget {
 - **Zastosowanie**:
 
   - Używane są tam, gdzie interfejs musi reagować na zmiany, na przykład przy licznikach lub rozwijanych zakładkach.
-  - Dostarcza tkz. lifecycle methods, bez których mogłoby być ciężko napisać aplikację. Czytaj niżej ->.
+  - Dostarcza tkz. lifecycle methods, które pozwalają na wywołanie efektów ubocznych i zsynchronizowanie imperatywnych elementów z deklaratywnym frameworkiem (jakim jest Flutter).
 
 - **Przykład**:
 
@@ -153,6 +153,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 }
 ```
 
+Flutter hooki pozwalają na uzyskanie podobnych efektów za pomocą krótszego syntaxu, ale nie są "natywne" dla ekosystemu Fluttera.
+
 ## Bogata biblioteka widgetów
 
 Flutter dysponuje szeroką gamą wbudowanych widgetów, które ułatwiają tworzenie zarówno prostych, jak i bardziej zaawansowanych interfejsów:
@@ -251,9 +253,20 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
 
 ### 3. Wydajność
 
-- **const Constructors**: Używaj `const` konstruktorów gdzie to możliwe.
-- **ListView.builder**: Używaj dla długich list zamiast zwykłego `ListView`. Inną opcją jest również `ListView.separated` lub wszystkie slivery z builder based delegatami.
-- **CachedNetworkImage**: Używaj do efektywnego ładowania i cachowania obrazów.
+- **const Constructors**: Używaj `const` konstruktorów gdzie to możliwe. Konstruktor `const` tworzy widget, który jest kompilowany w czasie kompilacji i reużyty w runtime. Oznacza to, że:
+
+  - Widget z `const` konstruktorem jest tworzony tylko raz i współdzielony między wszystkimi instancjami
+  - Zmniejsza to zużycie pamięci i poprawia wydajność
+  - Można użyć `const` tylko gdy wszystkie parametry konstruktora są również `const`
+  - Przykład:
+
+  ```dart
+  // ✅ Dobrze - const constructor
+  const MyWidget({super.key, required this.title});
+
+  // ❌ Źle - nie można użyć const bo TextStyle nie jest const. Aplikacja nam się nie skompiluje.
+  const MyWidget({super.key, required this.title, this.style = TextStyle()});
+  ```
 
 ### 4. Dostępność (Accessibility)
 
