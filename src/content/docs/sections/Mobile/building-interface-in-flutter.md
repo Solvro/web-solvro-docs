@@ -82,29 +82,30 @@ class _MyCounterState extends State<MyCounter> {
 StatefulWidget udostępnia kilka metod, które pozwalają na reagowanie na cykl życia widgetu. Pozwala nam to na wywołanie (czasem potrzebnych) efektów ubocznych.
 
 - **initState()**: Wywoływana tylko raz, gdy widget jest tworzony. Idealne miejsce do:
-
   - Inicjalizacji zmiennych stanu
   - Subskrypcji na strumienie danych
   - Inicjalizacji kontrolerów
   - Wykonania operacji asynchronicznych przy starcie
-
+    ‎
+    ‎
 - **dispose()**: Wywoływana gdy widget jest usuwany z drzewa. Służy do:
-
+  - Zapobiegania wyciekom pamięci (**ważne!**)
   - Czyszczenia zasobów
   - Anulowania subskrypcji
   - Zwalniania kontrolerów
-  - Zapobiegania wyciekom pamięci (**ważne!**)
-
+    ‎
+    ‎
 - **didUpdateWidget()**: Wywoływana gdy widget jest aktualizowany z nowymi właściwościami. Przydatna do:
-
   - Reagowania na zmiany w konfiguracji
   - Aktualizacji stanu w zależności od nowych propsów
-
+    ‎
+    ‎
 - **didChangeDependencies()**: Wywoływana gdy zależności widgetu się zmieniają (np. Theme, MediaQuery). Używana do:
   - Aktualizacji stanu bazującego na InheritedWidgets (np. Theme, MediaQuery)
   - Reagowania na inne zmiany w BuildContext
-
-Przykład wykorzystania metod cyklu życia:
+    ‎
+    ‎
+    Przykład wykorzystania metod cyklu życia:
 
 ```dart
 class MyStatefulWidget extends StatefulWidget {
@@ -199,7 +200,7 @@ class MyWidget extends StatelessWidget {
 2. **Trudność w testowaniu** - metody prywatne są trudniejsze do testowania.
 3. **Nadmiarowe przebudowy** (performance) - jest to podstawowy problem tego podejścia. Widget jako wbudowany element składowy frameworka, pozwala zdecydować Flutterowi, kiedy jakiś element UI ma być przebudowany, a kiedy nie. Używając builder methods, odbieramy mu tę kontrolę. Każda taka metoda wywoła się za każdym możliwym razem - zabieramy frameworkowi możliwość jakiekolwiek optymalizacji. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance (czytaj niżej).
 
-### Lepszym rozwiązaniem jest
+### Lepszym rozwiązaniem jest...
 
 Lepszym rozwiązaniem jest **wydzielenie do osobnych widgetów** - jeśli fragment UI jest na tyle złożony, że wymaga osobnej metody, powinien być osobnym widgetem.
 
