@@ -104,7 +104,8 @@ StatefulWidget udostępnia kilka metod, które pozwalają na reagowanie na cykl 
   - Reagowania na inne zmiany w BuildContext
     ‎
     ‎
-    Przykład wykorzystania metod cyklu życia:
+
+Przykład wykorzystania metod cyklu życia:
 
 ```dart
 class MyStatefulWidget extends StatefulWidget {
@@ -232,7 +233,7 @@ class MyWidget extends StatelessWidget {
 
 ### Podsumowanie
 
-Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niekorzystnie wpływają na performance i są uznawane w naszym kole za **antypattern** (mimo, że w internecie można znaleźć z nimi wiele przykładów, czasem nawet w oficjalnych docsach).
+Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niekorzystnie wpływają na performance i są uznawane w naszym kole za **antypattern** (mimo że można znaleść w internecie wiele przykładów z nimi, nawet czasem w oficjalnych docsach). Wydzielanie osobnych widgetów ma same zalety (poza kilkoma dodatkowymi linijkami boilerplate'u).
 
 ## Kilka dodatkowych zasad lub porad
 
@@ -282,7 +283,7 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
 ### 5. Międzynarodowość (i18n)
 
 - **Intl**: Używaj pakietu `intl` do formatowania dat, liczb i walut.
-- **Directionality**: Obsługuj różne kierunki tekstu (LTR/RTL) :)) - dla ambitnych
+- **Directionality**: Obsługuj różne kierunki tekstu (LTR/RTL) - dla ambitnych :)).
 - **Localizations**: Implementuj obsługę różnych języków. Obczaj np. [oficjalny sposób z docsów](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization).
 
 ### 6. Animacje i Przejścia
