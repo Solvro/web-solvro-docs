@@ -65,6 +65,6 @@ W ramach nauki polecam przeczytać [całą dokumentację](https://riverpod.dev/)
 
 ### Przykłady użycia Riverpoda
 
-Riverpod ma dwie wersje syntaxu, z generacją kodu i bez. W Solvro używamy tej wersji z generacją kodu.
+Riverpod ma dwie wersje syntaxu, z generacją kodu i bez. W Solvro używamy tej wersji z [generacją kodu](/sections/mobile/codegen/).
 
 // TODO: add mutiple examples with the Riverpod 2.0
