@@ -10,8 +10,7 @@ Flutter opiera się na koncepcji **widgetów**, które są kluczowymi elementami
 Są dwa podstawowe rodzaje widgetów w podstawie Fluttera:
 
 ### StatelessWidget
-
-- **Definicja**: Są to widgety, które nie posiadają stanu, czyli ich wygląd zależy co najwyżej od podanych mu argumentów (wyjątkiem jest zależność od jakiegoś InheritedWidget/Model np. `Theme.of(context)` lub `MediaQuery.of(context`)
+- **Definicja**: Są to widgety, które nie posiadają stanu, czyli ich wygląd zależy co najwyżej od podanych mu argumentów (wyjątkiem jest zależność od jakiegoś InheritedWidget/Model np. `Theme.of(context)` lub `MediaQuery.of(context)`).
 - **Zastosowanie**: Idealnie sprawdzają się w przypadku elementów UI, które nie wymagają dynamicznych aktualizacji, na przykład wyświetlania stałych danych.
 - **Dodatkowe uwagi**:
   - Nie powinny posiadać mutowalnych pól.
@@ -39,7 +38,7 @@ class WelcomeText extends StatelessWidget {
 - **Zastosowanie**:
 
   - Używane są tam, gdzie interfejs musi reagować na zmiany, na przykład przy licznikach lub rozwijanych zakładkach.
-  - Dostarcza tkz. lifecycle methods, które pozwalają na wywołanie efektów ubocznych i zsynchronizowanie imperatywnych elementów z deklaratywnym frameworkiem (jakim jest Flutter).
+  - Dostarcza tzw. lifecycle methods, które pozwalają na wywołanie efektów ubocznych i zsynchronizowanie imperatywnych elementów z deklaratywnym frameworkiem (jakim jest Flutter).
 
 - **Przykład**:
 
@@ -82,29 +81,30 @@ class _MyCounterState extends State<MyCounter> {
 StatefulWidget udostępnia kilka metod, które pozwalają na reagowanie na cykl życia widgetu. Pozwala nam to na wywołanie (czasem potrzebnych) efektów ubocznych.
 
 - **initState()**: Wywoływana tylko raz, gdy widget jest tworzony. Idealne miejsce do:
-
   - Inicjalizacji zmiennych stanu
   - Subskrypcji na strumienie danych
   - Inicjalizacji kontrolerów
   - Wykonania operacji asynchronicznych przy starcie
-
+    ‎
+    ‎
 - **dispose()**: Wywoływana gdy widget jest usuwany z drzewa. Służy do:
-
+  - Zapobiegania wyciekom pamięci (**ważne!**)
   - Czyszczenia zasobów
   - Anulowania subskrypcji
   - Zwalniania kontrolerów
-  - Zapobiegania wyciekom pamięci (**ważne!**)
-
+    ‎
+    ‎
 - **didUpdateWidget()**: Wywoływana gdy widget jest aktualizowany z nowymi właściwościami. Przydatna do:
-
   - Reagowania na zmiany w konfiguracji
   - Aktualizacji stanu w zależności od nowych propsów
-
+    ‎
+    ‎
 - **didChangeDependencies()**: Wywoływana gdy zależności widgetu się zmieniają (np. Theme, MediaQuery). Używana do:
   - Aktualizacji stanu bazującego na InheritedWidgets (np. Theme, MediaQuery)
   - Reagowania na inne zmiany w BuildContext
-
-Przykład wykorzystania metod cyklu życia:
+    ‎
+    ‎
+    Przykład wykorzystania metod cyklu życia:
 
 ```dart
 class MyStatefulWidget extends StatefulWidget {
@@ -197,9 +197,9 @@ class MyWidget extends StatelessWidget {
 
 1. **KISS** - Keep It Simple, Stupid - zasada mówiąca, że kod powinien być jak najprostszy. Zamiast builder methods, lepiej jest tworzyć osobne, jasno nazwane widgety, bo widget jest naturalnym elementem budującym UI we Flutterze, a metody i funkcje w zamyśle nie mają takiego zastosowania w tym frameworku. Widget można też wydzielić do osobnych plików, a metod nie.
 2. **Trudność w testowaniu** - metody prywatne są trudniejsze do testowania.
-3. **Nadmiarowe przebudowy** (performance) - jest to podstawowy problem tego podejścia. Widget jako wbudowany element składowy frameworka, pozwala zdecydować Flutterowi, kiedy jakiś element UI ma być przebudowany, a kiedy nie. Używając builder methods, odbieramy frameworkowi możliwość zdecydowania o tym, kiedy widget powinien być przebudowany, a kiedy nie. Każda taka metoda wywoła się za każdym możliwym razem - odbieramy frameworkowi możliwość jakiekolwiek optymalizacji. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance (czytaj niżej).
+3. **Nadmiarowe przebudowy** (performance) - jest to podstawowy problem tego podejścia. Widget jako wbudowany element składowy frameworka, pozwala zdecydować Flutterowi, kiedy jakiś element UI ma być przebudowany, a kiedy nie. Używając builder methods, odbieramy mu tę kontrolę. Każda taka metoda wywoła się za każdym możliwym razem - zabieramy frameworkowi możliwość jakiekolwiek optymalizacji. Odbieramy sobie też szansę skorzystania z przedrostka `const`, który korzystnie wpływa na performance (czytaj niżej).
 
-### Lepszym rozwiązaniem jest
+### Lepszym rozwiązaniem jest...
 
 Lepszym rozwiązaniem jest **wydzielenie do osobnych widgetów** - jeśli fragment UI jest na tyle złożony, że wymaga osobnej metody, powinien być osobnym widgetem.
 
@@ -242,14 +242,14 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
 - **LayoutBuilder**: Używaj `LayoutBuilder` do tworzenia responsywnych layoutów bazujących na dostępnej przestrzeni.
 - **Flexible i Expanded**: Wykorzystuj te widgety w `Row` i `Column` do elastycznego rozkładania przestrzeni.
 - **AspectRatio**: Używaj do zachowania proporcji elementów.
-- **SingleChildScrollView** - Widget ten jest przydatny, gdy na stronie znajduje się pole tekstowe. Owijając nim główny widok, umożliwiasz przewijanie zawartości ekranu w sytuacji, gdy klawiatura wysuwa się i zajmuje część przestrzeni wyświetlacza. Dzięki temu użytkownik zachowuje dostęp do wszystkich elementów interfejsu, nawet gdy klawiatura jest aktywna.
+- **SingleChildScrollView**: Widget ten jest przydatny, gdy na stronie znajduje się pole tekstowe. Owijając nim główny widok, umożliwiasz przewijanie zawartości ekranu w sytuacji, gdy klawiatura wysuwa się i zajmuje część przestrzeni wyświetlacza. Dzięki temu użytkownik zachowuje dostęp do wszystkich elementów interfejsu, nawet gdy klawiatura jest aktywna.
 - i wiele wiele innych...
 
 ### 2. Hierarchia i Organizacja
 
 - **Single Responsibility**: Każdy widget powinien mieć jedno, jasno określone zadanie.
 - **Shallow Widget Tree**: Staraj się utrzymywać płytkie drzewo widgetów dla lepszej wydajności i czytelności.
-- **Extract Widgets**: Wydzielaj powtarzające się lub złożone części UI do osobnych widgetów. (m.in. zasada KISS)
+- **Extract Widgets**: Wydzielaj powtarzające się lub złożone części UI do osobnych widgetów (m.in. zasada KISS).
 
 ### 3. Wydajność
 
