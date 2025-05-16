@@ -68,6 +68,7 @@ export function TeamMembers({ team = [] }: TeamMembersProps) {
             href={githubUrl}
             title={user.name}
             target="_blank"
+            rel="noopener noreferrer"
             key={user.id}
             className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200 ease-in-out"
           >
