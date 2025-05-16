@@ -10,6 +10,7 @@ Flutter opiera się na koncepcji **widgetów**, które są kluczowymi elementami
 Są dwa podstawowe rodzaje widgetów w podstawie Fluttera:
 
 ### StatelessWidget
+
 - **Definicja**: Są to widgety, które nie posiadają stanu, czyli ich wygląd zależy co najwyżej od podanych mu argumentów (wyjątkiem jest zależność od jakiegoś InheritedWidget/Model np. `Theme.of(context)` lub `MediaQuery.of(context)`).
 - **Zastosowanie**: Idealnie sprawdzają się w przypadku elementów UI, które nie wymagają dynamicznych aktualizacji, na przykład wyświetlania stałych danych.
 - **Dodatkowe uwagi**:
