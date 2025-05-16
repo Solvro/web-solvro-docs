@@ -25,7 +25,7 @@ export async function getTeam(
     : "";
   try {
     const res = await fetch(
-      `${CMS_ADDRESS}/items/Team?fields=id,name,sociale.link,photo&filter[specialization][Specializations_id][name][_eq]=${section}${filter}`
+      `${CMS_ADDRESS}/items/Team?fields=id,name,sociale.link,photo&filter[specialization][Specializations_id][name][_eq]=${encodeURIComponent(section)}${filter}`
     );
     if (!res.ok) throw new Error("Failed to fetch team members");
     const team: { data: TeamMember[] } = await res.json();
