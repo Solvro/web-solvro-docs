@@ -13,11 +13,48 @@ import {
   Aside,
 } from "@astrojs/starlight/components";
 
+import linkedinIcon from "../../../assets/icons/linkedin.svg?url";
+import instagramIcon from "../../../assets/icons/instagram.svg?url";
+import githubIcon from "../../../assets/icons/github.svg?url";
+
 ## Zarząd
 
 <CardGrid>
   <Card title="Wojciech Krzos">
-    Prezes VIII Zarządu. W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci. 
+    <div class="flex flex-col justify-between h-full">
+    <p>
+      Prezes VIII Zarządu. W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci.
+    </p>
+    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
+        <a
+          href="https://linkedin.com/in/wojciechkrzos"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          class="hover:opacity-75 transition"
+        >
+          <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6 text-white"/>
+        </a>
+        <a
+          href="https://instagram.com/wojciechkrzos"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="hover:opacity-75 transition"
+        >
+          <img src={instagramIcon} alt="Instagram" class="w-6 h-6 text-white"/>
+        </a>
+        <a
+          href="https://github.com/wojciechkrzos"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          class="hover:opacity-75 transition"
+        >
+          <img src={githubIcon} alt="GitHub" class="w-6 h-6 text-white"/>
+        </a>
+      </div>
+    </div>
   </Card>
   ![Pomarańczowy Wojciu wiercący duszę widza](../../../assets/people/wojciech_krzos.jpeg)
 
@@ -38,5 +75,3 @@ import {
   <Card title="Aleksandra Dominiak">Head of Multitasking.</Card>
   ![Ola](../../../assets/people/aleksandra_dominiak.jpg)
 </CardGrid>
-
-## Przewodniczący
