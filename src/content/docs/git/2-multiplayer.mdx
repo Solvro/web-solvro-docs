@@ -557,14 +557,50 @@ import merge04 from "#assets/git/chapter-2/merge-04.cast";
   </Card>
 </CardGrid>
 
+### Której metody powinienem używać?
+
+Wszystkie cztery metody są poprawnym sposobem na integrowanie zmian.
+To, jakiej metody będziesz najczęściej używał, będzie twoją subiektywną decyzją, zależną od tego,
+jak będziesz chciał kształtować historię w swoim repozytorium.
+
+- Fast-forward to chyba jedyna metoda, której ciągłego stosowania bym odradził.
+  - Najwiekszą wadą tej metody jest to, że nie pozostawia żadnego śladu po PRce,
+    więc trudniej będzie później znaleźć dyskusję, jaka się odbyła przed jej integracją.
+  - Są jednak momenty, w której się ta metoda przydaje - np. gdy repozytorium jest podmodułem innego.
+    - Pozwala ona wtedy na jednoczesne utworzenie PRki do podmodułu i repozytorium nadrzędnego,
+      pod warunkiem że PRka do podmodułu zostanie zintegrowana przez fast-forward.
+    - Repozytoria odwołują się do podmodułów za pomocą hashy commitów, więc użycie innej metody spowodowałoby,
+      że repozytorium nie będzie się odwoływało do najnowszego commita w podmodule.
+- Standardowy merge jest odpowiednią metodą, gdy:
+  - nielinowa historia nie jest dla ciebie wadą tej metody, a zaletą
+  - współautorzy wymagają podpisywania własnych zapisów
+  - inni współautorzy wiedzą, jak uporządkować zapisy na swojej gałęzi i nie spamią dziesiątkami zapisów typu "fix: minor fix"
+- Rebase jest odpowiedni, gdy:
+  - chcesz mieć liniową historię
+  - żaden współautor nie wymaga podpisywania własnych zapisów
+  - inni współautorzy wiedzą, jak uporządkować zapisy na swojej gałęzi i nie spamią dziesiątkami zapisów typu "fix: minor fix"
+- Squash jest odpowiedni gdy:
+  - chcesz mieć liniową historię
+    - tym bardziej jeżeli chcesz, by zapisów było jak najmniej
+  - żaden współautor nie wymaga podpisywania własnych zapisów
+  - inni współautorzy nie wiedzą, jak uporządkować zapisy na swojej gałęzi lub spamią dziesiątkami zapisów typu "fix: minor fix"
+  - każda PRka jest mniej-więcej tej samej wielkości
+
+Pamiętaj, że nie musisz się przywiązywać do jednej wybranej metody - możesz korzystać z różnych metod wedle aktualnych potrzeb.
+
+Możesz też zdecydować się lekko zedytować gałąź integrowaną przed integracją, by złagodzić wady wybranej metody.
+Na przykład, jezeli współautor dodał na swoją gałąź wiele małych zapisów typu "fix: minor fix", które w twoim uznaniu
+powinny być złączone w większy zapis, możesz te zapisy spłaszczyć lub złączyć z poprzednimi, zanim użyjesz rebase lub standardowego merge.
+Więcej o tego typu ingerowaniu w historię dowiesz się w następnym rozdziale.
+
 ## Sprzątanie
 
-Gdy zintegorwaliśmy już otrzymane zmiany, możemy bezpiecznie usunąć dodatkową gałąź.
+Gdy zintegrowaliśmy już otrzymane zmiany, możemy bezpiecznie usunąć dodatkową gałąź.
 
 Gałęzie można usuwać komendą `git branch`.
 W przypadku gdy gałąź zintegrowano standardowymi metodami (standardowy merge lub przewinięcie),
 to wystarczy użyć komendy `git branch -d <gałąź>`.
-W przypadku użycia pozostałych metod, git może nie rozpoznać gałęzi jako poprawnie zintegorwanej i odmówić usunięcia.
+W przypadku użycia pozostałych metod, git może nie rozpoznać gałęzi jako poprawnie zintegrowanej i odmówić usunięcia.
 W takim przypadku należy użyć `git branch -D <gałąź>` lub `git branch -d --force <gałąź>`.
 By usunąć gałęzie śledzące zdalne repozytoria, należy dołożyć flagę `-r`.
 
