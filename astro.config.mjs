@@ -70,15 +70,11 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Start here",
+          label: "Zacznij tu!",
           items: [
             {
               label: "Gdzie zacząć?",
               link: "/",
-            },
-            {
-              label: "Jak pisać dokumentacje?",
-              link: "/how-to-write-docs",
             },
             {
               label: "Komunikacja",

@@ -1,17 +1,13 @@
 ---
 title: Roadmapa
-sidebar:
-  order: 7
 description: Co zrobić, żeby móc bez kompleksów pracować w naszym projekcie
+sidebar:
+  order: 3
 ---
 
 ## Wstęp
 
 Witam wszystkich serdecznie w roadmapce frontasia, która z założenia powinna wam pomóc wam stać się całkiem kumatym ziutkiem od poziomu totalnego początkującego.
-
-## Co potrzebujesz żeby zacząć?
-
-Wystarczy zainstalować Visual Studio Code, reszta rzeczy zostanie przedstawiona w poradnikach lub opisana w tym dokumencie.
 
 ## Podstawy
 
@@ -43,7 +39,7 @@ Co po tym? Tutaj już radzę wymyślić już coś swojego lub zainspirować się
 Nie lekceważ błędów! Zanim wyślesz prompta do dżepetto, staraj się zrozumieć co powoduje error. Jeśli nie możesz rozkminić danego błędu, ktoś na [StackOverflow](https://stackoverflow.com/questions) na pewno spotkał się z podobnym problemem w swoim kodzie!
 :::
 
-### Co powinieneś/powinnaś wiedzieć zanim przejdziesz dalej?:
+### Co powinieneś/powinnaś wiedzieć zanim przejdziesz dalej?
 
 - Co to **DOM**?
 - Co to semantic HTML?
@@ -100,7 +96,7 @@ Czym jest Tailwind? Tailwind to css’owy framwork, który slużą do stylowania
 
 Poradnik jak dodać Tailwind'a do swojego projektu, jeśli używałeś create vite@latest: [link](https://www.youtube.com/watch?v=sHnG8tIYMB4).
 
-### React cd.
+### React cd
 
 Po odwzorowaniu któregoś z projektów, radzę zabrać się za kurs **Epic React** stworzony przez react’owego guru - **Kent C. Dodds**. Wszystkie materiały znajdziesz na naszym dysku w zakładce Wiedza/Frontend. Jest to duuuuuży kurs więc trochę ci zajmie, jest też według mnie całkiem trudny - ale nie przejmuj się tym, nie bój się pytać członków sekcji frontend o pomoc.
 

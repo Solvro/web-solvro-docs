@@ -1,7 +1,5 @@
 ---
 title: Accessibility
-sidebar:
-  order: 4
 description: Czyli jak zrobić, żeby Twoja aplikacja była dostępna dla wszystkich.
 ---
 

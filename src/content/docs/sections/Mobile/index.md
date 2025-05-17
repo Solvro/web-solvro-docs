@@ -41,7 +41,7 @@ Na szczęście dzięki wieloplatformowości możesz pisać we Flutterze i testow
 
 Z "tańszych" OS-ów polecam bardziej Linuxa niż Windowsa, ale ostateczny wybór należy do Ciebie.
 
-O Linuxie i WSLu możesz przeczytać więcej w napisanym przez specjalistę [Web Development Handbook](/sections/frontend/#wsl). Praca na Linuxie jest zwykle wygodniejsza niż na Windowsie, ale nie jest to wymagane.
+O Linuxie i WSLu możesz przeczytać więcej w napisanym przez specjalistę [Web Development Handbook](/sections/frontend/onboarding/#wsl). Praca na Linuxie jest zwykle wygodniejsza niż na Windowsie, ale nie jest to wymagane.
 
 :::tip[Link dla kolegi]
 Losowa instrukcja instalacji wirtualki macOS: <https://antyweb.pl/wirtualny-macos-na-windows-10-dziala-imessage-icloud-i-inne>
