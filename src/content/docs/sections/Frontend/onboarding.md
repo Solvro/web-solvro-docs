@@ -27,7 +27,7 @@ Kładziemy duży nacisk na standaryzację i jednolite nazewnictwo repozytoriów 
 
 Kolejną ważną platformą, z której korzystamy w Solvro jest nasz serwer na Discordzie. Zaraz po dołączeniu do niego, pierwsze co powinien zrobić każdy nowy członek koła, to nadanie sobie roli odpowiadającej jego sekcji oraz projektowi, do którego należy. Mozna to zrobić na kanale **Kanały i role**, który powinien być na samej górze listy kanałów. Możesz tu też zaznaczyć które kanały chcesz widzieć, a które cię nie interesują i chcesz je schować dla siebie.
 
-![Widok kanału 'Kanały i role' na Discordzie](/src/assets/onboarding/kanaly-i-role.png)
+![Widok kanału 'Kanały i role' na Discordzie](../../../../assets/onboarding/kanaly-i-role.png)
 
 ### Struktura Discorda
 
