@@ -70,16 +70,18 @@ export function TeamMembers({ team = [] }: TeamMembersProps) {
             target="_blank"
             rel="noopener noreferrer"
             key={user.id}
-            className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200 ease-in-out"
+            className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 ease-in-out no-underline"
           >
             <img
               alt={user.name}
               src={`${CMS_ADDRESS}/assets/${user.photo}?key=member`}
               width={80}
               height={80}
-              className="rounded-full border-2 border-accent-200"
+              className="rounded-full border-2 border-accent-200 dark:border-accent-700 shadow-lg"
             />
-            <span className="text-gray-700 font-medium">{user.name}</span>
+            <span className="text-gray-700 dark:text-gray-300 font-medium">
+              {user.name}
+            </span>
           </a>
         );
       })}
