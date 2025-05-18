@@ -9,9 +9,9 @@ import { LinkCard } from "@astrojs/starlight/components";
 
 ## Wstęp
 
-Github jest główną platformą, na której rozwijamy projekty w KN Solvro. Jesną z funckcji jest właśnie github projects. Rolą PM i Techleada jest głównie planowanie, rozdzielanie i nadzorowanie pracy zespołu, a github projects jest idealnym narzędziem umożliwiającym dokładnie to.
+Github jest główną platformą, na której rozwijamy projekty w KN Solvro. Jedną z funkcji jest właśnie github projects. Rolą PM i Techleada jest głównie planowanie, rozdzielanie i nadzorowanie pracy zespołu, a github projects jest idealnym narzędziem umożliwiającym dokładnie to.
 
-W pierwszej części przyjżymy się obiektywnym możliwością github projects, gdzie w drugiej części będą pokazane propozycje ujednolicenia zarządzania projektami w KN Solvro.
+W pierwszej części przyjrzymy się obiektywnym możliwościom GitHub Projects, gdzie w drugiej części będą pokazane propozycje ujednolicenia zarządzania projektami w KN Solvro.
 
 ## Linki
 
@@ -22,17 +22,28 @@ W pierwszej części przyjżymy się obiektywnym możliwością github projects,
 
 ## TLDR
 
+<Steps>
+1. Utwórz projekt z [szablonu](https://github.com/orgs/Solvro/projects/48)
+2. W ustawieniach dodaj odpowiedni zespół
+3. W ustawieniach skonfiguruj pola niestandardowe potrzebne twojemu projektowi
+4. Skonfiguruj widoki pamiętając o różnych perspektywach członków zespołu
+5. Utwórz zadania jako issue powiązane z danym repo 
+6. Przypisz atrybuty i osoby odpowiedzialne 
+7. Bieżąco monitoruj przebieg projektu
+
+</Steps>
+
 ## Poradnik
 
 ### Tworzenie projektu
 
 Projekt możemy utworzyć zarówno z poziomu danego repozytorium jak i z poziomu całej organizacji. Przechodząc pod adres https://github.com/orgs/Solvro/projects widzimy zielony przycisk New Project. Pokaże nam się okno do wyboru predefiniowanych szablonów, ale chcąc lepiej zrozumieć github projects powinniśmy wybrać pusty szablon. Do szablonu projektu Solvro przejdziemy w drugiej części tego poradnika.
 
-W kolejnym kroku powinniśmy podpiąć dany projekt pod repozytoria. Tą akcję wykonujemy z poziomu danego repozytorium, przechodząc do zakładnki Projects i klikając "Link a project", gdzie następnie możemy wybrać wcześniej utworzony projekt. Alternatywnie z tego poziomu można również utworzyć projekt, jeśli repozytorium już istnieje.
+W kolejnym kroku powinniśmy podpiąć dany projekt pod repozytoria. Tą akcję wykonujemy z poziomu danego repozytorium, przechodząc do zakładki Projects i klikając "Link a project", gdzie następnie możemy wybrać wcześniej utworzony projekt. Alternatywnie z tego poziomu można również utworzyć projekt, jeśli repozytorium już istnieje.
 
 ![](../../../../assets/github-projects/link-project.png)
 
-### Ustawienia projektu i dostępu
+### Ustawienia projektu i dostępów
 
 W ustawienia projektu możemy przejść klikając w projekcie w prawy górny róg, a następnie "settings".
 ![](../../../../assets/github-projects/goto-settings.png)
@@ -70,7 +81,7 @@ Używane w zwinnym zarządzaniu projektami pole iteracji pozwala skonfigurować 
 
 #### Pole statusu
 
-Jedno z pól standardowych, predefiniowanych przez githuba, których nie możemy usunąc. Pod spodem jest ono polem wyboru z zdefiniowanymi statusami. Domyślnie są to Todo, In progess i Done, ale istnieje opcja ich modyfikacji.
+Jedno z pól standardowych, predefiniowanych przez githuba, których nie możemy usunąć. Pod spodem jest ono polem wyboru z zdefiniowanymi statusami. Domyślnie są to Todo, In progess i Done, ale istnieje opcja ich modyfikacji.
 
 #### Pole sub-issues
 
@@ -86,7 +97,7 @@ O ile to pole nie jest wyświetlane w ustawieniach to pokazuje się przy każdym
 Przechodząc w główny widok projektu powinna pokazać nam się tabela. Jest to nic innego jak lista zadań, którą rozpisujemy, a następnie przypisujemy do danej osoby i repozytorium. W pierwszej kolejności klikamy na pierwszą komórkę i wpisujemy nazwę zadania
 ![](../../../../assets/github-projects/create-first-task.png)
 
-Pojawią nam się dwie opcje draft i issue. Wersje robocze (draft) nie wymagają przypisania do repozytorium, ale niestety posiadają dużo mniej funkcjonalności. Zaleca się wybranie "Create bew issue", gdzie będziemy musieli wybrać repozytorium, do którego dane zadanie zostanie przypisane. Następnie mamy możliwość wpisaia opisu i wyboru wartości wcześniej zdefiniowanych pól.
+Pojawią nam się dwie opcje draft i issue. Wersje robocze (draft) nie wymagają przypisania do repozytorium, ale niestety posiadają dużo mniej funkcjonalności. Zaleca się wybranie "Create new issue", gdzie będziemy musieli wybrać repozytorium, do którego dane zadanie zostanie przypisane. Następnie mamy możliwość wpisania opisu i wyboru wartości wcześniej zdefiniowanych pól.
 ![](../../../../assets/github-projects/new-task.png)
 
 Po lewej stronie mamy historię zadania, która wraz z kolejnymi krokami będzie się aktualizowała, a poniżej miejsce na dyskusję.
@@ -108,7 +119,7 @@ Tak jak pisałem wcześniej jest to po prostu lista zadań. Nie mniej jednak w u
 W konfiguracji Fields możemy wybrać, które pola są wyświetlane w tabeli. Następnie możemy skonfigurować grupowanie, które zastosowane np. do statusów wygląda w tabeli tak:
 ![](../../../../assets/github-projects/grouped-table.png)
 
-Następnie możemy wybrać sortowanie oraz slicing. Pole slice by pozwala nam na dostęp do szybkich filtrów po lewej stronie. Zastosowanie samego Slice by po np. statusiw wygląda następujaco
+Następnie możemy wybrać sortowanie oraz slicing. Pole slice by pozwala nam na dostęp do szybkich filtrów po lewej stronie. Zastosowanie samego Slice by po np. statusie wygląda następujaco
 ![](../../../../assets/github-projects/sliced-table.png)
 
 #### Board
@@ -116,13 +127,13 @@ Następnie możemy wybrać sortowanie oraz slicing. Pole slice by pozwala nam na
 Kanban jako jedna z metodyk zarządzania projektami. Jej główną cechą jest skupienie się na wizualizacji zadań. Tworząc widok w kanban domyślnie otrzymamy poniżeszy widok, gdzie zadaniami zarządzamy po prostu przeciągając kafelki:
 ![](../../../../assets/github-projects/kanban.png)
 
-Tu również możemy zastosować grupowanie i sliceby. Dodatkowo w konfiguracji możemy wybrać, po którym polu definiowane są kolumny.
+Tu również możemy zastosować grupowanie i slice by. Dodatkowo w konfiguracji możemy wybrać, po którym polu definiowane są kolumny.
 
-Z innych ciekawych opcji przy każdej kolumnie możemy ustawić limit zadań w danym statusie. Jest to przydatne do kontrolowanie przeładowania zespołu.
+Z innych ciekawych opcji przy każdej kolumnie możemy ustawić limit zadań w danym statusie. Jest to przydatne do kontrolowania przeładowania zespołu.
 
 #### Roadmap
 
-Ten widok jest przydatny do bardziej kaskadowego zarządzania projektem, gdzie widzimy przebiej projektu w czasie. Umożliwia on rówineż grupowanie i slice by, a z dodatkowych opcji możemy zdefiniować wyświetlany horyzont czasowy i ustawić, które pola definiujemy jako start i koniec zadania.
+Ten widok jest przydatny do bardziej kaskadowego zarządzania projektem, gdzie widzimy przebieg projektu w czasie. Umożliwia on również grupowanie i slice by, a z dodatkowych opcji możemy zdefiniować wyświetlany horyzont czasowy i ustawić, które pola definiujemy jako start i koniec zadania.
 ![](../../../../assets/github-projects/timeline.png)
 
 #### Filtry
@@ -144,18 +155,18 @@ Następnie pokaże nam się jeden z domyślnych wykresów z opcją do utworzenia
 
 ### Aktualizacja statusów
 
-W prawym górnym rogu możemy przejść w zakładkę aktynwość naszego projektu. Tam oprócz długiego i krótkiego opisu możemy dodawać cykliczne aktualizacje projektu.
+W prawym górnym rogu możemy przejść w zakładkę aktywność naszego projektu. Tam oprócz długiego i krótkiego opisu możemy dodawać cykliczne aktualizacje projektu.
 ![](../../../../assets/github-projects/goto-activity.png)
 Tam możemy dodać aktualizację statusu wraz z datą i opisem. Jest to bardzo prosty sposób, aby z perspektywy czasu zobaczyć co działo się w projekcie.
 ![](../../../../assets/github-projects/status-update.png)
 
 ## Rekomendacje
 
-O ile wcześniejsze punkty dotyczyły obłsugi github projects i mam nadzieję, że na tym etapie już jesteście w stanie dostosować projekt do swoich potrzeb, to w tym punkcie chciałbym przekazać wam kilka rekomendacji co do konfiguracji projektu.
+O ile wcześniejsze punkty dotyczyły obsługi github projects i mam nadzieję, że na tym etapie już jesteście w stanie dostosować projekt do swoich potrzeb, to w tym punkcie chciałbym przekazać wam kilka rekomendacji co do konfiguracji projektu. Rekomendowany szablon projektu nazywa się [Solvro Project Template](https://github.com/orgs/Solvro/projects/48) i umożliwia szybkie rozpoczęcie projektu wg. rekomendacji KN Solvro.
 
 ### Level of detail
 
-Tzw. LOD dotyczy ilości szczegółów i warstw projektu. Każdy projekt posiada bardzo wysokopoziomowe zadania, które mogą być zapisane w postaci kroków milowych z konkretnie określoną datą, zarówno w postaci faz projektu np. “Faza inicjacji”, jak i projektowych np. “Wypuszczenie MVP” czy “Połączenie z innym projektem”. Na samym dole mamy zdania elementarne, które przypisane do konkretnego programisty są do zrobienia zazwyczaj w kilka godzin np. “Implementacja formularza rejestracji”,”Implementacja formularza logowania”,”Implementacja exportu do excela” itd. Pomiędzy tymi etapami znajdują się często poziomy, które do tej pory nie były brane pod uwagę w github projects.
+Tzw. LOD dotyczy ilości szczegółów i warstw projektu. Każdy projekt posiada bardzo wysokopoziomowe zadania, które mogą być zapisane w postaci kroków milowych z konkretnie określoną datą, zarówno w postaci faz projektu np. “Faza inicjacji”, jak i projektowych np. “Wypuszczenie MVP” czy “Połączenie z innym projektem”. Na samym dole mamy zadania elementarne, które przypisane do konkretnego programisty są do zrobienia zazwyczaj w kilka godzin np. “Implementacja formularza rejestracji”,”Implementacja formularza logowania”,”Implementacja exportu do excela” itd. Pomiędzy tymi etapami znajdują się często poziomy, które do tej pory nie były brane pod uwagę w github projects.
 
 W celu usprawnienia zarządzania LOD proponuję utworzenie niestandardowego atrybutu LOD w formie selecta z opcjami do wyboru L0, L1, L2, L3 itd. oznaczające poziom szczegółowości.
 
@@ -170,11 +181,13 @@ Przykład działania danego systemu, gdyby zaimplementowano w projekcie Eventown
 - L2 - Funkcjonalność maili, Funkcjonalność zapisów, Funkcjonalność autoryzacji
 - L3 - Implementacja wysyłania maili na trigger, Implementacja wysyłania maili manualnych, Implementacja wyświetlania formularza, Implementacja widoku logowania itd.
 
-W ten sposób w zależności od projektu można tworzyć warstwy szczegółów potrzebne w poszczególnych momentach i dla poszczególnych osób. Po zaimplementowaniu pola w ustawieniach projektu możemy przypisywać go do zadań. Co więcej możemy definiować relacje pomiędzy poziomami, co w praktyce pozwala nam zwizualizować WBS.
+W ten sposób w zależności od projektu można tworzyć warstwy szczegółów potrzebne w poszczególnych momentach i dla poszczególnych osób. Po zaimplementowaniu pola w ustawieniach projektu możemy przypisywać go do zadań. Co więcej możemy definiować relacje pomiędzy poziomami, co w praktyce pozwala nam zwizualizować WBS (Work Breakdown Structure).
 
 Do zakresów działań wL0, L1 zazwyczaj przypisujemy sztywne daty planowanego rozpoczęcia i zakończenia, gdzie zadania L2 i L3 będą realizowane w ramach sprintów.
 
-### Prioretyzacja
+Jednym z problemów może być zdecydowanie do jakiego repozytorium należą issue wyższego poziomu. Proponowanym rozwiązaniem jest utworzenie repozytorium `pm-[nazwa projektu]`, gdzie będą przypisywane wszystkie zadania niepowiązane bezpośrednio z kodem.
+
+### Priorytetyzacja
 
 Utworzenie prostego pola niestandardowego Priority z następującymi wartościami
 
@@ -225,3 +238,7 @@ Wykres intensywności priorytetów, który może być również implementowany j
 ### Przechowyanie wiedzy projektowej
 
 Github projects umożliwia przechowywanie wiedzy o projekcie w postaci updatów. Są to pisemne aktualizacje wraz z statusem projektu, które w perspektywie pozwolą przechować i przekazać wiedzę o najważniejszych wydarzeniach w projekcie. Zalecamy zapisywanie tam najważniejszych informacji np. o milestonach oraz zmianach kadrowych.
+
+## Zakończenie
+
+Github projects mimo swojej prostoty znacznie ułatwia zarządzanie projektami i skraca dystans pomiędzy zarządzaniem, a programowaniem. Dobra znajomość tego narzędzia umożliwi sprawną pracę z zespołem i dowiezienie projektu bez zbędnego stresu. Końcowo pamiętajmy, aby to narzędzie pomagało nam, a nie my narzędziu.
