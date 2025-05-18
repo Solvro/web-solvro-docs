@@ -6,7 +6,7 @@ sidebar:
 ---
 
 import { Steps, LinkCard, CardGrid, Card } from "@astrojs/starlight/components";
-import { getTeam, TeamMembers } from "/src/components/TeamMembers";
+import { getTeam, TeamMembers } from "@/components/TeamMembers";
 
 Witaj w najlepszej sekcji Solvro - Frontendzie! 🎉
 
@@ -63,7 +63,7 @@ Zajmujemy się tworzeniem aplikacji webowych, które nadrabiają zaległości se
     <br />
   </Card>
   ![Uśmiechnięty Bartosz Gotowski patrzący wprost w
-  obiektyw](/src/assets/people/bartosz_gotowski.png)
+  obiektyw](../../../../assets/people/bartosz_gotowski.png)
 </CardGrid>
 
 <CardGrid>
@@ -71,7 +71,8 @@ Zajmujemy się tworzeniem aplikacji webowych, które nadrabiają zaległości se
     Wice-przewodniczący sekcji Frontend
     <br />
   </Card>
-  ![Mega przystojny i zamyślony Kamilek](/src/assets/people/kamil_marczak.png)
+  ![Mega przystojny i zamyślony
+  Kamilek](../../../../assets/people/kamil_marczak.png)
 </CardGrid>
 
 {<TeamMembers team={await getTeam("Frontend")} />}
