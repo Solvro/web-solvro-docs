@@ -20,9 +20,13 @@ export default function SocialIcon({ platform, url, className = "w-6 h-6" }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={icon.label}
-      class="hover:opacity-75 transition"
+      className="hover:opacity-75 transition"
     >
-      <img src={icon.src} alt={icon.label} class={className} />
+      <img
+        src={icon.src}
+        alt={icon.label}
+        className={`invert dark:invert-0 ${className}`}
+      />
     </a>
   );
 }
