@@ -13,9 +13,7 @@ import {
   Aside,
 } from "@astrojs/starlight/components";
 
-import linkedinIcon from "../../../assets/icons/linkedin.svg?url";
-import instagramIcon from "../../../assets/icons/instagram.svg?url";
-import githubIcon from "../../../assets/icons/github.svg?url";
+import SocialIcon from "../../../components/SocialIcon";
 
 ## Zarząd
 
@@ -25,33 +23,9 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     <p><strong> Rola:</strong> Prezes VIII Zarządu. Kontakt zewnętrzny & Nadzorowanie projektów.</p>
     <p> W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci.</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-        <a
-          href="https://linkedin.com/in/wojciechkrzos"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          class="hover:opacity-75 transition"
-        >
-          <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6 text-white"/>
-        </a>
-        <a
-          href="https://instagram.com/wojciechkrzos"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          class="hover:opacity-75 transition"
-        >
-          <img src={instagramIcon} alt="Instagram" class="w-6 h-6 text-white"/>
-        </a>
-        <a
-          href="https://github.com/wojciechkrzos"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          class="hover:opacity-75 transition"
-        >
-          <img src={githubIcon} alt="GitHub" class="w-6 h-6 text-white"/>
-        </a>
+        <SocialIcon platform="linkedin" url="https://linkedin.com/in/wojciechkrzos" />
+        <SocialIcon platform="instagram" url="https://instagram.com/wojciechkrzos" />
+        <SocialIcon platform="github" url="https://github.com/wojciechkrzos" />
       </div>
     </div>
   </Card>
@@ -89,24 +63,11 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://linkedin.com/in/bartosz-gotowski"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="hover:opacity-75 transition"
-      >
-        <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6" />
-      </a>
-      <a
-        href="https://github.com/rei-x"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon
+        platform="linkedin"
+        url="https://linkedin.com/in/bartosz-gotowski"
+      />
+      <SocialIcon platform="github" url="https://github.com/rei-x" />
     </div>
   </Card>
   <Card title="Dawid Linek">
@@ -115,15 +76,7 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://github.com/dawidlinek"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon platform="github" url="https://github.com/dawidlinek" />
     </div>
   </Card>
   <Card title="Szymon Kowaliński">
@@ -132,24 +85,8 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://linkedin.com/in/kowdev"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="hover:opacity-75 transition"
-      >
-        <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6" />
-      </a>
-      <a
-        href="https://github.com/simon-the-shark"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon platform="linkedin" url="https://linkedin.com/in/kowdev" />
+      <SocialIcon platform="github" url="https://github.com/simon-the-shark" />
     </div>
   </Card>
   <Card title="Łukasz Lenkiewicz">
@@ -158,24 +95,11 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://linkedin.com/in/lukasz-lenkiewicz"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="hover:opacity-75 transition"
-      >
-        <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6" />
-      </a>
-      <a
-        href="https://github.com/LukiLenkiewicz"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon
+        platform="linkedin"
+        url="https://linkedin.com/in/lukasz-lenkiewicz"
+      />
+      <SocialIcon platform="github" url="https://github.com/LukiLenkiewicz" />
     </div>
   </Card>
   <Card title="Barbara Cząstkiewicz">
@@ -184,15 +108,10 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://www.instagram.com/basiiiikkkk"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram"
-        class="hover:opacity-75 transition"
-      >
-        <img src={instagramIcon} alt="Instagram" class="w-6 h-6" />
-      </a>
+      <SocialIcon
+        platform="instagram"
+        url="https://www.instagram.com/basiiiikkkk"
+      />
     </div>
   </Card>
   <Card title="Jakub Morawiec">
@@ -201,24 +120,11 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://www.linkedin.com/in/jakub-morawiec-6bb5622a4"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="hover:opacity-75 transition"
-      >
-        <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6" />
-      </a>
-      <a
-        href="https://github.com/jmorawiecpwr"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon
+        platform="linkedin"
+        url="https://www.linkedin.com/in/jakub-morawiec-6bb5622a4"
+      />
+      <SocialIcon platform="github" url="https://github.com/jmorawiecpwr" />
     </div>
   </Card>
   <Card title="Michał Bocian">
@@ -227,24 +133,11 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://www.linkedin.com/in/micha%C5%82-bocian-b207a1199/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="hover:opacity-75 transition"
-      >
-        <img src={linkedinIcon} alt="LinkedIn" class="w-6 h-6" />
-      </a>
-      <a
-        href="https://github.com/MikeStork"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon
+        platform="linkedin"
+        url="https://www.linkedin.com/in/micha%C5%82-bocian-b207a1199/"
+      />
+      <SocialIcon platform="github" url="https://github.com/MikeStork" />
     </div>
   </Card>
   <Card title="Miłosz Słoniecki">
@@ -253,15 +146,7 @@ import githubIcon from "../../../assets/icons/github.svg?url";
     </p>
     <p>Bajabongo i leszczyny</p>
     <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <a
-        href="https://github.com/sloniecki"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="hover:opacity-75 transition"
-      >
-        <img src={githubIcon} alt="GitHub" class="w-6 h-6" />
-      </a>
+      <SocialIcon platform="github" url="https://github.com/sloniecki" />
     </div>
   </Card>
 </CardGrid>
