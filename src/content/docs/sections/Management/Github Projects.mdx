@@ -84,8 +84,54 @@ Po lewej stronie mamy historię zadania, która wraz z kolejnymi krokami będzie
 
 Po prawej stronie mamy do wyboru atrybuty projektowe, osoby, które będą wykonywały dane zadanie, czy relacje z innymi zadaniami. Na dole mamy również opcję przeniesienia zadania z jednego repozytorium do innego.
 
+Programiści podczas pracy będą mieli widoczny dany issue, którego powinni podpiąć do danego pull request tym samym tworząc pełną integrację pomiędzy kodem, a zadaniami.
+
 ### Widoki
 
+Domyślna lista zadań jest odpowiednia do pewnego momentu. W pewnej skali nie jesteśmy w stanie dalej zarządzać projektem posiadając wszystko w jednej liście. Github projects pomaga rozwiązać nam ten problem za pomocą personalizowanych i konfigurowalnych widoków, które możemy dopasować do naszych potrzeb. Widoki możemy dodawać na górze projektu klikając "New view" i wybierając layout.
+![](../../../../assets/github-projects/create-view.png)
+
+#### Table
+
+Tak jak pisałem wcześniej jest to po prostu lista zadań. Nie mniej jednak w ustawieniach umożliwia podział na grupy.
+![](../../../../assets/github-projects/table-options.png)
+
+W konfiguracji Fields możemy wybrać, które pola są wyświetlane w tabeli. Następnie możemy skonfigurować grupowanie, które zastosowane np. do statusów wygląda w tabeli tak:
+![](../../../../assets/github-projects/grouped-table.png)
+
+Następnie możemy wybrać sortowanie oraz slicing. Pole slice by pozwala nam na dostęp do szybkich filtrów po lewej stronie. Zastosowanie samego Slice by po np. statusiw wygląda następujaco
+![](../../../../assets/github-projects/sliced-table.png)
+
+#### Board
+
+Kanban jako jedna z metodyk zarządzania projektami. Jej główną cechą jest skupienie się na wizualizacji zadań. Tworząc widok w kanban domyślnie otrzymamy poniżeszy widok, gdzie zadaniami zarządzamy po prostu przeciągając kafelki:
+![](../../../../assets/github-projects/kanban.png)
+
+Tu również możemy zastosować grupowanie i sliceby. Dodatkowo w konfiguracji możemy wybrać, po którym polu definiowane są kolumny.
+
+Z innych ciekawych opcji przy każdej kolumnie możemy ustawić limit zadań w danym statusie. Jest to przydatne do kontrolowanie przeładowania zespołu.
+
+#### Roadmap
+
+Ten widok jest przydatny do bardziej kaskadowego zarządzania projektem, gdzie widzimy przebiej projektu w czasie. Umożliwia on rówineż grupowanie i slice by, a z dodatkowych opcji możemy zdefiniować wyświetlany horyzont czasowy i ustawić, które pola definiujemy jako start i koniec zadania.
+![](../../../../assets/github-projects/timeline.png)
+
+#### Filtry
+
+Na przestrzeni github project możemy ustawiać filtry w poszczególnych widokach i wykresach, o których trochę więcej potem. Pomiędzy wyborem widoku, a faktycznymi zadaniami znajduje się bardzo potężne miejsce do konfiguracji filtrów. Wpisując np. 'status:Todo' pokażą nam się tylko zadania ze statusem Todo. Posiadamy również dynamiczne filtry takie jak `iteration:@current`, gdzie zawsze wyświetli nam się tylko obecna iteracja.
+
+Możemy korzystać również z personalizacji, gdzie wpisując `assignee:@me` każdy członek zespołu będzie widział tylko swoje zadania.
+
+Po każdej zmianie musimy pamiętać o kliknięciu zapisz w prawym rogu, aby zmiany były widoczne dla każdego członka zespołu.
+![](../../../../assets/github-projects/filters.png)
+
 ### Wykresy
+
+Wykresy z poziomu zarządczego pozwalają na wizualizację kluczowych parametrów projektu. Może być to np. obciążenie pracą lub dynamika realizacji zadań z jednej na drugą iteracją. W prawym górnym rogu klikamy na ikonę wykresu.
+![](../../../../assets/github-projects/goto-chart.png)
+
+Następnie pokaże nam się jeden z domyślnych wykresów z opcją do utworzenia kolejnych. Jako przykładowy wykres utworzymy "Ilość zadań w danej iteracji z podziałem na osoby", gdzie dość wyraźnie będziemy widzieli kto z upływem czasu zrobił ile zadań. Po utworzeniu i nazwaniu wykresu przechodzimy w jego konfigurację, gdzie wybieramy typ wykresu, osie oraz opcjonalnie grupowanie.
+
+![](../../../../assets/github-projects/configure-chart.png)
 
 ### Aktualizacja statusów
