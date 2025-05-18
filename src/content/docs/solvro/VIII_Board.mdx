@@ -14,139 +14,119 @@ import {
 } from "@astrojs/starlight/components";
 
 import SocialIcon from "../../../components/SocialIcon";
+import PersonCard from "../../../components/PersonCard.astro";
+
+import wojciechImg from "../../../assets/people/wojciech_krzos.jpeg";
+import apoloniaImg from "../../../assets/people/apolonia_abramowicz.png";
+import mikolajImg from "../../../assets/people/mikolaj_jalocha.jpg";
+import olaImg from "../../../assets/people/aleksandra_dominiak.jpg";
 
 ## Zarząd
 
 <CardGrid>
-  <Card title="Wojciech Krzos">
-    <div class="flex flex-col justify-between h-full">
-    <p><strong> Rola:</strong> Prezes VIII Zarządu. Kontakt zewnętrzny & Nadzorowanie projektów.</p>
-    <p> W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci.</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-        <SocialIcon platform="linkedin" url="https://linkedin.com/in/wojciechkrzos" />
-        <SocialIcon platform="instagram" url="https://instagram.com/wojciechkrzos" />
-        <SocialIcon platform="github" url="https://github.com/wojciechkrzos" />
-      </div>
-    </div>
-  </Card>
-  ![Pomarańczowy Wojciu wiercący duszę widza](../../../assets/people/wojciech_krzos.jpeg)
+  <PersonCard 
+    name="Wojciech Krzos"
+    title='Prezes VIII Zarządu. Kontakt zewnętrzny & Nadzorowanie projektów.'
+    bio="W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci."
+    image={wojciechImg}
+    socials={[
+      { platform: "linkedin", url: "https://linkedin.com/in/wojciechkrzos" },
+      { platform: "instagram", url: "https://instagram.com/wojciechkrzos" },
+      { platform: "github", url: "https://github.com/wojciechkrzos" }
+    ]}
+  />
 
-<Card title="Apolonia Abramowicz">
-  <p>
-    <strong> Rola:</strong> Wiceprezeska VIII Zarządu. Nadzorowanie sekcji.
-  </p>
-  <p> Bajabongers und leszczyners</p>
-</Card>
-![Pola](../../../assets/people/apolonia_abramowicz.png)
+{" "}
+<PersonCard
+  name="Apolonia Abramowicz"
+  title="Wiceprezeska VIII Zarządu. Nadzorowanie sekcji."
+  image={apoloniaImg}
+/>
 
-  <Card title="Mikołaj Jałocha">
-    <p><strong> Rola:</strong> Wiceprezes VIII Zarządu. Dostępy & Audyty.</p>
-    <p> Bajabongers und leszczyners</p>
-  </Card>
-  ![Mikołaj](../../../assets/people/mikolaj_jalocha.jpg)
- 
+  <PersonCard 
+    name="Mikołaj Jałocha"
+    title="Wiceprezes VIII Zarządu. Dostępy & Audyty."
+    image={mikolajImg}
+  />
 </CardGrid>
 
 ## Sekretarz
 
 <CardGrid>
-  <Card title="Aleksandra Dominiak">Head of Multitasking.</Card>
-  ![Ola](../../../assets/people/aleksandra_dominiak.jpg)
+  <PersonCard
+    name="Aleksandra Dominiak"
+    title="Head of Multitasking."
+    image={olaImg}
+  />
 </CardGrid>
 
-## Przewodniczący
+## Przewodniczący sekcji
 
 <CardGrid>
-  <Card title="Bartosz Gotowski">
-    <p>
-      <strong>Sekcja:</strong> Frontend{" "}
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon
-        platform="linkedin"
-        url="https://linkedin.com/in/bartosz-gotowski"
-      />
-      <SocialIcon platform="github" url="https://github.com/rei-x" />
-    </div>
-  </Card>
-  <Card title="Dawid Linek">
-    <p>
-      <strong>Sekcja:</strong> Backend
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon platform="github" url="https://github.com/dawidlinek" />
-    </div>
-  </Card>
-  <Card title="Szymon Kowaliński">
-    <p>
-      <strong>Sekcja:</strong> Mobile
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon platform="linkedin" url="https://linkedin.com/in/kowdev" />
-      <SocialIcon platform="github" url="https://github.com/simon-the-shark" />
-    </div>
-  </Card>
-  <Card title="Łukasz Lenkiewicz">
-    <p>
-      <strong>Sekcja:</strong> AI/ML
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon
-        platform="linkedin"
-        url="https://linkedin.com/in/lukasz-lenkiewicz"
-      />
-      <SocialIcon platform="github" url="https://github.com/LukiLenkiewicz" />
-    </div>
-  </Card>
-  <Card title="Barbara Cząstkiewicz">
-    <p>
-      <strong>Sekcja:</strong> UI/UX
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon
-        platform="instagram"
-        url="https://www.instagram.com/basiiiikkkk"
-      />
-    </div>
-  </Card>
-  <Card title="Jakub Morawiec">
-    <p>
-      <strong>Sekcja:</strong> Promocja
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon
-        platform="linkedin"
-        url="https://www.linkedin.com/in/jakub-morawiec-6bb5622a4"
-      />
-      <SocialIcon platform="github" url="https://github.com/jmorawiecpwr" />
-    </div>
-  </Card>
-  <Card title="Michał Bocian">
-    <p>
-      <strong>Sekcja:</strong> Hardware
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon
-        platform="linkedin"
-        url="https://www.linkedin.com/in/micha%C5%82-bocian-b207a1199/"
-      />
-      <SocialIcon platform="github" url="https://github.com/MikeStork" />
-    </div>
-  </Card>
-  <Card title="Miłosz Słoniecki">
-    <p>
-      <strong>Sekcja:</strong> Devops
-    </p>
-    <p>Bajabongo i leszczyny</p>
-    <div class="mt-6 pt-4 flex gap-4 items-center border-t border-white/20">
-      <SocialIcon platform="github" url="https://github.com/sloniecki" />
-    </div>
-  </Card>
+  <PersonCard
+    name="Bartosz Gotowski"
+    title="Frontend"
+    socials={[
+      { platform: "linkedin", url: "https://linkedin.com/in/bartosz-gotowski" },
+      { platform: "github", url: "https://github.com/rei-x" },
+    ]}
+  />
+  <PersonCard
+    name="Dawid Linek"
+    title="Backend"
+    socials={[{ platform: "github", url: "https://github.com/dawidlinek" }]}
+  />
+  <PersonCard
+    name="Łukasz Lenkiewicz"
+    title="AI/ML"
+    socials={[
+      {
+        platform: "linkedin",
+        url: "https://linkedin.com/in/lukasz-lenkiewicz",
+      },
+      { platform: "github", url: "https://github.com/LukiLenkiewicz" },
+    ]}
+  />
+  <PersonCard
+    name="Szymon Kowaliński"
+    title="Mobile"
+    socials={[
+      { platform: "linkedin", url: "https://linkedin.com/in/kowdev" },
+      { platform: "github", url: "https://github.com/simon-the-shark" },
+    ]}
+  />
+  <PersonCard
+    name="Barbara Cząstkiewicz"
+    title="UI/UX"
+    socials={[
+      { platform: "instagram", url: "https://www.instagram.com/basiiiikkkk" },
+    ]}
+  />
+  <PersonCard
+    name="Jakub Morawiec"
+    title="Promocja"
+    socials={[
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/jakub-morawiec-6bb5622a4",
+      },
+      { platform: "github", url: "https://github.com/jmorawiecpwr" },
+    ]}
+  />
+  <PersonCard
+    name="Michał Bocian"
+    title="Hardware"
+    socials={[
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/micha%C5%82-bocian-b207a1199/",
+      },
+      { platform: "github", url: "https://github.com/MikeStork" },
+    ]}
+  />
+  <PersonCard
+    name="Miłosz Słoniecki"
+    title="Devops"
+    socials={[{ platform: "github", url: "https://github.com/sloniecki" }]}
+  />
 </CardGrid>
