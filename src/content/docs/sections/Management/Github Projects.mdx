@@ -41,12 +41,12 @@ Projekt możemy utworzyć zarówno z poziomu danego repozytorium jak i z poziomu
 
 W kolejnym kroku powinniśmy podpiąć dany projekt pod repozytoria. Tą akcję wykonujemy z poziomu danego repozytorium, przechodząc do zakładki Projects i klikając "Link a project", gdzie następnie możemy wybrać wcześniej utworzony projekt. Alternatywnie z tego poziomu można również utworzyć projekt, jeśli repozytorium już istnieje.
 
-![](../../../../assets/github-projects/link-project.png)
+![Powiązanie projektu z repozytorium](../../../../assets/github-projects/link-project.png)
 
 ### Ustawienia projektu i dostępów
 
 W ustawienia projektu możemy przejść klikając w projekcie w prawy górny róg, a następnie "settings".
-![](../../../../assets/github-projects/goto-settings.png)
+![Jak dostać się do ustawień](../../../../assets/github-projects/goto-settings.png)
 
 Wyświetlą nam się wtedy ustawienia projektu, gdzie możemy wpisać nazwę, krótki opis oraz długi opis projektu. Na samym dole znajduje się widoczność projektu, która powinna być ustawiona na public.
 
@@ -55,7 +55,7 @@ W zakładce manage acess zarządzamy dostępem do projektu, czyli kto może go w
 ### Pola
 
 Jedna z dwóch bardzo potężnych funkcjonalności Github Projects. Tak zwane atrybuty umożliwiają nam skonfigurowanie projektu konkretnie pod nasze potrzeby. Z poziomu ustawień po lewej stronie mamy sekcję Custom fields, a obok niej przycisk "+ New Field". Po kliknięciu wybieramy, nazwę oraz typ atrybutu.
-![](../../../../assets/github-projects/create-custom-field.png)
+![Tworzenie pola niestandardowego](../../../../assets/github-projects/create-custom-field.png)
 
 #### Pola tekstowe
 
@@ -72,12 +72,12 @@ Ten typ pola umożliwia ustawienie daty z dokładnością co do dnia. Przykłade
 #### Pola wyboru
 
 Jedno z najczęściej używanych typów pól. Umożliwia zdefiniowanie możliwych wartości wraz z ich opisami i kolorami. Przykładem może być Priorytet.
-![](../../../../assets/github-projects/select.png)
+![Pole wyboru](../../../../assets/github-projects/select.png)
 
 #### Pola iteracji
 
 Używane w zwinnym zarządzaniu projektami pole iteracji pozwala skonfigurować długość iteracji, na której podstawie będą generowały się iteracje. Następnie przypisując je do danego zadania programiści wiedzą, że np. dane zadanie powinno zostać wykonane w tym miesiącu. Github project dużą część pracy robi za nas, ale również umożliwia ręczne nazywanie i definiowanie iteracji.
-![](../../../../assets/github-projects/iteration.png)
+![Pole interacji](../../../../assets/github-projects/iteration.png)
 
 #### Pole statusu
 
@@ -86,7 +86,7 @@ Jedno z pól standardowych, predefiniowanych przez githuba, których nie możemy
 #### Pole sub-issues
 
 Github umożliwia zagnieżdżanie zadań, tworząc wiele poziomów szczegółowości. W ustawieniach tego pola możemy tylko zmienić sposób i kolor wyświetlania powiązania zadań podrzędnych
-![](../../../../assets/github-projects/sub-issues.png)
+![Pole sub issues](../../../../assets/github-projects/sub-issues.png)
 
 #### Pole assignees
 
@@ -95,10 +95,10 @@ O ile to pole nie jest wyświetlane w ustawieniach to pokazuje się przy każdym
 ### Tworzenie zadań
 
 Przechodząc w główny widok projektu powinna pokazać nam się tabela. Jest to nic innego jak lista zadań, którą rozpisujemy, a następnie przypisujemy do danej osoby i repozytorium. W pierwszej kolejności klikamy na pierwszą komórkę i wpisujemy nazwę zadania
-![](../../../../assets/github-projects/create-first-task.png)
+![Jak utworzyć pierwsze zadanie](../../../../assets/github-projects/create-first-task.png)
 
 Pojawią nam się dwie opcje draft i issue. Wersje robocze (draft) nie wymagają przypisania do repozytorium, ale niestety posiadają dużo mniej funkcjonalności. Zaleca się wybranie "Create new issue", gdzie będziemy musieli wybrać repozytorium, do którego dane zadanie zostanie przypisane. Następnie mamy możliwość wpisania opisu i wyboru wartości wcześniej zdefiniowanych pól.
-![](../../../../assets/github-projects/new-task.png)
+![Wygląd zadania](../../../../assets/github-projects/new-task.png)
 
 Po lewej stronie mamy historię zadania, która wraz z kolejnymi krokami będzie się aktualizowała, a poniżej miejsce na dyskusję.
 
@@ -109,23 +109,23 @@ Programiści podczas pracy będą mieli widoczny dany issue, którego powinni po
 ### Widoki
 
 Domyślna lista zadań jest odpowiednia do pewnego momentu. W pewnej skali nie jesteśmy w stanie dalej zarządzać projektem posiadając wszystko w jednej liście. Github Projects pomaga rozwiązać nam ten problem za pomocą personalizowanych i konfigurowalnych widoków, które możemy dopasować do naszych potrzeb. Widoki możemy dodawać na górze projektu klikając "New view" i wybierając layout.
-![](../../../../assets/github-projects/create-view.png)
+![Jak skonfigurować widok](../../../../assets/github-projects/create-view.png)
 
 #### Table
 
 Tak jak pisałem wcześniej jest to po prostu lista zadań. Nie mniej jednak w ustawieniach umożliwia podział na grupy.
-![](../../../../assets/github-projects/table-options.png)
+![Opcje tabel](../../../../assets/github-projects/table-options.png)
 
 W konfiguracji Fields możemy wybrać, które pola są wyświetlane w tabeli. Następnie możemy skonfigurować grupowanie, które zastosowane np. do statusów wygląda w tabeli tak:
-![](../../../../assets/github-projects/grouped-table.png)
+![Jak działa grupowanie w tabeli](../../../../assets/github-projects/grouped-table.png)
 
 Następnie możemy wybrać sortowanie oraz slicing. Pole slice by pozwala nam na dostęp do szybkich filtrów po lewej stronie. Zastosowanie samego Slice by po np. statusie wygląda następujaco
-![](../../../../assets/github-projects/sliced-table.png)
+![Jak działa slice by w tabeli](../../../../assets/github-projects/sliced-table.png)
 
 #### Board
 
 Kanban jako jedna z metodyk zarządzania projektami. Jej główną cechą jest skupienie się na wizualizacji zadań. Tworząc widok w kanban domyślnie otrzymamy poniższy widok, gdzie zadaniami zarządzamy po prostu przeciągając kafelki:
-![](../../../../assets/github-projects/kanban.png)
+![Kanban z zadaniami](../../../../assets/github-projects/kanban.png)
 
 Tu również możemy zastosować grupowanie i slice by. Dodatkowo w konfiguracji możemy wybrać, po którym polu definiowane są kolumny.
 
@@ -134,7 +134,7 @@ Z innych ciekawych opcji przy każdej kolumnie możemy ustawić limit zadań w d
 #### Roadmap
 
 Ten widok jest przydatny do bardziej kaskadowego zarządzania projektem, gdzie widzimy przebieg projektu w czasie. Umożliwia on również grupowanie i slice by, a z dodatkowych opcji możemy zdefiniować wyświetlany horyzont czasowy i ustawić, które pola definiujemy jako start i koniec zadania.
-![](../../../../assets/github-projects/timeline.png)
+![Roadmap z zadaniami](../../../../assets/github-projects/timeline.png)
 
 #### Filtry
 
@@ -143,22 +143,22 @@ Na przestrzeni github project możemy ustawiać filtry w poszczególnych widokac
 Możemy korzystać również z personalizacji, gdzie wpisując `assignee:@me` każdy członek zespołu będzie widział tylko swoje zadania.
 
 Po każdej zmianie musimy pamiętać o kliknięciu zapisz w prawym rogu, aby zmiany były widoczne dla każdego członka zespołu.
-![](../../../../assets/github-projects/filters.png)
+![Filtrowanie zadań](../../../../assets/github-projects/filters.png)
 
 ### Wykresy
 
 Wykresy z poziomu zarządczego pozwalają na wizualizację kluczowych parametrów projektu. Może być to np. obciążenie pracą lub dynamika realizacji zadań z jednej na drugą iteracją. W prawym górnym rogu klikamy na ikonę wykresu.
-![](../../../../assets/github-projects/goto-chart.png)
+![Jak dostać się do wykresów](../../../../assets/github-projects/goto-chart.png)
 
 Następnie pokaże nam się jeden z domyślnych wykresów z opcją do utworzenia kolejnych. Jako przykładowy wykres utworzymy "Ilość zadań w danej iteracji z podziałem na osoby", gdzie dość wyraźnie będziemy widzieli kto z upływem czasu zrobił ile zadań. Po utworzeniu i nazwaniu wykresu przechodzimy w jego konfigurację, gdzie wybieramy typ wykresu, osie oraz opcjonalnie grupowanie.
-![](../../../../assets/github-projects/configure-chart.png)
+![Jak skonfigurować wykresy](../../../../assets/github-projects/configure-chart.png)
 
 ### Aktualizacja statusów
 
 W prawym górnym rogu możemy przejść w zakładkę aktywność naszego projektu. Tam oprócz długiego i krótkiego opisu możemy dodawać cykliczne aktualizacje projektu.
-![](../../../../assets/github-projects/goto-activity.png)
+![Jak przejść do aktywności projektu](../../../../assets/github-projects/goto-activity.png)
 Tam możemy dodać aktualizację statusu wraz z datą i opisem. Jest to bardzo prosty sposób, aby z perspektywy czasu zobaczyć co działo się w projekcie.
-![](../../../../assets/github-projects/status-update.png)
+![Zakładka aktywności projektu](../../../../assets/github-projects/status-update.png)
 
 ## Rekomendacje
 
@@ -204,22 +204,22 @@ Używając widoków powinniśmy się wczuć w członków naszego zespołu i przy
 #### My tasks
 
 Widok zawierający zawsze tylko zadania danego członka zespołu. Widok w formie Kanban, tylko ze statusami dot. realizacji czyli Todo, In progress, InReview, Done.
-![](../../../../assets/github-projects/my-tasks.png)
+![Widok moje zadania](../../../../assets/github-projects/my-tasks.png)
 
 #### Current sprint
 
 Widok zawierający zadania realizowane w danym sprincie umożliwi planowanie i monitorowanie postępów w danym miesiącu. Wymaga dodania pola niestandardowego typu iteration oznaczającego dany sprint. Widok również w stylu kanban, ale wyświetlający zadania całego zespołu oraz z podziałem na priorytety, które można łatwo zmieniać.
-![](../../../../assets/github-projects/current-sprint.png)
+![Widok obecny sprint](../../../../assets/github-projects/current-sprint.png)
 
 #### Timeline
 
 Widok zawierający wysoko poziomowe zadania np. L0, L1 pozwala zespołowi zwizualizować ogół projektu w czasie zarówno kierownictwu, ale również całemu zespołowi, który często chce wiedzieć co dalej.
-![](../../../../assets/github-projects/timeline-eventownik.png)
+![Widok timeline](../../../../assets/github-projects/timeline-eventownik.png)
 
 #### All
 
 Widok tabelaryczny w którym znajdują się wszystkie zadania z podziałem na LOD oraz status. W tabelce znajdują się informacje o obecnym sprincie, przypisanej osobie, rozmiarze oraz priorytecie. Jest to najbardziej szczegółowy widok zadań pozwalający zaplanować poszczególne obszary projektu.
-![](../../../../assets/github-projects/all.png)
+![Widok all](../../../../assets/github-projects/all.png)
 
 ### Monitoring
 
@@ -228,12 +228,12 @@ W celu lepszego monitoringu projektu rekomenduję utworzenie kilku wykresów rep
 #### Zaangażowanie zespołu w poszczególnych sprintach
 
 Pozwoli na zbadanie aktywności poszczególnych osób w zadaniach w danym kolejnych sprintach. Dodatkowo pokaże ile zadań przypadało na dany sprint.
-![](../../../../assets/github-projects/team-engagement.png)
+![Wykres zaangażowania zespołu](../../../../assets/github-projects/team-engagement.png)
 
 #### Crunch meter
 
 Wykres intensywności priorytetów, który może być również implementowany jako wskaźnik crunchu pokazuje ile zadań w danym sprincie posiadało jaki priorytet. W gestii zarządzających projektem jest odpowiednie wybalansowanie zadań, aby nie wrzucać wszystkiego na priorytet P0 ASAP PILNE.
-![](../../../../assets/github-projects/crunch-meter.png)
+![Wykres balansu priorytetów](../../../../assets/github-projects/crunch-meter.png)
 
 ### Przechowyanie wiedzy projektowej
 
