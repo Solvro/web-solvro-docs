@@ -1,26 +1,12 @@
 ---
-title: Best practices
+title: 2. Programowanie
 sidebar:
-  order: 5
-description: Najlepsze praktyki w tworzeniu aplikacji webowych.
+  order: 20
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 
-## Jak zrobić ładne UI?
-
-Wbrew przekonaniom, sprawa jest prosta:
-
-1. Znajdź stronę, której design Ci się podoba i pasuje do Twojego projektu, np. robisz apke z mapą? google maps
-2. Skopiuj design 1:1, uprość i przerób go na komponenty shadcn
-3. Gotowe, ciesz się ładnym designem
-
-W UI/UX nie ma miejsca na kreatywność i jeśli sami spróbujecie stworzyć własny design na 99% skończycie z czymś dziwnym czego użytkownicy nie chcą używać. Jak tylko możecie kradnijcie designy i dostosowujcie do swoich potrzeb, użytkownicy chcą używać stron, które już znają i nie da sie sprawić by nie znali waszej stronę jeśli wygląda tak samo jak instagram 😭
-
-Poza tym, nie pisz własnych komponentów jeśli nie masz BARDZO dobrego powodu, te z shadcn’a są bardzo ładne i jak tylko możesz używaj ich 1:1, wtedy na pewno nie zbłądzisz.
-
-- Jak chcesz wiedzieć więcej na ten temat zapraszam do poczytania Refactoring UI, książka twórców tailwinda, poradnik o designie dla programistów (wymagany dostęp do dysku)
-  [https://drive.google.com/file/d/1zbsgxcK-xREkmFV7D6Z1lHZwOn4k04w-/view?usp=drive_link](https://drive.google.com/file/d/1zbsgxcK-xREkmFV7D6Z1lHZwOn4k04w-/view?usp=drive_link)
+W jaki sposób zrobić X w projekcie? Tutaj właśnie się tego dowiesz! Zachęcamy do pobieżnego przejrzenia całej strony, żeby kojarzyć co fajnego można tutaj znaleźć.
 
 ## Pobieranie danych z API
 
@@ -208,7 +194,7 @@ Podrzucam linki do stackoverflow, gdzie jest to ładnie opisane:
 
 ## Formularze
 
-Zapraszam do dokumentacji shadcn’a, tam większość jest dobrze opisana:
+Zapraszam do dokumentacji shadcn'a, tam większość jest dobrze opisana:
 
 [https://ui.shadcn.com/docs/components/form](https://ui.shadcn.com/docs/components/form)
 
@@ -233,18 +219,6 @@ Na potrzeby Solvro cokolwiek wybierzecie będzie dobrze, a jeśli kogoś temat b
 - https://tkacz.pro/how-to-securely-store-jwt-tokens
 - https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf
 
-## Landing page
-
-Jeśli jeszcze raz ktoś zmarnuje czas na robienie własnego landing page’a to go uduszę, tutaj macie dwie templatki i proszę z nich zrzynać:
-
-- [https://shadcn-landing-page.vercel.app](https://shadcn-landing-page.vercel.app/)
-- [https://shadcn-landing-page-livid.vercel.app](https://shadcn-landing-page-livid.vercel.app/)
-- [https://github.com/akash3444/shadcn-ui-landing-page](https://github.com/akash3444/shadcn-ui-landing-page)
-
-## Analityka
-
-Do analityki mamy postawione [Umami](https://umami.is/) na [https://analytics.solvro.pl](https://analytics.solvro.pl), jak chcecie dostęp to uderzajcie do Zarządu.
-
 ## WYSIWYG
 
 Strasznie nie lubię tego tematu, bo tu jest milion wyborów i milion + 1 złych, obecnie rekomenduje:
@@ -260,12 +234,8 @@ Jako przykład polecam DataTable z shadcn'a:
 
 Jeśli tabelka ma więcej niż 1000 wierszy to jest moment, żeby przenieść logikę filtrowania, paginacji i sortowania na backend, frontend przy takich ilościach powoli może zacząć zamulać. Przy 10k+ ilości wierszy to jest must-have.
 
-## Deployment
-
-Tutaj zapraszam do korzystania z naszego coolify’a pod adresem [https://devops.solvro.pl/](https://devops.solvro.pl/), jak ktoś chce dostępy to pisać do Zarządu, raczej każdy dostaje 😭
-
 ## a11y
 
 Za wsadzanie linka w przycisk będę karał tygodniową chłostą, to nie jest poprawny html, sam react krzyczy, że nie można tak robić i czytniki ekranów się zepsują jak spróbują to przeczytać
 
-Więcej na ten temat znajdziesz [tutaj](/sections/frontend/accessibility/#przyciski-jako-linki)
+Więcej na ten temat znajdziesz [w poradniku o dostępności](/sections/frontend/poradniki/accessibility/#przyciski-jako-linki)
