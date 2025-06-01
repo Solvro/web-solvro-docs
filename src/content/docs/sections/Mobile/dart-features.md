@@ -110,7 +110,7 @@ String message = switch (value) {
 
 #### Wykorzystanie: Pattern matching w destructuringu
 
-`Patteren matching` można wykorzystać aby wyciągnąć konkretne dane ze struktur, np z list, tupli, map:
+`Pattern matching` można wykorzystać aby wyciągnąć konkretne dane ze struktur, np z list, tupli, map:
 
 ```dart
 var numList = [1, 2, 3];
@@ -127,7 +127,7 @@ print(a + b + c);
 Dopasowują dokładną wartość:
 
 ```dart
-dartString describe(int value) => switch (value) {
+String describe(int value) => switch (value) {
   0 => 'zero',
   1 => 'one',
   42 => 'the answer',
@@ -140,7 +140,7 @@ dartString describe(int value) => switch (value) {
 Wiążą dopasowaną wartość z nową zmienną:
 
 ```dart
-dartString processValue(Object value) => switch (value) {
+String processValue(Object value) => switch (value) {
   int x when x > 0 => 'positive: $x',
   int x when x < 0 => 'negative: $x',
   int x => 'zero: $x',
@@ -154,7 +154,7 @@ dartString processValue(Object value) => switch (value) {
 Dopasowują rekordy według struktury:
 
 ```dart
-dartString analyzePoint((int, int) point) => switch (point) {
+String analyzePoint((int, int) point) => switch (point) {
   (0, 0) => 'origin',
   (var x, 0) => 'on x-axis at $x',
   (0, var y) => 'on y-axis at $y',
@@ -168,7 +168,7 @@ dartString analyzePoint((int, int) point) => switch (point) {
 Dopasowują listy według zawartości:
 
 ```dart
-dartString analyzeList(List<int> numbers) => switch (numbers) {
+String analyzeList(List<int> numbers) => switch (numbers) {
   [] => 'empty list',
   [var single] => 'single element: $single',
   [var first, var second] => 'two elements: $first, $second',
@@ -181,7 +181,7 @@ dartString analyzeList(List<int> numbers) => switch (numbers) {
 Dopasowują mapy według kluczy i wartości:
 
 ```dart
-dartString analyzeUser(Map<String, dynamic> user) => switch (user) {
+String analyzeUser(Map<String, dynamic> user) => switch (user) {
   {'name': String name, 'age': int age} when age >= 18 => 'Adult: $name ($age)',
   {'name': String name, 'age': int age} => 'Minor: $name ($age)',
   {'name': String name} => 'Name only: $name',
@@ -194,7 +194,7 @@ dartString analyzeUser(Map<String, dynamic> user) => switch (user) {
 Dopasowują obiekty według ich właściwości:
 
 ```dart
-dartsealed class Shape {}
+sealed class Shape {}
 class Circle extends Shape {
   final double radius;
   Circle(this.radius);
