@@ -137,7 +137,7 @@ Dodatkowo, przy destructuringu może oznaczać te elementy, które nas nie inter
 ```dart
 final importantList = ['boring', 'important', 'something', 'something more' ];
 final [_, i, _, _] = importantList;
-print('This one is important: $i')
+print('This one is important: $i');
 ```
 
 `Wildcard` może być również stosowany wtedy, gdy interesuje nas typ zmiennej, ale nie chcemy jej później wykorzystywać, np.:
