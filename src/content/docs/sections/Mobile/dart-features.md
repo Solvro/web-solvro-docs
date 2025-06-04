@@ -7,13 +7,13 @@ description: Smaczki Dart, które warto znać
 
 Dart jest językiem wieloparadygmatowym — pozwala pisać zarówno w stylu imperatywnym, jak i funkcyjnym. Ma wiele przydatnych mechanizmów, o których łatwo zapomnieć, a które mogą ułatwić pisanie prostszego i bardziej niezawodnego kodu. Oto krótkie podsumowanie niektórych ficzerów, o których warto pamiętać.
 
-### New Switch-Case
+## New Switch-Case
 
 Dla Darta od `3.0` w górę dostępna jest nowa wersja switch-case'a, która działa jako wyrażenie i wspiera `pattern matching` oraz `guard clauses`. W dokumentacji Dart'a można znaleźć starą składnię switch'a pod nazwą [`switch statement`](https://arc.net/l/quote/ltljrcla) a nową jako [`switch expression`](https://arc.net/l/quote/ofmreksm).
 
-#### Porównanie: switch statement
+### Porównanie: switch statement
 
-Widzimy tu ciąg imperatywnych instrukcji, który zostanie wykonany, gdy warunek opisany w `case` zostanie spełniony, np:
+Widzimy tu ciąg imperatywnych instrukcji, który zostanie wykonany, gdy warunek opisany w `case` zostanie spełniony, np.:
 
 ```dart
 var command = 'OPEN';
@@ -51,13 +51,13 @@ switch (charCode) {
 
 De facto, jedyne co robimy za każdym razem, to przypisujemy zmiennej wartość, możnaby więc wykonać to szybciej - z pomocą przychodzi `switch expression`.
 
-#### Porównanie: switch expression
+### Porównanie: switch expression
 
-Tutaj zaznaczamy, że do zmiennej token zostanie przypisane cokolwiek zwróci nam _wyrażenie_ switch, które sprowadza się do:
+Tutaj zaznaczamy, że do zmiennej `token` zostanie przypisane cokolwiek zwróci nam _wyrażenie_ switch, które sprowadza się do:
 \[dopasowanie\] => \[zwracana wartość\].
 
 ```dart
-token = switch (charCode) {
+  final token = switch (charCode) {
   slash || star || plus || minus => operator(charCode),
   comma || semicolon => punctuation(charCode),
   >= digit0 && <= digit9 => number(),
@@ -67,19 +67,19 @@ token = switch (charCode) {
 
 Krótsze, a przede wszystkim nie wymusza konieczności ręcznego przypisywania wartości do zmiennej pod każdym `case`.
 
-### Pattern Matching
+## Pattern Matching
 
 [`Pattern matching`](https://dart.dev/language/patterns) w Darcie to potężny mechanizm, który pozwala na dopasowywanie wartości według ich struktury, typu czy zawartości. Wprowadzony w Darcie `3.0`, otwiera nowe możliwości pisania czytelnego i bezpiecznego kodu. Oprócz dopasowywania wartości wewnątrz `switch statement` i `switch expression`, pozwala też na `destructuring` - wyciągnięcie konkretnych pól/atrybutów ze złożonych struktur.
 
-#### Zalety wykorzystywania pattern matchingu
+### Zalety wykorzystywania pattern matchingu
 
-- Czytelność - kod staje się bardziej deklaratywny i łatwiejszy do zrozumienia
-- Bezpieczeństwo typów - kompilator sprawdza kompletność wzorców
-- Mniej boilerplate - eliminuje potrzebę wielu if-else lub instanceof checks
-- Destructuring - łatwe wyciąganie wartości z złożonych struktur danych
-- Kompozycja wzorców - możliwość łączenia różnych typów wzorców
+- Czytelność - kod staje się bardziej deklaratywny i łatwiejszy do zrozumienia.
+- Bezpieczeństwo typów - kompilator sprawdza kompletność wzorców.
+- Mniej boilerplate - eliminuje potrzebę wielu if-else lub instanceof checks.
+- Destructuring - łatwe wyciąganie wartości ze złożonych struktur danych.
+- Kompozycja wzorców - możliwość łączenia różnych typów wzorców.
 
-#### Wykorzystanie: Pattern matching w switch statement
+### Wykorzystanie: Pattern matching w switch statement
 
 `Switch statement` wykonuje różne instrukcje w zależności od dopasowanego typu danych:
 
@@ -96,7 +96,7 @@ switch (value) {
 }
 ```
 
-#### Wykorzystanie: Pattern matching w switch expression
+### Wykorzystanie: Pattern matching w switch expression
 
 `Switch expression` zwraca różne wartości w zależności od dopasowanego typu danych:
 
@@ -108,21 +108,50 @@ String message = switch (value) {
 };
 ```
 
-#### Wykorzystanie: Pattern matching w destructuringu
+### Wykorzystanie: Pattern matching w destructuringu
 
-`Pattern matching` można wykorzystać aby wyciągnąć konkretne dane ze struktur, np z list, tupli, map:
+`Pattern matching` można wykorzystać aby wyciągnąć konkretne dane ze struktur, np. z list, tupli, map:
 
 ```dart
-var numList = [1, 2, 3];
+final numList = [1, 2, 3];
 // List pattern [a, b, c] destructures the three elements from numList...
-var [a, b, c] = numList;
+final [a, b, c] = numList;
 // ...and assigns them to new variables.
 print(a + b + c);
 ```
 
-#### Rodzaje wzorców
+### Wykorzystanie: Użycie wieloznacznika - wildcard
 
-##### Constant patterns
+`Wildcard` lub też wieloznacznik oznaczany jest jako `_` i może pełnić podobną funkcję w `switch expression` co `default` w `switch statement`, np.:
+
+```dart
+String stringOrInt(Object value) => switch (value) {
+  String s => 'This is a string.',
+  int i => 'This is an int.',
+  _ => 'Neither string nor int.',
+};
+```
+
+Dodatkowo, przy destructuringu może oznaczać te elementy, które nas nie interesują, np.:
+
+```dart
+final importantList = ['boring', 'important', 'something', 'something more' ];
+final [_, i, _, _] = importantList;
+print('This one is important: $i')
+```
+
+`Wildcard` może być również stosowany wtedy, gdy interesuje nas typ zmiennej, ale nie chcemy jej później wykorzystywać, np.:
+
+```dart
+switch (record) {
+  case (int _, String _):
+    print('First field is int and second is String.');
+}
+```
+
+### Rodzaje wzorców
+
+#### Constant patterns
 
 Dopasowują dokładną wartość:
 
@@ -135,7 +164,7 @@ String describe(int value) => switch (value) {
 };
 ```
 
-##### Variable patterns
+#### Variable patterns
 
 Wiążą dopasowaną wartość z nową zmienną:
 
@@ -149,34 +178,36 @@ String processValue(Object value) => switch (value) {
 };
 ```
 
-##### Record patterns
+#### Record patterns
 
 Dopasowują rekordy według struktury:
 
 ```dart
 String analyzePoint((int, int) point) => switch (point) {
   (0, 0) => 'origin',
-  (var x, 0) => 'on x-axis at $x',
-  (0, var y) => 'on y-axis at $y',
+  (final x, 0) => 'on x-axis at $x',
+  (0, final y) => 'on y-axis at $y',
   (var x, var y) when x == y => 'diagonal at ($x, $y)',
   (var x, var y) => 'point at ($x, $y)',
 };
 ```
 
-##### List patterns
+Side note: jeśli nie podajemy typu zmiennej, to do jej opisania można użyć zarówno final jak i var, w zależności od tego, czy planujemy ją modyfikować.
+
+#### List patterns
 
 Dopasowują listy według zawartości:
 
 ```dart
 String analyzeList(List<int> numbers) => switch (numbers) {
   [] => 'empty list',
-  [var single] => 'single element: $single',
-  [var first, var second] => 'two elements: $first, $second',
-  [var first, ...var rest] => 'starts with $first, has ${rest.length} more',
+  [final single] => 'single element: $single',
+  [final first, final second] => 'two elements: $first, $second',
+  [final first, ...final rest] => 'starts with $first, has ${rest.length} more',
 };
 ```
 
-##### Map patterns
+#### Map patterns
 
 Dopasowują mapy według kluczy i wartości:
 
@@ -189,7 +220,7 @@ String analyzeUser(Map<String, dynamic> user) => switch (user) {
 };
 ```
 
-##### Object patterns
+#### Object patterns
 
 Dopasowują obiekty według ich właściwości:
 
@@ -205,7 +236,17 @@ class Rectangle extends Shape {
 }
 
 double calculateArea(Shape shape) => switch (shape) {
-  Circle(radius: var r) => 3.14159 * r * r,
-  Rectangle(width: var w, height: var h) => w * h,
+  Circle(radius: final r) => 3.14159 * r * r,
+  Rectangle(width: final w, height: final h) => w * h,
 };
+```
+
+Jeśli nie ma potrzeby zmieniać nazw pól obiektu w ramach dopasowania, można użyć także takiej notacji:
+
+```dart
+double calculateArea(Shape shape) => switch (shape) {
+  Circle(: final radius) => 3.14159 * radius * radius,
+  Rectangle(: final width, : final height) => width * height,
+};
+
 ```
