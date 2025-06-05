@@ -192,7 +192,9 @@ String analyzePoint((int, int) point) => switch (point) {
 };
 ```
 
-Side note: jeśli nie podajemy typu zmiennej, to do jej opisania można użyć zarówno final jak i var, w zależności od tego, czy planujemy ją modyfikować.
+:::tip
+Jeśli nie podajemy typu zmiennej, to do jej opisania można użyć zarówno final jak i var, w zależności od tego, czy planujemy ją modyfikować.
+:::
 
 #### List patterns
 
@@ -245,8 +247,8 @@ Jeśli nie ma potrzeby zmieniać nazw pól obiektu w ramach dopasowania, można 
 
 ```dart
 double calculateArea(Shape shape) => switch (shape) {
-  Circle(: final radius) => 3.14159 * radius * radius,
-  Rectangle(: final width, : final height) => width * height,
+  Circle(:final radius) => 3.14159 * radius * radius,
+  Rectangle(:final width, :final height) => width * height,
 };
 
 ```
