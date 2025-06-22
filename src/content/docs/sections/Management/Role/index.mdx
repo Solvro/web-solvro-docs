@@ -1,0 +1,138 @@
+---
+title: Role w Solvro
+description: Kompleksowy przewodnik po wszystkich rolach w projektach Solvro
+---
+
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+import FAQ from "../../../../../components/FAQ.astro";
+
+export const faqItems = [
+  {
+    question: "Czy jedna osoba może pełnić kilka ról?",
+    answer:
+      "Tak, szczególnie w mniejszych projektach. Należy wtedy zwracać uwagę na to, żeby nie przeciążyć danej osoby zbyt wieloma obowiązkami.",
+  },
+  {
+    question: "Jak wybrać odpowiednie osoby do ról?",
+    answer:
+      "Wybór osób powinien bazować na kilku kluczowych kryteriach:<br><br><strong>Kompetencje techniczne:</strong><br>• Doświadczenie w danej dziedzinie<br>• Znajomość wymaganych technologii i narzędzi<br>• Umiejętności miękkie odpowiednie do roli<br><br><strong>Czynniki praktyczne:</strong><br>• Dostępność czasowa na dany projekt<br>• Motywacja i zaangażowanie w projekt<br>• Dopasowanie do specyfiki i skali projektu<br><br><strong>Aspekty rozwojowe:</strong><br>• Chęć nauki i rozwoju w danej roli<br>• Możliwość mentoringu przez doświadczone osoby<br>• Potencjał do przyszłego rozwoju w organizacji",
+  },
+  {
+    question: "Co w przypadku konfliktów między rolami?",
+    answer:
+      "Konflikty między rolami można rozwiązać na kilka sposobów:<br><br><strong>Pierwsza linia:</strong><br>1. Odniesienie do matrycy RACI - sprawdzenie kto jest odpowiedzialny<br>2. Bezpośrednia rozmowa między zainteresowanymi stronami<br><br><strong>Eskalacja:</strong><br>1. Konsultacja z Project Managerem<br>2. Konsultacja z Opiekunem projektu<br>3. Rozmowa z Przewodniczącym odpowiedniej Sekcji lub Zarządem<br><br><strong>Prewencja:</strong><br>• Jasne zdefiniowanie ról na początku projektu<br>• Regularne sprawdzanie zrozumienia odpowiedzialności<br>• #otwartakomunikacja",
+  },
+  {
+    question: "Czy role mogą się zmieniać w trakcie projektu?",
+    answer: "Tak, role mogą ewoluować w zależności od potrzeb projektu.",
+  },
+  {
+    question: "Jak zacząć działać w nowej roli?",
+    answer:
+      "Rozpoczęcie pracy w nowej roli wymaga systematycznego podejścia:<br>1. Zapoznanie się z opisem roli i jej obowiązkami<br>2. Przeczytanie matrycy RACI dla swojej roli<br>3. Kontakt z poprzednikiem w roli (jeśli możliwe)",
+  },
+];
+
+## Role w projektach Solvro
+
+Czym jest rola? PMI definiuje rolę jako:
+
+> A defined function to be performed by a project team member, such as testing, filing, inspecting, or coding.
+
+W Solvro każdy projekt software jest realizowany przez zespół składający się z osób pełniących różne role. Każda rola ma swoje unikalne obowiązki, kompetencje i obszary odpowiedzialności.
+
+## Przegląd ról
+
+<CardGrid>
+  <LinkCard
+    title="🎯 Opiekun projektu"
+    description="Właściciel wizji produktu i odpowiada za jego kierunek"
+    href="/sections/management/role/product-owner"
+  />
+  <LinkCard
+    title="📋 Project Manager"
+    description="Lider zespołu, koordynuje pracę i dba o przepływ projektu"
+    href="/sections/management/role/project-manager"
+  />
+  <LinkCard
+    title="⚙️ Tech Lead"
+    description="Lider techniczny odpowiedzialny za architekturę i jakość kodu"
+    href="/sections/management/role/tech-lead"
+  />
+  <LinkCard
+    title="👥 Członek zespołu"
+    description="Osoba realizująca zadania projektowe"
+    href="/sections/management/role/team-member"
+  />
+</CardGrid>
+
+## Hierarchia i współpraca
+
+W projektach Solvro role nie działają w izolacji - tworzą one spójny ekosystem współpracy:
+
+- **Opiekun projektu** definiuje **CO** i **DLACZEGO** - wizję i cele biznesowe
+- **Project Manager** określa **JAK** i **KIEDY** - metodykę i harmonogram
+- **Tech Lead** decyduje o **CZYM** technicznie - architekturze i implementacji
+- **Członkowie zespołu** realizują konkretne zadania zgodnie z ustaleniami
+
+## Matryca odpowiedzialności RACI
+
+Poniższa matryca definiuje, kto jest odpowiedzialny za poszczególne aktywności w projekcie.
+
+<LinkCard
+  title="Jak czytać macierz RACI?"
+  description="Sprawdź tutaj!"
+  href="/sections/management/tools/raci"
+/>
+
+| Aktywność/Decyzja                      | Opiekun projektu | Project Manager | Tech Lead | Członek zespołu |
+| -------------------------------------- | ---------------- | --------------- | --------- | --------------- |
+| **Initiation**                         |
+| Karta projektu                         | A                | R               |           |                 |
+| Pitch do Zarządu / na Weekly           | A                | R               |           |                 |
+| **Planning**                           |
+| Zebranie zespołu                       | A                | R               |           |                 |
+| Organizacja wizyjnego                  | A                | R               | C         | I               |
+| Zebranie wymagań                       | C                | A               | R         | I               |
+| Wybór technologii                      | C                | I               | RA        | C               |
+| Przygotowanie repozytorium GitHub      | C                | I               | RA        | C               |
+| Przygotowanie projektu GitHub Projects | C                | RA              | I         | C               |
+| Przygotowanie folderu Google Drive     | I                | RA              | I         | I               |
+| Przygotowanie kategorii Discord        | I                | RA              | I         | I               |
+| **Execution**                          |
+| Przygotować backlog                    | RA               | C               | C         | I               |
+| Build deliverables                     | I                | C               | A         | R               |
+| Przeprowadzanie code review            | I                | C               | RA        | I               |
+| Deploment na produkcję                 | I                | A               | R         | C               |
+| Organizacja weekly projektu            | I                | RA              | C         | I               |
+| Marketing i Promocja                   | C                | A               | I         | R               |
+| Prezentacja postępów na Weekly         | C                | RA              | C         | I               |
+| **Closure**                            |
+| Final retro                            | A                | R               | C         | C               |
+| Archiwizacja dokumentacji              | I                | A               | C         | R               |
+| Archiwizacja repozytorium              | I                | C               | A         | R               |
+
+_Notka: W uzasadnionych przypadkach, z racji na specyfikę projektu, matryca może ulec zmianie._
+
+<FAQ items={faqItems} />
+
+## Powiązane materiały
+
+<CardGrid>
+  <LinkCard
+    title="Matryca RACI"
+    description="Dowiedz się więcej o modelu odpowiedzialności"
+    href="/sections/management/tools/raci"
+  />
+  <LinkCard
+    title="GitHub Projects"
+    description="Narzędzie do zarządzania projektami"
+    href="/sections/management/guides/github-projects"
+  />
+</CardGrid>
+
+## Źródła
+
+1. Project Management Institute. (2025). Large agile teams – disciplined agile. https://www.pmi.org/disciplined-agile/agility-at-scale/tactical-agility-at-scale/large-agile-teams
+2. Zein, O. (2010, October). Roles, responsibilities, and skills in program management. Paper presented at the PMI® Global Congress 2010—EMEA, Milan, Italy. Project Management Institute.
+3. Project Management Institute. (2017). Agile practice guide. Project Management Institute.
