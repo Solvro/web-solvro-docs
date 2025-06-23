@@ -1,6 +1,8 @@
 ---
 title: LimeSurvey
 description: Zarządzanie kontami badawczymi studentów i uprawnieniami na naszej platformie LimeSurvey
+sidebar:
+  hidden: true
 ---
 
 ## Instrukcja zarządzania LimeSurvey
