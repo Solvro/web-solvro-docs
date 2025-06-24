@@ -80,13 +80,22 @@ export default defineConfig({
               label: "Komunikacja",
               link: "/communication",
             },
+          ],
+        },
+        {
+          label: "Git i GitHub",
+          items: [
             {
-              label: "Jak używać githuba?",
-              link: "/github",
+              label: "Poradnik - czym jest Git?",
+              autogenerate: { directory: "/git-github/intro", collapsed: true },
             },
             {
-              label: "Git handbook",
-              autogenerate: { directory: "git", collapsed: true },
+              label: "Jak korzystać z Githuba w Solvro?",
+              link: "/git-github/github",
+            },
+            {
+              label: "Github Projects - zarządzanie projektami",
+              link: "/git-github/github-projects",
             },
           ],
         },
