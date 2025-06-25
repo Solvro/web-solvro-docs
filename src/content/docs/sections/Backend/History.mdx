@@ -1,0 +1,117 @@
+---
+title: Historia backendowa
+description: Co porabialiśmy w ostatnich latach
+sidebar:
+  order: 2
+---
+
+import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
+import { getTeam, TeamMembers } from "../../../../components/TeamMembers";
+
+## Początki
+
+Sekcja backend jest dobrze ugruntowaną częścią KN Solvro, która stale rozwija się, tworząc rozwiązania, które są podstawą działania naszych aplikacji. Powstała ona w wakacje 2024 roku na wskutek rozbicia sekcji web na frontend, backend oraz devops. Naszym pierwszym działaniem było przeprowadzenie szkolenia “Od zera do backend developera”, gdzie wykonaliśmy tranzycję na ujednoliconą technologię Adonis JS.
+
+## 2024
+
+### Przewodniczący
+
+<CardGrid>
+  <Card title="Dawid Linek">
+    Prezes VII zarządu KN Solvro oraz przewodniczący sekcji backend 2024/2025.
+  </Card>
+  ![Uśmiechnięty Dawid Linek patrzący wprost w
+  obiektyw](../../../../assets/people/dawid_linek.jpg)
+</CardGrid>
+
+### Projekty
+
+| Nazwa           | Github                                                                               | Daty                             | Techlead         |
+| --------------- | ------------------------------------------------------------------------------------ | -------------------------------- | ---------------- |
+| Eventownik      | [backend-eventownik](https://github.com/Solvro/backend-eventownik)                   | od marca 2024                    | Dawid Linek      |
+| ToPWr           | [backend-topwr](https://github.com/Solvro/backend-topwr)                             | 2024                             | Jakub Czajkowski |
+| ToPWr SKS       | [backend-topwr-sks](https://github.com/Solvro/backend-topwr-sks)                     | od września 2024                 | Jakub Czajkowski |
+| Led Cube        | [backend-led-cube](https://github.com/Solvro/backend-led-cube)                       | listopad 2024 – styczeń 2025     | Jakub Stępkowski |
+| Kurs backendowy | [backend-course](https://github.com/Solvro/backend-course)                           | sierpień 2024 – październik 2024 | Dawid Linek      |
+| Parking API     | [backend-parking-api-wrapper](https://github.com/Solvro/backend-parking-api-wrapper) | wrzesień 2024 – styczeń 2025     | Ignacy Smoliński |
+| Cocktails API   | [backend-cocktail-api](https://github.com/Solvro/backend-cocktail-api)               | sierpień 2024 – wrzesień 2024    | Dawid Linek      |
+
+### Technologia
+
+Przez lata działalności koła przeczołgaliśmy się przez wiele różych technologii.
+
+### Java
+
+Java była popularną technologią głównie ze względu na swoją powszechność na studiach i wysoką komercyjność. Ostatecznie zdecydowaliśmy się zrezygnować z Javy na rzecz standaryzacji stosowanych technologii — wybraliśmy rozwiązania oparte na TypeScripcie, które były już używane na froncie.
+
+Kolejnym czynnikiem był wpływ sposobu nauczania Javy na studiach. Choć pozornie mogła być to zaleta, w praktyce okazała się wadą. Do zespołów dołączały często osoby mające jedynie podstawową, akademicką znajomość Javy, a nie pasję i umiejętność samodzielnej nauki nowej technologii.
+
+Historycznie również projekty oparte na Javie rzadko doczekiwały się zakończenia i wdrożenia. Pod koniec 2024 roku zdecydowaliśmy się całkowicie wycofać Javę z koła, a w lutym 2025 roku zamknęliśmy ostatni aktywny projekt w Javie (Parking API).
+
+### DIY w nodzie
+
+Przez pewien okres w działalności koła powtstawały projekty oparte na nodzie np. expressie czy fastify, gdzie w ramach potrzeby były doklejane kolejne biblioteki. Co również mogło okazać się dobrym pomysłem, praktyka boleśnie zweryfikowała. Brak standaryzacji i narzucenia struktury praktycznie uniemożliwiał wdrożenie się do projektu nowym osobom, a cały projekt ogarniał praktycznie tylko techlead. Po odejściu techelada pojawiały się problemy z maintance projektu oraz przekazaniem go kolejnym ekpiom. Z tych powodów w wakacje 2024 projekty DIY zostały wygaszone oraz wprowadzona technologia w postaci ustrukturyzowanego frameworku adonis js.
+
+### Adonis js
+
+Decyzją przewodniczącego sekcji w wakacje 2024 wybrano framework AdonisJS — nowoczesne narzędzie w ekosystemie Node.js, w pełni wspierające TypeScript i inspirowane rozwiązaniami znanymi z Laravel.
+
+O wyborze zdecydowała prostota, implementacja uniwersalnych konceptów backendowych, silne standaryzowanie oraz bogate, komercyjne doświadczenie przewodniczącego sekcji w korzystaniu z tego narzędzia.
+
+Latem 2024 roku zorganizowano wakacyjne wyzwanie, które pozwoliło członkom sekcji zapoznać się z technologią i wdrożyć ją w praktyce. Następnie AdonisJS został zastosowany w zadaniu rekrutacyjnym, a także w projektach ToPWR, Eventownik, Translator, SolvroBOT i Planner. Przeprowadzono dwie rekrutacje i dwa wdrożenia członków w tę technologię.
+
+## 2025
+
+### Przewodniczący
+
+<CardGrid>
+  <Card title="Dawid Linek">
+    Przewodniczący sekcji backend do 1 lipca 2025.
+  </Card>
+  ![Uśmiechnięty Dawid Linek patrzący wprost w
+  obiektyw](../../../../assets/people/dawid_linek.jpg)
+</CardGrid>
+<CardGrid>
+  <Card title="Szymon Stępień">
+    Przewodniczący sekcji backend od 1 lipca 2025.
+  </Card>
+</CardGrid>
+### Projekty | Nazwa | Github | Daty | Techlead | | --------------- |
+--------------------------------------------------------------------------------------
+| -------------------------------- | -------------- | | ToPWr Parking |
+[backend-topwr-parking-adonis](https://github.com/Solvro/backend-topwr-parking-adonis)
+| luty 2025 – marzec 2025 | Jakub Czajkowski | | Eventownik 3.0 |
+[backend-eventownik](https://github.com/Solvro/backend-eventownik) | od lipca
+2025 | Szymon Stępień | | Translator |
+[backend-translator](https://github.com/Solvro/backend-translator) | luty 2025 –
+maj 2025 | Jakub Czajkowski | | Testownik |
+[backend-testownik](https://github.com/Solvro/backend-testownik) | od stycznia
+2025 | Antoni Czaplicki | | Formularz Snu |
+[backend-formularz-snu](https://github.com/Solvro/backend-formularz-snu) | luty
+2025 – marzec 2025 | Szymon Kowaliński |
+
+### Technologia
+
+### NestJS
+
+Podczas prawie roku działania na frameworku adonis js pojawiło się kilka głównych zastrzeżeń:
+
+- framework jest utrzymywany przez 4 osoby, co ograniczło rozwój i nie świadczyło dobrze o stabilnonści
+- pojawiły się problemy z integracją z admin js, który miał być używany w ToPWR
+- adonis nie był bardzo popularnie komercyjny i brakowało mu opcji enterprise
+- nest js był 100x bardziej popularny pod względem pobrań niż adonis
+- brakowało ugruntowanych materiałów i kursów w adonisie np. testy
+
+Ze względu na te czynniki w czerwcu 2025 roku odbyły się spotkania dostyczące zmianny technologii. Kończąc na debacie 22 czerwca 2025 po 2 godzinnach pasjonujących rozmów oraz 2 turach głosowania więszkością głosów została wybrana technologia **NESTJS**.
+
+Z założeń chcieliśmy, aby technologia:
+
+- opierała się na TS z uwagi na współpracę z sekcją frontend oraz bezpieczeństwo dawane przez typowanie
+- była ujednolicona w kole z uwagi na łatwiejszy rozwój, onboarding oraz utrzsymanie projektów. Dopuszczamy jednak w uzasadnionych sytuacjach użycie innych technologii.
+- posiadała dobrą dokuemtnacją oraz materiały szkoleniwe
+- miała narzuconą strukturę z uwagi na łatwiejsze wdrożenie nowych członków
+
+Kontrkandydatami był framework DIY, przy którym pojawiły się zastrzeżenia co do jego utrzymania i rozwoju. Drugim kontrkandydatem było Django, które nie zostało wybrane większością głosów. Pojawiły się zastrzeżenia co do braku TS.
