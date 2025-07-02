@@ -1,0 +1,70 @@
+---
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+}
+
+const { items, title = "FAQ" } = Astro.props;
+---
+
+<section class="faq-section">
+  <h2 class="faq-title">{title}</h2>
+  <div class="faq-container">
+    {
+      items.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <div class="faq-answer" set:html={item.answer} />
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    margin: 1rem 0;
+  }
+  .faq-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--sl-color-white);
+  }
+  .faq-container details {
+    margin-bottom: 0.5rem;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    list-style: none;
+  }
+  /* Hide native marker */
+  details summary::-webkit-details-marker,
+  details summary::marker {
+    display: none;
+  }
+  /* Simple plus/minus marker */
+  details summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1ch;
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+  details[open] summary::before {
+    content: "-";
+  }
+  .faq-answer {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    font-size: 1rem;
+    color: var(--sl-color-gray-2);
+  }
+</style>
