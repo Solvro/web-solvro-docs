@@ -18,7 +18,7 @@ description: Szybki start dla tych, którzy chcą poznać Adonisa i tworzyć św
 
 Oto lista najważniejszych rzeczy, które warto w mniejszym lub większym stopniu ogarniać biorąc się za naukę korzystania z Adonisa:
 
-- **Git i GitHub** - podstawowe narzędzia pracy każdego developera. Z zasadami korzystania stosowanymi w Solvro można zapoznać się w [Handbook GitHub](/github)
+- **Git i GitHub** - podstawowe narzędzia pracy każdego developera. Z zasadami korzystania stosowanymi w Solvro można zapoznać się w [Handbook GitHub](/git-github/solvro)
 - **IDE** - środowisko do pracy z kodem. Do najpopularniejszych opcji należy Visual Studio Code i Webstorm od Jetbrains.
 - **TypeScript** - jest to podstawowy język wykorzystywany przez Adonisa. Bez jego znajomości ciężko cokolwiek zrobić.
 - **NodeJS** - technologia pozwalająca na uruchamianie JS poza przeglądarką. Wykorzystywana do budowania backendu. Zrozumienie działania importów i menadżera pakietów NPM jest potrzebne do sprawnego poruszania się po frameworku.

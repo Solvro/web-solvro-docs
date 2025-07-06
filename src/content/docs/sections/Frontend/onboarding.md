@@ -15,13 +15,13 @@ Przede wszystkim, każdy członek Koła powinien zostać dodany na grupę na Mes
 
 ## GitHub
 
-W Solvro, a w szczególności w sekcji Frontend pracujemy z kodem, więc GitHub jest najważniejszą częścią naszego workflow'u. Przede wszystkim, ustaw sobie publiczne członkostwo na naszej organizacji. Jeśli nie wiesz jak, skorzystaj z krótkiego [poradnika](https://docs.solvro.pl/github#publiczne-cz%C5%82onkostwo).
+W Solvro, a w szczególności w sekcji Frontend pracujemy z kodem, więc GitHub jest najważniejszą częścią naszego workflow'u. Przede wszystkim, ustaw sobie publiczne członkostwo na naszej organizacji. Jeśli nie wiesz jak, skorzystaj z krótkiego [poradnika](https://docs.solvro.pl/git-github/solvro#publiczne-cz%C5%82onkostwo).
 
 Na [stronie organizacji Solvro](https://github.com/solvro) na Githubie możesz zobaczyć wszystkie nasze projekty i związane z nimi repozytoria, więc jeśli masz ochotę, rozejrzyj się i zobacz co gotujemy albo już ugotowaliśmy.
 
 ### Nazewnictwo repozytoriów i commitów
 
-Kładziemy duży nacisk na standaryzację i jednolite nazewnictwo repozytoriów i commitów, dlatego każdy przy nazywaniu commitu powinien się stosować do naszego schematu nazewnictwa, który jest świetnie opisany [w handbooku Githuba](/github).
+Kładziemy duży nacisk na standaryzację i jednolite nazewnictwo repozytoriów i commitów, dlatego każdy przy nazywaniu commitu powinien się stosować do naszego schematu nazewnictwa, który jest świetnie opisany [w handbooku Githuba](/git-github/solvro).
 
 ## Discord
 

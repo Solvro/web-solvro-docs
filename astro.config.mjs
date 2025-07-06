@@ -86,12 +86,12 @@ export default defineConfig({
           label: "Git i GitHub",
           items: [
             {
-              label: "Poradnik - czym jest Git?",
+              label: "Poradnik wstępny",
               autogenerate: { directory: "/git-github/intro", collapsed: true },
             },
             {
-              label: "Jak korzystać z Githuba w Solvro?",
-              link: "/git-github/github",
+              label: "Zasady działania z Git i Github w Solvro",
+              link: "/git-github/solvro",
             },
             {
               label: "Github Projects - zarządzanie projektami",
