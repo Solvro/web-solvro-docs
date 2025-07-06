@@ -1,6 +1,6 @@
 ---
-title: Github
-description: Jak korzystać z Githuba w Solvro? (Zasady użytkowania)
+title: GitHub w Solvro (Podstawy użytkowania)
+description: Jak korzystać z GitHuba w Solvro? (Zasady użytkowania)
 sidebar:
   order: 0
 ---
