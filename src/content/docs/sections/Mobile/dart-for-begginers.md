@@ -476,38 +476,111 @@ print(nullableString); // juz wyprintuje wartosc wyzej, ale sprawdzacz typow nad
 // nonNullableString = null;
 ```
 
-## Lekcja 21 - Null-aware operatory
+## Lekcja 21 - Po co jest null safety?
+
+Null safety w Darcie pilnuje nas, żebyśmy zawsze sprawdzali czy wartość nie jest null przed jej użyciem. Oto przykład:
 
 ```dart
 void main() {
-  // Operator ?. (null-aware access)
+  // Bez null safety (stary sposób) - mogłoby spowodować błąd runtime
+  String? name; // Może być null
+
+  // To spowodowałoby błąd runtime w starym Darcie:
+  // print(name.length); // NullPointerException!
+
+  // Null safety wymusza na nas sprawdzenie:
+  if (name != null) {
+    print(name.length); // Teraz jest bezpieczne
+  } else {
+    print("Imię nie zostało podane");
+  }
+
+  // Inny przykład - praca z listą
+  List<String>? names;
+
+  // Bez sprawdzenia mogłoby być niebezpieczne:
+  // print(names[0]); // NullPointerException!
+
+  // Null safety wymusza sprawdzenie:
+  if (names != null && names.isNotEmpty) {
+    print("Pierwsze imię: ${names[0]}");
+  } else {
+    print("Lista jest pusta lub null");
+  }
+}
+```
+
+## Lekcja 22 - Null-aware operatory (skróty dla null safety)
+
+Null-aware operatory to skróty, które zastępują długie sprawdzenia null. Oto jak wyglądają te same operacje z użyciem operatorów:
+
+```dart
+void main() {
+  // Operator ?. (null-aware access) - skrót dla if (name != null)
   String? name;
   print(name?.length); // null - bezpieczny dostęp do właściwości
   name = "Jan";
   print(name?.length); // 3
 
-  // Operator ?? (null coalescing)
+  // To samo co:
+  // if (name != null) {
+  //   print(name.length);
+  // } else {
+  //   print(null);
+  // }
+
+  // Operator ?? (null coalescing) - skrót dla if-else
   String? surname;
   String fullName = surname ?? "Nieznane"; // Jeśli surname jest null, użyj "Nieznane"
   print(fullName); // "Nieznane"
 
-  // Operator ??= (null-aware assignment)
+  // To samo co:
+  // String fullName;
+  // if (surname != null) {
+  //   fullName = surname;
+  // } else {
+  //   fullName = "Nieznane";
+  // }
+
+  // Operator ??= (null-aware assignment) - skrót dla if (city == null)
   String? city;
   city ??= "Warszawa"; // Przypisz wartość tylko jeśli city jest null
   print(city); // "Warszawa"
   city ??= "Kraków"; // Nie zmieni wartości, bo city już ma wartość
   print(city); // nadal "Warszawa"
 
-  // Operator !. (null assertion)
+  // To samo co:
+  // if (city == null) {
+  //   city = "Warszawa";
+  // }
+
+  // Operator !. (null assertion) - mówimy kompilatorowi "jestem pewien"
   String? text = "Hello";
   print(text!.length); // 5 - mówimy kompilatorowi, że jesteśmy pewni, że text nie jest null
   // Uwaga: używaj !. tylko gdy jesteś pewien, że wartość nie jest null!
 
-  // Łączenie operatorów
+  // To samo co:
+  // if (text != null) {
+  //   print(text.length);
+  // } else {
+  //   throw Exception("text nie może być null!");
+  // }
+
+  // Łączenie operatorów - skróty dla złożonych sprawdzeń
   String? firstName;
   String? lastName;
   String displayName = firstName ?? lastName ?? "Anonim";
   print(displayName); // "Anonim"
+
+  // To samo co:
+  // String displayName;
+  // if (firstName != null) {
+  //   displayName = firstName;
+  // } else if (lastName != null) {
+  //   displayName = lastName;
+  // } else {
+  //   displayName = "Anonim";
+  // }
 
   // Bezpieczne wywołanie metody
   String? message;
@@ -515,21 +588,40 @@ void main() {
   message = "hello";
   print(message?.toUpperCase()); // "HELLO"
 
+  // To samo co:
+  // if (message != null) {
+  //   print(message.toUpperCase());
+  // }
+
   // Bezpieczny dostęp do indeksu
   List<String>? names;
   print(names?[0]); // null - bezpieczny dostęp do indeksu
   names = ["Jan", "Anna"];
   print(names?[0]); // "Jan"
 
+  // To samo co:
+  // if (names != null) {
+  //   print(names[0]);
+  // }
+
+  //
+  // at this point jeszcze nie było funckji, więc się nie przejmuj, ale mozesz potem tutaj wrócić:
+  //
+
   // Bezpieczne wywołanie funkcji
   void Function()? callback;
   callback?.call(); // null - bezpieczne wywołanie funkcji
   callback = () => print("Callback!");
   callback?.call(); // "Callback!"
+
+  // To samo co:
+  // if (callback != null) {
+  //   callback();
+  // }
 }
 ```
 
-## Lekcja 22 - Konwersja typów
+## Lekcja 23 - Konwersja typów
 
 ```dart
 void main() {
@@ -560,6 +652,18 @@ void main() {
   int? bezpiecznaLiczba = int.tryParse(niepoprawnyTekst);
   print("Bezpieczna konwersja: $bezpiecznaLiczba"); // null
 
+
+  // Bezpieczna konwersja double ze stringa
+  String niepoprawnyTekstDouble = "xyz";
+  double? bezpiecznaLiczbaDouble = double.tryParse(niepoprawnyTekstDouble);
+  print("Bezpieczna konwersja double: $bezpiecznaLiczbaDouble"); // null
+
+  String poprawnyTekstDouble = "2.71";
+  double? poprawnaLiczbaDouble = double.tryParse(poprawnyTekstDouble);
+  print("Bezpieczna konwersja double: $poprawnaLiczbaDouble"); // 2.71
+
+  // at this point jeszcze nie wiedzie czym są operatory typu map itp, więc nie przejmujcie czym to jest ale mozecie potem do tego wrócić
+
   // Konwersja między typami kolekcji
   List<int> liczby = [1, 2, 3];
   List<String> liczbyJakoStringi = liczby.map((n) => n.toString()).toList();
@@ -579,7 +683,7 @@ void main() {
 }
 ```
 
-## Lekcja 23 - Operatory porównania
+## Lekcja 24 - Operatory porównania
 
 ```dart
 void main() {
@@ -605,7 +709,7 @@ void main() {
 }
 ```
 
-## Lekcja 24 - Operatory logiczne
+## Lekcja 25 - Operatory logiczne
 
 ```dart
 void main() {
@@ -636,7 +740,7 @@ void main() {
 }
 ```
 
-## Lekcja 25 - Instrukcje warunkowe
+## Lekcja 26 - Instrukcje warunkowe
 
 ```dart
 int age = 20;
@@ -647,29 +751,40 @@ if (age >= 18) {
 }
 ```
 
-## Lekcja 26 - Operator trójargumentowy
+## Lekcja 27 - Operator trójargumentowy
+
+Jest to skrócona wersja ifa.
 
 ```dart
 String status = age >= 18 ? "Dorosły" : "Nieletni";
 print(status);
+
+// to samo co:
+// String status;
+// if (age >= 18) {
+//   status = "Dorosły";
+// } else {
+//   status = "Nieletni";
+// }
+// print(status);
 ```
 
-## Lekcja 27 - Pętla for
+## Lekcja 28 - Pętla for
 
 ```dart
 // Iteracja po liście
 List<String> owoce = ["jabłko", "gruszka", "śliwka"];
-for (String owoc in owoce) {
+for (final owoc in owoce) {
   print("Mam $owoc");
 }
 
 // Podstawowa pętla for (wykona się 5 razy)
-for (int i = 0; i < 5; i++) {
+for (var i = 0; i < 5; i++) {
   print("Iteracja $i");
 }
 ```
 
-## Lekcja 28 - Pętla while
+## Lekcja 29 - Pętla while
 
 ```dart
 // Podstawowa pętla while
@@ -685,16 +800,9 @@ do {
   print("Wartość x: $x");
   x++;
 } while (x < 3);
-
-// Przykład z warunkiem
-int liczba = 10;
-while (liczba > 0) {
-  print("Liczba: $liczba");
-  liczba -= 2; // zmniejszamy o 2 w każdej iteracji
-}
 ```
 
-## Lekcja 29 - Break i continue
+## Lekcja 30 - Break i continue
 
 ```dart
 // Użycie break do przerwania pętli
@@ -724,22 +832,159 @@ while (true) {
 }
 ```
 
+## Lekcja 31 - Kombinacje pętli for i instrukcji if
+
+```dart
+void main() {
+  // Przykład 1: Znajdowanie liczb parzystych w zakresie
+  print("Liczby parzyste od 1 do 10:");
+  for (int i = 1; i <= 10; i++) {
+    if (i % 2 == 0) {
+      print("$i jest parzyste");
+    }
+  }
+
+  // Przykład 2: Liczenie liczb większych od średniej
+  List<int> liczby = [5, 12, 3, 8, 15, 7];
+  int suma = 0;
+
+  // Obliczanie średniej
+  for (int liczba in liczby) {
+    suma += liczba;
+  }
+  double srednia = suma / liczby.length;
+
+  // Liczenie liczb większych od średniej
+  int licznik = 0;
+  for (int liczba in liczby) {
+    if (liczba > srednia) {
+      licznik++;
+    }
+  }
+  print("Średnia: $srednia");
+  print("Liczb większych od średniej: $licznik");
+
+  // Przykład 3: Znajdowanie pierwszego elementu spełniającego warunek
+  List<String> imiona = ["Anna", "Jan", "Piotr", "Maria", "Kasia"];
+  String? znalezioneImie;
+
+  for (String imie in imiona) {
+    if (imie.length > 4) {
+      znalezioneImie = imie;
+      break; // Znaleźliśmy pierwsze imię dłuższe niż 4 znaki
+    }
+  }
+
+  if (znalezioneImie != null) {
+    print("Pierwsze imię dłuższe niż 4 znaki: $znalezioneImie");
+  } else {
+    print("Nie znaleziono imienia dłuższego niż 4 znaki");
+  }
+
+  // Przykład 4: Filtrowanie i transformacja danych
+  List<int> oceny = [2, 5, 4, 3, 5, 1, 4, 5];
+  List<String> wyniki = [];
+
+  for (int ocena in oceny) {
+    if (ocena >= 4) {
+      wyniki.add("Dobra ocena: $ocena");
+    } else if (ocena >= 2) {
+      wyniki.add("Przeciętna ocena: $ocena");
+    } else {
+      wyniki.add("Słaba ocena: $ocena");
+    }
+  }
+
+  print("Wyniki ocen:");
+  for (String wynik in wyniki) {
+    print(wynik);
+  }
+
+  // Przykład 5: Znajdowanie maksimum i minimum
+  List<int> temperatury = [15, 22, 8, 30, 12, 25, 18];
+  int? maxTemp;
+  int? minTemp;
+
+  for (int temp in temperatury) {
+    if (maxTemp == null || temp > maxTemp) {
+      maxTemp = temp;
+    }
+    if (minTemp == null || temp < minTemp) {
+      minTemp = temp;
+    }
+  }
+
+  print("Maksymalna temperatura: $maxTemp°C");
+  print("Minimalna temperatura: $minTemp°C");
+
+  // Przykład 6: Sprawdzanie czy wszystkie elementy spełniają warunek
+  List<int> wieki = [18, 25, 22, 19, 21];
+  bool wszystkiePelnoletnie = true;
+
+  for (int wiek in wieki) {
+    if (wiek < 18) {
+      wszystkiePelnoletnie = false;
+      break; // Nie musimy sprawdzać dalej
+    }
+  }
+
+  if (wszystkiePelnoletnie) {
+    print("Wszystkie osoby są pełnoletnie");
+  } else {
+    print("Nie wszystkie osoby są pełnoletnie");
+  }
+
+  // Przykład 7: Grupowanie elementów
+  List<String> zwierzeta = ["kot", "pies", "krowa", "kura", "koń", "kaczka"];
+  List<String> zwierzetaNaK = [];
+  List<String> inneZwierzeta = [];
+
+  for (String zwierze in zwierzeta) {
+    if (zwierze.startsWith("k")) {
+      zwierzetaNaK.add(zwierze);
+    } else {
+      inneZwierzeta.add(zwierze);
+    }
+  }
+
+  print("Zwierzęta na 'k': $zwierzetaNaK");
+  print("Inne zwierzęta: $inneZwierzeta");
+
+  // Przykład 8: Bezpieczne parsowanie stringów na liczby
+  List<String> daneWejsciowe = ["123", "456", "abc", "789", "xyz", "42", "3.14"];
+  List<int> poprawneLiczby = [];
+  List<String> niepoprawneDane = [];
+
+  for (String dane in daneWejsciowe) {
+    int? sparsowanaLiczba = int.tryParse(dane);
+    if (sparsowanaLiczba != null) {
+      poprawneLiczby.add(sparsowanaLiczba);
+    } else {
+      niepoprawneDane.add(dane);
+    }
+  }
+
+  print("Poprawnie sparsowane liczby: $poprawneLiczby");
+  print("Niepoprawne dane: $niepoprawneDane");
+  print("Suma wszystkich poprawnych liczb: ${poprawneLiczby.reduce((a, b) => a + b)}");
+}
+```
+
 ## 🎯 Zadanie 3 - Gra w zgadywanie
 
 Stwórz prostą grę w zgadywanie liczby, która:
 
-1. Generuje losową liczbę od 1 do 100.
+1. Generuje losową liczbę od 1 do 100. Celem zadania jest symulacja zgadywania tej liczby przez uzytkownika. Wylosuj ją raz dla całego zadania (przed pętlą)
 2. Symuluje próby użytkownika. Użyj predefiniowanej listy prób. Załóż, że użytkownik podaje ci stringi i czasami może się pomylić i dać niepoprawną liczbę. Przykładowe wejście do zadania:
-   `const strzaly = ["1","2","77","88","Kocham Solvro", "111.3287964", "23.32", "23.", ".43", "...34", "$%^", "91","32","18"]`
-3. Sprawdza czy podana liczba jest:
+   `const strzaly = ["1","2","77","88","Kocham Solvro", "111.3287964", "23.32", "23.", ".43", "...34", r"$%^", "91","32","18"]`
+3. Sprawdza czy podana liczba jest: (tip: uzywając pętli do iteracji po próbach)
    - za mała (wypisuje "Za mało!")
    - za duża (wypisuje "Za dużo!")
    - poprawna (wypisuje "Gratulacje! Zgadłeś w X próbach!")
-4. Kontynuuje grę aż do zgadnięcia.
+   - jezeli próba nie jest liczbą to ją pomija albo wypisuje "to nie liczba durniu!"
+4. Przerywa pętlę jesli uzytkownik zgadnie.
 5. Liczy liczbę prób.
-6. Używa null safety dla zmiennych, które mogą być null.
-7. Używa operatorów porównania i logicznych.
-8. Używa pętli for do iteracji po próbach.
+6. Używaj pętli do iteracji po próbach. Pamiętaj ze kazdą próbę (podaną na wejsciu w postaci stringa) trzeba sparsować (bezpiecznie) ma liczbę.
 
 **Wskazówki:**
 
@@ -756,7 +1001,7 @@ Próba 3: 37
 Gratulacje! Zgadłeś w 3 próbach!
 ```
 
-## Lekcja 30 - Komentarze w kodzie
+## Lekcja 32 - Komentarze w kodzie
 
 ```dart
 // To jest komentarz jednoliniowy
@@ -794,7 +1039,7 @@ final filteredNumbers = numbers.where((n) => n < 10);
 final average = filteredNumbers.reduce((a, b) => a + b) / filteredNumbers.length;
 ```
 
-## Lekcja 31 - Podstawy funkcji
+## Lekcja 33 - Podstawy funkcji
 
 ```dart
 // Podstawowa funkcja bez parametrów
@@ -861,7 +1106,7 @@ void main() {
 }
 ```
 
-## Lekcja 32 - Funkcje strzałkowe i funkcje wyższego rzędu
+## Lekcja 34 - Funkcje strzałkowe i funkcje wyższego rzędu
 
 ```dart
 // Funkcja strzałkowa - skrócona składnia dla prostych funkcji
@@ -893,7 +1138,7 @@ void main() {
 }
 ```
 
-## Lekcja 33 - Zaawansowane operacje na kolekcjach
+## Lekcja 35 - Zaawansowane operacje na kolekcjach
 
 ```dart
 void main() {
@@ -967,7 +1212,7 @@ void main() {
 }
 ```
 
-## Lekcja 34 - Obsługa błędów
+## Lekcja 36 - Obsługa błędów
 
 ```dart
 // Własny typ wyjątku
@@ -1048,7 +1293,7 @@ void main() {
 }
 ```
 
-## Lekcja 35 - Podstawowe operacje na liczbach
+## Lekcja 37 - Podstawowe operacje na liczbach
 
 ```dart
 void main() {
@@ -1078,7 +1323,7 @@ void main() {
 }
 ```
 
-## Lekcja 36 - Podstawowe operacje na datach
+## Lekcja 38 - Podstawowe operacje na datach
 
 ```dart
 void main() {
@@ -1108,7 +1353,7 @@ void main() {
 }
 ```
 
-## Lekcja 37 - Scope (Zakres zmiennych)
+## Lekcja 39 - Scope (Zakres zmiennych)
 
 ```dart
 // Zmienne globalne
@@ -1199,7 +1444,7 @@ Rok 2024 jest przestępny: true
 Dni między 2024-01-01 a 2024-12-31: 365
 ```
 
-## Lekcja 38 - Klasy i obiekty
+## Lekcja 40 - Klasy i obiekty
 
 ```dart
 // Podstawowa definicja klasy
@@ -1224,7 +1469,7 @@ void main() {
 }
 ```
 
-## Lekcja 39 - Gettery i settery
+## Lekcja 41 - Gettery i settery
 
 ```dart
 class Rectangle {
@@ -1258,7 +1503,7 @@ void main() {
 }
 ```
 
-## Lekcja 40 - Dziedziczenie
+## Lekcja 42 - Dziedziczenie
 
 ```dart
 // Klasa bazowa
@@ -1316,7 +1561,7 @@ final lista = [dog, bird, Bird("Dawid", "Różowy")]
 // tutaj wstaw pętle for
 ```
 
-## Lekcja 40 - Interfejsy i abstrakcja
+## Lekcja 43 - Interfejsy i abstrakcja
 
 ```dart
 // Interfejs
@@ -1369,7 +1614,7 @@ void main() {
 }
 ```
 
-## Lekcja 41 - Mixiny
+## Lekcja 44 - Mixiny
 
 ```dart
 // Mixin z funkcjonalnością latania
@@ -1412,7 +1657,7 @@ Rozszerz zadanie 5 o:
 5. Dodaj mixiny do klas: `Bird` z `Flying`, `Dog` z `Running` i obydwa z `Swimming`.
 6. Przetestuj nowe możliwości.
 
-## Lekcja 42 - Generyki
+## Lekcja 45 - Generyki
 
 ```dart
 // Klasa generyczna
@@ -1450,7 +1695,7 @@ void main() {
 }
 ```
 
-## Lekcja 43 - Generyki z extends
+## Lekcja 46 - Generyki z extends
 
 ```dart
 // Ograniczenie typu do num (int lub double)
@@ -1505,7 +1750,7 @@ print(fedDog.energy); // 70
 print(fedBird.energy); // 70
 ```
 
-## Lekcja 44 - Enums & switch statement
+## Lekcja 47 - Enums & switch statement
 
 ```dart
 // Podstawowa definicja enuma
@@ -1590,7 +1835,7 @@ void main() {
   print(directionFromString); // Direction.north
 ```
 
-## Lekcja 45 - switch expression
+## Lekcja 48 - switch expression
 
 ```dart
   // Switch expressions (Dart 3.0+)
@@ -1622,7 +1867,7 @@ void main() {
 }
 ```
 
-## Lekcja 46 - toString() Method
+## Lekcja 49 - toString() Method
 
 ```dart
 class Person {
@@ -1640,7 +1885,7 @@ class Person {
 }
 ```
 
-## Lekcja 47 - Operator == i equals
+## Lekcja 50 - Operator == i equals
 
 ```dart
 class Person {
@@ -1696,7 +1941,7 @@ void main() {
 2. Dodaj pole tego typu do klasy `Animal`
 3. Nadpisz poznane operatory ==, hashCode i toString dla wybranej klasy z poprzednich zadań
 
-## Lekcja 48 - Const Constructors
+## Lekcja 51 - Const Constructors
 
 ```dart
 // Klasa z const konstruktorem
@@ -1723,7 +1968,7 @@ void main() {
 }
 ```
 
-## Lekcja 49 - Named Constructors
+## Lekcja 52 - Named Constructors
 
 ```dart
 class Rectangle {
@@ -1766,7 +2011,7 @@ void main() {
 }
 ```
 
-## Lekcja 50 - Static, Private and Public Members
+## Lekcja 53 - Static, Private and Public Members
 
 ```dart
 class BankAccount {
@@ -1834,7 +2079,7 @@ void main() {
 }
 ```
 
-## Lekcja 51 - Factory Constructors i parsowanie JSON
+## Lekcja 54 - Factory Constructors i parsowanie JSON
 
 ```dart
 // Klasa reprezentująca użytkownika
@@ -1945,7 +2190,7 @@ final jakasMapa = {"name":"bulbasaur","url":"https://pokeapi.co/api/v2/pokemon/1
 final jakisPokemon = SimplePokemon.fromJson(jakasMapa);
 ```
 
-## Lekcja 52 - Asynchroniczność - Future
+## Lekcja 55 - Asynchroniczność - Future
 
 ```dart
 // Symulacja operacji asynchronicznej
@@ -1982,7 +2227,7 @@ void main() async {
 }
 ```
 
-## Lekcja 53 - Konsumowanie API
+## Lekcja 56 - Konsumowanie API
 
 ```dart
 import 'package:dio/dio.dart';
@@ -2016,7 +2261,7 @@ void main() async {
 1. Pobierz odpowiedź z tego endpointa: `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`
 2. Sparsuj to na listę `SimplePokemon` z poprzedniego zadania.
 
-## Lekcja 54 - Extensions
+## Lekcja 57 - Extensions
 
 ```dart
 // Extension na typ String
@@ -2032,7 +2277,7 @@ extension StringExtension on String {
 }
 ```
 
-## Lekcja 55 - Krotki
+## Lekcja 58 - Krotki
 
 ```dart
 void main() {
@@ -2106,7 +2351,7 @@ print(pokeKieszen.$1.nameCapitalized);
 print(pokeKieszen.$2.nameCapitalized);
 ```
 
-## Lekcja 56 - Rekordy (nazwane krotki)
+## Lekcja 59 - Rekordy (nazwane krotki)
 
 ```dart
 void main() {
