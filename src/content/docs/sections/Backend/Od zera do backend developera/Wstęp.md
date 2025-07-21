@@ -5,7 +5,7 @@ description: Jak zacząć z kursem
 
 ## Elo żelo 👋
 
-Niezmiernie miło mi was powitać na kursie "Od zera do backend developera". Głównym celem kursu jest zdobycie wiedzą na tematu budowy serwisów backendowych w technologii nestjs. Niezależnie od technologii poznacie uniwersalne koncepty backendowe oraz te dotyczące aplikacji webowych. Ten wstęp pozwoli wam wdrożyć się do świata programowania i skonfigurować odpowiednie narzędzia.
+Niezmiernie miło nam Was powitać na kursie "Od zera do backend developera". Głównym celem kursu jest zdobycie wiedzą na tematu budowy serwisów backendowych w technologii nestjs. Niezależnie od technologii poznacie uniwersalne koncepty backendowe oraz te dotyczące aplikacji webowych. Ten wstęp pozwoli wam wdrożyć się do świata programowania i skonfigurować odpowiednie narzędzia.
 
 W ramach kursu zostało utworzone repozytorium na githubie: **https://github.com/Solvro/backend-wakacyjne-wyzwanie-2025**
 
