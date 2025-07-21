@@ -11,7 +11,7 @@ W ramach kursu zostało utworzone repozytorium na githubie: **https://github.com
 
 ## Jak pracujemy
 
-Szczegółowe zasady kursu znajdziecie w linku powyżej. Tu chciałbym tylko wspomnieć, że w KN Solvro kierujemy się takimi [wartościami](/solvro/strategy/#warto%C5%9Bci) jak:
+Szczegółowe zasady kursu znajdziecie w linku powyżej. Tu chciałbym tylko wspomnieć, że w KN Solvro kierujemy się takimi [wartościami](/solvro/strategy) jak:
 
 - **doskonałość**, więc dbajmy o jakość kodu i dajmy z siebie wszystko
 - **współpraca**, więc pytajmy, pomagajmy i nie bójmy się mówić
