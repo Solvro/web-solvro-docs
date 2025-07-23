@@ -5,7 +5,7 @@ description: Jak zacząć z kursem
 
 ## Elo żelo 👋
 
-Niezmiernie miło nam Was powitać na kursie "Od zera do backend developera". Głównym celem kursu jest zdobycie wiedzą na tematu budowy serwisów backendowych w technologii nestjs. Niezależnie od technologii poznacie uniwersalne koncepty backendowe oraz te dotyczące aplikacji webowych. Ten wstęp pozwoli wam wdrożyć się do świata programowania i skonfigurować odpowiednie narzędzia.
+Niezmiernie miło nam Was powitać na kursie "Od zera do backend developera". Głównym celem kursu jest zdobycie wiedzą na tematu budowy serwisów backendowych w technologii NestJS. Niezależnie od technologii poznacie uniwersalne koncepty backendowe oraz te dotyczące aplikacji webowych. Ten wstęp pozwoli wam wdrożyć się do świata programowania i skonfigurować odpowiednie narzędzia.
 
 W ramach kursu zostało utworzone repozytorium na githubie: **https://github.com/Solvro/backend-wakacyjne-wyzwanie-2025**
 
@@ -25,7 +25,7 @@ Git jest narzędziem do kontroli wersji kodu, czyli sposobem na zarządzanie was
 
 ## IDE
 
-Integrated development environment, czyli z reguły edytor kodu z dodatkowymi bajerami. Pomoże on wam pisać kod, uruchamiać aplikacje i odnaleźć się w większych projektach. eśli już macie wybranego faworyta, używajcie go na spokojnie. Jeśli obecnie piszecie kod w notatniku lub programie rodzaju notepad++ bardzo polecam przerzucenie się na [Visual Studio Code.](https://code.visualstudio.com). Z wtyczek do VS Code zalecamy instalację:
+Integrated development environment, czyli z reguły edytor kodu z dodatkowymi bajerami. Pomoże on wam pisać kod, uruchamiać aplikacje i odnaleźć się w większych projektach. Jeśli już macie wybranego faworyta, używajcie go na spokojnie. Jeśli obecnie piszecie kod w notatniku lub programie rodzaju notepad++ bardzo polecam przerzucenie się na [Visual Studio Code](https://code.visualstudio.com). Z wtyczek do VS Code zalecamy instalację:
 
 - Prettier - musicie go skonfigurować do formatowania przy zapisie i jako domyślny formater https://www.youtube.com/watch?v=drtxWx1XojI
 - Eslint - będzie krzyczał na was jak coś źle zrobicie, tutaj wystarczy tylko kliknąć install
@@ -38,7 +38,7 @@ Składania JavaScript jak i podstawowa umiejętność programowania przyda się 
 
 ## Node js
 
-jest to technologia umożliwiająca uruchomienie JS poza przeglądarką. Będziemy jej używać, aby budować nasz backend. Pobrać można na oficjalnej stronie https://nodejs.org/en/download
+Jest to technologia umożliwiająca uruchomienie JS poza przeglądarką. Będziemy jej używać, aby budować nasz backend. Pobrać można na oficjalnej stronie https://nodejs.org/en/download
 
 Ten kurs wymaga podstawowej umiejętności programowania i zrozumienia konceptów np. importu w node js. Jeśli czujesz, że musisz nadrobić niektóre obszary to pierwsze 5 pkt. (do How to Use Moment.js — an NPM Package włącznie) z tego szkolenia[ How to Get Started with Node.js – Beginner's Guide to Node](https://www.freecodecamp.org/news/introduction-to-nodejs/) będą dla ciebie idealne.
 
@@ -46,9 +46,9 @@ Ten kurs wymaga podstawowej umiejętności programowania i zrozumienia konceptó
 
 Podstawy TypeScripta zrozumiesz podczas pierwszych zadań, ale jeśli już chcesz zapoznać się z podstawami TS serdecznie polecam [Total TypeScript Essentials | Total TypeScript](https://www.totaltypescript.com/books/total-typescript-essentials)
 
-## Nest js
+## NestJS
 
-Na początek nie wymagamy żadnej znajomości nesta. Jest to framework oparty na JS i TS, którego będziemy używali do implementacji poszczególnych konceptów uczonych w kursie. Jeśli już jesteś zainteresowany to możesz zapoznać się z [dokumentacją](https://docs.nestjs.com), w której podczas kursu spędzicie trochę czasu.
+Na początek nie wymagamy żadnej znajomości Nesta. Jest to framework oparty na JS i TS, którego będziemy używali do implementacji poszczególnych konceptów uczonych w kursie. Jeśli już jesteś zainteresowany to możesz zapoznać się z [dokumentacją](https://docs.nestjs.com), w której podczas kursu spędzicie trochę czasu.
 
 ## Wstępne zadanko
 
