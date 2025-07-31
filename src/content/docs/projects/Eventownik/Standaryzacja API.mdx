@@ -63,6 +63,10 @@ description: Standardy wykorzystane w Eventownik V3
 - ?select=&lt;column&gt;
 - ?select=&lt;column1&gt;,…,&lt;columnN&gt;
 
+### Przykład wykorzystania parametrów
+
+Endpoint: `api.eventownik.pl/v1/internal/events/:eventId/participants?page=1&perPage=20&sort[name]=asc&filter[name][like]=Jakub`
+
 ## Autoryzacja
 
 - tworząc plik cookie z tokenem, powinien nazywać się "Authorization" oraz mieć przypisaną wartość "Bearer &lt;token&gt;",
