@@ -1,0 +1,115 @@
+---
+title: Standaryzacja API
+description: Standardy wykorzystane w Eventownik V3
+---
+
+## Nazewnictwo endpointów
+
+- zakładając przypadek, w którym domena nie posiada prefixu ‘api', powinien być to pierwszy człon endpointu,
+- kolejny człon powinien zawierać informację dotyczą wersjonowania, przykładowo ‘v1', ‘v2',
+- następny człon powinien zawierać informację o dostępności, tj. ‘external' dla dostępu publicznego lub ‘internal' dla dostępu wewnętrznego,
+- następna powinna być nazwa zasobu, w liczbie mnogiej, np. ‘users', ‘events',
+- kolejnym członem powinna być wywoływana funkcjonalość, np. ‘register', ‘login',
+- indeksowanie zasobów powinno się odbywać po jednym, ustalonym przez członków projektu kluczu
+
+### Przykładowy routing:
+
+- api.eventownik.pl/v1/internal/events/:id
+- api.eventownik.pl/v1/external/events/:id
+
+### Lista endpointów projektu Eventownika:
+
+[Eventownik Endpoints](https://api.eventownik.solvro.pl/docs)
+
+## Ogólny format odpowiedzi
+
+- formatem odpowiedzi powinien być obiekt umieszczony w obiekcie data/data[],
+- wszystkie atrybuty paginacji oraz całkowita liczba rekordów powinna znajdować się w obiekcie metadata,
+- metody post/put powinny zwracać zaktualizowany obiekt,
+- metoda delete powinna zwracać no content,
+  - w wypadku, gdy usuwany obiekt nie istnieje powinnien zostać wywołany NotFoundError
+- odpowiedzi nie powinny zawierać zbędnych informacji, typu : \{"message" : "X … successfully."\}, czy też zduplikowany status code
+
+## Ogólny format błędów
+
+- korzystając z ZODa powinno informować się o błędach w zapytaniu,
+- błędy powinny być oznaczone odpowiednim status codem
+
+## Format parametrów metody 'GET'
+
+### Paginacja
+
+- ?page=&lt;number&gt; - numer strony
+- ?perPage=&lt;number&gt; - liczba obiektów na stronę (opcjonalne)
+
+### Sortowanie
+
+- ?sort[&lt;column&gt;]=asc/desc, (domyślnie ascending)
+
+### Filtrowanie
+
+- filter[&lt;column&gt;]=&lt;value&gt;
+- filter[&lt;column&gt;][gt/gte/lt/lte]=&lt;value&gt; (typu numerycznego/daty)
+- filter[&lt;column&gt;][not/like]=&lt;value&gt;
+- filter[&lt;column1&gt;,&lt;column2&gt;]=&lt;value1&gt;,&lt;value2&gt; - dla wielu filtrów
+
+### Relacje
+
+- ?join=&lt;relation_name&gt;
+- ?join=&lt;relation_name1&gt;,…,&lt;relation_nameN&gt; - dla wielu relacji
+
+### Select
+
+- select=&lt;column&gt;
+- select=&lt;column1&gt;,…,&lt;columnN&gt;
+
+## Autoryzacja
+
+- tworząc plik cookie z tokenem, powinien nazywać się "Authorization" oraz mieć przypisaną wartość "Bearer &lt;token&gt;",
+- korzystając z JSON Web Token należy w miarę możliwości ograniczyć ilość przekazywanych informacji,
+- planowana jest implementacja Solvro Auth
+
+## Pozostałe nagłówki
+
+1. accept: application/json,
+2. request-id w celu implementacji tracing'u
+
+## Serializacja i formatowanie danych
+
+1. Daty powinny być zwracane w standardzie ISO 8601 bez stref czasowych,
+
+   przykład daty: 2012-01-01T00:00:00Z,
+
+2. Zasoby oraz jego atrybuty powinny być zwracane w snake_case'ie
+
+## Dokumentacja
+
+Do tworzenia dokumentacji API wykorzystujemy Swaggera.
+
+1. Grupowanie endpointów za pomocą ‘@ApiTags' powinno odzwierciedlać faktyczny routing,
+2. Dla skomplikowanych/niejednoznacznych odpowiedzi zaleca się dodanie opisu (descriptions),
+3. Dokumentacja powinna obejować wszystkie możliwe odpowiedzi (dla powtarzalnych odpowiedzi można zastosować dekorator dla całego kontrolera),
+4. Za pomocą CLI, jesteśmy wstanei automatycznie generować annotacje dla modeli/DTO, domyślnie generowane są tylko dla konkretnych plików, tj. ‘_.dto.ts', ‘_.entity.ts',
+5. Dla projektu powinno zostać wybrane estetyczne oraz przejrzyste UI (lub stworzone przez zespół)
+
+## Testy
+
+Do przeprowadzania testów korzystamy z domyślnych dla NestJS pakietów: Jest oraz Supertest.
+
+1. Przede wszystkim, należy skupić się, aby testy powstawały równolegle z rozwojem aplikacji,
+2. Testy powinny obejowac, zarówno "scenariusze" pomyślne/zgodne z założeniem działania aplikacji, jak i te zakończone niepowodzeniem, w celu sprawdzenia obsługi błędów,
+3. Testy powinny sprawdzać istotne funkcjonalności aplikacji - nie należy się kierować wysokim coveragem,
+4. Podział testów:
+   a. jednostkowe - jedynie dla złożonych funkcjonalności,
+   b. integracyjne - powinny stanowić większość testów,
+   c. e2e - tworzone przez zespół frontendowy
+
+## Obsługa plików
+
+Do obsługi plików, wykorzystujemy domyślny dla NestJS pakiet ‘multer', obsługuje on dane przesyłane w formacie ‘multipart/form-data'.
+
+Zalecane jest również wykorzystanie walidacji metadanych pliku podczas przesyłania, przykładowo dla:
+
+- liczby przesyłanych plików,
+- typu przesyłanego pliku (domyślnie dla NestJS jest to mimetype),
+- maksymalnego rozmiaru pliku
