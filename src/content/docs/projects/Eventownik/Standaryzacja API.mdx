@@ -27,7 +27,7 @@ description: Standardy wykorzystane w Eventownik V3
 - wszystkie atrybuty paginacji oraz całkowita liczba rekordów powinna znajdować się w obiekcie metadata,
 - metody post/put powinny zwracać zaktualizowany obiekt,
 - metoda delete powinna zwracać no content,
-  - w wypadku, gdy usuwany obiekt nie istnieje powinnien zostać wywołany NotFoundError
+  - w przypadku, gdy usuwany obiekt nie istnieje powinien zostać wywołany NotFoundError
 - odpowiedzi nie powinny zawierać zbędnych informacji, typu : \{"message" : "X … successfully."\}, czy też zduplikowany status code
 
 ## Ogólny format błędów
@@ -60,8 +60,8 @@ description: Standardy wykorzystane w Eventownik V3
 
 ### Select
 
-- select=&lt;column&gt;
-- select=&lt;column1&gt;,…,&lt;columnN&gt;
+- ?select=&lt;column&gt;
+- ?select=&lt;column1&gt;,…,&lt;columnN&gt;
 
 ## Autoryzacja
 
@@ -78,7 +78,7 @@ description: Standardy wykorzystane w Eventownik V3
 
 1. Daty powinny być zwracane w standardzie ISO 8601 bez stref czasowych,
 
-   przykład daty: 2012-01-01T00:00:00Z,
+   przykład daty: 2012-01-01T00:00:00,
 
 2. Zasoby oraz jego atrybuty powinny być zwracane w snake_case'ie
 
@@ -88,8 +88,8 @@ Do tworzenia dokumentacji API wykorzystujemy Swaggera.
 
 1. Grupowanie endpointów za pomocą ‘@ApiTags' powinno odzwierciedlać faktyczny routing,
 2. Dla skomplikowanych/niejednoznacznych odpowiedzi zaleca się dodanie opisu (descriptions),
-3. Dokumentacja powinna obejować wszystkie możliwe odpowiedzi (dla powtarzalnych odpowiedzi można zastosować dekorator dla całego kontrolera),
-4. Za pomocą CLI, jesteśmy wstanei automatycznie generować annotacje dla modeli/DTO, domyślnie generowane są tylko dla konkretnych plików, tj. ‘_.dto.ts', ‘_.entity.ts',
+3. Dokumentacja powinna obejmować wszystkie możliwe odpowiedzi (dla powtarzalnych odpowiedzi można zastosować dekorator dla całego kontrolera),
+4. Za pomocą CLI, jesteśmy w stanie automatycznie generować annotacje dla modeli/DTO, domyślnie generowane są tylko dla konkretnych plików, tj. ‘_.dto.ts', ‘_.entity.ts',
 5. Dla projektu powinno zostać wybrane estetyczne oraz przejrzyste UI (lub stworzone przez zespół)
 
 ## Testy
@@ -97,8 +97,8 @@ Do tworzenia dokumentacji API wykorzystujemy Swaggera.
 Do przeprowadzania testów korzystamy z domyślnych dla NestJS pakietów: Jest oraz Supertest.
 
 1. Przede wszystkim, należy skupić się, aby testy powstawały równolegle z rozwojem aplikacji,
-2. Testy powinny obejowac, zarówno "scenariusze" pomyślne/zgodne z założeniem działania aplikacji, jak i te zakończone niepowodzeniem, w celu sprawdzenia obsługi błędów,
-3. Testy powinny sprawdzać istotne funkcjonalności aplikacji - nie należy się kierować wysokim coveragem,
+2. Testy powinny obejmować, zarówno "scenariusze" pomyślne/zgodne z założeniem działania aplikacji, jak i te zakończone niepowodzeniem, w celu sprawdzenia obsługi błędów,
+3. Testy powinny sprawdzać istotne funkcjonalności aplikacji - nie należy się kierować wysokim pokryciem kodu,
 4. Podział testów:
    a. jednostkowe - jedynie dla złożonych funkcjonalności,
    b. integracyjne - powinny stanowić większość testów,
