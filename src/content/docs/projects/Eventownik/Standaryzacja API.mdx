@@ -30,6 +30,28 @@ description: Standardy wykorzystane w Eventownik V3
   - w przypadku, gdy usuwany obiekt nie istnieje powinien zostać wywołany NotFoundError
 - odpowiedzi nie powinny zawierać zbędnych informacji, typu : \{"message" : "X … successfully."\}, czy też zduplikowany status code
 
+Przykładowy format odpowiedzi:
+
+```json
+data: [
+{
+      "id": 1,
+      "email": "example@example.com",
+      "created_at": "2025-08-07T12:34:56.000"
+    },
+    {
+      "id": 2,
+      "email": "example2@example.com",
+      "created_at": "2025-08-07T12:40:00.000"
+    }
+   ],
+metadata: {
+   "page": 0,
+   "per_page" : 10,
+   "total" : 2
+}
+```
+
 ## Ogólny format błędów
 
 - korzystając z ZODa powinno informować się o błędach w zapytaniu,
@@ -39,8 +61,8 @@ description: Standardy wykorzystane w Eventownik V3
 
 ### Paginacja
 
-- ?page=&lt;number&gt; - numer strony
-- ?perPage=&lt;number&gt; - liczba obiektów na stronę (opcjonalne)
+- ?page=&lt;number&gt; - numer strony (domyślnie 0)
+- ?perPage=&lt;number&gt; - liczba obiektów na stronę (opcjonalne, w przypadku gdy wartość nie została podana, wykorzystywana jest domyślna wartość 10 elementów na stronę)
 
 ### Sortowanie
 
@@ -51,7 +73,9 @@ description: Standardy wykorzystane w Eventownik V3
 - filter[&lt;column&gt;]=&lt;value&gt;
 - filter[&lt;column&gt;][gt/gte/lt/lte]=&lt;value&gt; (typu numerycznego/daty)
 - filter[&lt;column&gt;][not/like]=&lt;value&gt;
-- filter[&lt;column1&gt;,&lt;column2&gt;]=&lt;value1&gt;,&lt;value2&gt; - dla wielu filtrów
+- filter[&lt;column1&gt;]=&lt;value1&gt;>...&filter[&lt;columnN&gt;]=&lt;valueN&gt; - dla wielu filtrów
+- filter[&lt;column1&gt;]=&lt;value1&gt;,&lt;value2&gt; - dla filtrowania typu IN ( z możliwością podania kilku kolumn,
+  w takim przypadku warunek filtrowania jest spełniony, gdy istnieje dowolna z podanych wartości w dowolnej z podanych kolumn)
 
 ### Relacje
 
@@ -62,6 +86,12 @@ description: Standardy wykorzystane w Eventownik V3
 
 - ?select=&lt;column&gt;
 - ?select=&lt;column1&gt;,…,&lt;columnN&gt;
+
+Domyślnie operacja select bez podania nazw kolumn zwróci wszystkie kolumny z danej tabeli. Alternatywnie, istnieje opcja wykluczenia kolumn.
+
+Przykładowe użycie wykluczenia:
+
+- ?select=-&lt;column1&gt;,…,-&lt;columnN&gt;
 
 ### Przykład wykorzystania parametrów
 
@@ -89,6 +119,7 @@ Endpoint: `api.eventownik.pl/v1/internal/events/:eventId/participants?page=1&per
 ## Dokumentacja
 
 Do tworzenia dokumentacji API wykorzystujemy Swaggera.
+[Dokumentacja Swaggera dla NestJS](https://docs.nestjs.com/openapi/introduction)
 
 1. Grupowanie endpointów za pomocą ‘@ApiTags' powinno odzwierciedlać faktyczny routing,
 2. Dla skomplikowanych/niejednoznacznych odpowiedzi zaleca się dodanie opisu (descriptions),
@@ -117,3 +148,5 @@ Zalecane jest również wykorzystanie walidacji metadanych pliku podczas przesy�
 - liczby przesyłanych plików,
 - typu przesyłanego pliku (domyślnie dla NestJS jest to mimetype),
 - maksymalnego rozmiaru pliku
+
+Natomiast same pliki będą przechowywane na hostowanym przez nas systemie S3 (MinIO).
