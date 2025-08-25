@@ -326,7 +326,7 @@ export class NiceText implements ValidatorConstraintInterface {
 ```
 
 Nasz walidator zawiera metodę `validate`, która zwraca fałsz jeżeli niedozwolone słowo zostanie wykryte, oraz metodę `defaultMessage` z informacją dla klienta o tym co poszło nie tak.
-Sposób użycia customowego walidatora jest taki sam jak tych wbudowanych, poprzez dekorator `@Validate(<NazwaKlasyWalidatora>):
+Sposób użycia customowego walidatora jest taki sam jak tych wbudowanych, poprzez dekorator `@Validate(NazwaKlasyWalidatora):
 
 ```ts
 export class UserUpdateDto {
