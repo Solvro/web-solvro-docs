@@ -35,9 +35,9 @@ Przykład (formularz logowania)
 NestJS korzysta z frameworka Jest, który jest już skonfigurowany domyślnie.
 
 Najważniejsze komendy:
- - `npm run test` - uruchamia wszystkie testy jednostkowe i integracyjne.
- - `npm run test:watch` - uruchamia testy w trybie "na żywo", pokazując wyniki na bieżąco.
- - `npm run test:e2e` - uruchamia testy end-to-end.
+ - <pre> ```npm run test``` </pre>  - uruchamia wszystkie testy jednostkowe i integracyjne.
+ - <pre> ```npm run test:watch``` </pre> - uruchamia testy w trybie "na żywo", pokazując wyniki na bieżąco.
+ - <pre> ```npm run test:e2e``` </pre> - uruchamia testy end-to-end.
 
 ### Użyteczny dodatek
 
@@ -49,7 +49,7 @@ Można dodać w `package.json` w części `scripts` własny alias do uruchamiani
 }
 ```
 
-Dzięki temu uruchomimy E2E tak: `npm run test:e2e:watch`.
+Dzięki temu uruchomimy E2E tak: <pre> ```npm run test:e2e:watch``` </pre>.
 
 ## 5. JEST -- nasz testowy przyjaciel
 
@@ -253,9 +253,9 @@ describe('UsersController', () => {
 
 ### Tworzenie testowej bazy danych
 1. Utwórz nową bazę danych w postgresie np. db_test
-2. Pobierz bibliotekę cross-env służącą do zmian zmiennych środowiskowych: `npm i cross-env`
+2. Pobierz bibliotekę cross-env służącą do zmian zmiennych środowiskowych: <pre> ```npm i cross-env``` </pre> 
 3. Dodaj w package.json na początku wszystkich komend do aliasów testowych:
-`cross-env DATABASE_URL="postgresql://username:password@localhost:5432/test_db"`
+<pre> ```bash cross-env DATABASE_URL="postgresql://username:password@localhost:5432/test_db" ``` </pre>
 4. Dodaj alias przygotowujący testową bazę danych “test:prepare” jak w przykładzie
 
 Przykład:
@@ -277,9 +277,6 @@ Jak to zrobić?
  - Wywołujemy ją w beforeEach lub beforeAll w testach
 
 Przykład takiej funkcji:
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 ``` ts
 export async function cleanDb() {
@@ -305,8 +302,7 @@ Jak to zrobić?
  - Umieszczamy ją w osobnym pliku, np. test/seed-db.ts
  - Wywołujemy ją w beforeEach lub beforeAll w testach
 
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+
 
 ``` ts
 export async function seedDb() {
