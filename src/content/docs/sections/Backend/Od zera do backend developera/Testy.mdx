@@ -35,9 +35,9 @@ Przykład (formularz logowania)
 NestJS korzysta z frameworka Jest, który jest już skonfigurowany domyślnie.
 
 Najważniejsze komendy:
- - <pre> ```npm run test``` </pre>  - uruchamia wszystkie testy jednostkowe i integracyjne.
- - <pre> ```npm run test:watch``` </pre> - uruchamia testy w trybie "na żywo", pokazując wyniki na bieżąco.
- - <pre> ```npm run test:e2e``` </pre> - uruchamia testy end-to-end.
+ - `npm run test` - uruchamia wszystkie testy jednostkowe i integracyjne.
+ - `npm run test:watch` - uruchamia testy w trybie "na żywo", pokazując wyniki na bieżąco.
+ - `npm run test:e2e` - uruchamia testy end-to-end.
 
 ### Użyteczny dodatek
 
@@ -49,16 +49,21 @@ Można dodać w `package.json` w części `scripts` własny alias do uruchamiani
 }
 ```
 
-Dzięki temu uruchomimy E2E tak: <pre> ```npm run test:e2e:watch``` </pre>.
+Dzięki temu uruchomimy E2E tak: `npm run test:e2e:watch`.
 
-## 5. JEST -- nasz testowy przyjaciel
+## 5. JEST - nasz testowy przyjaciel
 
 -   **Jest** to popularny framework testowy dla JavaScript/TypeScript.
 -   Jest domyślnie skonfigurowany w NestJS.
 -   Oferuje wbudowane funkcje:
-    -   mocki,
-    -   snapshoty,
-    -   tryb watch.
+    -   Mocki – czyli “fałszywe” wersje funkcji, klas czy modułów,
+        które pozwalają testować fragmenty kodu bez wywoływania 
+        rzeczywistych zależności.
+    -   Snapshoty – zapis stanu komponentu lub wyniku funkcji w 
+        pliku, który potem można porównać w kolejnych testach, 
+        żeby upewnić się, że nic się nie zmieniło.
+    -   Tryb watch – automatyczne uruchamianie testów przy każdej 
+        zmianie w kodzie, dzięki czemu od razu widać efekt zmian.
 
 Dzięki temu testowanie jest szybkie i wygodne.
 
@@ -147,7 +152,7 @@ describe('UsersService', () => {
     const result = await service.create(dto);
 
     expect(result).toHaveProperty('id');
-    expect(result.name).toBe('Alice');
+    expect(result.name).toBe('User');
     expect(mockPrismaService.user.create).toHaveBeenCalledWith({ data: dto });
     expect(service.create(dto)).toEqual({
       id: expect.any(Number),
@@ -227,8 +232,8 @@ describe('UsersController', () => {
 
   it('should update a user', () => {
     const dto = {
-      name: 'User',
-      email: 'user@test.com',
+      name: 'User Updated',
+      email: 'user.updated@test.com',
     };
 
     expect(controller.update(1, dto)).toEqual({
@@ -253,9 +258,9 @@ describe('UsersController', () => {
 
 ### Tworzenie testowej bazy danych
 1. Utwórz nową bazę danych w postgresie np. db_test
-2. Pobierz bibliotekę cross-env służącą do zmian zmiennych środowiskowych: <pre> ```npm i cross-env``` </pre> 
+2. Pobierz bibliotekę cross-env służącą do zmian zmiennych środowiskowych: `npm i cross-env`
 3. Dodaj w package.json na początku wszystkich komend do aliasów testowych:
-<pre> ```bash cross-env DATABASE_URL="postgresql://username:password@localhost:5432/test_db" ``` </pre>
+`bash cross-env DATABASE_URL="postgresql://username:password@localhost:5432/test_db"`
 4. Dodaj alias przygotowujący testową bazę danych “test:prepare” jak w przykładzie
 
 Przykład:
@@ -420,6 +425,8 @@ describe('UserController (e2e)', () => {
 });
 ``` 
 ## Dodatkowe źródła informacji
-https://docs.nestjs.com/fundamentals/testing
-https://jestjs.io/docs/api oraz https://jestjs.io/docs/getting-started
-https://github.com/forwardemail/supertest
+ - https://drive.google.com/file/d/1QcI5-r0ziP3izcsqkbcMaKltT8G6Ey0-/view?usp=drive_link - nagarnie z prezentacji w ramach kursu
+ - https://docs.nestjs.com/fundamentals/testing - oficjalna dokumentacja NestJS o testowaniu
+ - https://jestjs.io/docs/api - przydatne komendy do pisania testów w jest
+ - https://jestjs.io/docs/getting-started - podstawy pisania testó w jest
+ - https://github.com/forwardemail/supertest - dokumentacja do bioblioteki supertest
