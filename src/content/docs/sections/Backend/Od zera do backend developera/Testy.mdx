@@ -1,0 +1,432 @@
+---
+title: 5. Testy
+description: Testy
+sidebar:
+  order: 6
+---
+
+## 1. Dlaczego testy są ważne?
+
+Testowanie to kluczowy element pracy programisty. Przede wszystkim zwiększa bezpieczeństwo przy zmianach – wprowadzając nowe funkcje lub poprawki mamy pewność, że nie zepsuliśmy istniejących elementów. Dodatkowo automatyzuje proces wykrywania błędów, co eliminuje konieczność ręcznego sprawdzania. Kolejną zaletą jest to, że testy pełnią rolę dokumentacji zachowania aplikacji – pokazują w praktyce, jak system powinien działać. 
+<br />
+Najważniejsze jednak, że dobrze napisane testy dają nam spokój ducha i sprawiają, że nie musimy obawiać się deployu.
+
+## 2. Różne poziomy testowania
+
+Testowanie może odbywać się na kilku poziomach:
+ - **Testy jednostkowe (unit tests)** - sprawdzają pojedyncze funkcje/metody w izolacji.
+ - **Testy integracyjne (integration tests)** - badają współpracę kilku elementów systemu.
+ - **Testy end-to-end (E2E tests)** - symulują zachowanie użytkownika, testując aplikację jako całość.
+<br />
+<br />
+Przykład (formularz logowania)
+ - Jednostkowy: sprawdzenie, czy funkcja walidacji hasła działa poprawnie
+ - Integracyjny: czy moduł logowania poprawnie łączy się z modułem użytkowników
+ - E2E: użytkownik wpisuje login + hasło -> zostaje zalogowany
+
+## 3. Gdzie są testy w projekcie NestJS?
+
+ - Testy znajdują się obok testowanych plików (np. w folderach `services`, `controllers`).
+ - Pliki testowe kończą się na `.spec.ts` (dla testów jednostkowych i integracyjnych) lub `.e2e-spec.ts` (dla testów end-to-end, muszą być w folderze test).
+ - Dzięki temu **Jest** automatycznie je wykrywa i uruchamia.
+
+## 4. Jak uruchomić testy w NestJS?
+
+NestJS korzysta z frameworka Jest, który jest już skonfigurowany domyślnie.
+
+Najważniejsze komendy:
+ - `npm run test` - uruchamia wszystkie testy jednostkowe i integracyjne.
+ - `npm run test:watch` - uruchamia testy w trybie "na żywo", pokazując wyniki na bieżąco.
+ - `npm run test:e2e` - uruchamia testy end-to-end.
+
+### Użyteczny dodatek
+
+Można dodać w `package.json` w części `scripts` własny alias do uruchamiania testów E2E w trybie watch:
+
+``` json
+"scripts": {
+  "test:e2e:watch": "jest --config ./test/jest-e2e.json --watch"
+}
+```
+
+Dzięki temu uruchomimy E2E tak: `npm run test:e2e:watch`.
+
+## 5. JEST - nasz testowy przyjaciel
+
+-   **Jest** to popularny framework testowy dla JavaScript/TypeScript.
+-   Jest domyślnie skonfigurowany w NestJS.
+-   Oferuje wbudowane funkcje:
+    -   Mocki – czyli “fałszywe” wersje funkcji, klas czy modułów,
+        które pozwalają testować fragmenty kodu bez wywoływania 
+        rzeczywistych zależności.
+    -   Snapshoty – zapis stanu komponentu lub wyniku funkcji w 
+        pliku, który potem można porównać w kolejnych testach, 
+        żeby upewnić się, że nic się nie zmieniło.
+    -   Tryb watch – automatyczne uruchamianie testów przy każdej 
+        zmianie w kodzie, dzięki czemu od razu widać efekt zmian.
+
+Dzięki temu testowanie jest szybkie i wygodne.
+
+## 6. Testy w praktyce: describe, it, expect
+
+Podstawowe elementy składni w Jest:
+ - `describe()` - grupuje testy (np. testy jednego serwisu)
+ - `it()` - definiuje pojedyncze przypadki testowe
+ - `expect()` - sprawdza, czy wynik jest zgodny z oczekiwaniami
+
+Przykład:
+
+``` ts
+describe('Calculator', () => {
+  it('dodaje liczby', () => {
+    expect(2 + 2).toBe(4);
+  });
+});
+```
+
+## 7. Izolacja i mockowanie
+
+ - **Izolacja** - testujemy jeden element w oderwaniu od reszty
+ - **Mockowanie** - tworzymy atrapę zależności, np. bazy danych, aby móc kontrolować ich zachowanie
+
+Dzięki temu testy są szybsze, łatwiejsze do diagnozy i bardziej stabilne.
+
+## 8. Testowanie serwisów
+
+Co zawierają?
+ - Logikę biznesową aplikacji
+Jak testujemy?
+ - W izolacji (bez zależności zewnętrznych)
+ - Zależności mockujemy (`jest.fn()`, `useValue`)
+Sprawdzamy:
+ - Czy metody działają zgodnie z założeniami
+ - Czy poprawnie reagują na różne dane
+
+``` ts
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsersService } from './users.service';
+import { PrismaService } from '../prisma/prisma.service';
+
+describe('UsersService', () => {
+  let service: UsersService;
+  let prisma: PrismaService;
+
+  const mockPrismaService = {
+    user: {
+      findMany: jest.fn(),
+      findUnique: jest.fn(),
+      create: jest.fn(({ data }) => ({
+        id: Date.now(),
+        ...data,
+      })),
+      update: jest.fn(),
+      delete: jest.fn(),
+    },
+  };
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [UsersService, PrismaService],
+    })
+      .overrideProvider(PrismaService)
+      .useValue(mockPrismaService)
+      .compile();
+
+    service = module.get<UsersService>(UsersService);
+    prisma = module.get<PrismaService>(PrismaService);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+
+  it('should create a user', async () => {
+    const dto = {
+      name: 'User',
+      email: 'user@test.com',
+    };
+    const result = await service.create(dto);
+
+    expect(result).toHaveProperty('id');
+    expect(result.name).toBe('User');
+    expect(mockPrismaService.user.create).toHaveBeenCalledWith({ data: dto });
+    expect(service.create(dto)).toEqual({
+      id: expect.any(Number),
+      name: 'User',
+      email: 'user@test.com',
+    });
+  });
+});
+```
+
+## 9. Testowanie kontrolerów
+
+Co robią?
+ - Obsługują żądania HTTP
+ - Korzystają z serwisów
+Jak testujemy?
+ - W izolacji od serwisów
+ - Serwisy mockujemy (useValue, jest.fn())
+Sprawdzamy:
+ - Czy endpointy zwracają poprawne odpowiedzi
+ - Czy wywołują właściwe metody serwisów
+
+ Przykład:
+
+``` ts
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
+
+describe('UsersController', () => {
+  let controller: UsersController;
+
+  const mockUserService = {
+    create: jest.fn((dto) => {
+      return {
+        id: Date.now(),
+        ...dto,
+      };
+    }),
+
+    update: jest.fn((id, dto) => ({
+      id,
+      ...dto,
+    })),
+  };
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [UsersController],
+      providers: [UsersService],
+    })
+      .overrideProvider(UsersService)
+      .useValue(mockUserService)
+      .compile();
+
+    controller = module.get<UsersController>(UsersController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+
+  it('should create a user', () => {
+    const dto = {
+      name: 'User',
+      email: 'user@test.com',
+    };
+
+    expect(controller.create(dto)).toEqual({
+      id: expect.any(Number),
+      name: 'User',
+      email: 'user@test.com',
+    });
+
+    expect(mockUserService.create).toHaveBeenCalledWith(dto);
+  });
+
+  it('should update a user', () => {
+    const dto = {
+      name: 'User Updated',
+      email: 'user.updated@test.com',
+    };
+
+    expect(controller.update(1, dto)).toEqual({
+      id: 1,
+      ...dto,
+    });
+
+    expect(mockUserService.update).toHaveBeenCalled();
+  });
+});
+```
+
+## 10. Testy end-to-end (E2E) w NestJS
+
+ - Sprawdzają działanie aplikacji jako całość
+ - Uruchamiają pełną aplikację (app.init())
+ - Wysyłają prawdziwe żądania HTTP (np. GET, POST, itp) z wykorzystaniem biblioteki Supertest
+ - Testują ścieżkę: routing → kontroler → serwis → zależności
+ - Sprawdzają odpowiedzi, statusy i walidację
+ - Nie powinno się mockować zależności
+ - Najlepiej, aby wykorzystywały specjalną bazę danych testową, zamiast tej produkcyjnej
+
+### Tworzenie testowej bazy danych
+1. Utwórz nową bazę danych w postgresie np. db_test
+2. Pobierz bibliotekę cross-env służącą do zmian zmiennych środowiskowych: `npm i cross-env`
+3. Dodaj w package.json na początku wszystkich komend do aliasów testowych:
+`bash cross-env DATABASE_URL="postgresql://username:password@localhost:5432/test_db"`
+4. Dodaj alias przygotowujący testową bazę danych “test:prepare” jak w przykładzie
+
+Przykład:
+``` json
+"test": "cross-env DATABASE_URL=\"postgresql://username:password@localhost:5432/test_db\" jest",
+"test:watch": "cross-env DATABASE_URL=\"postgresql://username:password@localhost:5432/test_db\" jest --watch",
+"test:e2e": "cross-env DATABASE_URL=\"postgresql://username:password@localhost:5432/test_db\" jest --config ./test/jest-e2e.json",
+"test:e2e:watch": "cross-env DATABASE_URL=\"postgresql://username:password@localhost:5432/test_db\" jest --config ./test/jest-e2e.json --watch",
+"test:prepare": "cross-env DATABASE_URL=\"postgresql://username:password@localhost:5432/test_db?schema=public\" npx prisma db push"
+```
+
+### Czyszczenie testowej bazy danych
+Dlaczego?
+ - Upewniamy się, że baza jest pusta na starcie testów
+ - Unikamy konfliktów między testami
+Jak to zrobić?
+ - Tworzymy funkcję czyszczącą bazę, która usuwa dane ze wszystkich tabel
+ - Umieszczamy ją w osobnym pliku, np. test/clean-db.ts
+ - Wywołujemy ją w beforeEach lub beforeAll w testach
+
+Przykład takiej funkcji:
+
+``` ts
+export async function cleanDb() {
+  const tablenames = await prisma.$queryRaw<
+    Array<{ tablename: string }>
+  >`SELECT tablename FROM pg_tables WHERE schemaname='public'`;
+
+  for (const { tablename } of tablenames) {
+    if (tablename !== '_prisma_migrations') {
+      await prisma.$executeRawUnsafe(
+        `TRUNCATE TABLE "${tablename}" RESTART IDENTITY CASCADE;`
+      );
+    }
+  }
+}
+```
+
+### Seedowanie testowej bazy danych
+Dlaczego?
+ - Do testowania metod typu delete mamy gotowe dane, których nie musimy na bieżąco tworzyć
+Jak to zrobić?
+ - Tworzymy funkcję seedującą bazę, która dodaje dane do tabel
+ - Umieszczamy ją w osobnym pliku, np. test/seed-db.ts
+ - Wywołujemy ją w beforeEach lub beforeAll w testach
+
+
+
+``` ts
+export async function seedDb() {
+  await prisma.user.createMany({
+    data: [
+      { name: 'Alice', email: 'alice@example.com'},
+      { name: 'Bob', email: 'bob@example.com'},
+    ],
+  });
+}
+```
+
+### Przykład testu E2E
+``` ts
+import { Test, TestingModule } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { App } from 'supertest/types';
+import { UsersModule } from './../src/users/users.module';
+import { cleanDb } from './clean-db';
+import { seedDb } from './seed-db';
+import { AppModule } from './../src/app.module';
+
+describe('UserController (e2e)', () => {
+  let app: INestApplication<App>;
+
+  beforeEach(async () => {
+    await cleanDb(); // wipe the testing database using special script
+    await seedDb(); // add some data to database
+
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [UsersModule, AppModule],
+    })
+      .compile();
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
+
+  it('/users (GET)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/users')
+      .expect(200);
+
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'Alice',
+          email: 'alice@example.com',
+        }),
+        expect.objectContaining({
+          name: 'Bob',
+          email: 'bob@example.com',
+        }),
+      ]),
+    );
+  });
+
+  it('/users (POST)', () => {
+      return request(app.getHttpServer())
+        .post('/users')
+        .send({
+          name: 'user',
+          email: 'user@example.com',
+        })
+        .expect(201)
+        .then((user) => {
+          expect(user.body).toEqual({
+            id: expect.any(Number),
+            name: 'user',
+            email: 'user@example.com',
+          });
+        });
+    });
+
+  it('/users/:id (DELETE)', async () => {
+    const userId = 1;
+
+    const response = await request(app.getHttpServer())
+      .delete(`/users/${userId}`)
+      .expect(200);
+
+    expect(response.body).toEqual({
+      id: expect.any(Number),
+      name: 'Alice',
+      email: 'alice@example.com',
+    });
+
+    // Checking if the user really was deleted
+    await request(app.getHttpServer())
+      .get(`/users/${userId}`)
+      .expect(404);
+  });
+
+  // Here we check if validators work correctly
+  it('/users (POST)', () => {
+    return request(app.getHttpServer())
+      .post('/users')
+      .send({
+        name: 1, // This is supposed to be a string so it should return error
+        email: 'first@example.com',
+      })
+      .expect(400);
+  });
+
+  it('/users (POST)', () => {
+    return request(app.getHttpServer())
+      .post('/users')
+      .send({
+        name: 'Mark', // Email is required so it will also cause an error
+      })
+      .expect(400);
+  });
+  
+});
+``` 
+## Dodatkowe źródła informacji
+ - https://drive.google.com/file/d/1QcI5-r0ziP3izcsqkbcMaKltT8G6Ey0-/view?usp=drive_link - nagarnie z prezentacji w ramach kursu
+ - https://docs.nestjs.com/fundamentals/testing - oficjalna dokumentacja NestJS o testowaniu
+ - https://jestjs.io/docs/api - przydatne komendy do pisania testów w jest
+ - https://jestjs.io/docs/getting-started - podstawy pisania testó w jest
+ - https://github.com/forwardemail/supertest - dokumentacja do bioblioteki supertest

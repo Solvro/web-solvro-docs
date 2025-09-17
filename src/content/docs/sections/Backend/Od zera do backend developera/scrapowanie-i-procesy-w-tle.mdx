@@ -1,0 +1,630 @@
+---
+title: 6. Scrapowanie i procesy w tle
+description: Kolejki, maile, powiadomienia i automatyzacja zadań
+sidebar:
+  order: 7
+---
+
+## Czym jest scrapowanie?
+
+Scrapowanie (web scraping) to proces automatycznego pobierania i ekstraktowania danych ze stron internetowych. Wyobraźcie sobie, że chcecie regularnie sprawdzać ceny produktów w sklepie internetowym, kursy walut, czy też najnowsze artykuły z waszego ulubionego bloga. Zamiast robić to ręcznie, możecie napisać program, który zrobi to za was!
+
+### Kiedy używamy scrapowania?
+
+- **Monitorowanie cen** - automatyczne sprawdzanie cen produktów
+- **Agregacja danych** - zbieranie informacji z różnych źródeł
+- **Monitoring zmian** - wykrywanie aktualizacji na stronach
+- **Analiza konkurencji** - śledzenie działań konkurentów
+- **Kursy walut** - pobieranie aktualnych kursów z różnych źródeł
+
+## Narzędzia do scrapowania
+
+### Fetch API - natywne rozwiązanie
+
+Node.js posiada wbudowane API fetch, które pozwala na wykonywanie zapytań HTTP:
+
+```javascript
+// Podstawowe użycie fetch
+const response = await fetch("https://api.example.com/data");
+const data = await response.json();
+console.log(data);
+
+// Z obsługą błędów
+try {
+  const response = await fetch("https://waluty24.info/");
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const html = await response.text();
+  console.log(html);
+} catch (error) {
+  console.error("Błąd podczas pobierania danych:", error);
+}
+```
+
+### Cheerio - jQuery dla serwera
+
+Cheerio to biblioteka, która pozwala na parsowanie HTML i manipulację DOM po stronie serwera. Jest bardzo podobna do jQuery:
+
+```bash
+npm install cheerio
+```
+
+```javascript
+import * as cheerio from "cheerio";
+
+const html = `
+  <div class="currency">
+    <span class="name">EUR</span>
+    <span class="rate">4.25</span>
+  </div>
+`;
+
+const $ = cheerio.load(html);
+
+// Podobnie jak w jQuery
+const currencyName = $(".name").text(); // "EUR"
+const rate = $(".rate").text(); // "4.25"
+```
+
+### Puppeteer - kontrolowanie przeglądarki
+
+Puppeteer pozwala na kontrolowanie headless Chrome lub Chromium. Przydaje się gdy strona używa JavaScript do generowania treści:
+
+```bash
+npm install puppeteer
+```
+
+```javascript
+import puppeteer from "puppeteer";
+
+const browser = await puppeteer.launch();
+const page = await browser.newPage();
+
+await page.goto("https://waluty24.info/");
+
+// Czekamy na załadowanie elementu
+await page.waitForSelector(".currency-rate");
+
+// Pobieramy dane
+const currencies = await page.evaluate(() => {
+  const elements = document.querySelectorAll(".currency-rate");
+  return Array.from(elements).map((el) => ({
+    name: el.querySelector(".name").textContent,
+    rate: el.querySelector(".rate").textContent,
+  }));
+});
+
+await browser.close();
+```
+
+## Cykliczne uruchamianie procesów
+
+Często chcemy, aby nasze scrapery działały automatycznie w określonych odstępach czasu. NestJS oferuje świetne narzędzia do planowania zadań.
+
+### Instalacja
+
+```bash
+npm install @nestjs/schedule
+```
+
+### Konfiguracja
+
+```typescript
+// app.module.ts
+import { ScheduleModule } from "@nestjs/schedule";
+
+@Module({
+  imports: [
+    ScheduleModule.forRoot(),
+    // inne moduły...
+  ],
+})
+export class AppModule {}
+```
+
+### Zadania cykliczne
+
+```typescript
+// currency-scheduler.service.ts
+import { Injectable, Logger } from "@nestjs/common";
+import { Cron, CronExpression } from "@nestjs/schedule";
+import { CurrencyScraperService } from "./currency-scraper.service";
+
+@Injectable()
+export class CurrencySchedulerService {
+  private readonly logger = new Logger(CurrencySchedulerService.name);
+
+  constructor(private currencyScraperService: CurrencyScraperService) {}
+
+  // Co godzinę
+  @Cron("0 * * * *")
+  async handleHourlyCurrencyUpdate() {
+    this.logger.log("Rozpoczynam godzinne aktualizowanie kursów...");
+    await this.currencyScraperService.scrapeCurrencies();
+  }
+
+  // Codziennie o 8:00
+  @Cron("0 8 * * *")
+  async handleDailyCurrencyReport() {
+    this.logger.log("Generuję raport dzienny...");
+    // Tutaj możemy dodać logikę generowania raportu
+  }
+
+  // Co 15 minut w godzinach 9-17, od poniedziałku do piątku
+  @Cron("*/15 9-17 * * 1-5")
+  async handleBusinessHoursUpdate() {
+    this.logger.log("Aktualizacja w godzinach biznesowych...");
+    await this.currencyScraperService.scrapeCurrencies();
+  }
+
+  // Używając CronExpression (bardziej czytelne)
+  @Cron(CronExpression.EVERY_30_MINUTES)
+  async handleFrequentUpdate() {
+    await this.currencyScraperService.scrapeCurrencies();
+  }
+}
+```
+
+### Cron - składnia
+
+Cron używa 5 lub 6 pól do określenia czasu:
+
+```
+* * * * * *
+│ │ │ │ │ │
+│ │ │ │ │ └── dzień tygodnia (0-6, 0 = niedziela)
+│ │ │ │ └──── miesiąc (1-12)
+│ │ │ └────── dzień miesiąca (1-31)
+│ │ └──────── godzina (0-23)
+│ └────────── minuta (0-59)
+└──────────── sekunda (0-59, opcjonalne)
+```
+
+Przydatne przykłady:
+
+- `0 */2 * * *` - co 2 godziny
+- `30 9 * * 1-5` - o 9:30 od poniedziałku do piątku
+- `0 0 1 * *` - pierwszego dnia każdego miesiąca o północy
+
+Świetne narzędzie do testowania cron: https://crontab.guru/
+
+## Kolejki (Queues)
+
+Kolejki pozwalają na asynchroniczne wykonywanie zadań. Zamiast blokować użytkownika podczas długotrwałych operacji, dodajemy zadanie do kolejki i przetwarzamy je w tle.
+
+### Instalacja Bull
+
+```bash
+npm install --save @nestjs/bullmq bullmq
+```
+
+### Konfiguracja Redis
+
+Bull wymaga Redis jako broker komunikatów:
+
+### Instalacja Redis na różnych platformach
+
+#### macOS
+
+```bash
+brew install redis
+brew services start redis
+```
+
+#### Linux (Ubuntu/Debian)
+
+```bash
+sudo apt update
+sudo apt install redis-server
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+#### Docker (dowolny system)
+
+```bash
+docker run -d -p 6379:6379 redis:alpine
+```
+
+Jeśli nie masz Dockera, instrukcję instalacji znajdziesz tutaj:
+
+- https://www.docker.com/get-started/
+
+### Konfiguracja modułu
+
+```typescript
+// app.module.ts
+import { BullModule } from "@nestjs/bull";
+
+@Module({
+  imports: [
+    BullModule.forRoot({
+      redis: {
+        host: "localhost",
+        port: 6379,
+      },
+    }),
+    BullModule.registerQueue({
+      name: "currency-processing",
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+### Producer - dodawanie zadań do kolejki
+
+```typescript
+// currency-queue.service.ts
+import { Injectable } from "@nestjs/common";
+import { InjectQueue } from "@nestjs/bull";
+import { Queue } from "bull";
+
+@Injectable()
+export class CurrencyQueueService {
+  constructor(
+    @InjectQueue("currency-processing")
+    private currencyQueue: Queue
+  ) {}
+
+  async addCurrencyScrapingJob(currencyName: string) {
+    await this.currencyQueue.add("scrape-currency", {
+      currencyName,
+      timestamp: new Date(),
+    });
+  }
+
+  async addBulkScrapingJob(currencies: string[]) {
+    const jobs = currencies.map((currency) => ({
+      name: "scrape-currency",
+      data: { currencyName: currency, timestamp: new Date() },
+    }));
+
+    await this.currencyQueue.addBulk(jobs);
+  }
+
+  // Zadanie z opóźnieniem
+  async scheduleWeeklyReport() {
+    await this.currencyQueue.add(
+      "weekly-report",
+      { reportType: "weekly" },
+      { delay: 7 * 24 * 60 * 60 * 1000 } // 7 dni
+    );
+  }
+
+  // Zadanie cykliczne - powtarza się co określony czas
+  async scheduleRecurringCurrencyUpdate() {
+    await this.currencyQueue.add(
+      "scrape-currency",
+      { currencyName: "EUR" },
+      {
+        repeat: {
+          every: 60000, // Co minutę
+        },
+      }
+    );
+  }
+
+  // Zadanie cykliczne z wyrażeniem cron
+  async scheduleDailyCurrencyReport() {
+    await this.currencyQueue.add(
+      "daily-report",
+      { reportType: "daily" },
+      {
+        repeat: {
+          cron: "0 8 * * *", // Codziennie o 8:00
+        },
+      }
+    );
+  }
+}
+```
+
+### Consumer - przetwarzanie zadań
+
+```typescript
+// currency-processor.ts
+import { Process, Processor } from "@nestjs/bull";
+import { Logger } from "@nestjs/common";
+import { Job } from "bull";
+
+@Processor("currency-processing")
+export class CurrencyProcessor {
+  private readonly logger = new Logger(CurrencyProcessor.name);
+
+  @Process("scrape-currency")
+  async handleCurrencyScraping(job: Job) {
+    const { currencyName } = job.data;
+    this.logger.log(`Przetwarzam scraping dla waluty: ${currencyName}`);
+
+    try {
+      // Symulacja scrapowania konkretnej waluty
+      await this.scrapeSingleCurrency(currencyName);
+      this.logger.log(`Zakończono scraping dla: ${currencyName}`);
+    } catch (error) {
+      this.logger.error(`Błąd podczas scrapowania ${currencyName}:`, error);
+      throw error;
+    }
+  }
+
+  @Process("weekly-report")
+  async handleWeeklyReport(job: Job) {
+    this.logger.log("Generuję raport tygodniowy...");
+    // Logika generowania raportu
+  }
+
+  private async scrapeSingleCurrency(currencyName: string) {
+    // Implementacja scrapowania pojedynczej waluty
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Symulacja
+  }
+}
+```
+
+## Przykłady użycia kolejek
+
+Kolejki mają szerokie zastosowanie w aplikacjach backendowych. Oto najczęstsze przypadki użycia:
+
+### 1. Przetwarzanie multimediów
+
+- **Zmiana rozmiaru obrazów** - generowanie miniaturek w różnych rozmiarach
+- **Konwersja wideo** - przekształcanie formatów plików wideo
+- **Dodawanie znaków wodnych** - automatyczne znakowanie plików
+- **Kompresja plików** - optymalizacja rozmiaru bez utraty jakości
+
+### 2. Generowanie raportów i eksportów
+
+- **Raporty miesięczne/roczne** - długotrwałe analizy danych
+- **Eksport do CSV/Excel** - duże ilości danych
+- **Generowanie PDF** - faktury, certyfikaty, dokumenty
+- **Backup danych** - regularne tworzenie kopii zapasowych
+
+### 3. Komunikacja z użytkownikami
+
+- **Powiadomienia push** - natychmiastowe alerty
+- **SMS i maile** - masowe kampanie marketingowe
+- **Powiadomienia w aplikacji** - aktualizacje statusu
+- **Przypomnienia** - zaplanowane powiadomienia
+
+### 4. Integracje zewnętrzne
+
+- **Synchronizacja z CRM** - aktualizacja danych klientów
+- **Webhooks** - powiadamianie innych systemów
+- **API zewnętrznych serwisów** - płatności, analytics, social media
+- **Import/export danych** - migracje między systemami
+
+### 5. Zadania cykliczne i planowane
+
+- **Czyszczenie bazy danych** - usuwanie starych rekordów
+- **Monitorowanie systemów** - sprawdzanie statusu serwisów
+- **Aktualizacje cen** - pobieranie aktualnych kursów, cen produktów
+- **Generowanie statystyk** - codzienne/tygodniowe podsumowania
+
+### 6. Operacje wymagające dużo zasobów
+
+- **Analiza danych** - machine learning, big data
+- **Indeksowanie wyszukiwarki** - przetwarzanie dokumentów
+- **Migracje danych** - przenoszenie między bazami
+- **Szyfrowanie plików** - bezpieczne przetwarzanie danych
+
+### Korzyści z używania kolejek:
+
+- **Szybsza responsywność** - użytkownik nie czeka na długie operacje
+- **Lepsza skalowalność** - można dodać więcej workerów
+- **Większa niezawodność** - zadania nie giną przy awarii systemu
+- **Zarządzanie priorytetami** - ważne zadania wykonują się pierwsze
+- **Kontrola zasobów** - ograniczanie liczby jednoczesnych operacji
+- **Monitorowanie** - śledzenie statusu i błędów zadań
+
+## Wysyłanie maili
+
+Maile to świetny sposób na powiadamianie użytkowników o ważnych wydarzeniach.
+
+### Instalacja
+
+```bash
+npm install nodemailer
+npm install --save-dev @types/nodemailer
+```
+
+### Konfiguracja
+
+```typescript
+// mail.service.ts
+import { Injectable } from "@nestjs/common";
+import * as nodemailer from "nodemailer";
+
+@Injectable()
+export class MailService {
+  private transporter;
+
+  constructor() {
+    this.transporter = nodemailer.createTransporter({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS, // App password, nie hasło do konta!
+      },
+    });
+  }
+
+  async sendCurrencyAlert(email: string, currency: string, rate: number) {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: `Alert cenowy - ${currency}`,
+      html: `
+        <h2>Alert cenowy!</h2>
+        <p>Kurs waluty <strong>${currency}</strong> wynosi obecnie: <strong>${rate} PLN</strong></p>
+        <p>Sprawdź aktualny kurs w naszej aplikacji.</p>
+      `,
+    };
+
+    try {
+      await this.transporter.sendMail(mailOptions);
+      console.log(`Mail wysłany do ${email}`);
+    } catch (error) {
+      console.error("Błąd wysyłania maila:", error);
+    }
+  }
+
+  async sendWeeklySummary(
+    email: string,
+    currencies: Array<{ name: string; rate: number }>
+  ) {
+    const currencyList = currencies
+      .map((c) => `<li>${c.name}: ${c.rate} PLN</li>`)
+      .join("");
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Podsumowanie tygodniowe - kursy walut",
+      html: `
+        <h2>Podsumowanie tygodnia</h2>
+        <h3>Aktualne kursy walut:</h3>
+        <ul>${currencyList}</ul>
+        <p>Miłego tygodnia!</p>
+      `,
+    };
+
+    await this.transporter.sendMail(mailOptions);
+  }
+}
+```
+
+### Integracja z kolejkami
+
+```typescript
+// W currency-processor.ts
+@Process('send-weekly-summary')
+async handleWeeklySummary(job: Job) {
+  const { userEmail } = job.data;
+
+  // Pobieramy najnowsze kursy
+  const currencies = await this.currencyService.getLatestRates();
+
+  // Wysyłamy mail
+  await this.mailService.sendWeeklySummary(userEmail, currencies);
+}
+```
+
+## Server-Sent Events (SSE)
+
+SSE pozwala na wysyłanie powiadomień w czasie rzeczywistym do przeglądarki.
+
+### Implementacja
+
+```typescript
+// currency-sse.controller.ts
+import { Controller, Get, Sse } from "@nestjs/common";
+import { Observable, interval, map } from "rxjs";
+
+@Controller("currency")
+export class CurrencySSEController {
+  constructor(private currencyService: CurrencyScraperService) {}
+
+  @Sse("events")
+  sendEvents(): Observable<any> {
+    return interval(30000).pipe(
+      // Co 30 sekund
+      map(async () => {
+        const currencies = await this.currencyService.getLatestRates();
+        return {
+          data: {
+            type: "currency-update",
+            currencies: currencies.slice(0, 5), // Ostatnie 5
+          },
+        };
+      })
+    );
+  }
+}
+```
+
+### Frontend (przykład)
+
+```javascript
+// W przeglądarce
+const eventSource = new EventSource("/currency/events");
+
+eventSource.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  if (data.type === "currency-update") {
+    console.log("Nowe kursy:", data.currencies);
+    // Aktualizacja UI
+  }
+};
+```
+
+## Dobre praktyki i bezpieczeństwo
+
+### 1. Respect robots.txt
+
+Zawsze sprawdzajcie plik robots.txt strony przed scrapowaniem:
+
+```javascript
+const robotsResponse = await fetch("https://example.com/robots.txt");
+const robotsContent = await robotsResponse.text();
+console.log(robotsContent);
+```
+
+### 2. Rate limiting
+
+Nie bombardujcie serwera żądaniami:
+
+```javascript
+// Dodajemy opóźnienie między żądaniami
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+for (const url of urls) {
+  await scrapeUrl(url);
+  await delay(1000); // 1 sekunda przerwy
+}
+```
+
+### 3. User-Agent
+
+Ustawcie odpowiedni User-Agent:
+
+```javascript
+const response = await fetch(url, {
+  headers: {
+    "User-Agent":
+      "Mozilla/5.0 (compatible; YourBot/1.0; +http://yoursite.com/bot)",
+  },
+});
+```
+
+### 4. Obsługa błędów
+
+Zawsze obsługujcie błędy sieciowe:
+
+```javascript
+try {
+  const response = await fetch("https://api.example.com/data");
+  if (!response.ok) {
+    throw new Error(`Błąd HTTP: ${response.status}`);
+  }
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.error("Wystąpił błąd podczas pobierania danych:", error);
+}
+```
+
+## Materiały dodatkowe
+
+- [Dokumentacja Cheerio](https://cheerio.js.org/docs/intro)
+- [Puppeteer Guide](https://pptr.dev/)
+- [NestJS Task Scheduling](https://docs.nestjs.com/techniques/task-scheduling)
+- [NestJS Queues](https://docs.nestjs.com/techniques/queues)
+- [Crontab Guru](https://crontab.guru/) - generator wyrażeń cron
+- [Nodemailer w NestJS](https://www.freecodecamp.org/news/how-to-use-nodemailer-in-nestjs/)
+- [Server-Sent Events](https://docs.nestjs.com/techniques/server-sent-events)
+
+---

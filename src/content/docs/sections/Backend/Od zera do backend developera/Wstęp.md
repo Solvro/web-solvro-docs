@@ -1,6 +1,8 @@
 ---
 title: 0. Wstęp
 description: Jak zacząć z kursem
+sidebar:
+  order: 1
 ---
 
 ## Elo żelo 👋
