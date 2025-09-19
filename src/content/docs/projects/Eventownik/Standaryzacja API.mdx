@@ -54,7 +54,7 @@ metadata: {
 
 ## Ogólny format błędów
 
-- korzystając z ZODa powinno informować się o błędach w zapytaniu,
+- do walidacji danych jak i zwracania odpowiedzi błędu, wykorzystujemy domyślną dla NestJS paczkę class-validator,
 - błędy powinny być oznaczone odpowiednim status codem
 
 ## Format parametrów metody 'GET'
@@ -101,7 +101,7 @@ Endpoint: `api.eventownik.pl/v1/internal/events/:eventId/participants?page=1&per
 
 - tworząc plik cookie z tokenem, powinien nazywać się "Authorization" oraz mieć przypisaną wartość "Bearer &lt;token&gt;",
 - korzystając z JSON Web Token należy w miarę możliwości ograniczyć ilość przekazywanych informacji,
-- planowana jest implementacja Solvro Auth
+- w późniejszej fazie projektu, planowana jest implementacja Solvro Auth
 
 ## Pozostałe nagłówki
 
