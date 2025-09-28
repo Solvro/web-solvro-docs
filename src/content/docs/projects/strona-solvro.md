@@ -29,7 +29,7 @@ description: Jak zmieniać treści na stronie solvro.pwr.edu.pl
 
    Klikasz przycisk w lewym górnym rogu z rakietą, który przekierowuje na stronę Githuba. Jeśli nie masz zainstalowanego VPN'a, wejdź ręcznie w link <https://github.com/Solvro/web-solvro.pwr.edu.pl/actions/workflows/cd.yaml>, bo przekierowanie nie zadziała poprawnie.
 
-   ![Przycisk z rakietą w lewym górnym rogu służy do deploymentu](../../../assets/solvro-webpage/login.png)
+   ![Przycisk z rakietą w lewym górnym rogu służy do deploymentu](../../../assets/solvro-webpage/deploy.png)
 
 1. Deploooy!
 
