@@ -101,7 +101,23 @@ export default defineConfig({
         },
         {
           label: "Solvro",
-          autogenerate: { directory: "solvro", collapsed: true },
+          items: [
+            { label: "Historia", link: "/solvro/history" },
+            { label: "Statut", link: "/solvro/statute" },
+            { label: "Strategia", link: "/solvro/strategy" },
+            { label: "Struktura", link: "/solvro/structure" },
+            { label: "VIII Zarząd", link: "/solvro/viii_board" },
+            {
+              label: "Poprzednie Zarządy",
+              collapsed: true,
+              items: [
+                {
+                  label: "VII Zarząd",
+                  link: "/solvro/poprzednie-zarzady/vii_board",
+                },
+              ],
+            },
+          ],
         },
         {
           label: "Sekcje",
