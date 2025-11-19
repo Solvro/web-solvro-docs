@@ -24,13 +24,13 @@ import olaImg from "../../../assets/people/aleksandra_dominiak.jpg";
 ## Zarząd
 
 <CardGrid>
-  <PersonCard 
+  <PersonCard
     name="Wojciech Krzos"
-    title='Prezes VIII Zarządu. Kontakt zewnętrzny & Nadzorowanie projektów.'
+    title='Prezes 25/26. Kontakt zewnętrzny & Nadzorowanie projektów.'
     bio="W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci."
     image={wojciechImg}
     socials={[
-      { platform: "linkedin", url: "https://linkedin.com/in/wojciechkrzos" },
+      { platform: "linkedin", url: "https://www.linkedin.com/in/wojciechkrzos/" },
       { platform: "instagram", url: "https://instagram.com/wojciechkrzos" },
       { platform: "github", url: "https://github.com/wojciechkrzos" }
     ]}
@@ -39,14 +39,20 @@ import olaImg from "../../../assets/people/aleksandra_dominiak.jpg";
 {" "}
 
 <PersonCard
-  name="Apolonia Abramowicz"
-  title="Wiceprezeska VIII Zarządu. Nadzorowanie sekcji."
+  name="Pola Abramowicz"
+  title="Wiceprezeska 25/26. Nadzorowanie sekcji."
   image={apoloniaImg}
+  socials={[
+    {
+      platform: "linkedin",
+      url: "https://www.linkedin.com/in/apolonia-abramowicz-5191b22aa/",
+    },
+  ]}
 />
 
-  <PersonCard 
+  <PersonCard
     name="Mikołaj Jałocha"
-    title="Wiceprezes VIII Zarządu. Dostępy & Audyty."
+    title="Wiceprezes 25/26. Dostępy & Audyty."
     image={mikolajImg}
   />
 </CardGrid>
@@ -54,80 +60,89 @@ import olaImg from "../../../assets/people/aleksandra_dominiak.jpg";
 ## Sekretarz
 
 <CardGrid>
-  <PersonCard
-    name="Aleksandra Dominiak"
-    title="Head of Multitasking."
-    image={olaImg}
-  />
+  <PersonCard name="Ola Dominiak" title="Sekretarz 25/26" image={olaImg} />
 </CardGrid>
 
-## Przewodniczący sekcji
+## Sekcje
+
+### Software Engineering
 
 <CardGrid>
   <PersonCard
     name="Kamil Marczak"
-    title="Frontend"
-    socials={[
-      { platform: "linkedin", url: "https://linkedin.com/in/kamilmarczak" },
-      { platform: "github", url: "https://github.com/qamarq" },
-    ]}
+    title="Head of Frontend"
+    socials={[{ platform: "github", url: "https://github.com/qamarq" }]}
   />
   <PersonCard
-    name="Dawid Linek"
-    title="Backend"
-    socials={[{ platform: "github", url: "https://github.com/dawidlinek" }]}
+    name="Szymon Stępień"
+    title="Head of Backend"
+    socials={[{ platform: "github", url: "https://github.com/GOLDER303" }]}
   />
   <PersonCard
-    name="Łukasz Lenkiewicz"
-    title="AI/ML"
-    socials={[
-      {
-        platform: "linkedin",
-        url: "https://linkedin.com/in/lukasz-lenkiewicz",
-      },
-      { platform: "github", url: "https://github.com/LukiLenkiewicz" },
-    ]}
+    name="Tomasz Trela"
+    title="Head of Mobile"
+    socials={[{ platform: "github", url: "https://github.com/tomasz-trela" }]}
   />
   <PersonCard
-    name="Szymon Kowaliński"
-    title="Mobile"
-    socials={[
-      { platform: "linkedin", url: "https://linkedin.com/in/kowdev" },
-      { platform: "github", url: "https://github.com/simon-the-shark" },
-    ]}
+    name="Konrad Szczepaniak"
+    title="Head of DevOps"
+    socials={[{ platform: "github", url: "https://github.com/mini-bomba" }]}
   />
   <PersonCard
     name="Barbara Cząstkiewicz"
-    title="UI/UX"
+    title="Head of UI/UX"
     socials={[
-      { platform: "instagram", url: "https://www.instagram.com/basiiiikkkk" },
+      { platform: "instagram", url: "https://www.instagram.com/basiiiikkkk/" },
     ]}
   />
+</CardGrid>
+
+### AI/ML & Emerging Tech
+
+<CardGrid>
   <PersonCard
-    name="Oliwier Dygdałowicz"
-    title="Promotion"
+    name="Daniel Borkowski"
+    title="Head of AI/ML"
+    socials={[{ platform: "github", url: "https://github.com/dekompot" }]}
+  />
+  <PersonCard
+    name="Przemysław Bilski"
+    title="Head of Hardware/Embedded"
+    socials={[{ platform: "github", url: "https://github.com/MikeStork" }]}
+  />
+</CardGrid>
+
+### Community
+
+<CardGrid>
+  <PersonCard
+    name="Daria Totoszko"
+    title="Head of Promotion"
     socials={[
       {
         platform: "linkedin",
-        url: "https://www.linkedin.com/in/oliwier-dygda%C5%82owicz-1aa356268",
+        url: "https://www.linkedin.com/in/daria-totoszko/",
       },
-      { platform: "github", url: "https://github.com/thesun901" },
     ]}
   />
   <PersonCard
-    name="Michał Bocian"
-    title="Hardware"
+    name="Wojciech Krzos"
+    title="Head of Management"
     socials={[
       {
         platform: "linkedin",
-        url: "https://www.linkedin.com/in/micha%C5%82-bocian-b207a1199/",
+        url: "https://www.linkedin.com/in/wojciechkrzos/",
       },
-      { platform: "github", url: "https://github.com/MikeStork" },
     ]}
   />
   <PersonCard
-    name="Miłosz Słoniecki"
-    title="Devops"
-    socials={[{ platform: "github", url: "https://github.com/sloniecki" }]}
+    name="Dawid Kasiarz"
+    title="Head of Fundraising"
+    socials={[
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/dawid-kasiarz/",
+      },
+    ]}
   />
 </CardGrid>
