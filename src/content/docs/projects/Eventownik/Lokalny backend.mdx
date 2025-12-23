@@ -1,0 +1,228 @@
+---
+title: Lokalny setup backendu
+description: Instrukcja lokalnej instalacji backendu dla zespołu frontendowego
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside type="note" title="Disclaimer" icon="information">
+  Poniższa instrukcja jest przeznaczona dla zespołu frontendowego Eventownika.
+</Aside>
+
+W przypadku jakichkolwiek problemów z backendem, przez które zdeployowana wersja może być czasowo niedostępna lub niestabilna, warto znać sposób uruchomienia całego stacku backendowego lokalnie. Dotyczy to zarówno Adonisowego (wkrótce Nestowego) backendu, jak i Postgresa.
+
+## Wymagania
+
+Oprócz podstawowych narzędzi, które już na pewno masz jeśli pracujesz nad frontem (Git, NodeJS etc.), dodatkowo potrzebny jest jedynie [Docker Desktop](https://www.docker.com/products/docker-desktop/). Jest to aplikacja desktopowa do zarządzania kontenerami Docker, przy której instalacji równocześnie zostaną zainstalowane wszystkie inne rzeczy potrzebne by odpalać u siebie kontenery (np. docker engine). Będzie ona potrzebna w celu łatwej, lokalnej instalacji zkonteneryzowanego Postgresa. Jeśli nie wiesz czym jest Docker, najlepiej na początku zapoznaj się z [dokumentacją](https://docs.docker.com/get-started/docker-overview/).
+
+## Postgres
+
+Zanim zainstalujemy backend, musimy najpierw zainstalować Postgresa.
+
+### Instalacja
+
+<Steps>
+1. Pobierz, zainstaluj i uruchom [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+2. Pobierz oficjalny obraz Postgresa za pomocą terminala. W tym przykładzie używamy wersji **17-alpine** - mniej stabilną od **16**, lecz zajmującą mniej miejsca na dysku.
+
+   ```bash
+   docker pull postgres:17-alpine
+   ```
+
+3. Uruchom nowy kontener z obrazem Postgresa
+
+   - Zamiast `eventownik-local` można wybrać dowolną nazwę kontenera,
+   - Flagi `-e` ustawiają zmienne środowiskowe,
+   - Flaga `-p` ustawia port, na którym działa postgres. **5432** to standardowy port Postgresa. Nie zmieniaj go.
+
+   ```bash
+   docker run --name eventownik-local -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=root -e POSTGRES_DB=postgres -d postgres:17-alpine
+   ```
+
+4. Zweryfikuj działanie kontenera. W terminalu wpisz:
+
+   ```bash
+   docker ps
+   ```
+
+   Wynikiem komendy będzie tabela z listą kontenerów.
+   <Aside type="caution" title="Bardzo ważne">
+      Upewnij się, że w kolumnie **PORT** w wierszu dla naszego kontenera jest napisane `0.0.0.0:5432->5432/tcp`. Jeżeli napisane jest jedynie `5432`, to kontener nie jest dostępny dla zewnętrznych połączeń - w naszym przypadku zewnętrznym połączeniem będzie backend, który w takiej sytuacji nie będzie mógł się połączyć z bazą. Wówczas, *może* być to spowodowane włączeniem kontenera z poziomu interfejsu Docker Desktop - jeśli tak zrobiłeś/aś, wyłącz kontener w panelu i włącz go komendą wskazaną w kroku 3.
+   </Aside>
+</Steps>
+
+### Dalsze użytkowanie
+
+- Aby zatrzymać kontener (wyłączyć bazę) wpisz w terminalu `docker stop eventownik-local`.
+- Aby uruchomić kontener ponownie, wpisz `docker start eventownik-local` - **start** włącza istniejący kontener, **run** tworzy nowy!
+
+### pgAdmin
+
+Przydatne narzędzie GUI do zarządzania bazą danych, dzięki którym możemy przeglądać zawartość tabeli oraz wykonywać kwerendy. Jeżeli jesteś masochistą, alternatywą jest CLI `psql`. 
+
+  <Aside type="note" title="Etap opcjonalny">
+    Instalacja pgAdmin nie jest wymagana aby wszystko działało, ale instalacja jest zalecana - zawsze może się przydać.
+  </Aside>
+
+#### Instalacja
+
+<Steps>
+1. Pobierz, zainstaluj i uruchom [pgAdmin](https://www.pgadmin.org/download).
+2. Będąc już na głównym ekranie, kliknij prawym przyciskiem na dropdown "Servers" na sidebarze po lewo opisanym jako "Object Explorer". Najedź na "Register" i wybierz opcję "Server...". W ten sposób zarejestrujemy nowy serwer na którym znajduje się baza - w naszym przypadku, serwer działający w kontenerze.
+3. W zakładce "General" okna konfiguracji wpisz dowolną nazwę (Name). Dla wygody zaznacz też "Connect now?" aby automatycznie nawiązać połączenie z bazą po zakończeniu konfiguracji.
+4. W zakładce "Connection" okna konfiguracji wpisz:
+   - Host name/address: `127.0.0.1`
+   - Port: `5432`
+   - Maintenance database: `postgres`
+   - Username: `postgres`
+   - Password: `root`
+   
+   Dla wygody zaznacz też "Save password?" aby zapisać hasło.
+</Steps>
+
+Po zakończeniu instalacji możesz rozwinąć drzewko dla naszej bazy w lewym sidebarze.
+
+#### Tabele
+
+<Steps>
+1. Nawiguj w drzewku wg.:
+
+   ```
+   Servers
+   └── <Nazwa Bazy>
+       └── Databases
+           └── postgres
+               └── Schemas
+                   └── public
+                       └── Tables
+                           ├── admin_permissions
+                           ├── admins
+                           ├── adonis_schema
+                           └── (...pozostałe tabele)
+   ```
+
+2. Zaznacz którąś z tabel.
+3. Na samej górze lewego sidebara opisanego jako "Object Explorer" kliknij w przycisk z ikonką tabeli (tytuł po najechaniu: All Rows).
+4. Na prawo otworzy się nowe okno z kilkoma elementami. Najważniejsza jest znajdująca się na dole tabelka (Data Output), która jest tabelą danych w tej tabeli. Dane możemy intuicyjnie edytować podwójnie klikając na komórki.
+</Steps>
+
+#### Kwerendy
+
+<Steps>
+1. Zaznacz w drzewku bazę danych ("postgres").
+2. Na samej górze lewego sidebara opisanego jako "Object Explorer" kliknij w pierwszy przycisk z ikonką bazy (tytuł po najechaniu: Query Tool).
+3. Po wpisaniu w okienku kwerendy, odpalamy ją przez `F5` lub dedykowany przycisk "Execute Script".
+</Steps>
+
+## Backend
+
+Aktualnie wciąż korzystamy z wersji **v2** backendu, która stoi na frameworku AdonisJS. W niedalekiej przyszłości będziemy przejść na wersję **v3**, która stoi na frameworku NestJS.
+
+### Instalacja
+
+import { Steps } from "@astrojs/starlight/components";
+
+<Steps>
+1. Sklonuj [repozytorium backendu](https://github.com/Solvro/backend-eventownik-v2).
+
+   ```bash
+   git clone https://github.com/Solvro/backend-eventownik-v2.git
+   ```
+
+2. Zainstaluj paczki.
+
+   ```bash
+   npm install
+   ```
+
+3. Skonfiguruj zmienne środowiskowe. W folderze projektu stwórz plik `.env.local` i umieść w nim poniższe zmienne:
+
+   ```bash
+   TZ=UTC
+   PORT=3333
+   HOST=localhost
+   LOG_LEVEL=info
+   APP_KEY=dddddddddddddddddddddddddddddddddddd
+   NODE_ENV=development
+   DB_HOST=127.0.0.1
+   DB_PORT=5432
+   DB_USER=postgres
+   DB_PASSWORD=root
+   DB_DATABASE=postgres
+   PHOTO_STORAGE_URL=public/
+   TEMP_STORAGE_URL=storage/temp/
+   FILE_STORAGE_URL=uploads/
+   SMTP_HOST=example.com
+   SMTP_PORT=465
+   SMTP_USERNAME=abcd@example.com
+   SMTP_PASSWORD=12345678
+   APP_DOMAIN=https://eventownik.solvro.pl
+   SIGNOZ_HOST=http://localhost:4318
+   HCAPTCHA_SECRET=0x0000000000000000000000000000000000000000
+   HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
+   ```
+
+   <Aside type="note" title="hCaptcha">
+      Wskazane wartości `HCAPTCHA_SECRET` i `HCAPTCHA_SITEKEY` są testowymi wartościami podanymi w [dokumentacji hCaptcha](https://docs.hcaptcha.com/#test-key-set-publisher-or-pro-account). Są to właściwe wartości dla celów developmentowych, ponieważ dzięki nim captcha przepuszcza automatycznie i nie trzeba przy każdym logowaniu czy rejestracji na wydarzenie rozwiązywać puzzli.
+   </Aside>
+
+   <Aside type="caution" title="SMTP">
+    Ta instrukcja nie obejmuje lokalnej konfiguracji SMTP - wobec tego, na lokalnym setupie nie będzie działać wysyłanie maili. Skontaktuj się z zespołem (preferowalnie techleadem backendu) w celu uzyskania danych.
+   </Aside>
+
+   <Aside type="caution" title="Sprawdź kluczowe zmienne">
+      W kontekście dockera, wartość `localhost` i `127.0.0.1` **NIE JEST** tym samym. Aby uniknąć potencjalnych błędów związanych z IPv4 i IPv6, dla zmiennej `DB_HOST` zawsze korzystaj z explicite adresu `127.0.0.1`.
+      
+      Ponadto, upewnij się, że zmienne `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` i `DB_DATABASE` są ustawione na wartości zgadzające się z tymi ustawionymi przy odpalaniu kontenera Postgresa (krok 3. w sekcji Postgres).
+   </Aside>
+
+4. Odpal migracje (po frontasiowemu: skonfiguruj strukturę bazy danych) wpisując w terminalu:
+
+   ```bash
+   node ace migration:run
+   ```
+
+5. Uruchom serwer
+
+   ```bash
+   npm run dev  
+   ```
+
+</Steps>
+
+To wszystko jeśli chodzi o lokalny setup wszystkiego co związane z backendem. Teraz należy upewnić się, czy wszystko mamy dobrze skonfigurowane po froncie.
+
+### Dalsze użytkowanie
+
+Przed każdym uruchomieniem backendu: 
+- Zaktualizuj kod o najnowsze zmiany z Githuba, 
+- Upewnij się, że wszystkie paczki są zainstalowane,
+- Wykonaj migracje.
+
+```bash
+git fetch origin
+git pull origin
+npm install
+node ace migration:run
+```
+
+## Frontend
+
+Dostosuj plik `.env.local` na froncie wg. lokalnego setupu:
+
+```bash
+NEXT_PUBLIC_EVENTOWNIK_API=http://localhost:3333/api/v1
+SESSION_SECRET=abchjasdhjksadhjkdajkdh
+NEXT_PUBLIC_PHOTO_URL=http://localhost:3333
+NEXT_PUBLIC_HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
+```
+
+<Aside type="caution" title="Ważne">
+  - Upewnij się, że `NEXT_PUBLIC_HCAPTCHA_SITEKEY` jest taki sam co `HCAPTCHA_SITEKEY` na backendzie,
+  - `NEXT_PUBLIC_EVENTOWNIK_API` **MUSI** mieć dopisane `/api/v1` na końcu,
+  - Z kolei `NEXT_PUBLIC_PHOTO_URL` **NIE MA** dopisanego `/api/v1`.
+</Aside>
+
+## Troubleshooting
+
+Backend Eventownika jest wciąż w stałej rozbudowie - częste zmiany są spodziewane. Jeżeli masz jakiekolwiek problemy, zrób nowy thread na jednym z eventownikowych kanałów na discordzie (*#frontend-eventownik* lub *#backend-eventownik*).
