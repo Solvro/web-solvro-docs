@@ -23,7 +23,7 @@ Zanim zainstalujemy backend, musimy najpierw zainstalować Postgresa.
 
 <Steps>
 1. Pobierz, zainstaluj i uruchom [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-2. Pobierz oficjalny obraz Postgresa za pomocą terminala. W tym przykładzie używamy wersji **17-alpine** - mniej stabilną od **16**, lecz zajmującą mniej miejsca na dysku.
+2. Pobierz oficjalny obraz Postgresa. W tym przykładzie używamy wersji **17-alpine** (zajmuje mniej miejsca niż standardowe) ale możesz wybrać właściwie dowolną wersję. Obraz można pobrać z poziomu interfejsu Docker Desktop lub poniższą komendą w terminalu:
 
    ```bash
    docker pull postgres:17-alpine
@@ -53,8 +53,8 @@ Zanim zainstalujemy backend, musimy najpierw zainstalować Postgresa.
 
 ### Dalsze użytkowanie
 
-- Aby zatrzymać kontener (wyłączyć bazę) wpisz w terminalu `docker stop eventownik-local`.
-- Aby uruchomić kontener ponownie, wpisz `docker start eventownik-local` - **start** włącza istniejący kontener, **run** tworzy nowy!
+- Aby zatrzymać kontener (wyłączyć bazę) wpisz w terminalu `docker stop eventownik-local` lub kliknij przycisk Stop w Docker Desktop.
+- Aby uruchomić kontener ponownie, kliknij przycisk "Start" w Docker Desktop lub wpisz `docker start eventownik-local` w terminal - **start** włącza istniejący kontener, **run** tworzy nowy!
 
 ### pgAdmin
 
@@ -171,7 +171,7 @@ import { Steps } from "@astrojs/starlight/components";
    </Aside>
 
    <Aside type="caution" title="Sprawdź kluczowe zmienne">
-      W kontekście dockera, wartość `localhost` i `127.0.0.1` **NIE JEST** tym samym. Aby uniknąć potencjalnych błędów związanych z IPv4 i IPv6, dla zmiennej `DB_HOST` zawsze korzystaj z explicite adresu `127.0.0.1`.
+      W kontekście Dockera, wartość `localhost` i `127.0.0.1` **NIE JEST** tym samym. Aby uniknąć potencjalnych błędów związanych z IPv4 i IPv6, dla zmiennej `DB_HOST` zawsze korzystaj z explicite adresu `127.0.0.1`.
       
       Ponadto, upewnij się, że zmienne `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` i `DB_DATABASE` są ustawione na wartości zgadzające się z tymi ustawionymi przy odpalaniu kontenera Postgresa (krok 3. w sekcji Postgres).
    </Aside>
@@ -215,9 +215,9 @@ node ace migration:run
 npm run dev
 ```
 
-## Frontend
+## Dostosowanie frontendu
 
-Dostosuj plik `.env.local` na froncie wg. lokalnego setupu:
+Pamiętaj aby zmienić plik `.env.local` w folderze frontendu wg. lokalnego setupu:
 
 ```bash
 NEXT_PUBLIC_EVENTOWNIK_API=http://localhost:3333/api/v1
@@ -236,6 +236,6 @@ NEXT_PUBLIC_HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
 
 - Backend Eventownika jest wciąż w stałej rozbudowie - częste zmiany są spodziewane. Jeżeli masz jakiekolwiek problemy, zrób nowy thread na jednym z eventownikowych kanałów na discordzie (*#frontend-eventownik* lub *#backend-eventownik*).
 - W trakcie opcjonalnej instalacji pgAdmina, istnieje szansa że stworzył i uruchomił się nowy defaultowy serwer Postgresa. W takiej sytuacji, będzie on kolidował z serwerem z kontenera, ponieważ oba chcą działać na `127.0.0.1` i porcie `5432`. Może być to bardzo prawdopodobna przyczyna pojawiących się ewentualnie problemów. W przypadku Windowsa, najprościej będzie wyłączyć go z poziomu menedżera usług:
-  - Włącz menedżer usług wyszukując *services.msc* w menu start
-  - W liście usług wyszukaj *postgresql-x64-16 - PostgreSQL Server 16* - kliknij prawym przyciskiem myszy i wybierz *Właściwości*
+  - Włącz menedżer usług wyszukując `services.msc` w menu start
+  - W liście usług wyszukaj `postgresql-x64-16 - PostgreSQL Server 16` - kliknij prawym przyciskiem myszy i wybierz *Właściwości*
   - Zatrzymaj usługę i zmień typ uruchomienia na "Wyłączony", aby nie uruchamiał się automatycznie po starcie komputera
