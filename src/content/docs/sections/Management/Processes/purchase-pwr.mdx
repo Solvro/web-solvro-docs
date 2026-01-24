@@ -1,11 +1,12 @@
 ---
-title: Zakupy
+title: Zakupy PWR
 description: Proces zakupowy na Politechnice Wrocławskiej
 ---
 
 import { Card } from "@astrojs/starlight/components";
 import { Steps } from "@astrojs/starlight/components";
 import { LinkCard } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
 
 ## Najważniejsze informacje
 
@@ -28,15 +29,17 @@ import { LinkCard } from "@astrojs/starlight/components";
 
 ## Procedura
 
+    <Aside type="caution">Dotyczy rozliczeń realizowanych z budżetu przechowywanego na Politechnice Wrocławskiej i z reguły rozliczanego przez DWAS (Dział Wsparcia Aktywności Studenckiej).</Aside>
+
 <Steps>
 
 1.  Rozpoczęcie procesu
 
-    Zaleca się zaczęcie procesu zakupu miesiąc wcześniej. Każdy wydatek należy skonsultować z osobą posiadają uprawnienia do wydatkowania budżetu (np. zarząd).
+    Zaleca się zaczęcie procesu zakupu co najmniej miesiąc wcześniej (z powodów administracyjnych PWr). Każdy wydatek należy skonsultować z osobą posiadają uprawnienia do wydatkowania budżetu (np. zarząd).
 
 2.  Uzyskanie oferty
 
-    Należy usyskać ofertę w formie PDF (export maila lub faktura proforma), która wskazuje co, jak, od kogo i za ile chcemy kupić. [Szczegóły jak uzyskać ofertę](/sections/management/guides/finances/intro/).
+    Należy usyskać ofertę w formie PDF (export konwersacji mailowej lub faktura proforma), która wskazuje co, jak, od kogo i za ile chcemy kupić. [Szczegóły jak uzyskać ofertę i co musi się w niej znaleźć](/sections/management/guides/finances/intro/).
 
 3.  Załączniki specjalne
 
@@ -56,6 +59,9 @@ import { LinkCard } from "@astrojs/starlight/components";
     - [Lista do wypłat w przypadku bileótów PKP i
     PKS](https://dwas.pwr.edu.pl/fcp/VGBUKOQtTKlQhbx08SlkTUQBAUWRuHQwFDBoIVURNWH9TFVZpCFghUHcKVigEQUw/_users/code_RCFYOKhZDNlk0HgciEQFQD0cZEm14XR0VG2sEVRNZCiE/finansowanie_dokumenty/listadowyplatybiletypkpipks.doc)
     - Listę osób wraz z indeksami
+    <Aside type="tip">
+      W przypadku wyjazdów powyżej 15 osób można uzupełnić skierowanie grupowe.
+    </Aside>
 
 4.  Złożenie zamówienia
 
@@ -69,11 +75,16 @@ import { LinkCard } from "@astrojs/starlight/components";
     W załączniku znajdą Państwo ofertę od wybranego konreahenta (oraz jeśli dotyczy wymagane załączniki). Szczególy zamówienia:<br/>
 
     <b>Podmiot</b>: Koło Naukowe Solvro <br />
-    <b>Osoba odpowiedzialna za rozliczenie</b>: <i>XYZ</i> <br />
+    <b>Osoba odpowiedzialna za rozliczenie</b>: <i>
+      imie, nazwisko, indeks, nr, mali (jeśli nie w stopce)
+    </i> <br />
     <b>Numer wniosku i dofinansowania</b>: <i>XYZ</i> (np. 88/2024 Koło
     Strategiczne, projekt nr. 91/KS/003025) <br />
-    <b>Firma realizująca zamówienie</b>: <i>XYZ</i> <br />
+    <b>Firma realizująca zamówienie</b>: <i>nazwa, adres, nip, telefon, mail</i> <br />
     <b>Koszt i forma dostawy</b>: <i>XYZ</i> <br />
+    <b>Kwota jednostkowa brutto</b>: <i>XYZ</i> zł <br />
+    <b>Kwota jednostkowa netto</b>: <i>XYZ</i> zł <br />
+    <b>Ilość</b>: <i>XYZ</i> zł <br />
     <b>Kwota łączna brutto</b>: <i>XYZ</i> zł <br />
     <b>Kwota łączna netto</b>: <i>XYZ</i> zł <br />
     <b>VAT</b>: <i>XYZ</i>, zł, <i>XYZ</i>% <br />
@@ -101,15 +112,15 @@ import { LinkCard } from "@astrojs/starlight/components";
 
 ### Adres dostawy
 
-Zakupy realizowane dostawą kuriera można realizować na adres: ulica Wybrzeże Stanisława Wyspiańskiego 40, 50-370 Wrocław bud. H-14, pok. 1.07.
+Zakupy realizowane dostawą kuriera można realizować na adres: ulica Wybrzeże Stanisława Wyspiańskiego 40, 50-370 Wrocław bud. H-14, pok. 1.07. W przypadku ciężkich przedmiotów należy być w kontakcie z kurierem celem wniesienia przedmiotu.
 
 ### Zakupy sprzętu
 
-Jeśli zakupiono materiały powyżej 500 zł, które będą służyły dłużej niż jeden rok należy zgłosić się do kierownika ewidencji i administrowania składnikami majątku DWAS Pana Romana Dębskiego (roman.debski@pwr.edu.pl), budynek H-14, pok. 1.10 celem wpisania na ewidencję.
+Jeśli zakupiono materiały powyżej 500 zł, które będą służyły dłużej niż jeden rok należy zgłosić się do kierownika ewidencji i administrowania składnikami majątku DWAS Pana [Romana Dębskiego](mailto:roman.debski@pwr.edu.pl), budynek H-14, pok. 1.10 celem wpisania na ewidencję.
 
 ### Śledzenie zamówień
 
-Wszystkie zamówienia powinny być śledzone od początku do końca. W przypadku braku odpowiedzi powyżej tygodnia można podbić maila.
+Wszystkie zamówienia powinny być śledzone od początku do końca. W przypadku braku odpowiedzi powyżej tygodnia należy podbić maila.
 
 ### Pytania i przypadki szczególne
 
