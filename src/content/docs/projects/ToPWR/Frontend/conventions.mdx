@@ -8,16 +8,6 @@ import { Aside } from "@astrojs/starlight/components";
 This document outlines the coding conventions, architectural patterns, and best practices established in the ToPWR Admin Panel project.
 For situations not covered in this document, the standard [Solvro web development documentation](https://docs.solvro.pl/sections/frontend/) applies.
 
-## Table of Contents
-
-- [Feature-Based Architecture](#feature-based-architecture)
-- [Component Organization](#component-organization)
-- [Type Definitions](#type-definitions)
-- [Route Structure](#route-structure)
-- [Environment Variables](#environment-variables)
-
----
-
 ## Feature-Based Architecture
 
 ### Import Restrictions
@@ -73,7 +63,7 @@ The most common points of issue are:
 
 ### Feature Structure
 
-Each feature is a self-contained module with its own components, types, and utilities. The specific directory layout is listed on [the file structure page](./file-structure#features-directory-srcfeatures).
+Each feature is a self-contained module with its own components, types, and utilities. The specific directory layout is listed on [the file structure page](https://docs.solvro.pl/projects/topwr/frontend/file-structure#features-directory-srcfeatures).
 
 <Aside type="note">
   Features need not include all of these files and directories, but only those
@@ -291,9 +281,13 @@ Pure utility functions:
 - Formatting functions
 
 ```typescript
-// data/form-error-messages.ts - Static data
+// data/form-error-messages.ts
+// Static data
 export const FORM_ERROR_MESSAGES = { ... };
+```
 
-// utils/is-empty-value.ts - Pure function
+```typescript
+// utils/is-empty-value.ts
+// Pure function
 export const isEmptyValue = (value: unknown): boolean => { ... };
 ```
