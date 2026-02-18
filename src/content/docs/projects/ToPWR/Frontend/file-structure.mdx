@@ -1,0 +1,221 @@
+---
+title: File Structure
+description: Struktura plików w projekcie Solvro/web-topwr.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+This document describes the project's file structure, which is based on the [bulletproof-react](https://github.com/alan2207/bulletproof-react/tree/master/apps/nextjs-app) software architecture.
+
+## Root Directory
+
+```txt
+web-topwr/
+├── docs/                   # Project documentation
+├── LICENSES/               # Third-party license files
+├── public/                 # Static assets (not imported in code)
+└── src/                    # Source code
+```
+
+## Source Directory (`src/`)
+
+### High-Level Structure
+
+```txt
+src/
+├── app/                    # Next.js App Router pages
+├── assets/                 # Static assets (imported in components)
+├── components/             # Shared React components
+├── config/                 # App configuration and constants
+├── data/                   # Static JSON-like data
+├── features/               # Feature-based modules
+├── hooks/                  # Shared React hooks
+├── lib/                    # Globally-reusable complex logic (and utils.ts, due to shadcn/ui convention)
+├── schemas/                # Shared Zod validation schemas
+├── stores/                 # Global state management (Jotai)
+├── tests/                  # Test utilities and setup
+├── types/                  # Shared TypeScript type definitions
+├── utils/                  # Pure utility functions
+└── proxy.ts                # Middleware proxy configuration
+```
+
+#### Global files and directories
+
+These folders are intended to contain _globally-shareable files_.
+
+- `assets/`
+- `config/`
+- `data/`
+- `hooks/`
+- `lib/`
+- `schemas/`
+- `stores/`
+- `types/`
+- `utils/`
+
+That means they should not include feature- or component-specific code.
+
+#### `lib/` vs `utils/`
+
+The utilities folder (`utils/`) should contain files where each file consists of exactly one pure function. The file should be named the same as the function, but using the appropriate casing. Utilities are getters, checkers, transformers and other highly-reusable small sections of logic.
+
+Library code (in the `lib/` folder) is anything that includes more complex sections of code to perform its function, and if it were to be separated into single functions, they would not serve any use by themselves as opposed to the library as a whole. Library code usually makes extensive use of utilities in the `utils/` folder. Library code can also be the utilities considered a main or integral part of a feature.
+
+Another use case for library code are custom functions which wrap a third-party dependency. This is done in order to safeguard against breaking API changes during dependency updates, which would not require modifications in all usages of said tool, but rather only in the "wrapper" library code.
+
+This distinction also applies to feature code. For a good example look at the [Polish Language feature](https://github.com/Solvro/web-topwr/tree/main/src/features/polish/).
+
+### Resource Routes Pattern
+
+Each resource follows a consistent structure:
+
+```txt
+<resource_name>/
+├── page.tsx                # Collection view (Abstract Resource List or Calendar)
+├── layout.tsx              # Resource-specific layout (Abstract Resource Layout)
+├── create/
+│   └── page.tsx            # Creation form (Abstract Resource Form)
+└── edit/
+    └── [id]/
+        └── page.tsx        # Edit form (Abstract Resource Edit Form)
+```
+
+For singletons, there is no `[id]` subfolder, and the edit page is at `edit/page.tsx`. There is also no creation page at all.
+
+<Aside type="note">
+  Not all resources need to have each of these pages. For some resources it
+  might not make sense to have a creation page, for example, so this is more of
+  a general guideline.
+</Aside>
+
+### Components Directory (`src/components/`)
+
+Organized by component type and usage:
+
+```txt
+components/
+├── core/                   # Basic reusable components
+├── inputs/                 # Reusable form input components
+├── presentation/           # ToPWR-specific interface elements
+├── providers/              # Global React context providers
+└── ui/                     # shadcn/ui components (auto-generated)
+```
+
+### Features Directory (`src/features/`)
+
+Feature-based architecture with domain-driven organization:
+
+```txt
+features/
+└── <feature-name>/
+    ├── api/                # Feature-specific functions which access the API
+    ├── components/         # Feature-specific React components
+    ├── data/               # Feature-specific JSON-like data
+    ├── schemas/            # Feature-specific Zod schemas
+    ├── types/              # Feature-specific types
+    ├── utils/              # Feature-specific utilities
+    ├── constants.ts        # Feature-specific constant values
+    ├── enums.ts            # Feature-specific enums
+    ├── index.ts            # Client exports
+    ├── server.ts           # Server exports
+    └── node.ts             # Node.js exports
+```
+
+The conventions on feature folders is explained more in-depth on [the conventions page](https://docs.solvro.pl/projects/topwr/frontend/conventions#feature-based-architecture)
+
+### Configuration Directory (`src/config/`)
+
+```txt
+config/
+├── constants.ts            # App-wide constants
+├── enums.ts                # Shared enumerations
+└── env.ts                  # Type-safe environment variable exports
+```
+
+### Data Directory (`src/data/`)
+
+This folder contains app-wide static data structures, such as arrays or JSON-like objects that represent non-changing data used throughout the app.
+
+### Schemas Directory (`src/schemas/`)
+
+This folder contains generic schemas that don't identify any specific resources but rather can be composed to create more concrete schemas.
+Schemas meant to be consumed in other parts of the codebase should be re-exported and imported via `src/schemas/index.ts`.
+
+### Types Directory (`src/types/`)
+
+```txt
+types/
+├── components.ts           # Component prop types
+├── helpers.ts              # Utility types
+└── schemas.ts              # Schema-related types
+```
+
+### Utils Directory (`src/utils/`)
+
+Pure utility functions:
+
+```txt
+utils/
+├── get-rounded-date.ts     # Date utilities
+├── is-empty-value.ts       # Value validation
+├── is-unset-enum-field.ts  # Enum validation
+├── transformations.ts      # Data transformations
+├── typescript.ts           # TypeScript helpers
+└── index.ts                # Re-exports
+```
+
+### Tests Directory (`src/tests/`)
+
+```txt
+tests/
+├── e2e/                    # End-to-end Playwright tests
+│   ├── api/                # Functions which access the API
+│   ├── specs/              # Test specifications
+│   ├── utils/              # E2E utilities
+│   ├── types.ts            # Test types
+│   ├── constants.ts        # Test constants
+│   └── auth.setup.ts       # Automatic login setup
+├── shared/                 # Utilities shared between both unit and e2e tests
+│   ├── mocks/              # Mock data and functions
+│   └── utils/              # Shared test utilities
+└── unit/                   # Unit tests
+    ├── components/         # Helper React components used in the testing of app components
+    ├── config/             # Mock server configuration
+    ├── mocks/              # Unit test mock constants and generators
+    ├── providers/          # Test React provider components
+    ├── utils/              # Unit test utilities
+    ├── setup.ts            # Vitest setup
+    └── index.ts            # Unit test re-exports
+```
+
+## Key Patterns
+
+### Feature Structure
+
+Each feature follows a consistent pattern:
+
+- **`index.ts`**: Public API exports (client-side)
+- **`server.ts`**: Server-side exports (React Server Components)
+- **`node.ts`**: Node.js environment exports (for tests, build scripts)
+- **`components/`**: Feature-specific UI components
+- **`types/`**: Feature-specific TypeScript types
+- **`utils/`**: Feature-specific utility functions
+
+### Component Organization
+
+Components are organized by their role:
+
+- **`core/`**: Generic reusable components
+- **`inputs/`**: Form input components
+- **`presentation/`**: Website-specific display/presentational components
+- **`ui/`**: Third-party UI library components (shadcn/ui)
+
+### Test Organization
+
+Tests are separated by type:
+
+- **`e2e/`**: Playwright end-to-end tests
+- **`unit/`**: Vitest unit tests
+- **`shared/`**: Utilities shared across test types
+
+Co-located test files use the pattern: `<component-name>.test.tsx`
