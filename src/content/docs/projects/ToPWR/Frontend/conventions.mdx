@@ -44,11 +44,15 @@ Each feature must have clear entry points:
 // features/authentication/index.ts
 export { LoginPage } from "./components/login-page";
 export { useAuth } from "./hooks/use-auth";
+```
 
+```typescript
 // features/authentication/server.ts
 export { getAuthStateServer } from "./utils/get-auth-state-server";
 export { PrivateLayout } from "./components/private-layout";
+```
 
+```typescript
 // features/authentication/node.ts
 export { AUTH_STATE_COOKIE_NAME } from "./constants";
 export { parseAuthCookie } from "./utils/parse-auth-cookie";
@@ -77,6 +81,7 @@ Each feature is a self-contained module with its own components, types, and util
 ```typescript
 // ✅ Good - Use public API
 import { Resource, getResourceMetadata } from "@/features/resources";
+
 // ❌ Bad - Import internal implementation
 import { RESOURCE_METADATA } from "@/features/resources/data/resource-metadata";
 ```
@@ -168,7 +173,7 @@ app/layout.tsx                              # Root layout
 
 Routes are protected using the `Bouncer` component:
 
-```typescript
+```typescript {6}
 export default async function PrivateLayout({ children }: WrapperProps) {
   return (
     <>
@@ -244,7 +249,7 @@ const apiUrl = env.NEXT_PUBLIC_API_URL;
 
 Schemas use PascalCase with "Schema" suffix:
 
-```typescript
+```typescript "Schema"
 export const RequiredStringSchema = z.string().trim().min(1);
 export const ColorValueSchema = z.string().regex(/^#([0-9a-fA-F]{3}){1,2}$/);
 export const IsoTimestampSchema = z.string().datetime({ offset: true });
