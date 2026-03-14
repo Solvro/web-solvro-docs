@@ -37,7 +37,6 @@ class WelcomeText extends StatelessWidget {
 
 - **Definicja**: To dynamiczne widgety, które mogą przechowywać i aktualizować swój stan. Jest to podstawowy, wbudowany do Fluttera sposób na [zarządzanie stanem](/sections/mobile/state-management/).
 - **Zastosowanie**:
-
   - Używane są tam, gdzie interfejs musi reagować na zmiany, na przykład przy licznikach lub rozwijanych zakładkach.
   - Dostarcza tzw. lifecycle methods, które pozwalają na wywołanie efektów ubocznych i zsynchronizowanie imperatywnych elementów z deklaratywnym frameworkiem (jakim jest Flutter).
 
@@ -256,7 +255,6 @@ Podsumowując, o ile **builder methods** są minimalnie krótsze w zapisie, niek
 ### 3. Wydajność
 
 - **const Constructors**: Używaj `const` konstruktorów gdzie to możliwe. Konstruktor `const` tworzy widget, który jest kompilowany w czasie kompilacji i reużyty w runtime. Oznacza to, że:
-
   - Widget z `const` konstruktorem jest tworzony tylko raz i współdzielony między wszystkimi instancjami
   - Zmniejsza to zużycie pamięci i poprawia wydajność
   - Można użyć `const` tylko gdy wszystkie parametry konstruktora są również `const`
