@@ -1,8 +1,8 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import tailwindcss from "@tailwindcss/vite";
 import remarkHeadingId from "remark-heading-id";
-import tailwind from "@astrojs/tailwind";
 import liveCode from "astro-live-code";
 import react from "@astrojs/react";
 import starlightLinksValidator from "starlight-links-validator";
@@ -11,10 +11,18 @@ import { mermaidRemarkPlugin } from "./src/plugins/mermaid";
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    // @ts-expect-error ??????
+    // @ts-expect-error remark-heading-id's published types are wider than Astro's expected plugin signature.
     remarkPlugins: [remarkHeadingId, mermaidRemarkPlugin],
   },
   site: "https://docs.solvro.pl",
+  vite: {
+    // @ts-expect-error Astro and Tailwind currently resolve different Vite type packages.
+    plugins: [tailwindcss()],
+    esbuild: {
+      jsx: "automatic",
+      jsxImportSource: "react",
+    },
+  },
   integrations: [
     liveCode({
       defaultProps: {
@@ -59,12 +67,28 @@ export default defineConfig({
         Head: "./src/overrides/Head.astro",
         SocialIcons: "./src/overrides/SocialIcons.astro",
       },
-      social: {
-        email: "mailto:kn.solvro@pwr.edu.pl",
-        facebook: "https://www.facebook.com/knsolvro",
-        github: "https://github.com/solvro/web-solvro-docs",
-        linkedin: "https://www.linkedin.com/company/knsolvro",
-      },
+      social: [
+        {
+          icon: "email",
+          label: "Email",
+          href: "mailto:kn.solvro@pwr.edu.pl",
+        },
+        {
+          icon: "facebook",
+          label: "Facebook",
+          href: "https://www.facebook.com/knsolvro",
+        },
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/solvro/web-solvro-docs",
+        },
+        {
+          icon: "linkedin",
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/company/knsolvro",
+        },
+      ],
       editLink: {
         baseUrl: "https://github.com/Solvro/web-solvro-docs/edit/main/",
       },
@@ -128,9 +152,6 @@ export default defineConfig({
           autogenerate: { directory: "projects", collapsed: true },
         },
       ],
-    }),
-    tailwind({
-      applyBaseStyles: false,
     }),
     react(),
   ],
