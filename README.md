@@ -21,7 +21,7 @@ Teoretycznie powinno się tu znaleźć wszystko co powinieneś/aś wiedzieć o p
 
 Wymagania:
 
-- Node.js 20.x
+- Node.js 22.12+
 
 1. Instalujemy dependencies
 
