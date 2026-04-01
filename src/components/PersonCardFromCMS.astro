@@ -1,6 +1,10 @@
 ---
 import PersonCard from "./PersonCard.astro";
-import { getPersonByName, extractPlatformFromUrl } from "./TeamMembers";
+import {
+  CMS_ADDRESS,
+  getPersonByName,
+  extractPlatformFromUrl,
+} from "./TeamMembers";
 
 interface Props {
   name: string;
@@ -11,7 +15,7 @@ interface Props {
 const person = await getPersonByName(Astro.props.name);
 
 const image = person?.photo
-  ? { src: `https://cms.solvro.pl/assets/${person.photo}?key=member` }
+  ? { src: `${CMS_ADDRESS}/assets/${person.photo}?key=member` }
   : undefined;
 
 const socials =
