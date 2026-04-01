@@ -106,11 +106,15 @@ export default defineConfig({
             { label: "Statut", link: "/solvro/statute" },
             { label: "Strategia", link: "/solvro/strategy" },
             { label: "Struktura", link: "/solvro/structure" },
-            { label: "VIII Zarząd", link: "/solvro/viii_board" },
+            { label: "IX Zarząd", link: "/solvro/ix_board" },
             {
               label: "Poprzednie Zarządy",
               collapsed: true,
               items: [
+                {
+                  label: "VIII Zarząd",
+                  link: "/solvro/poprzednie-zarzady/viii_board",
+                },
                 {
                   label: "VII Zarząd",
                   link: "/solvro/poprzednie-zarzady/vii_board",
@@ -134,4 +138,20 @@ export default defineConfig({
     }),
     react(),
   ],
+  vite: {
+    resolve: {
+      alias: [
+        { find: /^#assets\/(.*\.cast)/, replacement: "/src/assets/$1?url" },
+        { find: /^#assets\/(.*)/, replacement: "/src/assets/$1" },
+        { find: /^#components\/(.*)/, replacement: "/src/components/$1" },
+      ],
+      extensions: [".astro", ".jsx", ".tsx", ".js", ".ts"],
+    },
+  },
+  redirects: {
+    "/solvro/board": {
+      destination: "/solvro/ix_board",
+      status: 302,
+    },
+  },
 });
