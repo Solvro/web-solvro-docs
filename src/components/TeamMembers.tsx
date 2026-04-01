@@ -9,7 +9,40 @@ interface TeamMember {
   photo: string; // Added photo based on usage in getTeam fetch
 }
 
-const CMS_ADDRESS = "https://cms.solvro.pl";
+export const CMS_ADDRESS = "https://cms.solvro.pl";
+
+interface Person {
+  id: string;
+  name: string;
+  subtitle?: string;
+  photo?: string;
+  sociale: Social[];
+}
+
+export function extractPlatformFromUrl(url: string): string | null {
+  const lowerUrl = url.toLowerCase();
+  if (lowerUrl.includes("github")) return "github";
+  if (lowerUrl.includes("linkedin")) return "linkedin";
+  if (lowerUrl.includes("instagram")) return "instagram";
+  return null;
+}
+
+export async function getPersonByName(name: string): Promise<Person | null> {
+  const url = `${CMS_ADDRESS}/items/Team?fields=id,name,subtitle,photo,sociale.link&filter[name][_eq]=${encodeURIComponent(name)}`;
+  console.log("fetching", url);
+  try {
+    const res = await fetch(url);
+    if (!res.ok)
+      throw new Error(
+        `Failed to fetch person: ${res.status} ${res.statusText}`
+      );
+    const data: { data: Person[] } = await res.json();
+    return data.data[0] ?? null;
+  } catch (error) {
+    console.error(`Fetching person '${name}' from CMS failed:`, error);
+    return null;
+  }
+}
 
 /** Fetches the team members of a given Solvro section, guaranteed to have links to their GitHub profiles by default.
  * @param {string} section The specialization name, such as "Frontend" or "Backend"

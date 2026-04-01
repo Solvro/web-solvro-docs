@@ -13,54 +13,20 @@ import {
   Aside,
 } from "@astrojs/starlight/components";
 
-import SocialIcon from "#components/SocialIcon";
-import PersonCard from "#components/PersonCard";
-
-import konradImg from "#assets/people/wojciech_krzos.jpeg";
-import kamilImg from "#assets/people/apolonia_abramowicz.png";
-import dominikaImg from "#assets/people/aleksandra_dominiak.jpg";
-import dariaImg from "#assets/people/mikolaj_jalocha.jpg";
-import dawidImg from "#assets/people/mikolaj_jalocha.jpg";
-import dominikImg from "#assets/people/mikolaj_jalocha.jpg";
+import PersonCardFromCMS from "#components/PersonCardFromCMS";
 
 ## Zarząd
 
 <CardGrid>
-  <PersonCard
+  <PersonCardFromCMS
     name="Konrad Guzek"
-    title='Prezes 26/27. Kontakt zewnętrzny i nadzorowanie projektów.'
-    bio="W Solvro od jesieni 2024. W kole udzielał się w wielu projektach jako członek sekcji frontend. Programista fullstack, pianista i miłośnik żeglugi śródlądowej."
-    image={konradImg}
+    bio="W Solvro od jesieni 2024. W Kole udzielał się w wielu projektach jako członek sekcji frontend. Programista fullstack, pianista i miłośnik żeglugi śródlądowej."
   />
-
-<PersonCard
-  name="Kamil Marczak"
-  title="Wiceprezes ds. Technologii 26/27. Nadzorowanie sekcji technologicznych."
-  image={kamilImg}
-/>
-
-<PersonCard
-  name="Dominik Galus"
-  title="Wiceprezes ds. AI/ML 26/27. Nadzorowanie sekcji AI/ML i Hardware."
-  image={dominikImg}
-/>
-
-<PersonCard
-  name="Daria Totoszko"
-  title="Wiceprezes ds. Marketingu 26/27. Wizerunek zewnętrzny i nadzorowanie sekcji Promo."
-  image={dariaImg}
-/>
-<PersonCard
-  name="Dawid Kasiarz"
-  title="Wiceprezes ds. Finansów 26/27. Nadzorowanie spraw finansowych i fundraisingu."
-  image={dawidImg}
-/>
-
-  <PersonCard
-    name="Dominika Stefaniak"
-    title="Wiceprezes ds. HR i Operacji 26/27. Nadzorowanie członkami, rekrutacji i spraw operacyjnych."
-    image={dominikaImg}
-  />
+  <PersonCardFromCMS name="Kamil Marczak" />
+  <PersonCardFromCMS name="Dominik Galus" />
+  <PersonCardFromCMS name="Daria Totoszko" />
+  <PersonCardFromCMS name="Dawid Kasiarz" />
+  <PersonCardFromCMS name="Dominika Stefaniak" />
 </CardGrid>
 
 ## Sekcje
@@ -68,64 +34,24 @@ import dominikImg from "#assets/people/mikolaj_jalocha.jpg";
 ### Software Engineering
 
 <CardGrid>
-  <PersonCard
-    name="Kamil Marczak"
-    title="Head of Frontend"
-    socials={[{ platform: "github", url: "https://github.com/qamarq" }]}
-  />
-  <PersonCard
-    name="Antoni Czaplicki"
-    title="Head of Backend"
-    socials={[{ platform: "github", url: "https://github.com/GOLDER303" }]}
-  />
-  <PersonCard
-    name="Tomasz Trela"
-    title="Head of Mobile"
-    socials={[{ platform: "github", url: "https://github.com/tomasz-trela" }]}
-  />
-  <PersonCard
-    name="Konrad Szczepaniak"
-    title="Head of DevOps"
-    socials={[{ platform: "github", url: "https://github.com/mini-bomba" }]}
-  />
-  <PersonCard
-    name="Barbara Cząstkiewicz"
-    title="Head of UI/UX"
-    socials={[
-      { platform: "instagram", url: "https://www.instagram.com/basiiiikkkk/" },
-    ]}
-  />
+  <PersonCardFromCMS name="Kamil Marczak" />
+  <PersonCardFromCMS name="Antoni Czaplicki" />
+  <PersonCardFromCMS name="Tomasz Trela" />
+  <PersonCardFromCMS name="Konrad Szczepaniak" />
+  <PersonCardFromCMS name="Barbara Cząstkiewicz" />
 </CardGrid>
 
 ### AI/ML & Emerging Tech
 
 <CardGrid>
-  <PersonCard name="Daniel Borkowski" title="Head of AI/ML" />
-  <PersonCard name="Przemysław Bilski" title="Head of Hardware" />
+  <PersonCardFromCMS name="Daniel Borkowski" />
+  <PersonCardFromCMS name="Przemysław Bilski" />
 </CardGrid>
 
 ### Community
 
 <CardGrid>
-  <PersonCard
-    name="Daria Totoszko"
-    title="Head of Promo"
-    socials={[
-      {
-        platform: "linkedin",
-        url: "https://www.linkedin.com/in/daria-totoszko/",
-      },
-    ]}
-  />
-  <PersonCard
-    name="Wojciech Krzos"
-    title="Head of Management"
-    socials={[
-      {
-        platform: "linkedin",
-        url: "https://www.linkedin.com/in/wojciechkrzos/",
-      },
-    ]}
-  />
-  <PersonCard name="Dawid Kasiarz" title="Head of Fundraising" />
+  <PersonCardFromCMS name="Daria Totoszko" />
+  <PersonCardFromCMS name="Wojciech Krzos" />
+  <PersonCardFromCMS name="Dawid Kasiarz" />
 </CardGrid>
