@@ -29,7 +29,6 @@ export function extractPlatformFromUrl(url: string): string | null {
 
 export async function getPersonByName(name: string): Promise<Person | null> {
   const url = `${CMS_ADDRESS}/items/Team?fields=id,name,subtitle,photo,sociale.link&filter[name][_eq]=${encodeURIComponent(name)}`;
-  console.log("fetching", url);
   try {
     const res = await fetch(url);
     if (!res.ok)
