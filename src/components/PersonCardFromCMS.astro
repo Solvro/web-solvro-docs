@@ -4,6 +4,7 @@ import { getPersonByName, extractPlatformFromUrl } from "./TeamMembers";
 
 interface Props {
   name: string;
+  subtitle?: string;
   bio?: string;
 }
 
@@ -25,7 +26,7 @@ const socials =
   person && (
     <PersonCard
       name={person.name}
-      title={person.subtitle}
+      title={Astro.props.subtitle ?? person.subtitle}
       bio={Astro.props.bio}
       image={image}
       socials={socials}
