@@ -1,0 +1,64 @@
+---
+title: VIII Zarząd 25/26
+sidebar:
+  order: 2
+description: Roczny plan działania VIII Zarządu KN Solvro
+---
+
+import {
+  Steps,
+  Card,
+  CardGrid,
+  LinkCard,
+  Aside,
+} from "@astrojs/starlight/components";
+
+import SocialIcon from "#components/SocialIcon";
+import PersonCard from "#components/PersonCard";
+
+import wojciechImg from "#assets/people/wojciech_krzos.jpeg";
+import apoloniaImg from "#assets/people/apolonia_abramowicz.png";
+import mikolajImg from "#assets/people/mikolaj_jalocha.jpg";
+import olaImg from "#assets/people/aleksandra_dominiak.jpg";
+
+## Zarząd
+
+<CardGrid>
+  <PersonCard
+    name="Wojciech Krzos"
+    title='Prezes 25/26. Kontakt zewnętrzny & Nadzorowanie projektów.'
+    bio="W Solvro od Wakacyjnego Wyzwania Solvro 2024. Działa(ł) w WRSS W4, Radiu LUZ, Komisji ds. Organizacji. Gitarzysta, kucharz, gracz D&D i fan kapibar w każdej postaci."
+    image={wojciechImg}
+    socials={[
+      { platform: "linkedin", url: "https://www.linkedin.com/in/wojciechkrzos/" },
+      { platform: "instagram", url: "https://instagram.com/wojciechkrzos" },
+      { platform: "github", url: "https://github.com/wojciechkrzos" }
+    ]}
+  />
+
+{" "}
+
+<PersonCard
+  name="Pola Abramowicz"
+  title="Wiceprezeska 25/26. Nadzorowanie sekcji."
+  image={apoloniaImg}
+  socials={[
+    {
+      platform: "linkedin",
+      url: "https://www.linkedin.com/in/apolonia-abramowicz-5191b22aa/",
+    },
+  ]}
+/>
+
+  <PersonCard
+    name="Mikołaj Jałocha"
+    title="Wiceprezes 25/26. Dostępy & Audyty."
+    image={mikolajImg}
+  />
+</CardGrid>
+
+## Sekretarz
+
+<CardGrid>
+  <PersonCard name="Ola Dominiak" title="Sekretarz 25/26" image={olaImg} />
+</CardGrid>
