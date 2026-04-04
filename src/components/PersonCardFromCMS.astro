@@ -1,0 +1,39 @@
+---
+import PersonCard from "./PersonCard.astro";
+import {
+  CMS_ADDRESS,
+  getPersonByName,
+  extractPlatformFromUrl,
+} from "./TeamMembers";
+
+interface Props {
+  name: string;
+  subtitle?: string;
+  bio?: string;
+}
+
+const person = await getPersonByName(Astro.props.name);
+
+const image = person?.photo
+  ? { src: `${CMS_ADDRESS}/assets/${person.photo}?key=member` }
+  : undefined;
+
+const socials =
+  person?.sociale.reduce<{ platform: string; url: string }[]>((acc, s) => {
+    const platform = extractPlatformFromUrl(s.link);
+    if (platform) acc.push({ platform, url: s.link });
+    return acc;
+  }, []) ?? [];
+---
+
+{
+  person && (
+    <PersonCard
+      name={person.name}
+      title={Astro.props.subtitle ?? person.subtitle}
+      bio={Astro.props.bio}
+      image={image}
+      socials={socials}
+    />
+  )
+}
