@@ -1,3 +1,31 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-accent-50: #80b3ff;
+  --color-accent-100: #80b3ff;
+  --color-accent-200: #80b3ff;
+  --color-accent-300: #80b3ff;
+  --color-accent-400: #6583c8;
+  --color-accent-500: #6583c8;
+  --color-accent-600: #305088;
+  --color-accent-700: #305088;
+  --color-accent-800: #243d6a;
+  --color-accent-900: #203560;
+  --color-accent-950: #1a2d4c;
+
+  --color-gray-50: #f6fafd;
+  --color-gray-100: #f6fafd;
+  --color-gray-200: #eaf4fb;
+  --color-gray-300: #c4d9ec;
+  --color-gray-400: #d9e8ff;
+  --color-gray-500: #274276;
+  --color-gray-600: #203560;
+  --color-gray-700: #1f324f;
+  --color-gray-800: #131e35;
+  --color-gray-900: #0f1626;
+  --color-gray-950: #0f1626;
+}
