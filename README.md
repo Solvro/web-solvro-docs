@@ -5,7 +5,6 @@ Teoretycznie powinno się tu znaleźć wszystko co powinieneś/aś wiedzieć o p
 ## FAQ
 
 - Jak dodać nową stronę?
-
   1. Dodaj nowy plik .md folderze `content/docs/solvro/` np. `mario.md`
   2. W pliku `mario.md` musisz napisać tytuł i opis jako fronmatter, przykładowo:
 
