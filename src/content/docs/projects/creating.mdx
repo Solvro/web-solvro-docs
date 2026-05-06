@@ -1,0 +1,68 @@
+---
+title: Tworzenie nowego projektu
+description: Dowiedz się, jak utworzyć nowy projekt w KN Solvro!
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import RepoSettings from "#assets/tutorials/project-creation/repo-settings.png";
+import AdvancedSecurity from "#assets/tutorials/project-creation/advanced-security.png";
+import DependabotSecurityUpdates from "#assets/tutorials/project-creation/dependabot-security-updates.png";
+import DependabotPRs from "#assets/tutorials/project-creation/dependabot-prs.png";
+
+## Setup
+
+Zamiast konfigurowania wszystkiego od zera, gdy tworzysz nowy projekt, koniecznie wybierz odpowiedni szablon (jeśli jest on dostępny) i skorzystaj z utworzonej konfiguracji projektowej.
+
+### Frontend
+
+- [Szablon projektu Next.js](https://github.com/Solvro/web-template)
+- [@Solvro/config](https://github.com/Solvro/lib-web-solvro-config)
+
+### Backend
+
+- [@Solvro/config](https://github.com/Solvro/lib-web-solvro-config)
+
+### Mobile
+
+- [@Solvro/config (mobile)](https://github.com/Solvro/lib-mobile-solvro-config)
+
+## Konfiguracja repozytorium
+
+Niektóre procesy nie są zautomatyzowane powyższymi narzędziami, ale nadal są istotne dla dobrze zbudowanego i zabezpieczonego projektu.
+
+### Aktualizacje Dependabot-a
+
+Aktualizacje bezpieczeństwa Dependabot-a są kluczowe przy zapobieganiu podatności w Twojej aplikacji. Przy każdym nowym projekcie zalecane jest natychmiastowe włączenie tej funkcji.
+
+Jak to zrobić?
+
+<Steps>
+
+1. Otwórz ustawienia repozytorium
+
+   <img src={RepoSettings} alt="Ustawienia repozytorium na GitHubie" />
+
+2. Znajdź w lewym menu sekcję "zaawansowanego bezpieczeństwa"
+
+   <img src={AdvancedSecurity} alt="Sekcja zaawansowanego bezpieczeństwa" />
+
+3. Wciśnij przycisk włączenia aktualizacji bezpieczeństwa Dependabot-a
+
+   <img
+     src={DependabotSecurityUpdates}
+     alt="Aktualizacja bezpieczeństwa Dependabot-a"
+   />
+
+4. Ciesz się automatycznymi PR-kami gdy Dependabot wykryje podatności :3
+
+   <img src={DependabotPRs} alt="Pull requesty utworzone przez Dependabot-a" />
+
+</Steps>
+
+### Warto zobaczyć
+
+W tych ustawieniach jest wiele innych przydatnych opcji, które warto sobie przejrzeć.
+
+1. Skanowanie jakości kodu
+2. Wykrywanie wycieków kluczy prywatnych
+3. Polityki gałęzi i scalowania kodu

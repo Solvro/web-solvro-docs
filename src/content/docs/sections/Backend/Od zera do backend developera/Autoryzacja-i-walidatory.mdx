@@ -11,10 +11,9 @@ Autoryzacja jest potrzebna w zasadzie w każdej aplikacji. Nawet jeżeli nasze A
 to przydałoby się aby nowe treści można było dodać poprzez pewnego rodzaju panel administratora. W tym rozdziale zostaną wytłomaczone podstawy
 przebiegu i metod autoryzacji, opisane kilka dobrych praktyk związanych z nimi oraz, dodatkowo, znajdzie się sekcja o walidacji danych wejściowych.
 
-
 Kod zawarty w tym poradniki można zobaczyć w całości w [repozytorium z Wakacyjnego Wyzwania 2025](https://github.com/Solvro/backend-wakacyjne-wyzwanie-2025)
 
-----------------
+---
 
 ## Autoryzacja
 
@@ -26,11 +25,11 @@ Najprostszym sposobem jest użycie zwykłego hasła dostępu, powiązanego z kon
 developera aplikacji - hasła mogą bowiem wyciec, czy zostać ukradzione. Dlatego należy zastanowić się w jaki sposób takie hasło można bezpiecznie
 przechowywać. Tutaj pojawiają się dwa słowa: hashowanie oraz enkrypcja. Poniżej definicje z Oxford Languages Dictionary (przetłumaczone):
 
-**Enkrypcja (Encryption)** - *odwracalny proces zamiany informacji lub danych w kod/szyfr, szczególnie aby uniemożliwić nieautoryzowany dostęp.*
+**Enkrypcja (Encryption)** - _odwracalny proces zamiany informacji lub danych w kod/szyfr, szczególnie aby uniemożliwić nieautoryzowany dostęp._
 
-**Hashowanie (Hashing)** - *zamiana kawałka danych na numeryczny lub alfanumeryczny łańcuch znaków za pomocą funkcji, której rezultat ma zawsze tą samą długość.*
+**Hashowanie (Hashing)** - _zamiana kawałka danych na numeryczny lub alfanumeryczny łańcuch znaków za pomocą funkcji, której rezultat ma zawsze tą samą długość._
 
-Do hasła jednak, najlepsze jest hashowanie - wtedy, nawet w przypadku wycieku danych, złodziej nie jest w stanie odzyskać pierwotnego hasła z hashu. Zatem typowy *flow* rejestracji użytkownika oraz
+Do hasła jednak, najlepsze jest hashowanie - wtedy, nawet w przypadku wycieku danych, złodziej nie jest w stanie odzyskać pierwotnego hasła z hashu. Zatem typowy _flow_ rejestracji użytkownika oraz
 logowania wygląda następująco:
 
 Flow rejestracji:
@@ -76,16 +75,17 @@ Flow każdego zapytania wymagającego autoryzacji:
 2. Weryfikujemy tą informację na serwerze
 3. Zapytanie przechodzi dalej lub zostaje odrzucone
 
-Z pomocą tutaj przychodzą *interceptory*, zwane czasami *filtrami*, czy *guardami*. Idea jest jedna - zareaguj na, przekształć, lub odrzuć zapytanie.
+Z pomocą tutaj przychodzą _interceptory_, zwane czasami _filtrami_, czy _guardami_. Idea jest jedna - zareaguj na, przekształć, lub odrzuć zapytanie.
 
 ![interceptors](../../../../../assets/nestjs/auth/int.png)
 
 My zajmiemy się tzw. Guards, które działają jak służba celna - mają na celu zbadać, czy zapytanie może wejść do naszego endpoint’u. Powstaje jednak pytanie, co badać i jak badać?
 
 Temat jest bardzo obszerny, ale my skupimy się na jednym z najpopularniejszych i
- nie wymagającym utrzymania żadnego stanu na naszym serwerze rozwiązaniu - dzięki temu nie będzie problemów z utrzymaniem sesji.
+nie wymagającym utrzymania żadnego stanu na naszym serwerze rozwiązaniu - dzięki temu nie będzie problemów z utrzymaniem sesji.
 
 Podstawowe kryteria:
+
 - unikalna wartość dla każdego użytkownika
 - z wartości można uzyskać identyfikator użytkownika
 - wartość jest przekazana klientowi podczas logowania
@@ -117,7 +117,7 @@ generateToken(email: string): string {
 }
 ```
 
-W NestJS, każdy *Guard* implementuje metodę `canActivate` zwracającą wartości boolean. Jeżeli metoda zwróci fałsz lub rzuci wyjątek,
+W NestJS, każdy _Guard_ implementuje metodę `canActivate` zwracającą wartości boolean. Jeżeli metoda zwróci fałsz lub rzuci wyjątek,
 zapytanie jest odrzucane. W przypadku wartości `true`, zapytanie przechodzi do następnego interceptora, lub, jeżeli już nie ma żadnego w kolejce, do naszego
 endpointu.
 
@@ -182,23 +182,24 @@ Implementacja podstawowego RBAC w NestJS jest prosta. Załóżmy, że każdy uż
 // RoleGuard, interceptor, który sprawdza uprawnienia
 @Injectable()
 export class RoleGuard implements CanActivate {
-    constructor(private reflector: Reflector) {
-    }
+  constructor(private reflector: Reflector) {}
 
-    canActivate(context: ExecutionContext): boolean {
-        const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
-            context.getHandler(),
-            context.getClass(),
-        ]);
-        if (requiredRoles.length === 0) {
-            return true;
-        }
-        const request: RequestWithUser = context.switchToHttp().getRequest();
-        return request.user !== undefined && requiredRoles.includes(request.user.role);
+  canActivate(context: ExecutionContext): boolean {
+    const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (requiredRoles.length === 0) {
+      return true;
     }
+    const request: RequestWithUser = context.switchToHttp().getRequest();
+    return (
+      request.user !== undefined && requiredRoles.includes(request.user.role)
+    );
+  }
 }
 // dekorator (adnotacja) do endpointów
-export const ROLES_KEY = 'roles';
+export const ROLES_KEY = "roles";
 export const Roles = (...roles: Role[]) => SetMetadata(ROLES_KEY, roles);
 ```
 
@@ -255,11 +256,12 @@ Konfiguracja CORS w NestJS jest bardzo prosta i wymaga w zasadzie jednej linijki
 ```ts
 /// main.ts
 app.enableCors({
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-        origin: 'http://localhost:5500',
-        preflightContinue: false,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+  origin: "http://localhost:5500",
+  preflightContinue: false,
 });
 ```
+
 Określamy jakie typy zapytań są dopuszczalne, i jakie źródła akceptujemy.
 
 ### 7. „Nasze 500, to dalej 500 – Walidatory”
@@ -284,6 +286,7 @@ async update(@Param("id") id: string, @Body() updateTripDto: UpdateTripDto) {
     return this.tripService.update(+id, updateTripDto);
 }
 ```
+
 Załóżmy, że klient wyśle zapytanie, gdzie parametr `id` nie będzie liczbą.
 
 Pierwsze rozwiązanie (z `ParseIntPipe`), zwróci do klienta odpowiedź z kodem 400 i informacją o ty, że `id` musi być liczbą całkowitą.
@@ -297,14 +300,14 @@ Za pomocą wbudowanych walidatorów można sprawdzić większość potrzebnych k
 
 ```ts
 export class CreateTripDto {
-    @IsString()
-    @Length(3, 255)
-    name: string;
+  @IsString()
+  @Length(3, 255)
+  name: string;
 
-    @IsOptional()
-    @IsNumber()
-    @Min(0)
-    plannedBudget?: number;
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  plannedBudget?: number;
 }
 ```
 
@@ -313,15 +316,15 @@ nie może zawierać pewnych słów.
 
 ```ts
 // nice-text.validator.ts
-@ValidatorConstraint({name: 'niceText', async: false})
+@ValidatorConstraint({ name: "niceText", async: false })
 export class NiceText implements ValidatorConstraintInterface {
-    validate(text: string, _: ValidationArguments) {
-        return !text.includes("loser");
-    }
+  validate(text: string, _: ValidationArguments) {
+    return !text.includes("loser");
+  }
 
-    defaultMessage(_: ValidationArguments) {
-        return "That's not a nice text, is it?";
-    }
+  defaultMessage(_: ValidationArguments) {
+    return "That's not a nice text, is it?";
+  }
 }
 ```
 

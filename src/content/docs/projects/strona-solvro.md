@@ -10,7 +10,6 @@ description: Jak zmieniać treści na stronie solvro.pwr.edu.pl
    Aby dostać się do naszego systemu zarządzania treścią, należy najpierw pobrać VPN studencki ze strony [https://di.pwr.edu.pl/uslugi/siec/vpn/globalprotect-vpn-dla-studentow](https://di.pwr.edu.pl/uslugi/siec/vpn/globalprotect-vpn-dla-studentow)
 
 1. Wejście do CMS'a
-
    - Jak pobrałeś VPN'a wystarczy wejść na stronę <https://cms.solvro.pl>
 
    - Jeśli nie, wejdź na stronę <https://vpn.student.pwr.edu.pl/https/cms.solvro.pl/admin>, zaloguj się swoimi danymi z USOSa. Po zalogowaniu się wejdź jeszcze raz w ten sam link.

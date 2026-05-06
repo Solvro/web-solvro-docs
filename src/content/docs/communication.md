@@ -59,12 +59,10 @@ description: Jak korzystamy z kanałów komunikacyjnych (Discord, Messenger, Git
 ## Sugerowane dobre praktyki i dodatkowe pomysły dla kierowników
 
 1. **Automatyczne integracje**:
-
    - Rozważ włączenie powiadomień z GitHuba do dedykowanego kanału na Discord. Dzięki temu zespół może na bieżąco widzieć nowe PR i dyskusje.
    - Jeśli macie system zarządzania zadaniami (np. GitHub Proejcts, Asanę, Trello, Notion, Jirę), warto ustawić integrację z Discord, by kluczowe akcje (np. zamknięcie zadania) były widoczne od razu.
 
 2. **Porządkowanie wątków**:
-
    - W Messenger trudno wrócić do starych wątków. Jeśli temat wymaga dłuższych ustaleń, **przenieś** dyskusję na Discord.
    - W przypadku krytycznych decyzji dot. kodu — przechodź na GitHuba (Issues/PR), aby był łatwy dostęp do kontekstu w przyszłości.
 

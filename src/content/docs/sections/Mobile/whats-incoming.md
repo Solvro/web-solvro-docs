@@ -16,7 +16,6 @@ Co jeszcez będzie w tym handbooku. Kolejność losowa.
 - StatelessWidget; UI in general
 - dzielenie na widgety/komponenty
 - Zarządzanie stanem
-
   - stan lokalny vs globalny
   - stan lokalny
     - StatefullWidget
@@ -36,7 +35,6 @@ Co jeszcez będzie w tym handbooku. Kolejność losowa.
 - oddzielanie logiki biznesowej od UI
 
 - modele
-
   - hashable, comparable, immutable
   - freezed
   - parsowanie jsonów
