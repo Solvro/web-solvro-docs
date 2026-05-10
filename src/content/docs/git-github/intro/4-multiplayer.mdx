@@ -497,6 +497,63 @@ import merge03 from "#assets/git/chapter-2/merge-03.cast";
   </Card>
 </CardGrid>
 
+#### How to do it? (console edition)
+
+Na samym początku wypada upewnić się, czy mamy najnowsze zmiany i dopiero później przechodzimy do samej procedury
+
+1. Pobieramy najnowsze zmiany w lokalnym repo:
+
+```
+git checkout main
+git pull
+```
+
+Ewentualnie jeszcze
+
+```
+git fetch
+```
+
+2. Wracamy na branch zmian i robimy rebase:
+
+```
+git checkout <nasz-branch>
+git rebase main
+```
+
+3. Git automatycznie przechodzi po każdym twoim commicie i wykrywa konflikty, które stara się automatycznie mergować. Jednak czasami wymagany jest manualny merge (wyskoczy odpowiednie okienko w edytorze)
+   Porównujesz pliki i wybierasz ręcznie zmiany oraz zapisujesz (`git status` pokaże które pliki mają konflikty):
+   ![Merge Conflict Image](../../../../assets/tutorials/git-basics/merge-conflict.png)
+
+Po wybraniu zmian we wszystkich plikach
+
+```
+git add .
+```
+
+sprawdzamy czy wszystko poprawione
+
+```
+git status
+```
+
+gdy wszystko ok, to powtarzamy proces aż procedura rebase commitów się skończy (gdy przejdzie przez wszystkie commity)
+
+```
+git rebase --continue
+```
+
+i wracamy znowu do punktu 3 4. Wszystko poprawione i rebase gotowy. Ze względu na zmianę linearnej historii commitów należy dodać `--force-with-lease` do pierwszego pusha
+
+```
+git push --force-with-lease
+```
+
+:::caution
+użyj `git rebase --abort`,
+by przerwać proces rebase i przywrócić historię do stanu z przed `git rebase`, jeśli się pogubisz
+:::
+
 ### Squash (aka. spłaszczanie)
 
 Squash, czyli "spłaszczanie", polega na złączeniu wszystkich zapisów z gałęzi integrowanej w jeden, a następnie dopisanie tego nowego zapisu na koniec gałęzi docelowej.
