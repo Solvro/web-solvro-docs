@@ -1,0 +1,43 @@
+---
+title: Testowanie lokalnie
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
+description: Przewodnik do lokalnego testowania paczki
+---
+
+import { FileTree } from "@astrojs/starlight/components";
+
+Przykładowa struktura folderów do testowania:
+
+<FileTree>
+
+- my-projects
+  - lib-web-solvro-config/
+  - my-new-next-project/ - next.config.ts - package.json
+
+</FileTree>
+
+Lokalne testowanie paczki należy rozpocząć od jej zbuildowania
+
+W folderze paczki: `/lib-web-solvro-config`
+
+```bash
+npm run build
+```
+
+Następnie należy ją zlinkować do nowego projektu lokalnego
+
+Wciąż w folderze paczki należy wykonać polecenie:
+
+```bash
+npm link .
+```
+
+Nowy projekt musi "wiedzieć" że paczka jest lokalnie a nie w globalnym rejestrze npm, dlatego w folderze z projektem `/my-new-next-project` należy zainstalować jej lokalną wersję:
+
+```bash
+npm i ../lib-web-solvro-config
+```
+
+Po uruchomieniu `npx @solvro/config` korzystamy już z lokalnej wersji.
