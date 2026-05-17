@@ -27,17 +27,14 @@ npm run build
 ```
 
 Następnie należy ją zlinkować do nowego projektu lokalnego
-
-Wciąż w folderze paczki należy wykonać polecenie:
-
-```bash
-npm link .
-```
-
-Nowy projekt musi "wiedzieć" że paczka jest lokalnie a nie w globalnym rejestrze npm, dlatego w folderze z projektem `/my-new-next-project` należy zainstalować jej lokalną wersję:
+w folderze projektu (`/my-new-next-project`) należy wykonać polecenie:
 
 ```bash
-npm i ../lib-web-solvro-config
+npm link ../lib-web-solvro-config
 ```
 
 Po uruchomieniu `npx @solvro/config` korzystamy już z lokalnej wersji.
+
+:::tip
+Uruchomienie `npx @solvro/config --all --force` nie powoduje aktualizacji paczki, tryb interaktywny zawsze będzie instalował nam w projekcie najnowszą opublikowaną wersję 😉
+:::
