@@ -1,7 +1,12 @@
 export function Contributor(props) {
   return (
     <td
-      style={{ textAlign: "center", verticalAlign: "middle", border: "none" }}
+      style={{
+        textAlign: "center",
+        verticalAlign: "middle",
+        border: "none",
+        minWidth: "120px",
+      }}
     >
       <a href={props.link}>
         <img
