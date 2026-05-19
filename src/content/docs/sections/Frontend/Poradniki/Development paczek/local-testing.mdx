@@ -31,10 +31,12 @@ w folderze projektu (`/my-new-next-project`) należy wykonać polecenie:
 
 ```bash
 npm link ../lib-web-solvro-config
+// lub
+pnpm link ../lib-web-solvro-config
 ```
 
-Po uruchomieniu `npx @solvro/config` korzystamy już z lokalnej wersji.
+Po uruchomieniu `npx @solvro/config` lub `pnpm exec config` korzystamy już z lokalnej wersji.
 
 :::tip
-Uruchomienie `npx @solvro/config --all --force` nie powoduje aktualizacji paczki, tryb interaktywny zawsze będzie instalował nam w projekcie najnowszą opublikowaną wersję 😉
+Uruchomienie z argumentami `--all --force` nie powoduje aktualizacji paczki, tryb interaktywny zawsze będzie instalował nam w projekcie najnowszą opublikowaną wersję 😉
 :::
