@@ -6,7 +6,25 @@ tableOfContents:
 description: Przewodnik do lokalnego testowania paczki
 ---
 
-import { FileTree } from "@astrojs/starlight/components";
+import {
+  Aside,
+  FileTree,
+  LinkCard,
+  TabItem,
+  Tabs,
+  Steps,
+} from "@astrojs/starlight/components";
+
+export const STEP_1_TITLE =
+  "Lokalne testowanie paczki należy rozpocząć od jej zbudowania.";
+export const STEP_2_TITLE =
+  "Następnie należy ją dodać do globalnego katalogu pakietów.";
+export const STEP_3_TITLE =
+  "Na koniec należy powiązać paczkę testowaną w katalogu projektu testowanego.";
+export const STEP_4_TITLE =
+  "Po powiązaniu pakietu, utworzone zostały linki symboliczne do lokalnej paczki, które umożliwiają nam lokalne importowanie i uruchamianie komend paczek.";
+export const STEP_5_TITLE =
+  "W celu pogłębiania swojej wiedzy na temat linkowania pakietów, warto zapoznać się z oficjalną dokumentacją menedżera pakietów.";
 
 Przykładowa struktura folderów do testowania:
 
@@ -14,29 +32,99 @@ Przykładowa struktura folderów do testowania:
 
 - /
   - lib-web-solvro-config/
-  - my-new-next-project/ - next.config.ts - package.json
+    - package.json
+    - ...
+  - my-new-next-project/
+    - next.config.ts
+    - package.json
+    - ...
 
 </FileTree>
 
-Lokalne testowanie paczki należy rozpocząć od jej zbuildowania
+W tej sytuacji `lib-web-solvro-config` jest katalogiem zawierającym projekt paczki, którą chcemy testować, zaś `my-new-next-project` jest katalogiem projektu, w którym chcemy testować paczkę.
 
-W folderze paczki: `/lib-web-solvro-config`
+:::note
+Należy wybrać odpowiedni menedżer pakietów do projektu, **w którym będziesz testować paczkę**, a nie do samego projektu paczki.
+:::
 
-```shell
-npm run build
-```
+<Tabs>
+  <TabItem label="npm">
+    <Steps>
+    1. {STEP_1_TITLE}
 
-Następnie należy ją zlinkować do nowego projektu lokalnego
-w folderze projektu (`/my-new-next-project`) należy wykonać polecenie:
+       ```shell
+       npm run build # przykładowo, zależy od projektu pakietu
+       ```
 
-```shell
-npm link ../lib-web-solvro-config
-# lub
-pnpm link ../lib-web-solvro-config
-```
+    2. {STEP_2_TITLE}
 
-Po uruchomieniu `npx @solvro/config` lub `pnpm exec config` korzystamy już z lokalnej wersji.
+       ```shell
+       npm link
+       ```
+
+    3. {STEP_3_TITLE}
+
+       ```shell
+       cd ../my-new-next-project
+       npm link @solvro/config # npm teraz wie, że pakiet jest dostępny lokalnie
+       ```
+
+    4. {STEP_4_TITLE}
+
+       ```shell
+       npx @solvro/config # uruchomiona zostaje lokalna wersja paczki
+       ```
+
+    5. {STEP_5_TITLE}
+
+        <LinkCard title="Linkowanie pakietów w npm" href="https://docs.npmjs.com/cli/commands/npm-link" />
+    </Steps>
+
+  </TabItem>
+  <TabItem label="pnpm">
+    <Steps>
+    1. {STEP_1_TITLE}
+
+       <Aside type="caution">
+       Tutaj używamy menedżera pakietów skonfigurowanego w projekcie paczki, a nie w projekcie, w którym będziemy testować paczkę. W tym przykładzie w `lib-web-solvro-config` skonfigurowany jest `npm`, więc dla tego kroku nie używamy komendy `pnpm`.
+       </Aside>
+
+       ```shell
+       npm run build # przykładowo, zależy od projektu pakietu
+       ```
+
+    2. {STEP_2_TITLE}
+
+       ```shell
+       pnpm add -g .
+       ```
+       <Aside type="tip">
+       Gdy projekt pakietu ma skonfigurowany menedżer pakietów inny niż `pnpm`, to w niektórych środowiskach, np. przy użyciu `volta`, komenda `pnpm` może być zablokowana w katalogu pakietu. Wówczas należy tę komendę wykonać z innego katalogu i wskazać ścieżkę do projektu.
+       </Aside>
+       ```shell
+       cd ../my-new-next-project
+       pnpm add -g ../lib-web-solvro-config
+       ```
+
+    3. {STEP_4_TITLE}
+
+       ```shell
+       pnpm exec config # uruchomiona zostaje lokalna wersja paczki
+       ```
+
+       :::tip
+       Gdy nazwa pakietu składa się również z namespace-u, `pnpm` linkuje tylko nazwę bazową paczki. Dlatego w powyższym przykładzie używamy `config` zamiast `@solvro/config`.
+       :::
+
+    4. {STEP_5_TITLE}
+
+        <LinkCard title="Linkowanie pakietów w pnpm" href="https://pnpm.io/cli/link" />
+
+    </Steps>
+
+  </TabItem>
+</Tabs>
 
 :::tip
-Uruchomienie z argumentami `--all --force` nie powoduje aktualizacji paczki, tryb interaktywny zawsze będzie instalował nam w projekcie najnowszą opublikowaną wersję 😉
+W przypadku testowania pakietu `@solvro/config`, uruchomienie z argumentami `--all --force` nie powoduje aktualizacji paczki. Tryb interaktywny zawsze będzie instalował nam w projekcie najnowszą opublikowaną wersję 😉
 :::
