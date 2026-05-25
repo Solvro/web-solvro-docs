@@ -1,0 +1,142 @@
+---
+title: Testowanie lokalnie
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
+description: Przewodnik do lokalnego testowania paczki
+---
+
+import {
+  Aside,
+  FileTree,
+  LinkCard,
+  TabItem,
+  Tabs,
+  Steps,
+} from "@astrojs/starlight/components";
+
+export const STEP_1_TITLE =
+  "Lokalne testowanie paczki należy rozpocząć od jej zbudowania.";
+export const STEP_2_TITLE =
+  "Następnie należy ją dodać do globalnego katalogu pakietów.";
+export const STEP_3_TITLE =
+  "Na koniec należy powiązać paczkę testowaną w katalogu projektu testowanego.";
+export const STEP_5_TITLE =
+  "W celu pogłębiania swojej wiedzy na temat linkowania pakietów, warto zapoznać się z oficjalną dokumentacją menedżera pakietów.";
+
+Przykładowa struktura folderów do testowania:
+
+<FileTree>
+
+- /
+  - lib-web-solvro-config/
+    - package.json
+    - ...
+  - my-new-next-project/
+    - next.config.ts
+    - package.json
+    - ...
+
+</FileTree>
+
+W tej sytuacji `lib-web-solvro-config` jest katalogiem zawierającym projekt paczki, którą chcemy testować, zaś `my-new-next-project` jest katalogiem projektu, w którym chcemy testować paczkę.
+
+:::note
+Należy wybrać odpowiedni menedżer pakietów do projektu, **w którym będziesz testować paczkę**, a nie do samego projektu paczki.
+:::
+
+<Tabs>
+  <TabItem label="npm">
+    <Steps>
+    1. {STEP_1_TITLE}
+
+       ```shell
+       npm run build # przykładowo, zależy od projektu pakietu
+       ```
+
+    2. {STEP_2_TITLE}
+
+       ```shell
+       npm link
+       ```
+
+    3. {STEP_3_TITLE}
+
+       ```shell
+       cd ../my-new-next-project
+       npm link @solvro/config # npm teraz wie, że pakiet jest dostępny lokalnie
+       ```
+
+    4. Po powiązaniu pakietu, utworzone zostały linki symboliczne do lokalnej paczki, które umożliwiają nam lokalne importowanie i uruchamianie komend paczek.
+
+       ```shell
+       npx @solvro/config # uruchomiona zostaje lokalna wersja paczki
+       ```
+
+    5. {STEP_5_TITLE}
+
+        <LinkCard title="Linkowanie pakietów w npm" href="https://docs.npmjs.com/cli/commands/npm-link" />
+    </Steps>
+
+  </TabItem>
+  <TabItem label="pnpm">
+    <Steps>
+    1. {STEP_1_TITLE}
+
+       <Aside type="caution">
+       Tutaj używamy menedżera pakietów skonfigurowanego w projekcie paczki, a nie w projekcie, w którym będziemy testować paczkę. W tym przykładzie w `lib-web-solvro-config` skonfigurowany jest `npm`, więc dla tego kroku nie używamy komendy `pnpm`.
+       </Aside>
+
+       ```shell
+       npm run build # przykładowo, zależy od projektu pakietu
+       ```
+
+    2. {STEP_2_TITLE}
+
+       ```shell
+       pnpm add -g .
+       ```
+       :::note
+       Gdy projekt pakietu ma skonfigurowany menedżer pakietów inny niż `pnpm`, to w niektórych środowiskach, np. przy użyciu `volta`, komenda `pnpm` może być zablokowana w katalogu pakietu. Wówczas należy tę komendę wykonać z innego katalogu i wskazać ścieżkę do projektu.
+       :::
+       ```shell
+       cd ../my-new-next-project
+       pnpm add -g ../lib-web-solvro-config
+       ```
+
+    3. Po powiązaniu pakietu, utworzone zostały linki symboliczne do **binarek deklarowanych w lokalnej paczce**, które umożliwiają nam lokalne uruchamianie komend paczek.
+
+       ```shell
+       pnpm exec config # uruchomiona zostaje lokalna wersja paczki
+       ```
+
+       :::tip
+       Gdy nazwa pakietu składa się również z namespace-u, `pnpm` linkuje tylko nazwę bazową paczki. Dlatego w powyższym przykładzie używamy `config` zamiast `@solvro/config`.
+       :::
+
+       :::caution
+        Tą metodą linkowane są tylko komendy wykonywalne wystawiane przez pakiet, a nie sam pakiet. Oznacza to, że importy z tej paczki w kodzie **nie będą odnosiły się** do lokalnej wersji. Jeśli tego potrzebujesz, to przejdź do kolejnego kroku.
+       :::
+
+    5. Żeby móc importować lokalną paczkę w kodzie (lub np. w konfiguracji `eslint` albo innego narzędzia), można opcjonalnie powiązać paczkę w katalogu projektu testowanego.
+       ```shell
+       pnpm link ../lib-web-solvro-config
+       ```
+       :::danger
+       Tą metodą zajdą zmiany w plikach `package.json`, `pnpm-lock.yaml` i `pnpm-workspace.yaml`, które **nie powinny być commitowane**. Ze względu na to, ten sposób linkowania pakietów **nie jest polecany** i powinien tylko być stosowany, gdy metoda z poprzedniego kroku nie spełnia naszych potrzeb.
+       :::
+       Teraz możemy importować lokalną paczkę w kodzie, np. w konfiguracji `eslint`:
+       ```javascript
+       // eslint.config.mjs
+       import { solvro } from "@solvro/config/eslint";
+       export default solvro(); // to jest lokalna wersja paczki
+       ```
+
+    5. {STEP_5_TITLE}
+
+        <LinkCard title="Linkowanie pakietów w pnpm" href="https://pnpm.io/cli/link" />
+
+    </Steps>
+
+  </TabItem>
+</Tabs>
