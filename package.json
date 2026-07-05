@@ -53,5 +53,9 @@
     "*.{astro,md,mdx,mjs,ts,tsx,js,jsx,json}": [
       "prettier --write --ignore-unknown"
     ]
+  },
+  "allowScripts": {
+    "sharp": false,
+    "esbuild": false
   }
 }
