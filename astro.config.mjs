@@ -107,7 +107,7 @@ export default defineConfig({
               label: "Statut",
               items: [
                 { label: "Regulamin", link: "/solvro/statute" },
-                { label: "Regulamin biura", link: "/solvro/office-rules" },
+                { label: "Regulamin Biura", link: "/solvro/office-rules" },
               ],
             },
             { label: "Strategia", link: "/solvro/strategy" },
