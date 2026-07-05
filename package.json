@@ -25,7 +25,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "asciinema-player": "^3.8.1",
-    "astro": "^4.16.16",
+    "astro": "^6.4.6",
     "astro-live-code": "^0.0.4",
     "astro-og-canvas": "^0.5.4",
     "date-fns": "^4.1.0",
