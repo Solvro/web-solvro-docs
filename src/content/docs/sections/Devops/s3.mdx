@@ -1,0 +1,86 @@
+---
+title: S3
+description: Jak poprawnie skonfigurować nowy bucket S3?
+---
+
+W tym dokumencie dowiesz się, jak utworzyć nowego bucketa na S3, utworzyć dla niego użytkownika administracyjnego oraz jak skonfigurować dostęp publiczny.
+
+## Przygotowanie
+
+Do administracji klastrem S3 potrzebujesz programu [`mcli`](https://docs.min.io/aistor/reference/cli/), którego znajdziesz we większości repozytoriów dystrybucji linuxa.
+Panel webowy jest niestety mocno ograniczony, i nie skonfigurujesz przez niego odpowiednio dostępów.
+
+Zaloguj się do klastra komendą [`mcli alias set`](https://docs.min.io/aistor/reference/cli/mc-alias/mc-alias-set/).
+Dane logowania otrzymasz od przewodniczącego sekcji.
+
+## Nowy bucket
+
+Buckety można tworzyć komendą [`mcli mb`](https://docs.min.io/aistor/reference/cli/mc-mb/).
+Jest to również jedyna akcja, którą można dokonać przez webowy panel administracyjny S3.
+
+## Nowy użytkownik
+
+Użytkownika utworzysz komendą [`mcli admin user add`](https://docs.min.io/aistor/reference/cli/admin/mc-admin-user/mc-admin-user-add/).
+Generuj losowe hasła lokalnymi generatorami, na przykład poprzez menedżer haseł, lub [ulubionym narzędziem CLI](https://github.com/mini-bomba/mini_bomba-utils/blob/main/docs/passwordgen.md).
+
+W przypadku tworzenia konta dla innego projektu, przekaż dane dostępowe poprzez vaultwardena, funkcją "Send".
+
+## Przypisywanie uprawnień
+
+By przypisać uprawnienia do bucketa użytkownikowi, napisz odpowiednią politykę w formacie [AWS IAM Policy](https://docs.min.io/aistor/administration/iam/access/#policy-document-structure). Przykładowa polityka znajduje się na końcu tego rozdziału.
+
+Po napisaniu polityki, zapisz ją do lokalnego pliku JSON, a następnie wgraj na klaster S3 komendą [`mcli admin policy create`](https://docs.min.io/aistor/reference/cli/admin/mc-admin-policy/mc-admin-policy-create/).
+Po wgraniu polityki, przypisz ją użytkownikowi komendą [`mcli admin policy attach`](https://docs.min.io/aistor/reference/cli/admin/mc-admin-policy/mc-admin-policy-attach/).
+Przypisania polityk do użytkownika możesz wylistować komendą [`mcli admin policy entities`](https://docs.min.io/aistor/reference/cli/admin/mc-admin-policy/mc-admin-policy-entities/).
+
+Przykładowa polityka, zezwalająca użytkownikowi na listowanie, odczyt, zapis i usuwanie danych z bucketa `test-bucket`:
+
+```json
+{
+  "Statement": [
+    {
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::test-bucket/*"]
+    },
+    {
+      "Action": ["s3:ListBucket"],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::test-bucket"]
+    }
+  ],
+  "Version": "2012-10-17"
+}
+```
+
+## Dostęp publiczny
+
+Dostęp publiczny do bucketa skonfigurujesz komendą [`mcli anonymous set-json`](https://docs.min.io/aistor/reference/cli/mc-anonymous/mc-anonymous-set-json/).
+
+Przygotuj politykę AWS IAM, tak jak w rozdziale wyżej, dodając pole `Principal` do każdej reguły.
+Przykładowo, by udostepnić publicznie pobieranie z bucketa `test-bucket`, nie zezwalając na listowanie zawartości, użyj nastepującej polityki:
+
+```json
+{
+  "Statement": [
+    {
+      "Action": ["s3:GetObject"],
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": ["*"]
+      },
+      "Resource": ["arn:aws:s3:::test-bucket/*"]
+    }
+  ],
+  "Version": "2012-10-17"
+}
+```
+
+By usunąć politykę dostępu publicznego, wgraj nową politykę z pustą listą reguł:
+
+```json
+{
+  "Statement": [],
+  "Version": "2012-10-17"
+}
+```
