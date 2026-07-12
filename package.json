@@ -17,7 +17,7 @@
     "#components/*": "./src/components/*.astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.9",
     "@astrojs/react": "^3.6.3",
     "@astrojs/starlight": "^0.29.2",
     "@astrojs/starlight-tailwind": "^2.0.3",
