@@ -22,8 +22,6 @@
     "@astrojs/starlight": "^0.29.2",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.2",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
     "asciinema-player": "^3.8.1",
     "astro": "^4.16.16",
     "astro-live-code": "^0.0.4",
@@ -41,6 +39,8 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
     "@types/remark-heading-id": "^1.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
