@@ -26,7 +26,7 @@
     "astro": "^4.16.16",
     "astro-live-code": "^0.0.4",
     "astro-og-canvas": "^0.5.4",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.4.0",
     "date-fns-tz": "^3.2.0",
     "mermaid": "^11.15.0",
     "react": "^18.3.1",
