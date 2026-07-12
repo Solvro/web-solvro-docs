@@ -43,7 +43,7 @@
     "@types/react-dom": "^18.3.7",
     "@types/remark-heading-id": "^1.0.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.10",
+    "lint-staged": "^15.5.2",
     "prettier": "^3.4.1",
     "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.82.0",
