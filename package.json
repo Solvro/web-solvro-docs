@@ -23,7 +23,7 @@
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.5",
     "asciinema-player": "^3.8.1",
-    "astro": "^4.16.16",
+    "astro": "^7.0.0",
     "astro-live-code": "^0.0.6",
     "astro-og-canvas": "^0.5.4",
     "date-fns": "^4.4.0",
