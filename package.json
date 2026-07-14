@@ -25,7 +25,7 @@
     "asciinema-player": "^3.8.1",
     "astro": "^4.16.16",
     "astro-live-code": "^0.0.6",
-    "astro-og-canvas": "^0.5.4",
+    "astro-og-canvas": "^0.13.0",
     "date-fns": "^4.4.0",
     "date-fns-tz": "^3.2.0",
     "mermaid": "^11.16.0",
