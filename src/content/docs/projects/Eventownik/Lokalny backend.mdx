@@ -3,62 +3,118 @@ title: Lokalny setup backendu
 description: Instrukcja lokalnej instalacji backendu dla zespołu frontendowego
 ---
 
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 
 <Aside type="note" title="Disclaimer" icon="information">
   Poniższa instrukcja jest przeznaczona dla zespołu frontendowego Eventownika.
 </Aside>
 
-W przypadku jakichkolwiek problemów z backendem, przez które zdeployowana wersja może być czasowo niedostępna lub niestabilna, warto znać sposób uruchomienia całego stacku backendowego lokalnie. Dotyczy to zarówno Adonisowego (wkrótce Nestowego) backendu, jak i Postgresa.
+Aktualnie dostępne są dwie wersje backendu:
+
+- **v2** - oparty na frameworku **AdonisJS**, aktualnie wdrożony na produkcji.
+- **v3** - oparty na frameworku **NestJS**, nowa wersja w trakcie wdrażania.
+
+Instrukcja poniżej obejmuje setup obu wersji. W zależności od potrzeb, przełączaj się między zakładkami **v2** i **v3**.
 
 ## Wymagania
 
-Oprócz podstawowych narzędzi, które już na pewno masz jeśli pracujesz nad frontem (Git, NodeJS etc.), dodatkowo potrzebny jest jedynie [Docker Desktop](https://www.docker.com/products/docker-desktop/). Jest to aplikacja desktopowa do zarządzania kontenerami Docker, przy której instalacji równocześnie zostaną zainstalowane wszystkie inne rzeczy potrzebne by odpalać u siebie kontenery (np. docker engine). Będzie ona potrzebna w celu łatwej, lokalnej instalacji zkonteneryzowanego Postgresa. Jeśli nie wiesz czym jest Docker, najlepiej na początku zapoznaj się z [dokumentacją](https://docs.docker.com/get-started/docker-overview/).
+Oprócz podstawowych narzędzi, które już na pewno masz jeśli pracujesz nad frontem (Git, NodeJS etc.), dodatkowo potrzebny jest jedynie [Docker Desktop](https://www.docker.com/products/docker-desktop/). Jest to aplikacja desktopowa do zarządzania kontenerami Docker, przy której instalacji równocześnie zostaną zainstalowane wszystkie inne rzeczy potrzebne by odpalać u siebie kontenery (np. docker engine). Będzie ona potrzebna w celu łatwej, lokalnej instalacji zkonteneryzowanych serwisów. Jeśli nie wiesz czym jest Docker, najlepiej na początku zapoznaj się z [dokumentacją](https://docs.docker.com/get-started/docker-overview/).
 
-## Postgres
+## Docker
 
-Zanim zainstalujemy backend, musimy najpierw zainstalować Postgresa.
+Zanim zainstalujemy backend, musimy najpierw uruchomić wymagane serwisy w Dockerze.
 
-### Instalacja
+<Tabs>
+  <TabItem label="v2 (Adonis)">
 
-<Steps>
-1. Pobierz, zainstaluj i uruchom [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-2. Pobierz oficjalny obraz Postgresa. W tym przykładzie używamy wersji **17-alpine** (zajmuje mniej miejsca niż standardowe) ale możesz wybrać właściwie dowolną wersję. Obraz można pobrać z poziomu interfejsu Docker Desktop lub poniższą komendą w terminalu:
+    Backend v2 wymaga jedynie **Postgresa**.
 
-   ```bash
-   docker pull postgres:17-alpine
-   ```
+    #### Instalacja
 
-3. Uruchom nowy kontener z obrazem Postgresa
+    <Steps>
+    1. Pobierz, zainstaluj i uruchom [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+    2. Pobierz oficjalny obraz Postgresa. W tym przykładzie używamy wersji **17-alpine** (zajmuje mniej miejsca niż standardowe) ale możesz wybrać właściwie dowolną wersję. Obraz można pobrać z poziomu interfejsu Docker Desktop lub poniższą komendą w terminalu:
 
-   - Zamiast `eventownik-local` można wybrać dowolną nazwę kontenera,
-   - Flagi `-e` ustawiają zmienne środowiskowe,
-   - Flaga `-p` ustawia port, na którym działa postgres. **5432** to standardowy port Postgresa. Nie zmieniaj go.
+       ```bash
+       docker pull postgres:17-alpine
+       ```
 
-   ```bash
-   docker run --name eventownik-local -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=root -e POSTGRES_DB=postgres -d postgres:17-alpine
-   ```
+    3. Uruchom nowy kontener z obrazem Postgresa
 
-4. Zweryfikuj działanie kontenera. W terminalu wpisz:
+       - Zamiast `eventownik-local` można wybrać dowolną nazwę kontenera,
+       - Flagi `-e` ustawiają zmienne środowiskowe,
+       - Flaga `-p` ustawia port, na którym działa postgres. **5432** to standardowy port Postgresa. Nie zmieniaj go.
 
-   ```bash
-   docker ps
-   ```
+       ```bash
+       docker run --name eventownik-local -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=root -e POSTGRES_DB=postgres -d postgres:17-alpine
+       ```
 
-   Wynikiem komendy będzie tabela z listą kontenerów.
-   <Aside type="caution" title="Bardzo ważne">
-      Upewnij się, że w kolumnie **PORT** w wierszu dla naszego kontenera jest napisane `0.0.0.0:5432->5432/tcp`. Jeżeli napisane jest jedynie `5432`, to kontener nie jest dostępny dla zewnętrznych połączeń - w naszym przypadku zewnętrznym połączeniem będzie backend, który w takiej sytuacji nie będzie mógł się połączyć z bazą. Wówczas, *może* być to spowodowane włączeniem kontenera z poziomu interfejsu Docker Desktop - jeśli tak zrobiłeś/aś, wyłącz kontener w panelu i włącz go komendą wskazaną w kroku 3.
-   </Aside>
-</Steps>
+    4. Zweryfikuj działanie kontenera. W terminalu wpisz:
 
-### Dalsze użytkowanie
+       ```bash
+       docker ps
+       ```
 
-- Aby zatrzymać kontener (wyłączyć bazę) wpisz w terminalu `docker stop eventownik-local` lub kliknij przycisk Stop w Docker Desktop.
-- Aby uruchomić kontener ponownie, kliknij przycisk "Start" w Docker Desktop lub wpisz `docker start eventownik-local` w terminal - **start** włącza istniejący kontener, **run** tworzy nowy!
+       Wynikiem komendy będzie tabela z listą kontenerów.
+       <Aside type="caution" title="Bardzo ważne">
+          Upewnij się, że w kolumnie **PORT** w wierszu dla naszego kontenera jest napisane `0.0.0.0:5432->5432/tcp`. Jeżeli napisane jest jedynie `5432`, to kontener nie jest dostępny dla zewnętrznych połączeń - w naszym przypadku zewnętrznym połączeniem będzie backend, który w takiej sytuacji nie będzie mógł się połączyć z bazą. Wówczas, *może* być to spowodowane włączeniem kontenera z poziomu interfejsu Docker Desktop - jeśli tak zrobiłeś/aś, wyłącz kontener w panelu i włącz go komendą wskazaną w kroku 3.
+       </Aside>
+    </Steps>
 
-### pgAdmin
+    #### Dalsze użytkowanie
 
-Przydatne narzędzie GUI do zarządzania bazą danych, dzięki którym możemy przeglądać zawartość tabeli oraz wykonywać kwerendy. Jeżeli jesteś masochistą, alternatywą jest CLI `psql`. 
+    - Aby zatrzymać kontener (wyłączyć bazę) wpisz w terminalu `docker stop eventownik-local` lub kliknij przycisk Stop w Docker Desktop.
+    - Aby uruchomić kontener ponownie, kliknij przycisk "Start" w Docker Desktop lub wpisz `docker start eventownik-local` w terminal - **start** włącza istniejący kontener, **run** tworzy nowy!
+
+  </TabItem>
+  <TabItem label="v3 (Nest)">
+
+    Backend v3 wymaga **Postgresa**, **Redisa** oraz **MinIO** (lokalny odpowiednik S3 do przechowywania plików). Wszystkie trzy serwisy są skonfigurowane razem przez Docker Compose.
+
+    #### Instalacja
+
+    <Steps>
+    1. Pobierz, zainstaluj i uruchom [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+    2. W katalogu głównym repozytorium backendu v3 znajdziesz plik `docker-compose.yml`. Uruchom wszystkie serwisy jedną komendą:
+
+       ```bash
+       docker compose up -d
+       ```
+
+       Spowoduje to pobranie potrzebnych obrazów (przy pierwszym uruchomieniu) i uruchomienie kontenerów dla Postgresa, Redisa i MinIO w tle.
+
+    3. Zweryfikuj działanie kontenerów:
+
+       ```bash
+       docker compose ps
+       ```
+
+       Wszystkie serwisy powinny mieć status `running`.
+
+       <Aside type="caution" title="Bardzo ważne">
+          Upewnij się, że w kolumnie **PORT** każdego kontenera widoczny jest prefiks `0.0.0.0:` przed numerem portu. Jeżeli go nie ma, kontener nie jest dostępny dla zewnętrznych połączeń i backend nie będzie mógł się z nim skomunikować.
+       </Aside>
+    </Steps>
+
+    #### Dalsze użytkowanie
+
+    - Aby zatrzymać wszystkie serwisy: `docker compose stop`
+    - Aby uruchomić je ponownie: `docker compose start`
+    - Aby zatrzymać i usunąć kontenery (dane zostają w named volumes): `docker compose down`
+    - Aby usunąć kontenery **razem z danymi**: `docker compose down -v` ⚠️
+
+    <Aside type="note" title="Kontrola serwisów">
+      - Jeśli chcesz uruchomić tylko wybrany serwis (np. tylko Postgresa), możesz go wskazać z nazwy: `docker compose up -d postgres`
+      - Jeśli chcesz uruchomić wszystkie serwisy z wyjątkiem jednego (gdzie w naszym przypadku może być przydatne nie uruchamianie dodatkowej bazy od testów w celu oszczędzania cennego ramu), użyj: `docker compose up -d --scale postgres-test=0`
+    </Aside>
+
+  </TabItem>
+</Tabs>
+
+## pgAdmin
+
+Przydatne narzędzie GUI do zarządzania bazą danych, dzięki którym możemy przeglądać zawartość tabeli oraz wykonywać kwerendy. Jeżeli jesteś masochistą, alternatywą jest CLI `psql`.
 
   <Aside type="note" title="Etap opcjonalny">
     Instalacja pgAdmin nie jest wymagana aby wszystko działało, ale instalacja jest zalecana - zawsze może się przydać.
@@ -116,126 +172,258 @@ Po zakończeniu instalacji możesz rozwinąć drzewko dla naszej bazy w lewym si
 
 ## Backend
 
-Aktualnie wciąż korzystamy z wersji **v2** backendu, która stoi na frameworku AdonisJS. W niedalekiej przyszłości będziemy przejść na wersję **v3**, która stoi na frameworku NestJS.
+<Tabs>
+  <TabItem label="v2 (Adonis)">
 
-### Instalacja
+    #### Instalacja
 
-import { Steps } from "@astrojs/starlight/components";
+    <Steps>
+    1. Sklonuj [repozytorium backendu v2](https://github.com/Solvro/backend-eventownik-v2).
 
-<Steps>
-1. Sklonuj [repozytorium backendu](https://github.com/Solvro/backend-eventownik-v2).
+       ```bash
+       git clone https://github.com/Solvro/backend-eventownik-v2.git
+       ```
 
-   ```bash
-   git clone https://github.com/Solvro/backend-eventownik-v2.git
-   ```
+    2. Zainstaluj paczki.
 
-2. Zainstaluj paczki.
+       ```bash
+       npm install
+       ```
 
-   ```bash
-   npm install
-   ```
+    3. Skonfiguruj zmienne środowiskowe. W folderze projektu stwórz plik `.env.local` i umieść w nim poniższe zmienne:
 
-3. Skonfiguruj zmienne środowiskowe. W folderze projektu stwórz plik `.env.local` i umieść w nim poniższe zmienne:
+       ```bash
+       TZ=UTC
+       PORT=3333
+       HOST=localhost
+       LOG_LEVEL=info
+       APP_KEY=dddddddddddddddddddddddddddddddddddd
+       NODE_ENV=development
+       DB_HOST=127.0.0.1
+       DB_PORT=5432
+       DB_USER=postgres
+       DB_PASSWORD=root
+       DB_DATABASE=postgres
+       PHOTO_STORAGE_URL=public/
+       TEMP_STORAGE_URL=storage/temp/
+       FILE_STORAGE_URL=uploads/
+       SMTP_HOST=example.com
+       SMTP_PORT=465
+       SMTP_USERNAME=abcd@example.com
+       SMTP_PASSWORD=12345678
+       APP_DOMAIN=https://eventownik.solvro.pl
+       SIGNOZ_HOST=http://localhost:4318
+       HCAPTCHA_SECRET=0x0000000000000000000000000000000000000000
+       HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
+       ```
 
-   ```bash
-   TZ=UTC
-   PORT=3333
-   HOST=localhost
-   LOG_LEVEL=info
-   APP_KEY=dddddddddddddddddddddddddddddddddddd
-   NODE_ENV=development
-   DB_HOST=127.0.0.1
-   DB_PORT=5432
-   DB_USER=postgres
-   DB_PASSWORD=root
-   DB_DATABASE=postgres
-   PHOTO_STORAGE_URL=public/
-   TEMP_STORAGE_URL=storage/temp/
-   FILE_STORAGE_URL=uploads/
-   SMTP_HOST=example.com
-   SMTP_PORT=465
-   SMTP_USERNAME=abcd@example.com
-   SMTP_PASSWORD=12345678
-   APP_DOMAIN=https://eventownik.solvro.pl
-   SIGNOZ_HOST=http://localhost:4318
-   HCAPTCHA_SECRET=0x0000000000000000000000000000000000000000
-   HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
-   ```
+       <Aside type="note" title="hCaptcha">
+          Wskazane wartości `HCAPTCHA_SECRET` i `HCAPTCHA_SITEKEY` są testowymi wartościami podanymi w [dokumentacji hCaptcha](https://docs.hcaptcha.com/#test-key-set-publisher-or-pro-account). Są to właściwe wartości dla celów developmentowych, ponieważ dzięki nim captcha przepuszcza automatycznie i nie trzeba przy każdym logowaniu czy rejestracji na wydarzenie rozwiązywać puzzli.
+       </Aside>
 
-   <Aside type="note" title="hCaptcha">
-      Wskazane wartości `HCAPTCHA_SECRET` i `HCAPTCHA_SITEKEY` są testowymi wartościami podanymi w [dokumentacji hCaptcha](https://docs.hcaptcha.com/#test-key-set-publisher-or-pro-account). Są to właściwe wartości dla celów developmentowych, ponieważ dzięki nim captcha przepuszcza automatycznie i nie trzeba przy każdym logowaniu czy rejestracji na wydarzenie rozwiązywać puzzli.
-   </Aside>
+       <Aside type="caution" title="SMTP">
+        Ta instrukcja nie obejmuje lokalnej konfiguracji SMTP - wobec tego, na lokalnym setupie nie będzie działać wysyłanie maili. Skontaktuj się z zespołem (preferowalnie techleadem backendu) w celu uzyskania danych.
+       </Aside>
 
-   <Aside type="caution" title="SMTP">
-    Ta instrukcja nie obejmuje lokalnej konfiguracji SMTP - wobec tego, na lokalnym setupie nie będzie działać wysyłanie maili. Skontaktuj się z zespołem (preferowalnie techleadem backendu) w celu uzyskania danych.
-   </Aside>
+       <Aside type="caution" title="Sprawdź kluczowe zmienne">
+          W kontekście Dockera, wartość `localhost` i `127.0.0.1` **NIE JEST** tym samym. Aby uniknąć potencjalnych błędów związanych z IPv4 i IPv6, dla zmiennej `DB_HOST` zawsze korzystaj z explicite adresu `127.0.0.1`.
+          
+          Ponadto, upewnij się, że zmienne `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` i `DB_DATABASE` są ustawione na wartości zgadzające się z tymi ustawionymi przy odpalaniu kontenera Postgresa.
+       </Aside>
 
-   <Aside type="caution" title="Sprawdź kluczowe zmienne">
-      W kontekście Dockera, wartość `localhost` i `127.0.0.1` **NIE JEST** tym samym. Aby uniknąć potencjalnych błędów związanych z IPv4 i IPv6, dla zmiennej `DB_HOST` zawsze korzystaj z explicite adresu `127.0.0.1`.
-      
-      Ponadto, upewnij się, że zmienne `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` i `DB_DATABASE` są ustawione na wartości zgadzające się z tymi ustawionymi przy odpalaniu kontenera Postgresa (krok 3. w sekcji Postgres).
-   </Aside>
+    4. Odpal migracje (po frontasiowemu: skonfiguruj strukturę bazy danych) wpisując w terminalu:
 
-4. Odpal migracje (po frontasiowemu: skonfiguruj strukturę bazy danych) wpisując w terminalu:
+       ```bash
+       node ace migration:run
+       ```
 
-   ```bash
-   node ace migration:run
-   ```
+    5. Zseeduj bazę danych. Backend v2 ma tylko jeden seeder, dodający do tabeli *permissions* w bazie kluczowe informacje na temat uprawnień organizatorów wydarzeń. W odróżnieniu od v3, nie dodaje testowych wydarzeń czy kont.
 
-5. Zseeduj bazę danych (po frontasiowemu: wypełnij ją jakimiś danymi). Na dzień 23.12.25 backend ma tylko jeden seeder, wobec czego w naszym przypadku wykonanie poniższej komendy doda do tabeli *permissions* w bazie kluczowe informacje na temat uprawnień organizatorów wydarzeń.
+       ```bash
+       node ace db:seed
+       ```
 
-   ```bash
-   node ace db:seed
-   ```
+    6. Uruchom serwer
 
-6. Uruchom serwer
+       ```bash
+       npm run dev  
+       ```
 
-   ```bash
-   npm run dev  
-   ```
+    </Steps>
 
-</Steps>
+    #### Dalsze użytkowanie
 
-To wszystko jeśli chodzi o lokalny setup wszystkiego co związane z backendem. Teraz należy upewnić się, czy wszystko mamy dobrze skonfigurowane po froncie.
+    Przed każdym uruchomieniem backendu: 
+    - Zaktualizuj kod o najnowsze zmiany z Githuba, 
+    - Upewnij się, że wszystkie paczki są zainstalowane,
+    - Wykonaj migracje.
 
-### Dalsze użytkowanie
+    ```bash
+    # Aktualizacja
+    git fetch origin
+    git pull origin
+    npm install
+    node ace migration:run
+    # Uruchomienie
+    npm run dev
+    ```
 
-Przed każdym uruchomieniem backendu: 
-- Zaktualizuj kod o najnowsze zmiany z Githuba, 
-- Upewnij się, że wszystkie paczki są zainstalowane,
-- Wykonaj migracje.
+  </TabItem>
+  <TabItem label="v3 (Nest)">
 
-```bash
-# Aktualizacja
-git fetch origin
-git pull origin
-npm install
-node ace migration:run
-# Uruchomienie
-npm run dev
-```
+    #### Instalacja
+
+    <Steps>
+    1. Sklonuj [repozytorium backendu v3](https://github.com/Solvro/backend-eventownik-v3).
+
+       ```bash
+       git clone https://github.com/Solvro/backend-eventownik-v3.git
+       ```
+
+    2. Zainstaluj paczki.
+
+       ```bash
+       npm install
+       ```
+
+    3. Skonfiguruj zmienne środowiskowe. W folderze projektu stwórz plik `.env` i uzupełnij go o wymagane zmienne (skontaktuj się z techleadem backendu w celu uzyskania wrażliwych wartości). Ten sam wykaz znajdziesz również w `.env.example` backendu:
+
+       ```bash
+       # App:where
+       NODE_ENV=development
+
+       APP_DOMAIN="localhost"                      # Bare host used as the refresh-token cookie's Domain attribute - no scheme, no port
+       FRONTEND_URL="http://localhost:3000"        # Base URL of the frontend app, used to build links in emails (e.g. form links)
+       PORT=3333
+
+       # Database
+       DATABASE_URL="postgresql://eventownik:eventownik@localhost:5432/eventownik"
+
+       # Security
+       CORS_ORIGINS="http://localhost:3000"        # Comma-separated list of allowed origins for CORS, *.domain.com for wildcard subdomains
+       HCAPTCHA_SECRET="super-secret-hcaptcha-key"
+       JWT_SECRET="super-secret"
+       JWT_EXPIRES_IN="60m"
+       REFRESH_TOKEN_TTL_DAYS=3
+
+       # Redis
+       REDIS_HOST="localhost"
+       REDIS_PORT=6379
+       REDIS_USER=""
+       REDIS_PASS=""
+
+       # Email
+       SMTP_HOST="smtp.example.com"
+       SMTP_PORT=587
+       SMTP_SECURE=false
+       SMTP_USER="smtp-user"
+       SMTP_PASS="smtp-password"
+       SMTP_FROM="Eventownik <noreply@example.com>"
+
+       S3_ENDPOINT=http://localhost:9000
+       S3_ACCESS_KEY=localdev
+       S3_SECRET_KEY=password
+       S3_BUCKET_EVENTS=events
+       S3_BUCKET_FORMS=forms
+       S3_PUBLIC_URL=http://localhost:9000
+
+       # Uploads
+       UPLOAD_MAX_FILE_SIZE=10485760               # Max upload size in bytes (default: 10MB)
+       UPLOAD_ALLOWED_MIME="application/pdf,image/jpeg,image/png,image/webp,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+       UPLOAD_TTL_HOURS=24                         # Hours an unclaimed uploaded file is kept before cleanup
+       ```
+
+       <Aside type="caution" title="SMTP">
+        Ta instrukcja nie obejmuje lokalnej konfiguracji SMTP - wobec tego, na lokalnym setupie nie będzie działać wysyłanie maili. Skontaktuj się z zespołem (preferowalnie techleadem backendu) w celu uzyskania danych.
+       </Aside>
+
+    4. Wygeneruj klienta Prismy:
+
+       ```bash
+       npx prisma generate
+       ```
+
+    5. Odpal migracje (po frontasiowemu: skonfiguruj strukturę bazy danych):
+
+       ```bash
+       npx prisma migrate dev
+       ```
+
+    6. Zseeduj bazę danych:
+
+       ```bash
+       npm run seed:dev
+       ```
+
+    7. Uruchom serwer:
+
+       ```bash
+       npm run start:dev
+       ```
+
+    </Steps>
+
+    #### Dalsze użytkowanie
+
+    Przed każdym uruchomieniem backendu:
+    - Zaktualizuj kod o najnowsze zmiany z Githuba,
+    - Upewnij się, że wszystkie paczki są zainstalowane,
+    - Wykonaj migracje.
+
+    ```bash
+    # Aktualizacja
+    git fetch origin
+    git pull origin
+    npm install
+    npx prisma migrate dev
+    # Uruchomienie
+    npm run start:dev
+    ```
+
+    #### Logowanie na gotowe konto
+    [Seeder](https://github.com/Solvro/backend-eventownik-v3/blob/develop/prisma/seed.ts) backendu v3 tworzy dwa testowe konta. Zaloguj się na konto superadmina przez email `admin@solvro.pl` i hasło `changeme`.
+
+  </TabItem>
+</Tabs>
 
 ## Dostosowanie frontendu
 
-Pamiętaj aby zmienić plik `.env.local` w folderze frontendu wg. lokalnego setupu:
+Pamiętaj aby zmienić plik `.env.local` w folderze frontendu wg. lokalnego setupu.
 
-```bash
-NEXT_PUBLIC_EVENTOWNIK_API=http://localhost:3333/api/v1
-SESSION_SECRET=abchjasdhjksadhjkdajkdh
-NEXT_PUBLIC_PHOTO_URL=http://localhost:3333
-NEXT_PUBLIC_HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
-```
+<Tabs>
+  <TabItem label="v2 (Adonis)">
+
+    ```bash
+    NEXT_PUBLIC_EVENTOWNIK_API=http://localhost:3333/api/v1
+    SESSION_SECRET=abchjasdhjksadhjkdajkdh
+    NEXT_PUBLIC_PHOTO_URL=http://localhost:3333
+    NEXT_PUBLIC_HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
+    ```
+
+  </TabItem>
+  <TabItem label="v3 (Nest)">
+
+    ```bash
+    NEXT_PUBLIC_EVENTOWNIK_API=http://localhost:3333/api/v3
+    SESSION_SECRET=abchjasdhjksadhjkdajkdh
+    NEXT_PUBLIC_PHOTO_URL=http://localhost:3333
+    NEXT_PUBLIC_HCAPTCHA_SITEKEY=10000000-ffff-ffff-ffff-000000000001
+    ```
+
+  </TabItem>
+</Tabs>
 
 <Aside type="caution" title="Ważne">
   - Upewnij się, że `NEXT_PUBLIC_HCAPTCHA_SITEKEY` jest taki sam co `HCAPTCHA_SITEKEY` na backendzie,
-  - `NEXT_PUBLIC_EVENTOWNIK_API` **MUSI** mieć dopisane `/api/v1` na końcu,
-  - Z kolei `NEXT_PUBLIC_PHOTO_URL` **NIE MA** dopisanego `/api/v1`.
+  - Dla backendu **v2**: `NEXT_PUBLIC_EVENTOWNIK_API` **musi** mieć dopisane `/api/v1` na końcu,
+  - Dla backendu **v3**: `NEXT_PUBLIC_EVENTOWNIK_API` **musi** mieć dopisane `/api/v3` na końcu,
+  - `NEXT_PUBLIC_PHOTO_URL` **nie ma** dopisanego `/api/v*` w żadnej wersji.
 </Aside>
 
 ## Troubleshooting
 
 - Backend Eventownika jest wciąż w stałej rozbudowie - częste zmiany są spodziewane. Jeżeli masz jakiekolwiek problemy, zrób nowy thread na jednym z eventownikowych kanałów na discordzie (*#frontend-eventownik* lub *#backend-eventownik*).
-- W trakcie opcjonalnej instalacji pgAdmina, istnieje szansa że stworzył i uruchomił się nowy defaultowy serwer Postgresa. W takiej sytuacji, będzie on kolidował z serwerem z kontenera, ponieważ oba chcą działać na `127.0.0.1` i porcie `5432`. Może być to bardzo prawdopodobna przyczyna pojawiących się ewentualnie problemów. W przypadku Windowsa, najprościej będzie wyłączyć go z poziomu menedżera usług:
+- W trakcie opcjonalnej instalacji pgAdmina, istnieje szansa że stworzył i uruchomił się nowy defaultowy serwer Postgresa. W takiej sytuacji, będzie on kolidował z serwerem z kontenera, ponieważ oba chcą działać na `127.0.0.1` i porcie `5432`. Może być to bardzo prawdopodobna przyczyna pojawiających się ewentualnie problemów. W przypadku Windowsa, najprościej będzie wyłączyć go z poziomu menedżera usług:
   - Włącz menedżer usług wyszukując `services.msc` w menu start
   - W liście usług wyszukaj `postgresql-x64-16 - PostgreSQL Server 16` - kliknij prawym przyciskiem myszy i wybierz *Właściwości*
   - Zatrzymaj usługę i zmień typ uruchomienia na "Wyłączony", aby nie uruchamiał się automatycznie po starcie komputera
