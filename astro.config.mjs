@@ -103,7 +103,13 @@ export default defineConfig({
           label: "Solvro",
           items: [
             { label: "Historia", link: "/solvro/history" },
-            { label: "Statut", link: "/solvro/statute" },
+            {
+              label: "Statut",
+              items: [
+                { label: "Regulamin", link: "/solvro/statute" },
+                { label: "Regulamin Biura", link: "/solvro/office-rules" },
+              ],
+            },
             { label: "Strategia", link: "/solvro/strategy" },
             { label: "Struktura", link: "/solvro/structure" },
             { label: "IX Zarząd", link: "/solvro/ix_board" },
