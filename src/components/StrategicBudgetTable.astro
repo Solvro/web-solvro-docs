@@ -1,0 +1,116 @@
+---
+type BudgetTone =
+  "blue" | "violet" | "teal" | "amber" | "pink" | "orange" | "cyan" | "slate";
+
+interface BudgetItem {
+  number: string;
+  name: string;
+  budget: string;
+}
+
+interface BudgetGroup {
+  label?: string;
+  tone: BudgetTone;
+  items: BudgetItem[];
+}
+
+interface Props {
+  groups: BudgetGroup[];
+  total: string;
+}
+
+const { groups, total } = Astro.props;
+
+const toneStyles: Record<BudgetTone, string> = {
+  blue: "border-blue-500/50 bg-blue-500/15 text-blue-300",
+  violet: "border-violet-500/50 bg-violet-500/15 text-violet-300",
+  teal: "border-teal-500/50 bg-teal-500/15 text-teal-300",
+  amber: "border-amber-500/50 bg-amber-500/15 text-amber-300",
+  pink: "border-pink-500/50 bg-pink-500/15 text-pink-300",
+  orange: "border-orange-500/50 bg-orange-500/15 text-orange-300",
+  cyan: "border-cyan-500/50 bg-cyan-500/15 text-cyan-300",
+  slate: "border-slate-500/50 bg-slate-500/15 text-slate-300",
+};
+
+const rowStyles: Record<BudgetTone, string> = {
+  blue: "border-blue-500/50 bg-blue-500/10",
+  violet: "border-violet-500/50 bg-violet-500/10",
+  teal: "border-teal-500/50 bg-teal-500/10",
+  amber: "border-amber-500/50 bg-amber-500/10",
+  pink: "border-pink-500/50 bg-pink-500/10",
+  orange: "border-orange-500/50 bg-orange-500/10",
+  cyan: "border-cyan-500/50 bg-cyan-500/10",
+  slate: "border-slate-500/50 bg-slate-500/10",
+};
+---
+
+<table class="budget-table w-full border-collapse text-sm">
+  <thead>
+    <tr
+      class="text-left text-xs uppercase tracking-[0.05em] text-[var(--sl-color-gray-4)]"
+    >
+      <th class="w-14 font-semibold">Nr</th>
+      <th class="font-semibold">Pozycja</th>
+      <th class="text-right font-semibold">Budżet</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      groups.map((group) => (
+        <Fragment>
+          {group.label && (
+            <tr>
+              <td
+                class={`border-l-4 text-xs font-semibold uppercase tracking-wide ${toneStyles[group.tone]}`}
+                colspan="3"
+              >
+                {group.label}
+              </td>
+            </tr>
+          )}
+          {group.items.map((item) => (
+            <tr
+              class={`border-b border-l-4 text-[var(--sl-color-gray-2)] ${rowStyles[group.tone]}`}
+            >
+              <td class="text-[var(--sl-color-gray-2)]">{item.number}</td>
+              <td>{item.name}</td>
+              <td class="text-right font-medium tabular-nums text-[var(--sl-color-white)]">
+                {item.budget}
+              </td>
+            </tr>
+          ))}
+        </Fragment>
+      ))
+    }
+    <tr
+      class="border-t-2 border-[var(--sl-color-gray-5)] text-[var(--sl-color-white)]"
+    >
+      <td class="budget-sum-label font-semibold" colspan="2"> Suma </td>
+      <td class="budget-sum-value text-right font-semibold tabular-nums">
+        {total}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+  .budget-table :is(th, td) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .budget-table :is(th:first-child, td:first-child) {
+    padding-left: 1.25rem !important;
+    padding-inline-start: 1.25rem !important;
+  }
+
+  .budget-table :is(th:last-child, td:last-child) {
+    padding-right: 1.25rem !important;
+    padding-inline-end: 1.25rem !important;
+  }
+
+  .budget-table td:not(:first-child):not(:last-child) {
+    padding-right: 1.25rem;
+    padding-inline-end: 1.25rem;
+  }
+</style>

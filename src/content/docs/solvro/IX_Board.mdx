@@ -15,6 +15,7 @@ import {
 
 import PersonCardFromCMS from "#components/PersonCardFromCMS";
 import Timeline from "#components/Timeline";
+import StrategicBudgetTable from "#components/StrategicBudgetTable";
 
 ## Zarząd
 
@@ -281,6 +282,12 @@ wspierających społeczność akademicką oraz rozwój naszych członków.
         "Spotkanie ze społecznością seniorów. Dzielimy się wiedzą technologiczną, promujemy działalność Koła i budujemy pozytywny wizerunek organizacji.",
     },
     {
+      date: "17–19 kwietnia 2026",
+      title: "Wyjazd integracyjno-szkoleniowy",
+      description:
+        "Wyjazd łączący integrację zespołu z rozwijaniem kompetencji. To ważny element budowania wspólnoty i przygotowania do dalszej pracy.",
+    },
+    {
       date: "8–9 maja 2026",
       title: "Ghost Days",
       description:
@@ -347,6 +354,12 @@ wspierających społeczność akademicką oraz rozwój naszych członków.
         "Wydarzenie powitalne dla nowych studentów Politechniki Wrocławskiej. Promujemy aplikację ToPWR jako narzędzie wspierające studentów oraz prezentujemy działalność Koła.",
     },
     {
+      date: "Październik 2026",
+      title: "Dni Otwarte",
+      description:
+        "Obecność podczas Dni Otwartych Politechniki Wrocławskiej to okazja do zdobywania kontaktów, prezentacji projektów Koła oraz rekrutacji nowych członków.",
+    },
+    {
       date: "3–4 października 2026",
       title: "HackYeah",
       description:
@@ -365,10 +378,10 @@ wspierających społeczność akademicką oraz rozwój naszych członków.
         "Prezentacja działalności organizacji studenckich. Pokazujemy nasze projekty, nawiązujemy kontakty i pozyskujemy nowych członków.",
     },
     {
-      date: "Październik 2026",
-      title: "Dni Otwarte",
+      date: "Listopad 2026",
+      title: "Wyjazd integracyjno-szkoleniowy",
       description:
-        "Obecność podczas Dni Otwartych Politechniki Wrocławskiej to okazja do zdobywania kontaktów, prezentacji projektów Koła oraz rekrutacji nowych członków.",
+        "Dodatkowy wyjazd łączący integrację zespołu z rozwijaniem kompetencji, realizowany w trakcie kadencji.",
     },
     {
       date: "18 listopada 2026",
@@ -394,12 +407,6 @@ wspierających społeczność akademicką oraz rozwój naszych członków.
       description:
         "Integracyjne spotkanie członków podsumowujące rok i kończące kadencję w luźnej atmosferze.",
     },
-    {
-      date: "W trakcie kadencji",
-      title: "Wyjazd integracyjno-szkoleniowy",
-      description:
-        "Wyjazd łączący integrację zespołu z rozwijaniem kompetencji. To ważny element budowania wspólnoty i przygotowania do dalszej pracy.",
-    },
   ]}
 />
 
@@ -416,43 +423,189 @@ wykorzystaniem środków stanowi jeden z priorytetów Zarządu.
 Poniższe środki uzyskaliśmy w ramach budżetu Koła Strategicznego. W tabeli
 uwzględniono pozycje wraz z ich finalnym budżetem:
 
-| Numer | Pozycja                                                   | Finalny budżet   |
-| ----- | --------------------------------------------------------- | ---------------- |
-| 1.    | Materiały szkoleniowe dla nowych członków                 | 1 576,04 zł      |
-| 2.    | Tokeny API OpenAI                                         | 3 940,09 zł      |
-| 3.    | Tokeny na przetwarzanie Big Data w chmurze                | 3 940,09 zł      |
-| 4.    | Wydatki operacyjne i promocyjne działalności dydaktycznej | 1 576,04 zł      |
-| 5.    | Wakacyjne wyzwanie                                        | –                |
-| 6.    | Promocja                                                  | 394,01 zł        |
-| 7.    | Stacjonarny Hackathon                                     | 2 836,87 zł      |
-| 8.    | Oficjalne zakończenie                                     | 236,41 zł        |
-| 9.    | Wyjazdy                                                   | –                |
-| 10.   | Zakwaterowanie HackYeah (25 os.)                          | 1 576,04 zł      |
-| 11.   | Transport HackYeah                                        | 1 182,03 zł      |
-| 12.   | Transport ML in PL                                        | 945,62 zł        |
-| 13.   | Zakwaterowanie ML in PL (15 os.)                          | 3 782,49 zł      |
-| 14.   | Opłata konferencyjna ML in PL (15 os.)                    | 5 910,14 zł      |
-| 15.   | Zakwaterowanie Ghost Day (15 os.)                         | 1 182,03 zł      |
-| 16.   | Opłata konferencyjna Ghost Day (15 os.)                   | 1 182,03 zł      |
-| 17.   | Zakwaterowanie Wyjazd Szkoleniowy (2 noce 60 os.)         | 3 940,09 zł      |
-| 18.   | Wyżywienie Wyjazd Szkoleniowy (60 os.)                    | 2 364,06 zł      |
-| 19.   | ToPWR                                                     | –                |
-| 20.   | Wzmożona promocja na początku semestru zimowego           | 1 576,04 zł      |
-| 21.   | Eventownik                                                | –                |
-| 22.   | Ochrona przed botami (captcha)                            | 4 018,89 zł      |
-| 23.   | Promocja w okresie Rajdów Samorządu Studenckiego PWR      | 1 576,04 zł      |
-| 24.   | Promocja Aplikacji                                        | 1 576,04 zł      |
-| 25.   | Planer                                                    | –                |
-| 26.   | Promocja zapisy sem. letni                                | 788,02 zł        |
-| 27.   | Promocja zapisy sem. zimowy                               | 788,02 zł        |
-| 28.   | Testownik                                                 | –                |
-| 29.   | Promocja sesja zimowa                                     | 788,02 zł        |
-| 30.   | Promocja sesja letnia                                     | 788,02 zł        |
-| 31.   | Ciągła działalność KN Solvro                              | –                |
-| 32.   | Koszty operacyjne sprzętu                                 | 27 580,65 zł     |
-| 33.   | Mikrofon konferencyjny oraz kamerka                       | 1 576,04 zł      |
-| 34.   | Koszty operacyjne oprogramowania                          | 7 880,18 zł      |
-|       | **Suma**                                                  | **85 500,00 zł** |
+<StrategicBudgetTable
+  total="85 500,00 zł"
+  groups={[
+    {
+      tone: "slate",
+      items: [
+        {
+          number: "1.",
+          name: "Materiały szkoleniowe dla nowych członków",
+          budget: "1 576,04 zł",
+        },
+        {
+          number: "2.",
+          name: "Tokeny API OpenAI",
+          budget: "3 940,09 zł",
+        },
+        {
+          number: "3.",
+          name: "Tokeny na przetwarzanie Big Data w chmurze",
+          budget: "3 940,09 zł",
+        },
+        {
+          number: "4.",
+          name: "Wydatki operacyjne i promocyjne działalności dydaktycznej",
+          budget: "1 576,04 zł",
+        },
+      ],
+    },
+    {
+      label: "Wakacyjne wyzwanie",
+      tone: "amber",
+      items: [
+        { number: "5.", name: "Promocja", budget: "394,01 zł" },
+        {
+          number: "6.",
+          name: "Stacjonarny Hackathon",
+          budget: "2 836,87 zł",
+        },
+        {
+          number: "7.",
+          name: "Oficjalne zakończenie",
+          budget: "236,41 zł",
+        },
+      ],
+    },
+    {
+      label: "Wyjazdy",
+      tone: "pink",
+      items: [
+        {
+          number: "8.",
+          name: "Zakwaterowanie HackYeah (25 os.)",
+          budget: "1 576,04 zł",
+        },
+        {
+          number: "9.",
+          name: "Transport HackYeah",
+          budget: "1 182,03 zł",
+        },
+        {
+          number: "10.",
+          name: "Transport ML in PL",
+          budget: "945,62 zł",
+        },
+        {
+          number: "11.",
+          name: "Zakwaterowanie ML in PL (15 os.)",
+          budget: "3 782,49 zł",
+        },
+        {
+          number: "12.",
+          name: "Opłata konferencyjna ML in PL (15 os.)",
+          budget: "5 910,14 zł",
+        },
+        {
+          number: "13.",
+          name: "Zakwaterowanie Ghost Day (15 os.)",
+          budget: "1 182,03 zł",
+        },
+        {
+          number: "14.",
+          name: "Opłata konferencyjna Ghost Day (15 os.)",
+          budget: "1 182,03 zł",
+        },
+        {
+          number: "15.",
+          name: "Zakwaterowanie Wyjazd Szkoleniowy (2 noce 60 os.)",
+          budget: "3 940,09 zł",
+        },
+        {
+          number: "16.",
+          name: "Wyżywienie Wyjazd Szkoleniowy (60 os.)",
+          budget: "2 364,06 zł",
+        },
+      ],
+    },
+    {
+      label: "ToPWR",
+      tone: "orange",
+      items: [
+        {
+          number: "17.",
+          name: "Wzmożona promocja na początku semestru zimowego",
+          budget: "1 576,04 zł",
+        },
+      ],
+    },
+    {
+      label: "Eventownik",
+      tone: "cyan",
+      items: [
+        {
+          number: "18.",
+          name: "Ochrona przed botami (captcha)",
+          budget: "4 018,89 zł",
+        },
+        {
+          number: "19.",
+          name: "Promocja w okresie Rajdów Samorządu Studenckiego PWR",
+          budget: "1 576,04 zł",
+        },
+        {
+          number: "20.",
+          name: "Promocja Aplikacji",
+          budget: "1 576,04 zł",
+        },
+      ],
+    },
+    {
+      label: "Planer",
+      tone: "violet",
+      items: [
+        {
+          number: "21.",
+          name: "Promocja zapisy sem. letni",
+          budget: "788,02 zł",
+        },
+        {
+          number: "22.",
+          name: "Promocja zapisy sem. zimowy",
+          budget: "788,02 zł",
+        },
+      ],
+    },
+    {
+      label: "Testownik",
+      tone: "blue",
+      items: [
+        {
+          number: "23.",
+          name: "Promocja sesja zimowa",
+          budget: "788,02 zł",
+        },
+        {
+          number: "24.",
+          name: "Promocja sesja letnia",
+          budget: "788,02 zł",
+        },
+      ],
+    },
+    {
+      label: "Ciągła działalność KN Solvro",
+      tone: "slate",
+      items: [
+        {
+          number: "25.",
+          name: "Koszty operacyjne sprzętu",
+          budget: "27 580,65 zł",
+        },
+        {
+          number: "26.",
+          name: "Mikrofon konferencyjny oraz kamerka",
+          budget: "1 576,04 zł",
+        },
+        {
+          number: "27.",
+          name: "Koszty operacyjne oprogramowania",
+          budget: "7 880,18 zł",
+        },
+      ],
+    },
+  ]}
+/>
 
 ### Środki z projektu MNiSW
 
