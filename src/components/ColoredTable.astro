@@ -58,8 +58,10 @@ const footerLabelColspan =
     ? columns.length - footer.values.length
     : 0;
 
-const footerValueIndex = (index: number) =>
-  columns.length - footer.values.length + index;
+const footerValueIndex = (index: number) => {
+  if (!footer) return 0;
+  return columns.length - footer.values.length + index;
+};
 ---
 
 <table class="colored-table w-full border-collapse text-sm">
