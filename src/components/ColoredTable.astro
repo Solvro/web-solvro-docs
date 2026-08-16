@@ -5,7 +5,6 @@ type Tone =
 interface Column {
   header: string;
   align?: "left" | "right";
-  width?: string;
   className?: string;
 }
 
@@ -72,7 +71,7 @@ const footerValueIndex = (index: number) => {
       {
         columns.map((column) => (
           <th
-            class={`${alignClass(column.align)} font-semibold ${column.width ?? ""} ${column.className ?? ""}`}
+            class={`${alignClass(column.align)} font-semibold ${column.className ?? ""}`}
           >
             {column.header}
           </th>
@@ -116,13 +115,16 @@ const footerValueIndex = (index: number) => {
           <td class="font-semibold" colspan={footerLabelColspan}>
             {footer.label}
           </td>
-          {footer.values.map((value, index) => (
-            <td
-              class={`${alignClass(columns[footerValueIndex(index)]?.align)} font-semibold tabular-nums`}
-            >
-              {value}
-            </td>
-          ))}
+          {footer.values.map((value, index) => {
+            const column = columns[footerValueIndex(index)];
+            return (
+              <td
+                class={`whitespace-nowrap ${alignClass(column?.align)} font-semibold tabular-nums ${column?.className ?? ""}`}
+              >
+                {value}
+              </td>
+            );
+          })}
         </tr>
       )
     }

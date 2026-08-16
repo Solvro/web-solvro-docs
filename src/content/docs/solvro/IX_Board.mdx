@@ -425,9 +425,13 @@ uwzględniono pozycje wraz z ich finalnym budżetem:
 
 <ColoredTable
   columns={[
-    { header: "Nr", width: "w-14" },
+    { header: "Nr", className: "w-14" },
     { header: "Pozycja" },
-    { header: "Budżet", align: "right", className: "font-medium tabular-nums" },
+    {
+      header: "Budżet",
+      align: "right",
+      className: "whitespace-nowrap font-medium tabular-nums",
+    },
   ]}
   footer={{ label: "Suma", values: ["85 500,00 zł"] }}
   groups={[
