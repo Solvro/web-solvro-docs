@@ -1,0 +1,89 @@
+---
+interface TimelineItem {
+  date: string;
+  title: string;
+  description?: string;
+}
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="timeline">
+  {
+    items.map((item) => (
+      <li class="timeline-item">
+        <div class="timeline-marker" aria-hidden="true" />
+        <div class="timeline-content">
+          <span class="timeline-date">{item.date}</span>
+          <span class="timeline-title">{item.title}</span>
+          {item.description && (
+            <p class="timeline-description">{item.description}</p>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--sl-color-gray-5);
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: var(--sl-color-accent);
+    border: 3px solid var(--sl-color-bg);
+    box-shadow: 0 0 0 2px var(--sl-color-accent);
+  }
+  .timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .timeline-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--sl-color-accent);
+  }
+  .timeline-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+  .timeline-description {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--sl-color-gray-2);
+  }
+</style>
