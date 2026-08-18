@@ -2,7 +2,7 @@
 title: IX Zarząd 26/27
 sidebar:
   order: 2
-description: Skład IX Zarządu KN Solvro
+description: Skład i plan działania IX Zarządu KN Solvro
 ---
 
 import {
@@ -14,6 +14,8 @@ import {
 } from "@astrojs/starlight/components";
 
 import PersonCardFromCMS from "#components/PersonCardFromCMS";
+import Timeline from "#components/Timeline";
+import ColoredTable from "#components/ColoredTable";
 
 ## Zarząd
 
@@ -35,10 +37,10 @@ import PersonCardFromCMS from "#components/PersonCardFromCMS";
 
 <CardGrid>
   <PersonCardFromCMS name="Kamil Marczak" />
-  <PersonCardFromCMS name="Antoni Czaplicki" />
+  <PersonCardFromCMS name="Roch Mykietów" />
   <PersonCardFromCMS name="Tomasz Trela" />
   <PersonCardFromCMS name="Konrad Szczepaniak" />
-  <PersonCardFromCMS name="Barbara Cząstkiewicz" />
+  <PersonCardFromCMS name="Maksym Tarasiuk" />
 </CardGrid>
 
 ### AI/ML & Emerging Tech
@@ -52,6 +54,507 @@ import PersonCardFromCMS from "#components/PersonCardFromCMS";
 
 <CardGrid>
   <PersonCardFromCMS name="Daria Totoszko" />
-  <PersonCardFromCMS name="Wojciech Krzos" subtitle="Head of Management" />
+  <PersonCardFromCMS name="Aleksandra Kaziniec" />
   <PersonCardFromCMS name="Dawid Kasiarz" />
 </CardGrid>
+
+## Plan działania
+
+<LinkCard
+  title="Strategia KN Solvro"
+  href="/solvro/strategy"
+  description="Długoterminowy plan strategiczny dyktujący działania KN Solvro."
+/>
+Ze strategii KN Solvro wyznaczyliśmy następujące cele taktyczne:
+
+### S1. Cyfryzacja życia studenckiego PWr
+
+Tworzymy rozwiązania od studentów dla studentów, odgrywając kluczową rolę w informatyzacji Politechniki Wrocławskiej.
+
+#### Taktyczny S1.T1: Rozbudowa infrastruktury informatycznej
+
+Rozwijamy i modernizujemy infrastrukturę informatyczną Koła, aby zapewnić niezawodne działanie naszych serwisów oraz stworzyć solidny fundament pod kolejne inicjatywy.
+
+#### Taktyczny S1.T2: Wsparcie technologiczne dla środowiska studenckiego
+
+Chcemy dzielić się naszym doświadczeniem i infrastrukturą z innymi organizacjami studenckimi, umożliwiając im skupienie się na ich podstawowej działalności. Takie partnerstwo przynosi korzyści całemu ekosystemowi uczelni i umacnia współpracę między organizacjami.
+
+#### Taktyczny S1.T3: Rozszerzenie wykorzystania Eventownika
+
+Dążymy do upowszechnienia Eventownika wśród organizacji studenckich oraz administracji Politechniki Wrocławskiej, usprawniając proces rejestracji i organizacji wydarzeń.
+
+#### Taktyczny S1.T4: Rozwój Testownika
+
+Pracujemy nad rozwojem Testownika, aby skuteczniej wspierał studentów w przygotowaniach do egzaminów, poszerzając bazę materiałów i dostępne funkcjonalności.
+
+### S2. Wspomaganie studentów w zakresie IT
+
+Organizujemy warsztaty, wydarzenia oraz tworzymy zasoby edukacyjne, aby rozwijać kompetencje techniczne studentów.
+
+#### Taktyczny S2.T1: Wakacyjne Wyzwanie
+
+Kontynuujemy organizację Wakacyjnego Wyzwania, które angażuje członków i kandydatów do Koła w okresie wakacyjnym, rozwijając ich umiejętności techniczne.
+
+#### Taktyczny S2.T2: Obecność na konferencjach i wydarzeniach
+
+Reprezentujemy Koło podczas konferencji i wydarzeń branżowych, dzieląc się wiedzą i budując relacje ze środowiskiem technologicznym.
+
+#### Taktyczny S2.T3: Szkolenie w kompetencjach konkursowych
+
+Szkolimy członków Koła w zakresie kompetencji konkursowych, w tym umożliwiając im udział w prestiżowych, międzynarodowych hackathonach.
+
+### S3. Stabilny wzrost i działanie KN Solvro
+
+Dbamy zarówno o wewnętrzne przekazywanie wiedzy, kompetencji i władzy, jak i o zewnętrzny obraz KN Solvro.
+
+#### Taktyczny S3.T1: Wdrożenie HRownika
+
+Tworzymy wewnętrzne narzędzie HR, które ujednolici wiedzę o członkach, projektach i strukturze Koła, usprawniając zarządzanie zasobami.
+
+#### Taktyczny S3.T2: Więcej inicjatyw integracyjnych
+
+Zwiększamy liczbę inicjatyw integracyjnych, wzmacniając relacje między członkami i budując przyjazne środowisko.
+
+#### Taktyczny S3.T3: Współpraca z PMG
+
+We współpracy z PMG weryfikujemy i optymalizujemy strukturę Koła, dostosowując ją do potrzeb rozwijającej się organizacji.
+
+#### Taktyczny S3.T4: Wdrożenie Głosownika
+
+Wdrażamy Głosownik, narzędzie wspierające demokratyczne procesy decyzyjne zarówno wewnątrz jak i na zewnątrz Koła.
+
+## Analiza SWOT
+
+Na podstawie analizy SWOT wyróżniliśmy następujące elementy otoczenia KN Solvro:
+
+<CardGrid>
+<Card title="Mocne strony" icon="star">
+  <details>
+    <summary>Zaufanie organizacji studenckich</summary>
+    Inne organizacje studenckie korzystają z rozwiązań infrastrukturalnych KN
+    Solvro, co świadczy o ich jakości i ugruntowuje pozycję Koła w środowisku
+    akademickim.
+  </details>
+  <details>
+    <summary>Relacje z Samorządem Studenckim</summary>
+    Dobre relacje z Samorządem Studenckim ułatwiają realizację wspólnych
+    inicjatyw na rzecz społeczności uczelni.
+  </details>
+  <details>
+    <summary>Współpraca z organizacjami spoza PWr</summary>
+    Aktywnie współpracujemy z organizacjami spoza Politechniki Wrocławskiej,
+    poszerzając nasz zasięg i sieć kontaktów.
+  </details>
+  <details>
+    <summary>Zaplecze finansowe</summary>
+    Solidne zdolności finansowe organizacji umożliwiają realizację ambitnych
+    przedsięwzięć i inwestycji w rozwój.
+  </details>
+  <details>
+    <summary>Współpraca z firmami</summary>
+    Rozwinięta sieć współpracy z partnerami biznesowymi wspiera nasze projekty
+    i daje członkom kontakt ze środowiskiem zawodowym.
+  </details>
+  <details>
+    <summary>Zasięg medialny</summary>
+    Duży zasięg medialny zwiększa rozpoznawalność Koła w środowisku
+    akademickim i poza nim.
+  </details>
+</Card>
+
+<Card title="Słabe strony" icon="warning">
+  <details>
+    <summary>Aktywność członków</summary>
+    Znaczna liczba nieaktywnych członków oraz niska motywacja części z nich
+    stanowią wyzwanie w realizacji celów organizacji.
+  </details>
+  <details>
+    <summary>Rozdysponowanie członków</summary>
+    Nierównomierne rozdysponowanie członków do projektów ogranicza efektywność
+    realizowanych inicjatyw.
+  </details>
+  <details>
+    <summary>Relacje z administracją</summary>
+    Relacje z WCSS oraz Działem Informatyzacji wymagają poprawy, a budowanie
+    partnerskiej współpracy pozostaje jednym z naszych priorytetów.
+  </details>
+  <details>
+    <summary>Miejsce na serwery</summary>
+    Odczuwamy niedobór przestrzeni na rozwój infrastruktury serwerowej.
+  </details>
+</Card>
+
+<Card title="Szanse" icon="rocket">
+  <details>
+    <summary>Współpraca badawcza</summary>
+    Współprace badawcze z grupami naukowymi na uczelni i poza nią, m.in. z GMUM
+    na Uniwersytecie Jagiellońskim, otwierają nowe możliwości rozwoju.
+  </details>
+  <details>
+    <summary>Współpraca z BNY w obszarze AI</summary>
+    Rozwój współpracy z BNY w tematyce AI pozwoli realizować zaawansowane
+    projekty i rozwijać kompetencje członków.
+  </details>
+  <details>
+    <summary>Zasoby obliczeniowe dla AI/ML</summary>
+    Większe zasoby obliczeniowe, m.in. dzięki klastrowi WCSS, umożliwią
+    rozszerzenie działalności AI/ML.
+  </details>
+  <details>
+    <summary>Partner technologiczny środowiska</summary>
+    Umocnienie pozycji KN Solvro jako dostawcy nowoczesnej infrastruktury
+    technologicznej w środowisku akademickim tworzy wartość dla całej uczelni.
+  </details>
+  <details>
+    <summary>Specjalizacja w zarządzaniu infrastrukturą</summary>
+    Rozwój kompetencji w zakresie zarządzania infrastrukturą pozwoli innym
+    organizacjom skupić się na ich podstawowej działalności, czerpiąc korzyści
+    ze współpracy z nami.
+  </details>
+  <details>
+    <summary>Optymalizacja struktury z PMG</summary>
+    Weryfikacja i optymalizacja struktury Koła we współpracy z PMG usprawni
+    procesy organizacyjne.
+  </details>
+  <details>
+    <summary>Rozwój Project Managerów</summary>
+    Więcej materiałów na rozwój Project Managerów podniesie jakość prowadzenia
+    projektów w Kole.
+  </details>
+  <details>
+    <summary>Status Koła Strategicznego</summary>
+    Uzyskanie po raz trzeci statusu Koła Strategicznego potwierdzi pozycję KN
+    Solvro i wesprze finansowo nasze działania.
+  </details>
+  <details>
+    <summary>Ujednolicenie wiedzy i inwentaryzacja</summary>
+    Ujednolicenie wewnętrznej wiedzy oraz inwentaryzacja członków, projektów i
+    struktury Koła, m.in. poprzez HRownika, usprawni zarządzanie organizacją.
+  </details>
+</Card>
+
+<Card title="Zagrożenia" icon="error">
+  <details>
+    <summary>Kultura organizacyjna</summary>
+    Przy dużej liczbie członków istnieje ryzyko rozrzedzenia kultury
+    organizacyjnej i osłabienia poczucia wspólnoty.
+  </details>
+  <details>
+    <summary>Brak nowych projektów</summary>
+    Brak nowych dużych projektów może ograniczyć pole do działania i
+    zaangażowanie członków.
+  </details>
+  <details>
+    <summary>Budżet</summary>
+    Ryzyko nieterminowego rozdysponowania budżetu może wpłynąć na realizację
+    planowanych inicjatyw.
+  </details>
+  <details>
+    <summary>Wizerunek</summary>
+    Ryzyko utraty spójnego wizerunku wśród projektów może osłabić
+    rozpoznawalność marki KN Solvro.
+  </details>
+  <details>
+    <summary>Własność projektów</summary>
+    Część projektów nie jest w całości własnością Koła, co może ograniczać
+    swobodę podejmowania decyzji.
+  </details>
+</Card>
+</CardGrid>
+
+## Kalendarz wydarzeń
+
+W trakcie kadencji bierzemy udział w szeregu wydarzeń, konferencji i inicjatyw
+wspierających społeczność akademicką oraz rozwój naszych członków.
+
+<Timeline
+  items={[
+    {
+      date: "13–17 kwietnia 2026",
+      title: "BEST Career Week",
+      description:
+        "Tydzień kariery realizowany we współpracy z BEST Wrocław. Reprezentujemy Koło, budujemy relacje z firmami i poszukujemy nowych partnerów.",
+    },
+    {
+      date: "15 kwietnia 2026",
+      title: "Forum Seniora",
+      description:
+        "Spotkanie ze społecznością seniorów. Dzielimy się wiedzą technologiczną, promujemy działalność Koła i budujemy pozytywny wizerunek organizacji.",
+    },
+    {
+      date: "17–19 kwietnia 2026",
+      title: "Wyjazd integracyjno-szkoleniowy",
+      description:
+        "Wyjazd łączący integrację zespołu z rozwijaniem kompetencji. To ważny element budowania wspólnoty i przygotowania do dalszej pracy.",
+    },
+    {
+      date: "8–9 maja 2026",
+      title: "Ghost Days",
+      description:
+        "Wydarzenie środowiska studenckiego, w którym uczestniczymy, prezentując nasze projekty i integrując się z innymi organizacjami.",
+    },
+    {
+      date: "28 maja 2026",
+      title: "Urodziny Solvro",
+      description:
+        "Świętowanie kolejnej rocznicy działalności Koła. To okazja do podsumowania osiągnięć, integracji członków i wzmocnienia społeczności.",
+    },
+    {
+      date: "29–31 maja 2026",
+      title: "bestIT",
+      description:
+        "Konferencja branżowa, na której reprezentujemy Koło, poszerzamy sieć kontaktów i dzielimy się doświadczeniami technologicznymi.",
+    },
+    {
+      date: "30 maja 2026",
+      title: "Odra River Cup",
+      description:
+        "Wydarzenie sportowe integrujące środowisko akademickie. Uczestniczymy, budując pozytywny wizerunek Koła i relacje między organizacjami.",
+    },
+    {
+      date: "Czerwiec 2026",
+      title: "Technologie dla Biznesu",
+      description:
+        "Wydarzenie łączące świat technologii i biznesu. Promujemy Koło i nawiązujemy kontakty z partnerami gospodarczymi.",
+    },
+    {
+      date: "Czerwiec 2026",
+      title: "Best Hacks × Solvro",
+      description:
+        "Hackathon organizowany we współpracy z BEST Wrocław. Aktywnie angażujemy się w przygotowania, wspieramy uczestników i promujemy markę Koła.",
+    },
+    {
+      date: "25 czerwca 2026",
+      title: "Gala Aktywności Studenckiej",
+      description:
+        "Uroczysta gala podsumowująca aktywność studencką na Politechnice Wrocławskiej.",
+    },
+    {
+      date: "29 czerwca–4 lipca 2026",
+      title: "Build with AI – GDG Wrocław",
+      description:
+        "Wydarzenie poświęcone sztucznej inteligencji. Uczestniczymy, aby rozwijać kompetencje sekcji AI/ML oraz budować relacje ze środowiskiem technologicznym.",
+    },
+    {
+      date: "Lipiec 2026",
+      title: "Promocja Koła przy rekrutacji na studia",
+      description:
+        "Działania promocyjne skierowane do kandydatów na studia. Docieramy do osób zainteresowanych dołączeniem do Koła i budujemy rozpoznawalność.",
+    },
+    {
+      date: "1 sierpnia–30 września 2026",
+      title: "Wakacyjne wyzwanie",
+      description:
+        "Inicjatywa angażująca członków i kandydatów w okresie wakacyjnym. Służy szerzeniu kompetencji IT oraz szkoleniu potencjalnych przyszłych członków Koła.",
+    },
+    {
+      date: "21–22 września 2026",
+      title: "Dni Zero",
+      description:
+        "Wydarzenie powitalne dla nowych studentów Politechniki Wrocławskiej. Promujemy aplikację ToPWR jako narzędzie wspierające studentów oraz prezentujemy działalność Koła.",
+    },
+    {
+      date: "Październik 2026",
+      title: "Dni Otwarte",
+      description:
+        "Obecność podczas Dni Otwartych Politechniki Wrocławskiej to okazja do zdobywania kontaktów, prezentacji projektów Koła oraz rekrutacji nowych członków.",
+    },
+    {
+      date: "3–4 października 2026",
+      title: "HackYeah",
+      description:
+        "Największy stacjonarny hackathon w Europie i jedno z najważniejszych wydarzeń w naszym kalendarzu. Fundujemy członkom przejazd i pobyt, aby umożliwić udział w tym prestiżowym wydarzeniu, i walczymy o trzecie z rzędu zwycięstwo.",
+    },
+    {
+      date: "8–11 października 2026",
+      title: "ML in PL",
+      description:
+        "Konferencja poświęcona uczeniu maszynowemu, w której aktywnie uczestniczymy, rozwijając kompetencje członków sekcji AI/ML oraz nawiązując współpracę naukową.",
+    },
+    {
+      date: "Październik 2026",
+      title: "Dni Aktywności Studenckiej",
+      description:
+        "Prezentacja działalności organizacji studenckich. Pokazujemy nasze projekty, nawiązujemy kontakty i pozyskujemy nowych członków.",
+    },
+    {
+      date: "Listopad 2026",
+      title: "Wyjazd integracyjno-szkoleniowy",
+      description:
+        "Dodatkowy wyjazd łączący integrację zespołu z rozwijaniem kompetencji, realizowany w trakcie kadencji.",
+    },
+    {
+      date: "18 listopada 2026",
+      title: "BEST Mind Challenge",
+      description:
+        "Konkurs inżynierski, podczas którego prowadzimy stanowisko promujące Koło. Zachęcamy studentów do rozwoju w ramach projektów technologicznych.",
+    },
+    {
+      date: "Grudzień 2026",
+      title: "Wigilia Solvro",
+      description:
+        "Świąteczne spotkanie członków. To czas na podsumowanie mijającego roku, integrację zespołu i świętowanie wspólnych osiągnięć.",
+    },
+    {
+      date: "17 marca 2027",
+      title: "Kiss IT",
+      description:
+        "Wydarzenie branżowe łączące studentów ze środowiskiem firm technologicznych. Promujemy Koło i nawiązujemy kontakty z potencjalnymi partnerami.",
+    },
+    {
+      date: "Wiosna 2027",
+      title: "Grill Solvro",
+      description:
+        "Integracyjne spotkanie członków podsumowujące rok i kończące kadencję w luźnej atmosferze.",
+    },
+  ]}
+/>
+
+## Preliminarz budżetowy
+
+Budżet Koła na kadencję 26/27 został zaplanowany w oparciu o cele
+strategiczne i priorytety określone w niniejszym planie działania. Środki są
+rozdzielane pomiędzy rozwój infrastruktury, realizację projektów, organizację
+wydarzeń oraz działalność promocyjną i integracyjną. Nadzór nad terminowym
+wykorzystaniem środków stanowi jeden z priorytetów Zarządu.
+
+### Środki w ramach budżetu Koła Strategicznego
+
+Poniższe środki uzyskaliśmy w ramach budżetu Koła Strategicznego. W tabeli
+uwzględniono pozycje wraz z ich finalnym budżetem:
+
+<ColoredTable
+  columns={[
+    { header: "Nr", className: "w-14" },
+    { header: "Pozycja" },
+    {
+      header: "Budżet",
+      align: "right",
+      className: "whitespace-nowrap font-medium tabular-nums",
+    },
+  ]}
+  footer={{ label: "Suma", values: ["85 500,00 zł"] }}
+  groups={[
+    {
+      tone: "slate",
+      rows: [
+        ["1.", "Materiały szkoleniowe dla nowych członków", "1 576,04 zł"],
+        ["2.", "Tokeny API OpenAI", "3 940,09 zł"],
+        ["3.", "Tokeny na przetwarzanie Big Data w chmurze", "3 940,09 zł"],
+        [
+          "4.",
+          "Wydatki operacyjne i promocyjne działalności dydaktycznej",
+          "1 576,04 zł",
+        ],
+      ],
+    },
+    {
+      label: "Wakacyjne wyzwanie",
+      tone: "amber",
+      rows: [
+        ["5.", "Promocja", "394,01 zł"],
+        ["6.", "Stacjonarny Hackathon", "2 836,87 zł"],
+        ["7.", "Oficjalne zakończenie", "236,41 zł"],
+      ],
+    },
+    {
+      label: "Wyjazdy",
+      tone: "pink",
+      rows: [
+        ["8.", "Zakwaterowanie HackYeah (25 os.)", "1 576,04 zł"],
+        ["9.", "Transport HackYeah", "1 182,03 zł"],
+        ["10.", "Transport ML in PL", "945,62 zł"],
+        ["11.", "Zakwaterowanie ML in PL (15 os.)", "3 782,49 zł"],
+        ["12.", "Opłata konferencyjna ML in PL (15 os.)", "5 910,14 zł"],
+        ["13.", "Zakwaterowanie Ghost Day (15 os.)", "1 182,03 zł"],
+        ["14.", "Opłata konferencyjna Ghost Day (15 os.)", "1 182,03 zł"],
+        [
+          "15.",
+          "Zakwaterowanie Wyjazd Szkoleniowy (2 noce 60 os.)",
+          "3 940,09 zł",
+        ],
+        ["16.", "Wyżywienie Wyjazd Szkoleniowy (60 os.)", "2 364,06 zł"],
+      ],
+    },
+    {
+      label: "ToPWR",
+      tone: "orange",
+      rows: [
+        [
+          "17.",
+          "Wzmożona promocja na początku semestru zimowego",
+          "1 576,04 zł",
+        ],
+      ],
+    },
+    {
+      label: "Eventownik",
+      tone: "cyan",
+      rows: [
+        ["18.", "Ochrona przed botami (captcha)", "4 018,89 zł"],
+        [
+          "19.",
+          "Promocja w okresie Rajdów Samorządu Studenckiego PWr",
+          "1 576,04 zł",
+        ],
+        ["20.", "Promocja Aplikacji", "1 576,04 zł"],
+      ],
+    },
+    {
+      label: "Planer",
+      tone: "violet",
+      rows: [
+        ["21.", "Promocja zapisy sem. letni", "788,02 zł"],
+        ["22.", "Promocja zapisy sem. zimowy", "788,02 zł"],
+      ],
+    },
+    {
+      label: "Testownik",
+      tone: "blue",
+      rows: [
+        ["23.", "Promocja sesja zimowa", "788,02 zł"],
+        ["24.", "Promocja sesja letnia", "788,02 zł"],
+      ],
+    },
+    {
+      label: "Ciągła działalność KN Solvro",
+      tone: "slate",
+      rows: [
+        ["25.", "Koszty operacyjne sprzętu", "27 580,65 zł"],
+        ["26.", "Mikrofon konferencyjny oraz kamerka", "1 576,04 zł"],
+        ["27.", "Koszty operacyjne oprogramowania", "7 880,18 zł"],
+      ],
+    },
+  ]}
+/>
+
+### Środki z projektu MNiSW
+
+Politechnika Wrocławska realizuje projekt pn. **Solvro na Scenie Światowej:
+Rozwój Kompetencji IT poprzez udział w międzynarodowych hackathonach
+(konkursach)**, który otrzymał środki finansowe w kwocie **13 062,00 zł** w
+ramach projektu niekonkurencyjnego pt. **Wsparcie studentów w zakresie
+podniesienia ich kompetencji i umiejętności** realizowanego przez Ministerstwo
+Nauki i Szkolnictwa Wyższego. Środki będą przeznaczone na wydarzenie HackYeah
+2026 – transport, diety i noclegi dla członków jadących w delegacji na
+hackathon.
+
+### Współpraca z JetBrains
+
+W ramach współpracy z JetBrains otrzymaliśmy dodatkowo **8 000,00 zł**, które
+planujemy wydać na wyjazdy służbowe, np. prezentację paperu naukowego sekcji
+AI/ML podczas konferencji ICCS w Hamburgu 2026, oraz inne podobne
+zapotrzebowania członków.
+
+## Zasoby
+
+Kadencję rozpoczynamy w oparciu o wypracowane przez poprzednie zarządy
+zasoby: zespół aktywnych członków, portfel rozwijanych projektów oraz
+infrastrukturę informatyczną. Pełne zestawienie zasobów ludzkich,
+projektowych, materialnych i finansowych znajduje się w arkuszu:
+
+<LinkCard
+  title="Zasoby KN Solvro"
+  href="https://docs.google.com/spreadsheets/d/1joy1vVLB2IzjoYGQ4K0aigdDtlWFMspNdHg2i80gg5A/edit?usp=sharing"
+  description="Zestawienie zasobów ludzkich, projektowych, materialnych i finansowych Koła."
+/>

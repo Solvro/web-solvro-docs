@@ -1,0 +1,154 @@
+---
+type Tone =
+  "blue" | "violet" | "teal" | "amber" | "pink" | "orange" | "cyan" | "slate";
+
+interface Column {
+  header: string;
+  align?: "left" | "right";
+  className?: string;
+}
+
+interface Group {
+  label?: string;
+  tone: Tone;
+  rows: string[][];
+}
+
+interface Footer {
+  label: string;
+  values: string[];
+}
+
+interface Props {
+  columns: Column[];
+  groups: Group[];
+  footer?: Footer;
+}
+
+const { columns, groups, footer } = Astro.props;
+
+const toneStyles: Record<Tone, string> = {
+  blue: "border-blue-500/50 bg-blue-500/15 text-blue-300",
+  violet: "border-violet-500/50 bg-violet-500/15 text-violet-300",
+  teal: "border-teal-500/50 bg-teal-500/15 text-teal-300",
+  amber: "border-amber-500/50 bg-amber-500/15 text-amber-300",
+  pink: "border-pink-500/50 bg-pink-500/15 text-pink-300",
+  orange: "border-orange-500/50 bg-orange-500/15 text-orange-300",
+  cyan: "border-cyan-500/50 bg-cyan-500/15 text-cyan-300",
+  slate: "border-slate-500/50 bg-slate-500/15 text-slate-300",
+};
+
+const rowStyles: Record<Tone, string> = {
+  blue: "border-blue-500/50 bg-blue-500/10",
+  violet: "border-violet-500/50 bg-violet-500/10",
+  teal: "border-teal-500/50 bg-teal-500/10",
+  amber: "border-amber-500/50 bg-amber-500/10",
+  pink: "border-pink-500/50 bg-pink-500/10",
+  orange: "border-orange-500/50 bg-orange-500/10",
+  cyan: "border-cyan-500/50 bg-cyan-500/10",
+  slate: "border-slate-500/50 bg-slate-500/10",
+};
+
+const alignClass = (align?: "left" | "right") =>
+  align === "right" ? "text-right" : "text-left";
+
+const footerLabelColspan =
+  footer && footer.values.length < columns.length
+    ? columns.length - footer.values.length
+    : 0;
+
+const footerValueIndex = (index: number) => {
+  if (!footer) return 0;
+  return columns.length - footer.values.length + index;
+};
+---
+
+<table class="colored-table w-full border-collapse text-sm">
+  <thead>
+    <tr
+      class="text-left text-xs uppercase tracking-[0.05em] text-[var(--sl-color-gray-4)]"
+    >
+      {
+        columns.map((column) => (
+          <th
+            class={`${alignClass(column.align)} font-semibold ${column.className ?? ""}`}
+          >
+            {column.header}
+          </th>
+        ))
+      }
+    </tr>
+  </thead>
+  <tbody>
+    {
+      groups.map((group) => (
+        <Fragment>
+          {group.label && (
+            <tr>
+              <td
+                class={`border-l-4 text-xs font-semibold uppercase tracking-wide ${toneStyles[group.tone]}`}
+                colspan={columns.length}
+              >
+                {group.label}
+              </td>
+            </tr>
+          )}
+          {group.rows.map((cells) => (
+            <tr
+              class={`border-b border-l-4 text-[var(--sl-color-gray-2)] ${rowStyles[group.tone]}`}
+            >
+              {cells.map((value, index) => (
+                <td
+                  class={`${alignClass(columns[index]?.align)} ${columns[index]?.className ?? ""}`}
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </Fragment>
+      ))
+    }
+    {
+      footer && footerLabelColspan > 0 && (
+        <tr class="border-t-2 border-[var(--sl-color-gray-5)] text-[var(--sl-color-white)]">
+          <td class="font-semibold" colspan={footerLabelColspan}>
+            {footer.label}
+          </td>
+          {footer.values.map((value, index) => {
+            const column = columns[footerValueIndex(index)];
+            return (
+              <td
+                class={`whitespace-nowrap ${alignClass(column?.align)} font-semibold tabular-nums ${column?.className ?? ""}`}
+              >
+                {value}
+              </td>
+            );
+          })}
+        </tr>
+      )
+    }
+  </tbody>
+</table>
+
+<style>
+  .colored-table :is(th, td) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .colored-table :is(th:first-child, td:first-child) {
+    padding-left: 1.25rem !important;
+    padding-inline-start: 1.25rem !important;
+  }
+
+  .colored-table :is(th:last-child, td:last-child) {
+    padding-right: 1.25rem !important;
+    padding-inline-end: 1.25rem !important;
+  }
+
+  .colored-table td:not(:first-child):not(:last-child) {
+    padding-right: 1.25rem;
+    padding-inline-end: 1.25rem;
+  }
+</style>
