@@ -47,7 +47,7 @@
     "prettier": "^3.9.8",
     "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.104.1",
-    "tsx": "^4.23.13"
+    "tsx": "^4.23.15"
   },
   "lint-staged": {
     "*.{astro,md,mdx,mjs,ts,tsx,js,jsx,json}": [
