@@ -55,7 +55,7 @@
     ]
   },
   "allowScripts": {
-    "sharp": false,
+    "sharp": true,
     "esbuild": false,
     "@parcel/watcher": false,
     "fsevents": false
